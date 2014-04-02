@@ -1,0 +1,290 @@
+html{
+	height: 100%;
+}
+body {
+	/*margin-top: 100px; */
+	/* 50px is the height of the navbar - change this if the navbarn height changes */
+	
+	background-color:#fcfafa;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	height: 100%;
+}
+.navbar{
+margin-bottom:15px;
+}
+.navbar-inner {
+	position:absolute; bottom: 0px;
+	margin-left:120px;
+}
+.navbar-inner > li > a{
+text-align:center;
+color:#fcfafa;
+font-weight:bolder;
+font-size:14px;
+letter-spacing:-1px;
+height:39px;
+line-height: 10px;
+}
+
+.navbar-inner > li > a.selected{
+color:#868585;
+/*color:#a5a5a5;*/
+}
+.navbar-inner > li > a:hover, .navbar-inner > li > a:focus, .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background-color: #15a8de;
+}
+.navbar-inner > .active > a, .navbar-inner > .active > a:hover, .navbar-inner > .active > a:focus {
+   
+    color: #15a8de;
+}
+
+
+.dropdown-menu {
+    display: none;
+    margin: 0 auto;
+	text-align:left;
+	 background-color: #15a8de;
+	 box-shadow:none;
+	 border:none;
+	 padding-bottom:0px;
+	 top: 99%;
+	 padding-top:0px;
+	 color:#fcfafa;
+}
+
+.dropdown-menu li:hover .sub-menu {
+    visibility: visible;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;	
+}
+.dropdown-menu > li {
+padding:5px 5px 5px 0px;
+letter-spacing:-1px;
+line-height: 0px;
+margin-left:5px;
+}
+ul.dropdown-menu > li > a:hover{
+	background-image: url(../img/hover_icon.png);
+    background-repeat: no-repeat;
+	background-position:left center; 
+}
+.dropdown-menu > li > a {
+padding-left:10px;
+padding-right:0px;
+color:#fcfafa;
+font-weight:bolder;
+font-size:14px;
+}
+.divider{
+border-bottom:solid 2px #DBCCC3;
+margin-left:20px;
+margin-right:20px;
+}
+.dropdown-menu .divider:last-child{
+margin-bottom: 0;
+}
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+background-color: rgba(0, 0, 0, 0);
+}
+
+.nav-tabs .dropdown-menu, .nav-pills .dropdown-menu, .navbar .dropdown-menu {
+    margin-top: 0;
+}
+
+.navbar .sub-menu:before {
+    border-bottom: 7px solid transparent;
+    border-left: none;
+    border-right: 7px solid rgba(0, 0, 0, 0.2);
+    border-top: 7px solid transparent;
+    left: -7px;
+    top: 10px;
+}
+.navbar .sub-menu:after {
+    border-top: 6px solid transparent;
+    border-left: none;
+    border-right: 6px solid #fff;
+    border-bottom: 6px solid transparent;
+    left: 10px;
+    top: 11px;
+    left: -6px;
+}
+
+
+
+/*MENU*/
+.navbar{
+	
+	border-radius: 0px;
+	/*background-color: #F5EFED; background-image: url("../img/img_menu.png");*/
+	background-image: url("../img/img_menu.png");
+	background-size:cover;
+	
+	padding-bottom: 20px;
+	height:134px;
+	border:none;
+}
+.navbar-collapse{
+max-height: 540px;
+}
+
+.navbar-toggle{
+background-color:#575656;
+border:1px solid #D1B6A5;
+}
+.navbar-toggle .icon-bar{
+background-color:#D1B6A5;
+}
+.menu-bg{
+background-image: url("../img/menu_bg.png");
+position:absolute;
+bottom:0px;
+opacity:0.7;
+width:100%;
+height:39px;
+z-index:0;
+}
+.publitop {
+height:100px;
+background-color:#a8a8a8;
+}
+.publitop p {
+color:#f3f2f0;
+}
+
+.publilat{
+background-color:#a8a8a8;
+color:#f3f2f0;
+height:100%;
+margin:0px;
+}
+
+
+
+.logo img{
+position:absolute;
+width:170px;
+margin-left:-40px;
+}
+.filosofia {
+background-image: url("../img/filosofia.png");
+height:400px;
+margin-bottom:15px;
+}
+h2.slidet{
+color:#e0e000;
+text-transform:uppercase;
+font-size:20px;
+}
+.filosofia p {
+color:#fff;
+font-size:20px;
+margin-top:15px;
+}
+.topete{
+height:134px;
+}
+
+#slider1_container .subtitle{
+position: absolute; bottom: 0px; left: 10px; width: 270px;  line-height:20px;
+}
+#slider1_container  .title{
+position: absolute; top: 0px; left: 10px; width: 270px; height: 50px; line-height:20px;
+}
+.socialm{
+	position:absolute;
+	top:10px;
+	right:0;
+	margin-right:77px;
+}
+.userzone{
+	position:absolute;
+	top:60px;
+	right:0;
+	margin-right:77px;
+}
+.userzone .mid {
+	background: url(../img/mid_user.png) repeat;
+	padding-top:7px;
+	width:80px;
+}
+.userzone .dcha {
+	background: url(../img/dcha_user.png) repeat;
+	width:15px;
+}
+.userzone .izq {
+	background: url(../img/izq_user.png) repeat;
+	width:14px;
+}
+.reg{
+overflow:hidden;
+margin-right:10px;
+margin-left:10px;
+	text-align:center;
+color: #FCFAFA;
+    font-size: 13px;
+    font-weight: bolder;
+}
+.userzone a{
+float:right;
+letter-spacing: -1px;
+}
+.userzone a:hover,.userzone a:active{
+	text-decoration:none;
+	color: #FCFAFA;
+}
+.reg div{
+float:left;
+height:32px;
+}
+.userzone .last {
+	margin-right:8px;
+}
+.norightp{
+	padding-right:0px;
+}
+.noleftp{
+	padding-left:0px;
+}
+.video-online img{
+max-width:304px;
+}
+
+.social,.hi-tribo,.video-online{
+	padding-right:0px;
+	
+}
+
+a:active,a:focus,a {
+outline: 0;
+}
+
+
+/* jssor slider navigator skin 03 css */
+/*
+.jssorn03 div           (normal)
+.jssorn03 div:hover     (normal mouseover)
+.jssorn03 .av           (active)
+.jssorn03 .av:hover     (active mouseover)
+.jssorn03 .dn           (mousedown)
+*/
+.jssorn03 div,
+.jssorn03 div:hover,
+.jssorn03 .av {
+    width: 48px;
+    background: url(../img/slide_ele.png) no-repeat;
+    overflow: hidden;
+    cursor: pointer;
+}
+.jssorn03 div:hover,
+.jssorn03 .av:hover {
+    background: url(../img/slide_ele_hov.png) no-repeat;
+}
+.jssorn03 .av {
+    background: url(../img/slide_ele_hov.png) no-repeat;
+}
+.jssorn03 .dn,
+.jssorn03 .dn:hover {
+    background: url(../img/slide_ele_hov.png) no-repeat;
+}
