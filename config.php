@@ -9,7 +9,7 @@ ini_set("session.gc_maxlifetime","140000");
 $_config['title'] = "Tribo.tv";
 $_config['defaultLang'] = "en_GB";
 $_config['template'] = "tribo";
-$_config['defaultApp'] = "demo";
+$_config['defaultApp'] = "home";
 $_config['defaultLimit'] = 10;
 $_config['debug'] = false;
 
