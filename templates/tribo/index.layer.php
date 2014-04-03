@@ -34,7 +34,7 @@
 		<!--/javascript-->
 		<link rel="shortcut icon" href="<?=Url::template("img/favicon.png")?>">
 	</head>
-	<body class="">
+	<body class="">t
 		<!-- Module publiTop -->
 		<?=$controller->view("modules.publiTop");?>
 		<!--/Module publiTop-->		
