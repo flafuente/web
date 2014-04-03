@@ -9,7 +9,7 @@
         </div>
         <div style="position: absolute; display: block; background: url(<?=Url::template("/img/loading.gif");?>) no-repeat center center; top: 0px; left: 0px;width: 100%;height:100%;">
         </div>
-    </div>z
+    </div>
     <!-- Slides Container -->
     <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 297px; height: 335px; overflow: hidden;">
         <div>
