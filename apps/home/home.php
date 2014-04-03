@@ -10,4 +10,9 @@ class homeController extends Controller {
 		$html = $this->view("views.home");
 		$this->render($html);
 	}
+
+	public function sintoniza(){
+		$html = $this->view("views.sintoniza");
+		$this->render($html);
+	}
 }
