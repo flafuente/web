@@ -1,7 +1,7 @@
 <?php defined('_EXE') or die('Restricted access'); ?>
 <!-- Sub cabecera -->
 <div class="tu_haces">
-	<img class="img_tuhaces" src="<?=Url::template("/img/tu_haces.png");?>" alt="Tu haces tribo" title="Tú haces Tribo" />
+	<img class="img_tuhaces" src="<?=Url::template("/img/tu_haces/tu_haces.png");?>" alt="Tu haces tribo" title="Tú haces Tribo" />
 </div>
 
 <!-- tribo Cortos, noticias... -->
@@ -42,5 +42,7 @@
 
 <!-- LOGIN -->
 <div class="col-md-10 th_entra">
+	<img src="<?=Url::template("/img/tu_haces/tuhacestribo.png");?>" alt="Tu haces tribo" title="Tú haces Tribo" />
+	<br />
 	<?=$controller->view("modules.login", "login");?>
 </div>
