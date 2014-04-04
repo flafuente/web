@@ -3,7 +3,7 @@
 <div class="well">
 	<fieldset>
 		<legend>
-			<?=Registry::translate("VIEW_LOGIN_LOGIN_TITLE");?>
+			Login
 		</legend>
 		<?php $user = Registry::getUser(); ?>
 		<?php if(!$user->id){ ?>
