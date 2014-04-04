@@ -4,11 +4,11 @@ class User extends Model {
 	public $id;
 	public $statusId;
 	public $roleId;
+	public $nombre;
+	public $apellidos;
 	public $email;
-	public $username;
 	public $password;
 	public $recoveryHash;
-	public $language;
 	public $dateInsert;
 	public $dateUpdate;
 	public $lastvisitDate;
@@ -51,56 +51,61 @@ class User extends Model {
 		}
 	}
 
-	public function validateInsert(){
-		//Check username already exists
-		if(!$this->username){
-			Registry::addMessage(Registry::translate("MODL_USER_VALIDATE_USERNAME_EMPTY"), "error", "username");
-		}elseif($this->getUserByUsername($this->username)){
-			Registry::addMessage(Registry::translate("MODL_USER_VALIDATE_USERNAME_TAKEN"), "error", "username");
+	public function validateInsert($data=array()){
+		//Check nombre
+		if(!$this->nombre){
+			Registry::addMessage("Debes introcurir tu nombre", "error", "nombre");
+		}
+		//Check apellidos
+		if(!$this->apellidos){
+			Registry::addMessage("Debes introducir tus apellidos", "error", "apellidos");
 		}
 		//Check email
 		if(!$this->email){
-			Registry::addMessage(Registry::translate("MODL_USER_VALIDATE_EMAIL_EMPTY"), "error", "email");
+			Registry::addMessage("Debes introducir tu email", "error", "email");
 		}elseif($this->getUserByEmail($this->email)){
-			Registry::addMessage(Registry::translate("MODL_USER_VALIDATE_EMAIL_TAKEN"), "error", "email");
+			Registry::addMessage("Este email ya esta registrado", "error", "email");
 		}
 		//Password?
-		if(!$this->password || strlen($this->password)<6){
-			Registry::addMessage(Registry::translate("MODL_USER_VALIDATE_PASSWORD_SHORT"), "error", "password");
+		if(!$data["password"]){
+			Registry::addMessage("Debes introcir una contraseña", "error", "password");
+		}elseif(strlen($data["password"])<6){
+			Registry::addMessage("La contraseña debe tenter al menos 6 caracteres", "error", "password");
+		}elseif($data["password"]!=$data["password2"]){
+			Registry::addMessage("Las contraseñas no coinciden", "error", "password");
 		}
 		return Registry::getMessages(true);
 	}
 
-	public function preInsert($data=array()){
-		$config = Registry::getConfig();
-		//Default Language
-		if(!$data['language']){
-			$this->language = $config->get("defaultLang");
-		}
+	public function preInsert(){
 		//Passwd encryption
 		$this->password = User::encrypt($this->password);
 		//Register Date
 		$this->dateInsert = date("Y-m-d H:i:s");
-		//Force to non-admin
-		$this->roleId = 1;
 	}
 
 	public function validateUpdate(){
-		//Check username already exists
-		if(!$this->username){
-			Registry::addMessage(Registry::translate("MODL_USER_VALIDATE_USERNAME_EMPTY"), "error", "username");
-		}elseif($this->getUserByUsername($this->username, $this->id)){
-			Registry::addMessage(Registry::translate("MODL_USER_VALIDATE_USERNAME_TAKEN"), "error", "username");
+		//Check nombre
+		if(!$this->nombre){
+			Registry::addMessage("Debes introcuri tu nombre", "error", "nombre");
+		}
+		//Check apellidos
+		if(!$this->apellidos){
+			Registry::addMessage("Debes introducir tus apellidos", "error", "apellidos");
 		}
 		//Check email
 		if(!$this->email){
-			Registry::addMessage(Registry::translate("MODL_USER_VALIDATE_EMAIL_EMPTY"), "error", "email");
+			Registry::addMessage("Debes introducir tu email", "error", "email");
 		}elseif($this->getUserByEmail($this->email, $this->id)){
-			Registry::addMessage(Registry::translate("MODL_USER_VALIDATE_EMAIL_TAKEN"), "error", "email");
+			Registry::addMessage("Este email ya esta registrado", "error", "email");
 		}
 		//Password?
-		if($this->password && strlen($this->password)<6){
-			Registry::addMessage(Registry::translate("MODL_USER_VALIDATE_PASSWORD_SHORT"), "error", "password");
+		if(!$data["password"]){
+			Registry::addMessage("Debes introcir una contraseña", "error", "password");
+		}elseif(strlen($data["password"])<6){
+			Registry::addMessage("La contraseña debe tenter al menos 6 caracteres", "error", "password");
+		}elseif($data["password"]!=$data["password2"]){
+			Registry::addMessage("Las contraseñas no coinciden", "error", "password");
 		}
 		return Registry::getMessages(true);
 	}
@@ -119,9 +124,8 @@ class User extends Model {
 	public function login($login, $password){
 		$db = Registry::getDb();
 		$query = "SELECT * FROM `users` WHERE
-		(	`username`='".htmlspecialchars(mysql_real_escape_string(trim($login)))."' OR
-			`email`='".htmlspecialchars(mysql_real_escape_string(trim($login)))."'
-		) AND `password`='".User::encrypt($password)."' AND `statusId`=1 LIMIT 1;";
+		`email`='".htmlspecialchars(mysql_real_escape_string(trim($login)))."' AND
+		`password`='".User::encrypt($password)."' AND `statusId`=1 LIMIT 1;";
 		if($db->query($query)){
 			if($db->getNumRows()){
 				$row = $db->fetcharray();
@@ -186,20 +190,6 @@ class User extends Model {
 	public function getUserByEmail($email, $ignoreId=0){
 		$db = Registry::getDb();
 		$query = "SELECT * FROM `users` WHERE `email`='".htmlentities(mysql_real_escape_string($email))."'";
-		if($ignoreId){
-			$query .= " AND `id` !=".(int)$ignoreId;
-		}
-		if($db->Query($query)){
-			if($db->getNumRows()){
-				$row = $db->fetcharray();
-				return new User($row);
-			}
-		}
-	}
-
-	public function getUserByUsername($username, $ignoreId=0){
-		$db = Registry::getDb();
-		$query = "SELECT * FROM `users` WHERE `username`='".htmlentities(mysql_real_escape_string($username))."'";
 		if($ignoreId){
 			$query .= " AND `id` !=".(int)$ignoreId;
 		}

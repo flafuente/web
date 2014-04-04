@@ -11,7 +11,7 @@ $_config['defaultLang'] = "en_GB";
 $_config['template'] = "tribo";
 $_config['defaultApp'] = "home";
 $_config['defaultLimit'] = 10;
-$_config['debug'] = false;
+$_config['debug'] = true;
 
 //Mail
 $_config['mailHost'] = "";
@@ -26,7 +26,7 @@ $_config['mailFromName'] = "";
 $_config['dbHost'] = "localhost";
 $_config['dbUser'] = "root";
 $_config['dbPass'] = "";
-$_config['dbName'] = "lightFramework";
+$_config['dbName'] = "tribotv";
 
 //Urls/Paths
 $_config['path'] = dirname(__FILE__);

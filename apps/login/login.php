@@ -86,9 +86,11 @@ class loginController extends Controller {
 		$user = new User();
 		//Force enable account
 		$_REQUEST['statusId'] = 1;
+		//Force role
+		$_REQUEST['roleId'] = 1;
 		if($user->insert($_REQUEST)){
 			//Do first login
-			$user->login($_REQUEST['username'], $_REQUEST['password']);
+			$user->login($_REQUEST['email'], $_REQUEST['password']);
 			//Redirect to main page thought Message URL parameter
 			Registry::addMessage("", "", "", Url::site());
 		}
