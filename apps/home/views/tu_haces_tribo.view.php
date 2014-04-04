@@ -10,25 +10,25 @@
     <!--
     <h1><span>tribo</span> en Corto</h1>
     -->
-    <div class="descr"></div>
+    <div class="descr">Un espacio creativo para<br />los amantes del cine</div>
 </div>
 <div class="col-md-2 c_yellow th_square">
 	<!--
     <h1><span>tribo</span> Notícias</h1>
     -->
-    <div class="descr"></div>
+    <div class="descr">Ven a tribo y forma parte<br />de la cadena</div>
 </div>
 <div class="col-md-2 c_red th_square">
 	<!--
     <h1><span>tribo</span> Música</h1>
     -->
-    <div class="descr"></div>
+    <div class="descr">Vuelve a ser fan</div>
 </div>
 <div class="col-md-2 c_pink th_square">
 	<!--
     <h1><span>tribo</span> Juegos</h1>
     -->
-    <div class="descr"></div>
+    <div class="prox">-PROXIMAMENTE-</div>
 </div>
 <div class="col-md-2 c_purple th_square">
     <!--
@@ -36,7 +36,7 @@
     <p>Tus Fotos</p>
     <p>Tus Videos</p>
     -->
-    <div class="descr"></div>
+    <div class="descr">Exprésate y da a<br />conocer tu personalidad</div>
 </div>
 <div style="clear: both;"></div>
 

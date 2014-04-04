@@ -384,14 +384,14 @@ font-weight:bolder;
 .th_square{
 	min-height: 160px;
 	margin: 1.66666666%;
-	padding: 2px;
+	padding: 0px;
 	text-align: center;
 	background-size:100% !important;
+	font-family: "HelveticaNH";
 }
 .th_square h1{
 	font-size: 14px;
 	color: white;
-	font-family: "HelveticaNH",
 }
 .th_square h1 span{
 	font-size: 17px;
@@ -420,6 +420,19 @@ font-weight:bolder;
 .th_entra{
 	margin-left: 8.3333333%;
 	border: 1px solid #43B8E4;
+}
+.th_square .descr{
+	background: url(../img/tu_haces/bg_tran.png);
+	font-size: 9px;
+	position: relative;
+	top: 120px;
+	min-height: 24px;
+}
+.th_square .prox{
+	font-size: 11px;
+	color: white;
+	position: relative;
+	top: 120px;
 }
 
 /*CUSTOM RESPONSIVE*/
