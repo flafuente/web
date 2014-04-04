@@ -376,6 +376,10 @@ font-weight:bolder;
 .jssorn03 .dn:hover {
     background: url(../img/slide_ele_hov.png) no-repeat;
 }
+/*REGISTRO etc*/
+.well{
+	margin-top: 15px;
+}
 
 /*TU HACES TRIBO*/
 .img_tuhaces{
