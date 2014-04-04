@@ -48,8 +48,8 @@
 	<?=$controller->view("modules.login", "login");?>
 	<div style="clear: both;"></div>
 	<div class="th_botm">
-		<a href="">¿Necesitas una cuenta?</a>
-		<a href="" style="font-weight: bold;">Registrate</a>
+		¿Necesitas una cuenta?
+		<a href="<?php echo Url::site("login/register"); ?>" style="font-weight: bold;">Registrate</a>
 	</div>
 </div>
 <div style="clear: both;"></div>
