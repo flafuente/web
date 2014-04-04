@@ -210,12 +210,78 @@ position: absolute; top: 0px; left: 10px; width: 270px; height: 50px; line-heigh
 	width:80px;
 }
 .userzone .dcha {
-	background: url(../img/dcha_user.png) repeat;
+	background: url(../img/dcha_user.png) ;
 	width:15px;
 }
 .userzone .izq {
-	background: url(../img/izq_user.png) repeat;
+	background: url(../img/izq_user.png) ;
 	width:14px;
+}
+.metro{
+max-width:227px;
+position:relative;
+top:-5px;
+}
+
+.metro a:hover,.metro a:active{
+color:#FCFAFA;
+}
+.metro a{
+	position:absolute;
+	bottom:10px;
+	left:50%;
+	margin-left:-48px;
+	width:96px;
+}
+.metro a div{
+height:23px;
+}
+.metro .mid {
+	background: url(../img/metro_mid.png) repeat-x;
+	padding-top:2px;
+	width:80px;
+}
+.metro .dcha {
+	background: url(../img/metro_dcha.png) no-repeat;
+	width:8px;
+}
+.metro .izq {
+	background: url(../img/metro_izq.png) no-repeat;
+	width:8px;
+}
+.tuhaces a:hover,.tuhaces a:active{
+color:#16A8DD;
+}
+.tuhaces .reg .mid{
+color:#16A8DD !important;
+font-weight:800;
+}
+.tuhaces{
+max-width:227px;
+position:relative;
+top:0px;
+}
+.tuhaces a{
+	position:absolute;
+	bottom:33px;
+	left:0px;
+	width:96px;
+}
+.tuhaces a div{
+height:30px;
+}
+.tuhaces .mid {
+	background: url(../img/tuhaces_mid.png) repeat-x;
+	padding-top:6px;
+	width:80px;
+}
+.tuhaces .dcha {
+	background: url(../img/tuhaces_dcha.png) no-repeat;
+	width:7px;
+}
+.tuhaces .izq {
+	background: url(../img/tuhaces_izq.png) no-repeat;
+	width:7px;
 }
 .reg{
 overflow:hidden;
@@ -253,11 +319,17 @@ max-width:304px;
 
 .social,.hi-tribo,.video-online{
 	padding-right:0px;
-	
 }
 
 a:active,a:focus,a {
 outline: 0;
+}
+.footer{
+border-top:2px solid #000;
+text-align:center;
+color:#000;
+font-size:12px;
+font-weight:bolder;
 }
 
 

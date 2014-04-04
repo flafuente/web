@@ -72,12 +72,14 @@
 				<!--content-->
 				<?=$content?>
 				<!--/content-->
+				<div class="col-md-12 footer">
+					tribotv©2014
+				</div>
 	        </div>
-
 	        <!-- Module publiLat -->
 	        <?=$controller->view("modules.publiLat");?>
 	        <!--/Module publiLat-->
-
+			
 	    </div>
 		<!--/mainContainer-->
 

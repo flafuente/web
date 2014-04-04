@@ -22,7 +22,7 @@
                 </a>
                 <a href='#' class='reg'>
                     <div class='izq'></div>
-                    <div class='mid'>Regístrate</div>
+                    <div class='mid'>> Regístrate</div>
                     <div class='dcha'></div>
                 </a>
                 <a href='#'>
