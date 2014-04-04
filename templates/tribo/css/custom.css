@@ -438,4 +438,7 @@ font-weight:bolder;
 	height: auto;
 	margin-bottom: 0px;
 }
+.container.main{
+	padding-bottom: 50px;
+}
 /* End Debug Footer */

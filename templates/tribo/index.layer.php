@@ -44,7 +44,7 @@
 		<!--/Module topMenu-->
 
 		<!--mainContainer-->
-		<div class="container">
+		<div class="container main">
 
 			<div class='row top hidden-xs'></div>
 
