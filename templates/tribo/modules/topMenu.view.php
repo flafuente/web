@@ -20,12 +20,12 @@
                 <a href='#' class='last'>
                     <img src='<?=Url::template("/img/herramientas.png");?>' title='Herramientas' />
                 </a>
-                <a href='#' class='reg'>
+                <a href='<?=Url::site("login/register");?>' class='reg'>
                     <div class='izq'></div>
                     <div class='mid'>> Regístrate</div>
                     <div class='dcha'></div>
                 </a>
-                <a href='#'>
+                <a href='<?=Url::site("account");?>'>
                     <img src='<?=Url::template("/img/user.png");?>' title='Perfil' />
                 </a>
             </div>

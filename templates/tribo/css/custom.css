@@ -360,3 +360,14 @@ font-weight:bolder;
 .jssorn03 .dn:hover {
     background: url(../img/slide_ele_hov.png) no-repeat;
 }
+
+/* Debug Footer */
+.footerDebug .navbar{
+	border-radius: 0px;
+	background-image: none;
+	background-size: none;
+	padding-bottom: 0px;
+	height: auto;
+	margin-bottom: 0px;
+}
+/* End Debug Footer */

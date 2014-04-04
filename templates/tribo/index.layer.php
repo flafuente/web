@@ -37,7 +37,7 @@
 	<body class="">
 		<!-- Module publiTop -->
 		<?=$controller->view("modules.publiTop");?>
-		<!--/Module publiTop-->		
+		<!--/Module publiTop-->
 
 		<!-- Module topMenu -->
 		<?=$controller->view("modules.topMenu");?>
@@ -45,7 +45,7 @@
 
 		<!--mainContainer-->
 		<div class="container">
-			
+
 			<div class='row top hidden-xs'></div>
 
 	        <!-- Module publiLat -->
@@ -79,7 +79,7 @@
 	        <!-- Module publiLat -->
 	        <?=$controller->view("modules.publiLat");?>
 	        <!--/Module publiLat-->
-			
+
 	    </div>
 		<!--/mainContainer-->
 
@@ -108,15 +108,15 @@
 	        <?=$controller->view("modules.debugModalMessages");?>
 	    <?php } ?>
 	    <!-- /Debugging Modals -->
-			<?php if($config->get("debug")){ ?>
-				<!-- Footer -->
-				<footer class="footer">
+		<?php if($config->get("debug")){ ?>
+			<!-- Footer -->
+			<footer class="footerDebug">
 	            <!-- Debugging Menu -->
 	            <?php $controller->setData("debug", $debug); ?>
 	            <?=$controller->view("modules.debugMenu");?>
 	            <!-- /Debugging Menu -->
-	        </footer>
-	        <!-- /Footer -->
-	    <?php } ?>
+        	</footer>
+        	<!-- /Footer -->
+    	<?php } ?>
 	</body>
 </html>
