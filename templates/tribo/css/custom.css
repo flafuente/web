@@ -386,6 +386,7 @@ font-weight:bolder;
 	margin: 1.66666666%;
 	padding: 2px;
 	text-align: center;
+	background-size:100% !important;
 }
 .th_square h1{
 	font-size: 14px;
@@ -397,19 +398,28 @@ font-weight:bolder;
 	font-weight: bold;
 }
 .c_green{
+	background: url(../img/tu_haces/th_corto.png) no-repeat;
 	background-color: #00A100;
 }
 .c_yellow{
+	background: url(../img/tu_haces/th_noticias.png) no-repeat;
 	background-color: #BDBB03;
 }
 .c_red{
+	background: url(../img/tu_haces/th_musica.png) no-repeat;
 	background-color: #AE032B;
 }
 .c_pink{
+	background: url(../img/tu_haces/th_juegos.png) no-repeat;
 	background-color: #E50A90;
 }
 .c_purple{
+	background: url(../img/tu_haces/th_fotos.png) no-repeat;
 	background-color: #6F1D7C;
+}
+.th_entra{
+	margin-left: 8.3333333%;
+	border: 1px solid #43B8E4;
 }
 
 /*CUSTOM RESPONSIVE*/
