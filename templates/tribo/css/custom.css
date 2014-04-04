@@ -1,3 +1,15 @@
+@font-face{
+	font-family: HelveticaNB;
+	src: url(../fonts/HelveticaNeueLTStd-Blk.otf);
+}
+@font-face{
+	font-family: HelveticaNH;
+	src: url(../fonts/HelveticaNeueLTStd-Hv.otf);
+}
+@font-face{
+	font-family: HelveticaNM;
+	src: url(../fonts/HelveticaNeueLTStd-Md.otf);
+}
 html{
 	height: 100%;
 }
@@ -6,24 +18,25 @@ body {
 	/* 50px is the height of the navbar - change this if the navbarn height changes */
 	
 	background-color:#fcfafa;
-	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	font-family: "HelveticaNM", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 	height: 100%;
 }
 .navbar{
-margin-bottom:15px;
+	/*margin-bottom:15px;*/
+	margin-bottom: 0px;
 }
 .navbar-inner {
 	position:absolute; bottom: 0px;
 	margin-left:120px;
 }
 .navbar-inner > li > a{
-text-align:center;
-color:#fcfafa;
-font-weight:bolder;
-font-size:14px;
-letter-spacing:-1px;
-height:39px;
-line-height: 10px;
+	text-align:center;
+	color:#fcfafa;
+	font-weight:normal;
+	font-size:14px;
+	letter-spacing:0px;
+	height:39px;
+	line-height: 10px;
 }
 
 .navbar-inner > li > a.selected{
@@ -61,7 +74,7 @@ color:#868585;
 }
 .dropdown-menu > li {
 padding:5px 5px 5px 0px;
-letter-spacing:-1px;
+letter-spacing:0px;
 line-height: 0px;
 margin-left:5px;
 }
@@ -74,7 +87,7 @@ ul.dropdown-menu > li > a:hover{
 padding-left:10px;
 padding-right:0px;
 color:#fcfafa;
-font-weight:bolder;
+font-weight:normal;
 font-size:14px;
 }
 .divider{
@@ -161,17 +174,20 @@ margin:0px;
 }
 
 
-
+.contenido{
+	margin-top: 15px;
+}
 .logo img{
-position:absolute;
-width:170px;
-margin-left:-40px;
+	position:absolute;
+	width:170px;
+	margin-left:-40px;
 }
 .filosofia {
-background-image: url("../img/filosofia.png");
-height:400px;
-margin-bottom:15px;
+	background-image: url("../img/filosofia.png");
+	height:400px;
+	margin-bottom:15px;
 }
+
 h2.slidet{
 color:#e0e000;
 text-transform:uppercase;
@@ -290,11 +306,11 @@ margin-left:10px;
 	text-align:center;
 color: #FCFAFA;
     font-size: 13px;
-    font-weight: bolder;
+    font-weight: normal;
 }
 .userzone a{
 float:right;
-letter-spacing: -1px;
+letter-spacing: 0px;
 }
 .userzone a:hover,.userzone a:active{
 	text-decoration:none;
@@ -359,4 +375,47 @@ font-weight:bolder;
 .jssorn03 .dn,
 .jssorn03 .dn:hover {
     background: url(../img/slide_ele_hov.png) no-repeat;
+}
+
+/*TU HACES TRIBO*/
+.img_tuhaces{
+	width: 100%;
+}
+.th_square{
+	min-height: 160px;
+	margin: 1.66666666%;
+	padding: 2px;
+	text-align: center;
+}
+.th_square h1{
+	font-size: 14px;
+	color: white;
+	font-family: "HelveticaNH",
+}
+.th_square h1 span{
+	font-size: 17px;
+	font-weight: bold;
+}
+.c_green{
+	background-color: #00A100;
+}
+.c_yellow{
+	background-color: #BDBB03;
+}
+.c_red{
+	background-color: #AE032B;
+}
+.c_pink{
+	background-color: #E50A90;
+}
+.c_purple{
+	background-color: #6F1D7C;
+}
+
+
+/*CUSTOM RESPONSIVE*/
+@media (max-width: 992px){
+	.navbar-inner > li > a{
+		font-size:12px;
+	}
 }
