@@ -42,7 +42,5 @@
 
 <!-- LOGIN -->
 <div class="col-md-10 th_entra">
-	<input type="text" name="usern" />
-	<input type="password" name="pwd" />
-	<input type="submit" />
+	<?=$controller->view("modules.login", "login");?>
 </div>
