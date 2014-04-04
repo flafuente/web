@@ -432,11 +432,46 @@ font-weight:bolder;
 }
 .th_entra{
 	margin-left: 8.3333333%;
-	border: 1px solid #43B8E4;
+	border: 1px solid #15A8DE;
 	text-align: center;
+	padding: 0px;
 }
-.th_entra img{
-	
+.th_entra .th_botm{
+	background-color: #15A8DE;
+	padding: 5px;
+	margin-top: 5px;
+}
+.th_entra .th_botm a, .th_entra .th_botm a:hover, .th_entra .th_botm a:active{
+	color: #FFFFFF;
+}
+.th_entra .form-inline div {
+	float: left;
+}
+.th_entra .form-inline div label{
+	font-weight: normal;
+	font-size: 12px;
+}
+.th_entra .form-inline div input{
+	background-color: #ECECEC;
+	border: none;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	margin: 5px;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+.th_entra .form-inline div button{
+	background: none;
+	color: #15A8DE;
+	border: none;
+	padding: 0px;
+	margin-top: 10px;
+}
+.th_entra .form-inline .forgot{
+	float: right;
+	font-size: 12px;
+	margin-right: 105px;
 }
 
 /*CUSTOM RESPONSIVE*/
@@ -444,6 +479,23 @@ font-weight:bolder;
 	.navbar-inner > li > a{
 		font-size:12px;
 	}
+	.th_entra{
+		margin-left:0px;
+	}
+	.th_square{
+		background-size: 172px !important;
+		background-position: center !important;
+	}
+	.th_square .descr, .th_square .prox{
+		font-size: 15px;
+		min-height: 40px;
+	}
+
+	.th_square .prox{
+		background: url(../img/tu_haces/bg_tran.png);
+		color: black;
+	}
+
 }
 
 /* Debug Footer */

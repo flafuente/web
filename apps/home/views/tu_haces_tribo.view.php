@@ -43,6 +43,14 @@
 <!-- LOGIN -->
 <div class="col-md-10 th_entra">
 	<img src="<?=Url::template("/img/tu_haces/tuhacestribo.png");?>" alt="Tu haces tribo" title="Tú haces Tribo" />
+	<div style="clear: both;"></div>
 	<br />
 	<?=$controller->view("modules.login", "login");?>
+	<div style="clear: both;"></div>
+	<div class="th_botm">
+		<a href="">¿Necesitas una cuenta?</a>
+		<a href="" style="font-weight: bold;">Registrate</a>
+	</div>
 </div>
+<div style="clear: both;"></div>
+<br />

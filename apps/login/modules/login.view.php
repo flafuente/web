@@ -12,17 +12,20 @@
 		<div class="form-group">
 		   	<label for="password">Contraseña</label>
 		    <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">
-		    <a href="<?=Url::site("login/recovery");?>">
-	    		¿Has olvidado tu acceso?
-	    	</a>
 		</div>
 		<!-- Buttons -->
 		<div class="form-group">
 	    	<button class="btn btn-primary ladda-button" data-style="slide-left">
 				<span class="ladda-label">
-	    			Acceder
+	    			Acceder >>
 	    		</span>
 	    	</button>
+		</div>
+		<!-- Forgot password -->
+		<div class="form-group forgot">
+		    <a href="<?=Url::site("login/recovery");?>">
+	    		¿Has olvidado tu acceso?
+	    	</a>
 		</div>
 	</form>
 <?php }else{ ?>
