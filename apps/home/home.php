@@ -15,4 +15,8 @@ class homeController extends Controller {
 		$html = $this->view("views.sintoniza");
 		$this->render($html);
 	}
+	public function tu_haces_tribo(){
+		$html = $this->view("views.tu_haces_tribo");
+		$this->render($html);
+	}
 }

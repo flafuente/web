@@ -1,6 +1,6 @@
 <?php defined('_EXE') or die('Restricted access'); ?>
 
-<div class=" filosofia">
+<div class="contenido filosofia">
 
 	<!-- Module slider -->
     <?=$controller->view("modules.slider");?>

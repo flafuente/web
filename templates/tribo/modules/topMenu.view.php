@@ -77,7 +77,7 @@
                     </li>
                     <li><a class="" href='#'>TV en directo</a>
                     </li>
-                    <li><a class="" href='#'>Tu haces tribo</a>
+                    <li><a class="" href='<?=Url::site("home/tu_haces_tribo");?>'>Tu haces tribo</a>
                     </li>
                     <li><a class="" href='#'>Contacta</a>
                     </li>

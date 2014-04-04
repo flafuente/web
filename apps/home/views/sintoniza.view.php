@@ -1,3 +1,4 @@
 <?php defined('_EXE') or die('Restricted access'); ?>
-
-:D
+<div class="contenido">
+	:D
+</div>
