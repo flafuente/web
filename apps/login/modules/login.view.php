@@ -2,31 +2,27 @@
 
 <?php $user = Registry::getUser(); ?>
 <?php if(!$user->id){ ?>
-	<form class="form-horizontal ajax" role="form" method="post" name="loginForm" id="loginForm" action="<?=Url::site("login/doLogin")?>">
+	<form class="form-inline ajax" role="form" method="post" name="loginForm" id="loginForm" action="<?=Url::site("login/doLogin")?>">
 		<!-- Username -->
 		<div class="form-group">
-		    <div class="col-sm-10">
-		    	<input type="text" class="form-control" id="login" name="login" placeholder="Email">
-		    </div>
+		    <label for="login">Email</label>
+		    <input type="text" class="form-control" id="login" name="login" placeholder="Email">
 		</div>
 		<!-- Password -->
 		<div class="form-group">
-		    <div class="col-sm-10">
-		    	<input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">
-		    </div>
+		   	<label for="password">Contraseña</label>
+		    <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">
+		    <a href="<?=Url::site("login/recovery");?>">
+	    		¿Has olvidado tu acceso?
+	    	</a>
 		</div>
 		<!-- Buttons -->
 		<div class="form-group">
-		    <div class="col-sm-offset-2 col-sm-10">
-		    	<button class="btn btn-primary ladda-button" data-style="slide-left">
-					<span class="ladda-label">
-		    			Acceder
-		    		</span>
-		    	</button>
-		    	<a href="<?=Url::site("login/recovery");?>">
-		    		¿Has olvidado tu acceso?
-		    	</a>
-		    </div>
+	    	<button class="btn btn-primary ladda-button" data-style="slide-left">
+				<span class="ladda-label">
+	    			Acceder
+	    		</span>
+	    	</button>
 		</div>
 	</form>
 <?php }else{ ?>
