@@ -48,7 +48,7 @@
 	<?=$controller->view("modules.login", "login");?>
 	<div style="clear: both;"></div>
 	<div class="th_botm">
-		¿Necesitas una cuenta?
+		<span style="color: #FFFFFF;">¿Necesitas una cuenta?</span>
 		<a href="<?php echo Url::site("login/register"); ?>" style="font-weight: bold;">Registrate</a>
 	</div>
 </div>
