@@ -67,12 +67,14 @@ class User extends Model {
 			Registry::addMessage("Este email ya esta registrado", "error", "email");
 		}
 		//Password?
-		if(!$data["password"]){
-			Registry::addMessage("Debes introcir una contraseña", "error", "password");
-		}elseif(strlen($data["password"])<6){
-			Registry::addMessage("La contraseña debe tenter al menos 6 caracteres", "error", "password");
-		}elseif($data["password"]!=$data["password2"]){
-			Registry::addMessage("Las contraseñas no coinciden", "error", "password");
+		if(!empty($data)){
+			if(!$this->password){
+				Registry::addMessage("Debes introcir una contraseña", "error", "password");
+			}elseif(strlen($this->password)<6){
+				Registry::addMessage("La contraseña debe tenter al menos 6 caracteres", "error", "password");
+			}elseif($this->password!=$data["password2"]){
+				Registry::addMessage("Las contraseñas no coinciden", "error", "password");
+			}
 		}
 		return Registry::getMessages(true);
 	}
@@ -84,7 +86,7 @@ class User extends Model {
 		$this->dateInsert = date("Y-m-d H:i:s");
 	}
 
-	public function validateUpdate(){
+	public function validateUpdate($data=array()){
 		//Check nombre
 		if(!$this->nombre){
 			Registry::addMessage("Debes introcuri tu nombre", "error", "nombre");
@@ -99,13 +101,15 @@ class User extends Model {
 		}elseif($this->getUserByEmail($this->email, $this->id)){
 			Registry::addMessage("Este email ya esta registrado", "error", "email");
 		}
-		//Password?
-		if(!$data["password"]){
-			Registry::addMessage("Debes introcir una contraseña", "error", "password");
-		}elseif(strlen($data["password"])<6){
-			Registry::addMessage("La contraseña debe tenter al menos 6 caracteres", "error", "password");
-		}elseif($data["password"]!=$data["password2"]){
-			Registry::addMessage("Las contraseñas no coinciden", "error", "password");
+		if(!empty($data)){
+			//Password?
+			if(!$this->password){
+				Registry::addMessage("Debes introcir una contraseña", "error", "password");
+			}elseif(strlen($this->password)<6){
+				Registry::addMessage("La contraseña debe tenter al menos 6 caracteres", "error", "password");
+			}elseif($this->password!=$data["password2"]){
+				Registry::addMessage("Las contraseñas no coinciden", "error", "password");
+			}
 		}
 		return Registry::getMessages(true);
 	}
