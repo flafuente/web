@@ -158,6 +158,8 @@ width:100%;
 height:39px;
 z-index:0;
 }
+
+/*PUBLICIDAD*/
 .publitop {
 height:90px;
 background-color:#a8a8a8;
@@ -167,6 +169,12 @@ color:#f3f2f0;
 }
 
 .publilat{
+background-color:#a8a8a8;
+color:#f3f2f0;
+height:100%;
+margin:0px;
+}
+.publiins{
 background-color:#a8a8a8;
 color:#f3f2f0;
 height:100%;
@@ -479,6 +487,93 @@ font-weight:bolder;
 	float: right;
 	font-size: 12px;
 	margin-right: 105px;
+}
+
+/*SINTONIZANOS*/
+.si_map{
+	border: 6px solid #E0E000;
+	padding-bottom: 67px;
+	max-height: 343px;
+	overflow: hidden;
+	margin-bottom: 5px;
+}
+.si_map img{
+	width: 100%;
+	max-width: 419px;
+}
+.si_map h1 {
+	color: #E0E000;
+	font-size: 21px;
+	margin-bottom: -35px;
+}
+.si_map .percent{
+	color: #E50B90;
+	position: relative;
+	top: 120px;
+	font-size: 11px;
+}
+.si_map .percent .perc{
+	font-size: 32px;
+}
+.si_donde{
+	max-height: 343px;
+	overflow: hidden;
+	margin-bottom: 5px;
+}
+.si_donde img{
+	width: 100%;
+	max-width: 252px;
+}
+.si_donde div{
+	position: relative;
+	top: -60px;
+	background-color: #FFFFFF;
+	text-align: center;
+	font-size: 10px;
+	font-weight: lighter;
+	font-family: "HelveticaNH";
+}
+.si_comenta{
+	margin-bottom: 5px;
+}
+.si_comenta img{
+	width: 100%;
+	max-width: 208px;
+}
+.si_comenta input::-webkit-input-placeholder{
+	font-size: 9px;
+	margin-top: 5px;
+}
+.si_comenta input::-moz-placeholder {
+	font-size: 9px;
+	margin-top: 5px;
+}
+.si_comenta input:-moz-placeholder {   /* Older versions of Firefox */
+	font-size: 9px;
+	margin-top: 5px;
+}
+.si_comenta input:-ms-input-placeholder { 
+	font-size: 9px;
+	margin-top: 5px;
+}
+.si_down{
+	max-height: 299px;
+	overflow: hidden;
+	margin-left: -14px;
+	margin-bottom: 5px;
+}
+.si_down img{
+	width: 100%;
+	max-width: 629px;
+}
+.si_down div.texto{
+	position: relative;
+	top: -60px;
+	background-color: #FFFFFF;
+	text-align: center;
+	font-size: 10px;
+	font-weight: lighter;
+	font-family: "HelveticaNH";
 }
 
 /*CUSTOM RESPONSIVE*/

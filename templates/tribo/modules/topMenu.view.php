@@ -60,7 +60,7 @@
                         <a class="" href='<?=Url::site("home");?>'>Hi! tribo tv</a>
                     </li>
                     <li class="<?=$active["home"]["sintoniza"];?>">
-                        <a class="" href='<?=Url::site("home/sintoniza");?>'>
+                        <a class="" href='<?=Url::site("home/sintonizanos");?>'>
                             Sintonízanos
                         </a>
                     </li>

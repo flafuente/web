@@ -11,8 +11,8 @@ class homeController extends Controller {
 		$this->render($html);
 	}
 
-	public function sintoniza(){
-		$html = $this->view("views.sintoniza");
+	public function sintonizanos(){
+		$html = $this->view("views.sintonizanos");
 		$this->render($html);
 	}
 	public function tu_haces_tribo(){
