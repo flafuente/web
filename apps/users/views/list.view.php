@@ -2,16 +2,16 @@
 
 <h1>
 	<span class="glyphicon glyphicon-user"></span>
-	<?=Registry::translate("VIEW_USERS_TITLE");?>
+	Usuarios
 	<small>
-		<?=Registry::translate("VIEW_USERS_SUBTITLE_LIST");?>
+		Listar
 	</small>
 </h1>
 
 <div class="action">
 	<a class="btn btn-primary ladda-button" href="<?=Url::site("users/edit");?>" data-style="slide-left">
 		<span class="ladda-label">
-			<?=Registry::translate("BTN_NEW");?>
+			Crear
 		</span>
 	</a>
 </div>
@@ -23,13 +23,14 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th><?=Helper::sortableLink("id", Registry::translate("VIEW_USERS_FIELDS_ID"));?></th>
-							<th><?=Helper::sortableLink("username", Registry::translate("VIEW_USERS_FIELDS_USERNAME"));?></th>
-							<th><?=Helper::sortableLink("statusId", Registry::translate("VIEW_USERS_FIELDS_STATUS"));?></th>
-							<th><?=Helper::sortableLink("roleId", Registry::translate("VIEW_USERS_FIELDS_ROLE"));?></th>
-							<th><?=Helper::sortableLink("email", Registry::translate("VIEW_USERS_FIELDS_EMAIL"));?></th>
-							<th><?=Helper::sortableLink("dateInsert", Registry::translate("VIEW_USERS_FIELDS_DATEINSERT"));?></th>
-							<th><?=Helper::sortableLink("dateUpdate", Registry::translate("VIEW_USERS_FIELDS_DATEUPDATE"));?></th>
+							<th><?=Helper::sortableLink("id", "Id");?></th>
+							<th><?=Helper::sortableLink("statusId", "Estado");?></th>
+							<th><?=Helper::sortableLink("roleId", "Rol");?></th>
+							<th><?=Helper::sortableLink("email", "Email");?></th>
+							<th><?=Helper::sortableLink("nombre", "Nombre");?></th>
+							<th><?=Helper::sortableLink("apellidos", "Apellidos");?></th>
+							<th><?=Helper::sortableLink("dateInsert", "Fecha creación");?></th>
+							<th><?=Helper::sortableLink("dateUpdate", "Fecha actualización");?></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -37,17 +38,18 @@
 							<tr>
 								<td><?=$user->id;?></a></td>
 								<td>
-									<a href="<?=Url::site("users/edit/".$user->id);?>">
-										<?=Helper::sanitize($user->username);?>
-									</a>
-								</td>
-								<td>
 									<span class="label label-<?=$user->getStatusCssString();?>">
-										<?=Registry::translate($user->getStatusString());?>
+										<?=$user->getStatusString();?>
 									</span>
 								</td>
-								<td><?=Registry::translate($user->getRoleString());?></td>
-								<td><?=Helper::sanitize($user->email);?></td>
+								<td><?=$user->getRoleString()?></td>
+								<td>
+									<a href="<?=Url::site("users/edit/".$user->id);?>">
+										<?=Helper::sanitize($user->email);?>
+									</a>
+								</td>
+								<td><?=$user->nombre;?></td>
+								<td><?=$user->apellidos;?></td>
 								<td><?=Helper::humanDate($user->dateInsert);?></td>
 								<td><?=Helper::humanDate($user->dateUpdate);?></td>
 							</tr>
@@ -59,7 +61,7 @@
 			</div>
 		<?php }else{ ?>
 			<blockquote>
-		  		<p><?=Registry::translate("VIEW_USERS_LIST_NO_DATA");?></p>
+		  		<p>No se han encontrado usuarios</p>
 			</blockquote>
 		<?php } ?>
 	</form>

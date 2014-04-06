@@ -18,12 +18,12 @@ class User extends Model {
 		1 => "success",
 	);
 	public $statuses = array(
-		0 => "MODL_USER_STATUS_0",
-		1 => "MODL_USER_STATUS_1",
+		0 => "Bloqueado",
+		1 => "Activo",
 	);
 	public $roles = array(
-		1 => "MODL_USER_ROLE_1",
-		2 => "MODL_USER_ROLE_2"
+		1 => "Usuario",
+		2 => "Administrador"
 	);
 	public static $reservedVarsChild = array("roles", "statuses", "statusesCss");
 

@@ -4,9 +4,9 @@
 
 <h1>
 	<span class="glyphicon glyphicon-user"></span>
-	<?=Registry::translate("VIEW_USERS_TITLE");?>
+	Usuarios
 	<small>
-		<?=$user->id ? Registry::translate("VIEW_USERS_SUBTITLE_EDIT") : Registry::translate("VIEW_USERS_SUBTITLE_NEW");?>
+		<?=$user->id ? "Editar" : "Nuevo";?>
 	</small>
 </h1>
 
@@ -19,12 +19,12 @@
 			<div class="col-md-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<?=Registry::translate("VIEW_USERS_PANEL_USER_TITLE");?>
+						Detalles
 					</div>
 				  	<div class="panel-body">
 				    	<div class="form-group">
 							<label class="col-sm-2 control-label">
-								<?=Registry::translate("VIEW_USERS_FIELDS_STATUS");?>
+								Estado
 							</label>
 							<div class="col-sm-10">
 								<input type="checkbox" name="statusId" id="statusId" value="1" <?php if($user->statusId) echo "checked";?>>
@@ -32,7 +32,7 @@
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">
-								<?=Registry::translate("VIEW_USERS_FIELDS_ROLE");?>
+								Rol
 							</label>
 							<div class="col-sm-10">
 								<select class="form-control" name="roleId" id="roleId">
@@ -41,7 +41,7 @@
 									<?php foreach($user->roles as $roleId=>$roleString){ ?>
 										<?php if($currentUser->roleId>$roleId || $currentUser->roleId>=2){ ?>
 											<option value="<?=$roleId?>" <?=$s[$roleId]?>>
-												<?=Registry::translate($roleString);?>
+												<?=$roleString;?>
 											</option>
 										<?php } ?>
 									<?php } ?>
@@ -50,15 +50,23 @@
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">
-								<?=Registry::translate("VIEW_USERS_FIELDS_USERNAME");?>
+								Nombre
 							</label>
 							<div class="col-sm-10">
-								<input type="text" id="username" name="username" class="form-control" value="<?=Helper::sanitize($user->username);?>">
+								<input type="text" id="nombre" name="nombre" class="form-control" value="<?=Helper::sanitize($user->nombre);?>">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">
-								<?=Registry::translate("VIEW_USERS_FIELDS_EMAIL");?>
+								Apellidos
+							</label>
+							<div class="col-sm-10">
+								<input type="text" id="apellidos" name="apellidos" class="form-control" value="<?=Helper::sanitize($user->apellidos);?>">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">
+								Email
 							</label>
 							<div class="col-sm-10">
 								<input type="text" id="email" name="email" class="form-control" value="<?=Helper::sanitize($user->email);?>">
@@ -66,27 +74,10 @@
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">
-								<?=Registry::translate("VIEW_USERS_FIELDS_PASSWORD");?>
+								Contraseña
 							</label>
 							<div class="col-sm-10">
 								<input type="password" id="password" name="password" class="form-control">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 control-label">
-								<?=Registry::translate("VIEW_USERS_FIELDS_LANGUAGE");?>
-							</label>
-							<div class="col-sm-10">
-								<select class="form-control" name="language" id="language">
-									<?php $languages = Language::getLanguages(); ?>
-									<?php $s = array(); ?>
-									<?php $s[$user->language] = "selected"; ?>
-									<?php foreach($languages as $lang){ ?>
-										<option value="<?=$language?>" <?=$s[$lang]?>>
-											<?=Registry::translate($lang);?>
-										</option>
-									<?php } ?>
-								</select>
 							</div>
 						</div>
 						<div class="form-group">
@@ -94,18 +85,18 @@
 								<?php if($user->id){ ?>
 									<button class="btn btn-danger ladda-button delete" data-style="slide-left" confirm="<?=Registry::translate("VIEW_USERS_CONFIRM_DELETE")?>">
 										<span class="ladda-label">
-											<?=Registry::translate("BTN_DELETE");?>
+											Eliminar
 										</span>
 									</button>
 								<?php } ?>
 								<a class="btn btn-default ladda-button" data-spinner-color="#000" data-style="slide-left" href="<?=Url::site("users");?>">
 									<span class="ladda-label">
-										<?=Registry::translate("BTN_CANCEL");?>
+										Cancelar
 									</span>
 								</a>
 								<button class="btn btn-primary ladda-button" data-style="slide-left">
 									<span class="ladda-label">
-										<?=$user->id ? Registry::translate("BTN_SAVE") : Registry::translate("BTN_NEW");?>
+										<?=$user->id ? "Guardar" : "Crear";?>
 									</span>
 								</button>
 							</div>
