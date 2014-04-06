@@ -7,6 +7,10 @@ class homeController extends Controller {
 	public function init(){}
 
 	public function index(){
+		$this->render($html, "landing");
+	}
+
+	public function inicio(){
 		$html = $this->view("views.home");
 		$this->render($html);
 	}
