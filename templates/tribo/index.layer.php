@@ -31,6 +31,8 @@
 		<script src="<?=Url::template("js/jssor.core.js");?>" type="text/javascript"></script>
 		<script src="<?=Url::template("js/jssor.utils.js");?>" type="text/javascript"></script>
 		<script src="<?=Url::template("js/jssor.slider.js");?>" type="text/javascript"></script>
+		<!-- Image Holder -->
+		<script src="<?=Url::template("js/holder.js");?>" type="text/javascript"></script>
 		<!-- Framework JS -->
 		<script src="<?=Url::template("js/init.js");?>" type="text/javascript"></script>
 		<!--/javascript-->
