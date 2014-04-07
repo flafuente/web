@@ -23,10 +23,10 @@ $_config['mailFromAdress'] = "";
 $_config['mailFromName'] = "";
 
 //Database
-$_config['dbHost'] = "localhost";
-$_config['dbUser'] = "root";
-$_config['dbPass'] = "";
-$_config['dbName'] = "tribotv";
+$_config['dbHost'] = "dev.tribo.tv";
+$_config['dbUser'] = "tribotv_nano";
+$_config['dbPass'] = "LaTaronjaEsdeAlborayatet3";
+$_config['dbName'] = "tribotv_dev";
 
 //Urls/Paths
 $_config['path'] = dirname(__FILE__);

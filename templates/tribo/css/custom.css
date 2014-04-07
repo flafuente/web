@@ -46,6 +46,9 @@ color:#868585;
 .navbar-inner > li > a:hover, .navbar-inner > li > a:focus, .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
     background-color: #15a8de;
 }
+.navbar-inner > li.active > a:hover, .navbar-inner > li.active > a:focus {
+    color: #FCFAFA;
+}
 .navbar-inner > .active > a, .navbar-inner > .active > a:hover, .navbar-inner > .active > a:focus {
    
     color: #15a8de;

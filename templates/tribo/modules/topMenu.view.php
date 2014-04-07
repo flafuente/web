@@ -54,12 +54,12 @@
                     <?php $active = array(); ?>
                     <?php $active[$url->app][$url->action] = "active"; ?>
                     <li class='visible-xs'>
-                        <a href="/">Inicio</a>
+                        <a href="<?=Url::site("home");?>">Inicio</a>
                     </li>
-                    <li class="<?=$active["home"]["index"];?>">
-                        <a class="" href='<?=Url::site("home");?>'>Hi! tribo tv</a>
+                    <li class="<?=$active["home"]["inicio"];?>">
+                        <a class="" href='<?=Url::site("home/inicio");?>'>Hi! tribo tv</a>
                     </li>
-                    <li class="<?=$active["home"]["sintoniza"];?>">
+                    <li class="<?=$active["home"]["sintonizanos"];?>">
                         <a class="" href='<?=Url::site("home/sintonizanos");?>'>
                             Sintonízanos
                         </a>
@@ -77,12 +77,13 @@
                     </li>
                     <li><a class="" href='#'>TV en directo</a>
                     </li>
-                    <li><a class="" href='<?=Url::site("home/tu_haces_tribo");?>'>Tu haces tribo</a>
+                    <li class="<?=$active["home"]["tu_haces_tribo"];?>">
+                        <a class="" href='<?=Url::site("home/tu_haces_tribo");?>'>Tu haces tribo</a>
                     </li>
                     <li><a class="" href='#'>Contacta</a>
                     </li>
                 </ul>
-                <a href='#' class='logo'>
+                <a href='<?=Url::site("home");?>' class='logo'>
                     <img src='<?=Url::template("/img/logo.png");?>' />
                 </a>
             </div>

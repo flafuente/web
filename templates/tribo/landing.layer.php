@@ -5,127 +5,82 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<title>Tribo.tv</title>
-		<!--css-->
-		<!-- Bootstrap -->
-		<link href="<?=Url::template("css/bootstrap.min.css");?>" media="screen" rel="stylesheet" type="text/css" />
-		<!-- Custom CSS -->
-		<link href="<?=Url::template("css/custom.css");?>" media="screen" rel="stylesheet" type="text/css" />
-		<!-- Font Awensome CSS -->
-		<link href="<?=Url::template("css/font-awesome.min.css");?>" media="screen" rel="stylesheet" type="text/css" />
-		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	    <!--[if lt IE 9]>
-	      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-	      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-	    <![endif]-->
-	    <!--/css-->
-	    <!--javascript-->
-		<!-- JQuery -->
-		<script src="<?=Url::template("js/jquery-1.11.0.min.js");?>" type="text/javascript"></script>
-		<!-- Bootstrap -->
-		<script src="<?=Url::template("js/bootstrap.min.js");?>" type="text/javascript"></script>
-		<!-- JQuery Forms Plugin -->
-		<script src="<?=Url::template("js/jquery.forms.js");?>" type="text/javascript"></script>
-		<!-- JQuery JSSor -->
-		<script src="<?=Url::template("js/jssor.core.js");?>" type="text/javascript"></script>
-		<script src="<?=Url::template("js/jssor.utils.js");?>" type="text/javascript"></script>
-		<script src="<?=Url::template("js/jssor.slider.js");?>" type="text/javascript"></script>
-		<!-- Framework JS -->
-		<script src="<?=Url::template("js/init.js");?>" type="text/javascript"></script>
-		<!--/javascript-->
-		<link rel="shortcut icon" href="<?=Url::template("img/favicon.png")?>">
-	</head>
-	<body class="">
-		<!-- Module publiTop -->
-		<?=$controller->view("modules.publiTop");?>
-		<!--/Module publiTop-->
+		<title>Tribo.tv - la nueva TV</title>
+		<!-- Bootstrap core CSS -->
+		<link href="<?=Url::template("css/bootstrap.min.css");?>" rel="stylesheet">
+		<link href="<?=Url::template("css/landing.css");?>" rel="stylesheet">
+		  <!-- Chang URLs to wherever Video.js files will be hosted -->
+		<link href="<?=Url::template("js/video-js/video-js.css");?>" rel="stylesheet" type="text/css">
+		<!-- video.js must be in the <head> for older IEs to work. -->
+		<script src="<?=Url::template("js/video-js/video.js");?>"></script>
 
-		<!-- Module topMenu -->
-		<?=$controller->view("modules.topMenu");?>
-		<!--/Module topMenu-->
-
-		<!--mainContainer-->
-		<div class="container main">
-
-			<div class='row top hidden-xs'></div>
-
-	        <!-- Module publiLat -->
-	        <?=$controller->view("modules.publiLat");?>
-	        <!--/Module publiLat-->
-
-			<div class='col-md-8'>
-
-				<!--alerts-->
-				<?php $messages = Registry::getMessages(); ?>
-				<div id="mensajes-sys">
-				<?php if($messages){ ?>
-					<?php foreach($messages as $message){ ?>
-						<?php if($message->message){ ?>
-							<div class="alert alert-<?=$message->type?>">
-								<button type="button" class="close" data-dismiss="alert">&times;</button>
-								<?=$message->message?>
-							</div>
-						<?php } ?>
-					<?php } ?>
-				<?php } ?>
-				</div>
-				<!--/alerts-->
-
-				<!--content-->
-				ESTO ES LA PUTA LANDING
-
-				<a href="<?=Url::site("home/inicio");?>">
-					Acceder
-				</a>
-				<!--/content-->
-
-				<div class="col-md-12 footer">
-					tribotv©2014
-				</div>
-
-	        </div>
-	        <!-- Module publiLat -->
-	        <?=$controller->view("modules.publiLat");?>
-	        <!--/Module publiLat-->
-
-	    </div>
-		<!--/mainContainer-->
-
-	    <!-- Debugging Modals -->
-	    <?php $config = Registry::getConfig(); ?>
-	    <?php if($config->get("debug")){ ?>
-	        <?php $debug = Registry::getDebug(); ?>
-	        <!-- Current Queries Debug Modal -->
-	        <?php $controller->setData("debug", $debug); ?>
-	        <?php $controller->setData("debugModalId", "Current"); ?>
-	        <?=$controller->view("modules.debugModalQueries");?>
-	        <!-- Previous Queries Debug Modal -->
-	        <?php if($_SESSION['debug']['queries']){ ?>
-	            <?php $controller->setData("debug", $_SESSION['debug']); ?>
-	            <?php $controller->setData("debugModalId", "Last"); ?>
-	            <?=$controller->view("modules.debugModalQueries");?>
-	        <?php } ?>
-	        <!-- Session Debug Modal -->
-	        <?=$controller->view("modules.debugModalSession");?>
-	        <!-- Current Messages Debug Modal -->
-	        <?php $controller->setData("debug", $debug); ?>
-	        <?php $controller->setData("debugModalId", "Current"); ?>
-	        <?=$controller->view("modules.debugModalMessages");?>
-	        <!-- Ajax Messages Debug Modal -->
-	        <?php $controller->setData("debugModalId", "Ajax"); ?>
-	        <?=$controller->view("modules.debugModalMessages");?>
-	    <?php } ?>
-	    <!-- /Debugging Modals -->
-		<?php if($config->get("debug")){ ?>
-			<!-- Footer -->
-			<footer class="footerDebug">
-	            <!-- Debugging Menu -->
-	            <?php $controller->setData("debug", $debug); ?>
-	            <?=$controller->view("modules.debugMenu");?>
-	            <!-- /Debugging Menu -->
-        	</footer>
-        	<!-- /Footer -->
-    	<?php } ?>
+		<!-- Unless using the CDN hosted version, update the URL to the Flash SWF -->
+		<script>
+			videojs.options.flash.swf = "<?=Url::template("js/video-js/video-js.swf");?>";
+		</script>
+	</head> 
+	<body> 
+	<div class='hidden-xs publi'>
+	publicidad
+	</div>
+	<div class='bg'>
+		<div class='img'><img src='<?=Url::template("img/logo.png")?>' /></div>
+		<div class=' vdivider hidden-xs'></div>
+		<div class='container' > 
+			<div class='vplayer'>
+				<video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="auto" height="242"
+				data-setup="{}">
+	    <source src="http://video-js.zencoder.com/oceans-clip.mp4" type='video/mp4' />
+	    <source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />
+	    <source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' />
+				</video>
+			</div>
+		</div>
+		<div class='fr'>
+			<a href='<?=Url::site("home/inicio");?>'><div class='izq'></div><div class='mid'>ENTRAR</div><div class='dcha'></div></a>
+		</div>
+		<div class='social'>
+							<a href='#'><img src='<?=Url::template("img/twitter.png")?>' title='Twitter' /></a>
+							<a href='#'><img src='<?=Url::template("img/facebook.png")?>' title='Facebook' /></a>
+							<a href='#'><img src='<?=Url::template("img/vimeo.png")?>' title='Vimeo' /></a>
+							<a href='#'><img src='<?=Url::template("img/instagram.png")?>' title='Instagram' /></a>
+							<a href='#'><img src='<?=Url::template("img/flickr.png")?>' title='Flickr' /></a>
+						</div>
+	</div>
+	<!-- Debugging Modals -->
+    <?php $config = Registry::getConfig(); ?>
+    <?php if($config->get("debug")){ ?>
+        <?php $debug = Registry::getDebug(); ?>
+        <!-- Current Queries Debug Modal -->
+        <?php $controller->setData("debug", $debug); ?>
+        <?php $controller->setData("debugModalId", "Current"); ?>
+        <?=$controller->view("modules.debugModalQueries");?>
+        <!-- Previous Queries Debug Modal -->
+        <?php if($_SESSION['debug']['queries']){ ?>
+            <?php $controller->setData("debug", $_SESSION['debug']); ?>
+            <?php $controller->setData("debugModalId", "Last"); ?>
+            <?=$controller->view("modules.debugModalQueries");?>
+        <?php } ?>
+        <!-- Session Debug Modal -->
+        <?=$controller->view("modules.debugModalSession");?>
+        <!-- Current Messages Debug Modal -->
+        <?php $controller->setData("debug", $debug); ?>
+        <?php $controller->setData("debugModalId", "Current"); ?>
+        <?=$controller->view("modules.debugModalMessages");?>
+        <!-- Ajax Messages Debug Modal -->
+        <?php $controller->setData("debugModalId", "Ajax"); ?>
+        <?=$controller->view("modules.debugModalMessages");?>
+    <?php } ?>
+    <!-- /Debugging Modals -->
+	<?php if($config->get("debug")){ ?>
+		<!-- Footer -->
+		<footer class="footerDebug">
+            <!-- Debugging Menu -->
+            <?php $controller->setData("debug", $debug); ?>
+            <?=$controller->view("modules.debugMenu");?>
+            <!-- /Debugging Menu -->
+    	</footer>
+    	<!-- /Footer -->
+	<?php } ?>
 	</body>
 </html>
