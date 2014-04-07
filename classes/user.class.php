@@ -69,7 +69,7 @@ class User extends Model {
 			Registry::addMessage("Este email ya esta registrado", "error", "email");
 		}
 		//Password?
-		if(!empty($data)){
+		if(!empty($data) && !$this->dateInsert){
 			if(!$this->password){
 				Registry::addMessage("Debes introcir una contraseña", "error", "password");
 			}elseif(strlen($this->password)<6){
@@ -106,16 +106,6 @@ class User extends Model {
 			Registry::addMessage("Debes introducir tu email", "error", "email");
 		}elseif($this->getUserByEmail($this->email, $this->id)){
 			Registry::addMessage("Este email ya esta registrado", "error", "email");
-		}
-		if(!empty($data)){
-			//Password?
-			if(!$this->password){
-				Registry::addMessage("Debes introcir una contraseña", "error", "password");
-			}elseif(strlen($this->password)<6){
-				Registry::addMessage("La contraseña debe tenter al menos 6 caracteres", "error", "password");
-			}elseif($this->password!=$data["password2"]){
-				Registry::addMessage("Las contraseñas no coinciden", "error", "password");
-			}
 		}
 		return Registry::getMessages(true);
 	}

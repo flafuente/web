@@ -14,12 +14,12 @@ $_config['defaultLimit'] = 10;
 $_config['debug'] = true;
 
 //Mail
-$_config['mailHost'] = "smtp.gmail.com";
+$_config['mailHost'] = "smtp.mandrillapp.com";
 $_config['mailPort'] = "587";
-$_config['mailSecure'] = "tls";
-$_config['mailUsername'] = "testtribo@gmail.com";
-$_config['mailPassword'] = "LaTaronjaEsdeAlborayatet3";
-$_config['mailFromAdress'] = "testtribo@gmail.com";
+$_config['mailSecure'] = "";
+$_config['mailUsername'] = "soporte@spmedia.es";
+$_config['mailPassword'] = "2RQHrMm4FLMIMklYfI8LfA";
+$_config['mailFromAdress'] = "noreply@tribo.tv";
 $_config['mailFromName'] = "TriboTV";
 
 //Database

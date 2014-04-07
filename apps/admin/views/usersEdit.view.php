@@ -12,8 +12,8 @@
 
 <div class="main">
 	<form method="post" name="mainForm" id="mainForm" action="<?=Url::site();?>" class="form-horizontal ajax" role="form" autocomplete="off">
-		<input type="hidden" name="app" id="app" value="users">
-		<input type="hidden" name="action" id="action" value="save">
+		<input type="hidden" name="app" id="app" value="admin">
+		<input type="hidden" name="action" id="action" value="usersSave">
 		<input type="hidden" name="id" value="<?=$user->id?>">
 		<div class="row">
 			<div class="col-md-12">
@@ -83,13 +83,13 @@
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
 								<?php if($user->id){ ?>
-									<button class="btn btn-danger ladda-button delete" data-style="slide-left" confirm="<?=Registry::translate("VIEW_USERS_CONFIRM_DELETE")?>">
+									<button class="btn btn-danger ladda-button delete" data-style="slide-left" action="usersDelete" confirm="¿Deseas realmente eliminar este usuario?">
 										<span class="ladda-label">
 											Eliminar
 										</span>
 									</button>
 								<?php } ?>
-								<a class="btn btn-default ladda-button" data-spinner-color="#000" data-style="slide-left" href="<?=Url::site("users");?>">
+								<a class="btn btn-default ladda-button" data-spinner-color="#000" data-style="slide-left" href="<?=Url::site("admin/users");?>">
 									<span class="ladda-label">
 										Cancelar
 									</span>

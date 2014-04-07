@@ -9,7 +9,7 @@
 </h1>
 
 <div class="action">
-	<a class="btn btn-primary ladda-button" href="<?=Url::site("users/edit");?>" data-style="slide-left">
+	<a class="btn btn-primary ladda-button" href="<?=Url::site("admin/usersEdit");?>" data-style="slide-left">
 		<span class="ladda-label">
 			Crear
 		</span>
@@ -44,7 +44,7 @@
 								</td>
 								<td><?=$user->getRoleString()?></td>
 								<td>
-									<a href="<?=Url::site("users/edit/".$user->id);?>">
+									<a href="<?=Url::site("admin/usersEdit/".$user->id);?>">
 										<?=Helper::sanitize($user->email);?>
 									</a>
 								</td>

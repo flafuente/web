@@ -81,7 +81,7 @@ class loginController extends Controller {
 			if($user->roleId<2){
 				Registry::addMessage("", "", "", Url::site());
 			}else{
-				Registry::addMessage("", "", "", Url::site("users"));
+				Registry::addMessage("", "", "", Url::site("admin"));
 			}
 		}else{
 			Registry::addMessage(Registry::translate("CTRL_LOGIN_LOGIN_ERROR"), "error", "login");
