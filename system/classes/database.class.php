@@ -4,7 +4,7 @@
  *
  * @package LightFramework\Core
  */
-class Database extends PDO{
+class Database{
 
     /**
      * Current Query
