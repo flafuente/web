@@ -391,6 +391,44 @@ font-weight:bolder;
 .well{
 	margin-top: 15px;
 }
+.registro{
+	background: url(../img/registro/reg_bg.png) no-repeat;
+}
+.registro label{
+	display: none;
+}
+.registro form{
+	width: 50%;
+	margin: auto;
+}
+.registro input[type="text"], .registro input[type="password"]{
+	/*background-color: #ECECEC;*/
+	background: url(../img/registro/bg_tran.png);
+	border: 1px solid #97C7D6;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	margin: 5px;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	color: #50808C;
+}
+.registro button[type="submit"]{
+	background: none;
+	border: none;
+}
+.registro .form-group {
+	margin-bottom: 5px;
+}
+#acepto {
+	width: 25px;
+	float: left;
+}
+.registro span{
+	margin-top: 9px;
+	float: right;
+	color: #50808C;
+}
 
 /*TU HACES TRIBO*/
 .img_tuhaces{
