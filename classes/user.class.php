@@ -3,12 +3,14 @@ class User extends Model {
 
 	public $id;
 	public $statusId;
+	public $verified;
 	public $roleId;
 	public $nombre;
 	public $apellidos;
 	public $email;
 	public $password;
 	public $recoveryHash;
+	public $verificationHash;
 	public $dateInsert;
 	public $dateUpdate;
 	public $lastvisitDate;
@@ -86,6 +88,10 @@ class User extends Model {
 		$this->dateInsert = date("Y-m-d H:i:s");
 	}
 
+	public function postInsert(){
+		$this->sendVerification();
+	}
+
 	public function validateUpdate($data=array()){
 		//Check nombre
 		if(!$this->nombre){
@@ -137,7 +143,6 @@ class User extends Model {
 				//Set Session
 				session_start();
 				$_SESSION['userId'] = $user->id;
-				$_SESSION['lang'] = $user->language;
 				//Update lastVisitDate
 				$user->lastvisitDate = date("Y-m-d H:i:s");
 				$user->update();
@@ -216,18 +221,48 @@ class User extends Model {
 		}
 	}
 
+	public function getUserByVerificationHash($hash){
+		$db = Registry::getDb();
+		$query = "SELECT * FROM `users` WHERE `verificationHash`='".htmlentities(mysql_real_escape_string($hash))."'";
+		if($db->Query($query)){
+			if($db->getNumRows()){
+				$row = $db->fetcharray();
+				return new User($row);
+			}
+		}
+	}
+
 	public function sendRecovery(){
+		$config = Registry::getConfig();
 		$this->recoveryHash = bin2hex(openssl_random_pseudo_bytes(16));
 		$this->update();
 		$mailer = Registry::getMailer();
 		$mailer->addAddress($this->email);
-		$mailer->Subject = utf8_decode(Registry::translate("EMAILS_ACCOUNT_RECOVERY_SUBJECT"));
+		$mailer->Subject = utf8_decode("Recuperación de la cuenta");
 		$mailer->msgHTML(
 			Template::renderEmail(
 				"accountRecovery",
 				array(
 					"hash" => $this->recoveryHash
-				), "bootstrap"
+				), $config->get("template")
+			)
+		);
+		$mailer->send();
+	}
+
+	public function sendVerification(){
+		$config = Registry::getConfig();
+		$this->verificationHash = bin2hex(openssl_random_pseudo_bytes(16));
+		$this->update();
+		$mailer = Registry::getMailer();
+		$mailer->addAddress($this->email);
+		$mailer->Subject = utf8_decode("Activación de la cuenta");
+		$mailer->msgHTML(
+			Template::renderEmail(
+				"accountVerification",
+				array(
+					"hash" => $this->verificationHash
+				), $config->get("template")
 			)
 		);
 		$mailer->send();

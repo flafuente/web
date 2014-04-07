@@ -7,7 +7,12 @@ class homeController extends Controller {
 	public function init(){}
 
 	public function index(){
-		$this->render($html, "landing");
+		$user = Registry::getUser();
+		if($user->id){
+			redirect(Url::site("home/tu_haces_tribo"));
+		}else{
+			$this->render($html, "landing");
+		}
 	}
 
 	public function inicio(){

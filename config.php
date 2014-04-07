@@ -14,13 +14,13 @@ $_config['defaultLimit'] = 10;
 $_config['debug'] = true;
 
 //Mail
-$_config['mailHost'] = "";
-$_config['mailPort'] = "";
-$_config['mailSecure'] = "";
-$_config['mailUsername'] = "";
-$_config['mailPassword'] = "";
-$_config['mailFromAdress'] = "";
-$_config['mailFromName'] = "";
+$_config['mailHost'] = "smtp.gmail.com";
+$_config['mailPort'] = "587";
+$_config['mailSecure'] = "tls";
+$_config['mailUsername'] = "testtribo@gmail.com";
+$_config['mailPassword'] = "LaTaronjaEsdeAlborayatet3";
+$_config['mailFromAdress'] = "testtribo@gmail.com";
+$_config['mailFromName'] = "TriboTV";
 
 //Database
 $_config['dbHost'] = "dev.tribo.tv";

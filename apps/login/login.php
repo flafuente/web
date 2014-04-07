@@ -41,6 +41,22 @@ class loginController extends Controller {
 		}
 	}
 
+	public function verify(){
+		$url = Registry::getUrl();
+		$user = User::getUserByVerificationHash($url->vars[0]);
+		if($user->id){
+			print_pre($user);
+			$user->verified = 1;
+			$user->verificationHash = "";
+			$user->update();
+			$_SESSION["userId"] = $user->id;
+			Registry::addMessage("Cuenta activada satisfactoriamente", "success");
+		}else{
+			Registry::addMessage("Link de activación incorrecto", "error");
+		}
+		redirect(Url::site());
+	}
+
 	public function changePassword(){
 		$url = Registry::getUrl();
 		$user = User::getUserByRecoveryHash($_REQUEST["recoveryHash"]);
@@ -61,7 +77,12 @@ class loginController extends Controller {
 		$user = new User();
 		$res = $user->login($_REQUEST['login'], $_REQUEST['password']);
 		if($res==true){
-			Registry::addMessage("", "", "", Url::site());
+			$user = Registry::getUser();
+			if($user->roleId<2){
+				Registry::addMessage("", "", "", Url::site());
+			}else{
+				Registry::addMessage("", "", "", Url::site("users"));
+			}
 		}else{
 			Registry::addMessage(Registry::translate("CTRL_LOGIN_LOGIN_ERROR"), "error", "login");
 		}
@@ -86,6 +107,8 @@ class loginController extends Controller {
 		$user = new User();
 		//Force enable account
 		$_REQUEST['statusId'] = 1;
+		//Force un-verified account
+		$_REQUEST['verified'] = 0;
 		//Force role
 		$_REQUEST['roleId'] = 1;
 		if($user->insert($_REQUEST)){
