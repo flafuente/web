@@ -27,10 +27,6 @@
 		<script src="<?=Url::template("js/bootstrap.min.js");?>" type="text/javascript"></script>
 		<!-- JQuery Forms Plugin -->
 		<script src="<?=Url::template("js/jquery.forms.js");?>" type="text/javascript"></script>
-		<!-- JQuery JSSor -->
-		<script src="<?=Url::template("js/jssor.core.js");?>" type="text/javascript"></script>
-		<script src="<?=Url::template("js/jssor.utils.js");?>" type="text/javascript"></script>
-		<script src="<?=Url::template("js/jssor.slider.js");?>" type="text/javascript"></script>
 		<!-- Image Holder -->
 		<script src="<?=Url::template("js/holder.js");?>" type="text/javascript"></script>
 		<!-- Framework JS -->
