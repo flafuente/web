@@ -10,11 +10,11 @@
 		<div>Desde ahora <strong>TRIBO TV</strong> se sintoniza en <strong>Multiplex mp3</strong> o <strong>Mux 39</strong> en la frecuencia entre los parámetros 685 y 796 Mhz.</div>
 	</div>
 	<div class="si_comenta col-md-3">
-		<form id="search">
+		<!--<form id="search">
 			<input type="text" class="col-md-9" placeholder="Buscar en la web... " />
 			<button class="col-md-3"><i class="fa fa-search" style="margin-left: -6px;"></i></button>
 		</form>
-		<br /><br />
+		<br /><br />-->
 		Comenta <strong>tribo</strong>
 		<img src="<?=Url::template("/img/sintonizanos/comenta.png");?>" />
 	</div>

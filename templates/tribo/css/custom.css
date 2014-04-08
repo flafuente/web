@@ -618,8 +618,20 @@ font-weight:bolder;
 }
 
 /*CUSTOM RESPONSIVE*/
+@media (max-width: 1200px){
+	.userzone {
+    margin-right: 70px;
+
+}
+	.col-md-9 {
+   		width: 92%;
+	}
+}
 @media (max-width: 992px){
 	.navbar-inner > li > a{
+		font-size:12px;
+	}
+	.dropdown-menu > li > a{
 		font-size:12px;
 	}
 	.th_entra{
@@ -640,6 +652,23 @@ font-weight:bolder;
 	}
 
 }
+@media (max-width: 767px){
+	.socialm {
+		margin-right:0px;
+		position:static;
+		top:0;
+	}
+	.topete,.navbar{
+		height:auto;
+		overflow:hidden;
+	}
+	.navbar-inner{
+		position:static;
+		margin-left:0px;
+	}
+
+}
+
 
 /* Debug Footer */
 .footerDebug .navbar{

@@ -4,19 +4,12 @@
 <?php $config = Registry::getConfig(); ?>
 
 <nav class="navbar" role="navigation">
-    <div class='menu-bg'>
+    <div class='menu-bg hidden-xs'>
     </div>
     <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
+        
         <div class='col-md-9 col-md-offset-2 topete'>
-            <div class='userzone col-md-4'>
+            <div class='userzone col-md-4 hidden-xs'>
                 <a href='#' class='last'>
                     <img src='<?=Url::template("/img/herramientas.png");?>' title='Herramientas' />
                 </a>
@@ -46,7 +39,20 @@
                     <img src='<?=Url::template("/img/flickr.png");?>' title='Flickr' />
                 </a>
             </div>
+            <div class='socialm col-md-3 visible-xs'>
+                <a href='<?=Url::site("account");?>'>
+                    <img src='<?=Url::template("/img/user.png");?>' title='Perfil' />
+                </a>
+            </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
             <div class="collapse navbar-ex1-collapse navbar-collapse ">
 
                 <ul class="nav navbar-nav navbar-inner col-md-9">
@@ -83,7 +89,7 @@
                     <li><a class="" href='#'>Contacta</a>
                     </li>
                 </ul>
-                <a href='<?=Url::site("home");?>' class='logo'>
+                <a href='<?=Url::site("home");?>' class='hidden-xs logo'>
                     <img src='<?=Url::template("/img/logo.png");?>' />
                 </a>
             </div>
