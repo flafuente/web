@@ -13,6 +13,9 @@
 		<link href="<?=Url::template("css/bootstrap-switch.min.css");?>" media="screen" rel="stylesheet" type="text/css" />
 		<!-- Bootstrap Ladda Plugin -->
 		<link href="<?=Url::template("css/ladda-themeless.min.css");?>" media="screen" rel="stylesheet" type="text/css" />
+		<!-- Select2 Plugin -->
+		<link href="<?=Url::template("css/select2.css");?>" media="screen" rel="stylesheet" type="text/css" />
+		<link href="<?=Url::template("css/select2-bootstrap.css");?>" media="screen" rel="stylesheet" type="text/css" />
 		<!-- Custom CSS -->
 		<link href="<?=Url::template("css/custom.css");?>" media="screen" rel="stylesheet" type="text/css" />
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -34,6 +37,10 @@
 		<!-- Bootstrap Ladda Plugin -->
 		<script src="<?=Url::template("js/spin.min.js");?>" type="text/javascript"></script>
 		<script src="<?=Url::template("js/ladda.min.js");?>" type="text/javascript"></script>
+		<!-- Select2 Plugin -->
+		<script src="<?=Url::template("js/select2.min.js");?>" type="text/javascript"></script>
+		<script src="<?=Url::template("js/select2_locale_es.js");?>" type="text/javascript"></script>
+		<!-- Global Vars -->
 		<script>
 			var URL = "<?=Url::site();?>";
 		</script>

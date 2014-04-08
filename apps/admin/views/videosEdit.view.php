@@ -58,22 +58,26 @@ echo $controller->view("modules.toolbar");
 							<input type="checkbox" class="switch" name="estadoId" id="estadoId" value="1" <?php if($video->estadoId) echo "checked";?>>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">
-							Categoría
-						</label>
-						<div class="col-sm-8">
-							<select class="form-control" name="categoriaId" id="categoriaId">
-								<?php $s = array(); ?>
-								<?php $s[$video->categoriaId] = "selected"; ?>
-								<?php foreach($video->categorias as $categoriaId=>$categoriaString){ ?>
-									<option value="<?=$categoriaId?>" <?=$s[$categoriaId]?>>
-										<?=$categoriaString;?>
-									</option>
-								<?php } ?>
-							</select>
+					<?php if(count($categorias)){ ?>
+						<!-- Categoría -->
+						<div class="form-group">
+							<label class="col-sm-2 control-label">
+								Categoría
+							</label>
+							<div class="col-sm-8">
+								<select class="form-control" name="categoriaId" id="categoriaId">
+									<?php $s = array(); ?>
+									<?php $s[$video->categoriaId] = "selected"; ?>
+									<?php foreach($categorias as $categoria){ ?>
+										<option value="<?=$categoria->id?>" <?=$s[$categoria->id]?>>
+											<?=$categoria->nombre;?>
+										</option>
+									<?php } ?>
+								</select>
+							</div>
 						</div>
-					</div>
+					<?php } ?>
+					<!-- Título -->
 					<div class="form-group">
 						<label class="col-sm-2 control-label">
 							Título
@@ -82,6 +86,7 @@ echo $controller->view("modules.toolbar");
 							<input type="text" id="titulo" name="titulo" class="form-control" value="<?=Helper::sanitize($video->titulo);?>">
 						</div>
 					</div>
+					<!-- Descripción -->
 					<div class="form-group">
 						<label class="col-sm-2 control-label">
 							Descripción
@@ -90,6 +95,30 @@ echo $controller->view("modules.toolbar");
 							<textarea id="descripcion" name="descripcion" class="form-control"><?=Helper::sanitize($video->descripcion);?></textarea>
 						</div>
 					</div>
+					<?php if(count($tags)){ ?>
+						<!-- Tags -->
+						<div class="form-group">
+							<label class="col-sm-2 control-label">
+								Tags
+							</label>
+							<div class="col-sm-8">
+								<select class="form-control select2" multiple="true" name="tags[]" id="tags">
+									<?php $s = array(); ?>
+									<?php $currentTags = Tag::getTagsByVideoId($video->id); ?>
+									<?php if(Count($currentTags)){ ?>
+										<?php foreach($currentTags as $tag){ ?>
+											<?php $s[$tag->id] = "selected"; ?>
+										<?php } ?>
+									<?php } ?>
+									<?php foreach($tags as $tags){ ?>
+										<option value="<?=$tags->id?>" <?=$s[$tags->id]?>>
+											<?=$tags->nombre;?>
+										</option>
+									<?php } ?>
+								</select>
+							</div>
+						</div>
+					<?php } ?>
 				</div>
 			</div>
 		</div>

@@ -15,7 +15,6 @@ $controller->setData("toolBar", $toolBar);
 echo $controller->view("modules.toolbar");
 ?>
 
-<div class="main">
 	<form method="post" action="<?=Url::site()?>" id="mainForm" name="mainForm" class="form-inline" role="form">
 		<input type="hidden" name="app" id="app" value="admin">
 		<input type="hidden" name="action" id="action" value="">

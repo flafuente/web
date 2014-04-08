@@ -76,8 +76,19 @@ class adminController extends Controller {
 
 	public function videosEdit(){
 		$url = Registry::getUrl();
-		$video = new Video($url->vars[0]);
-		$this->setData("video", $video);
+		$this->setData("video", new Video($url->vars[0]));
+		$this->setData("categorias", Categoria::select(
+			array(
+				"order" => "nombre",
+				"orderDir" => "ASC"
+			)
+		));
+		$this->setData("tags", Tag::select(
+			array(
+				"order" => "nombre",
+				"orderDir" => "ASC"
+			)
+		));
 		$html = $this->view("views.videosEdit");
 		$this->render($html);
 	}

@@ -161,7 +161,7 @@ class User extends Model {
 		if($db->Query($query)){
 			$total = $db->getNumRows();
 			//Order
-			if($data['order'] && $data['orderDir']){
+			if(isset($data['order']) && isset($data['orderDir'])){
 				//Secure Field
 				$orders = array("ASC", "DESC");
 				if(@in_array($data['order'], array_keys(get_class_vars(__CLASS__))) && in_array($data['orderDir'], $orders)){

@@ -15,13 +15,13 @@ class Tag extends Model {
 		//nombre
 		if(!$this->nombre){
 			Registry::addMessage("Debes introducir un nombre", "error", "nombre");
+		}elseif($this->getTabByNombre($this->nombre)){
+			Registry::addMessage("Ya existe un tag con este nombre", "error", "nombre");
 		}
         return Registry::getMessages(true);
 	}
 
 	public function preInsert(){
-		$user = Registry::getUser();
-		$this->userId = $user->id;
 		$this->dateInsert = date("Y-m-d H:i:s");
 	}
 
@@ -29,8 +29,39 @@ class Tag extends Model {
 		//nombre
 		if(!$this->nombre){
 			Registry::addMessage("Debes introducir un nombre", "error", "nombre");
+		}elseif($this->getTabByNombre($this->nombre, $this->id)){
+			Registry::addMessage("Ya existe un tag con este nombre", "error", "nombre");
 		}
         return Registry::getMessages(true);
+	}
+
+	public static function getTagsByVideoId($videoId=0){
+		$db = Registry::getDb();
+        //Query
+		$query = "SELECT * FROM `tags` WHERE `id` IN (SELECT `tagId` FROM `videos_tags` WHERE `videoId`=".(int)$videoId.")";
+		if($db->Query($query)){
+			if($db->getNumRows()){
+				$rows = $db->loadArrayList();
+				foreach($rows as $row){
+					$results[] = new Tag($row);
+				}
+				return $results;
+			}
+		}
+	}
+
+	public function getTabByNombre($nombre, $ignoreId=0){
+		$db = Registry::getDb();
+		$query = "SELECT * FROM `tags` WHERE `nombre`='".htmlentities(mysql_real_escape_string($nombre))."'";
+		if($ignoreId){
+			$query .= " AND `id` !=".(int)$ignoreId;
+		}
+		if($db->Query($query)){
+			if($db->getNumRows()){
+				$row = $db->fetcharray();
+				return new Tag($row);
+			}
+		}
 	}
 
 	public function preUpdate(){
@@ -45,7 +76,7 @@ class Tag extends Model {
 		if($db->Query($query)){
 			$total = $db->getNumRows();
 			//Order
-			if($data['order'] && $data['orderDir']){
+			if(isset($data['order']) && isset($data['orderDir'])){
 				//Secure Field
 				$orders = array("ASC", "DESC");
 				if(@in_array($data['order'], array_keys(get_class_vars(__CLASS__))) && in_array($data['orderDir'], $orders)){

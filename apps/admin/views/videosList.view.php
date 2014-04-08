@@ -36,6 +36,7 @@ echo $controller->view("modules.toolbar");
 					<tbody>
 						<?php foreach($results as $video){ ?>
 							<?php $user = new User($video->userId); ?>
+							<?php $categoria = new Categoria($video->categoriaId); ?>
 							<tr>
 								<td><?=$video->id;?></a></td>
 								<td>
@@ -44,7 +45,7 @@ echo $controller->view("modules.toolbar");
 									</span>
 								</td>
 								<td>
-									<?=$video->getCategoriaString();?>
+									<?=Helper::sanitize($categoria->nombre);?>
 								</td>
 								<td>
 									<a href="<?=Url::site("admin/videosEdit/".$video->id);?>">

@@ -60,6 +60,40 @@ class Video extends Model {
 		$this->dateInsert = date("Y-m-d H:i:s");
 	}
 
+	public function postInsert($data = array()){
+		//Añadimos/quitamos los tags
+		$this->syncTags($data["tags"]);
+	}
+
+	public function syncTags($tagsIds = array()){
+		$actualTagsIds = VideoTag::select($this->id);
+		//Quitar
+        if(count($actualTagsIds)){
+            foreach($actualTagsIds as $tagId){
+                if($tagId){
+                    //Si el tag no ha sido pasado por parámetro...
+                    if(!@in_array($tagId, $tagsIds)){
+                        VideoTag::deleteTag($tagId, $this->id);
+                    }
+                }
+            }
+        }
+        //Añadir
+        if(count($tagsIds)){
+            foreach($tagsIds as $tagId){
+                if($tagId){
+                    //Si el tag no está actualmente...
+                    if(!@in_array($tagId, $actualTagsIds)){
+                        $videoTag = new VideoTag();
+                        $videoTag->videoId = $this->id;
+                        $videoTag->tagId = $tagId;
+                        $videoTag->insert();
+                    }
+                }
+            }
+        }
+	}
+
 	public function validateUpdate(){
 		//Titulo
 		if(!$this->titulo){
@@ -72,19 +106,24 @@ class Video extends Model {
 		$this->dateUpdate = date("Y-m-d H:i:s");
 	}
 
+	public function postUpdate($data = array()){
+		//Añadimos/quitamos los tags
+		$this->syncTags($data["tags"]);
+	}
+
 	public function select($data=array(), $limit=0, $limitStart=0, &$total=null){
 		$db = Registry::getDb();
         //Query
 		$query = "SELECT * FROM `videos` WHERE 1=1 ";
 		//Where
-		if($data["estadoId"]){
+		if(isset($data["estadoId"])){
 			$query .= " AND estadoId=".(int)$data["estadoId"];
 		}
 		//Total
 		if($db->Query($query)){
 			$total = $db->getNumRows();
 			//Order
-			if($data['order'] && $data['orderDir']){
+			if(isset($data['order']) && isset($data['orderDir'])){
 				//Secure Field
 				$orders = array("ASC", "DESC");
 				if(@in_array($data['order'], array_keys(get_class_vars(__CLASS__))) && in_array($data['orderDir'], $orders)){

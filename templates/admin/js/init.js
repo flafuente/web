@@ -199,6 +199,8 @@ $(document).ready(function(){
 	$("input[type='checkbox'].switch").bootstrapSwitch();
 	//Lada spinners
 	Ladda.bind('.ladda-button');
+	//Select2
+	$(".select2").select2();
 });
 
 //Check Alls

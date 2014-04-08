@@ -15,13 +15,13 @@ class Categoria extends Model {
 		//nombre
 		if(!$this->nombre){
 			Registry::addMessage("Debes introducir un nombre", "error", "nombre");
+		}elseif($this->getCategoriaByNombre($this->nombre)){
+			Registry::addMessage("Ya existe una categoría con este nombre", "error", "nombre");
 		}
         return Registry::getMessages(true);
 	}
 
 	public function preInsert(){
-		$user = Registry::getUser();
-		$this->userId = $user->id;
 		$this->dateInsert = date("Y-m-d H:i:s");
 	}
 
@@ -29,8 +29,24 @@ class Categoria extends Model {
 		//nombre
 		if(!$this->nombre){
 			Registry::addMessage("Debes introducir un nombre", "error", "nombre");
+		}elseif($this->getCategoriaByNombre($this->nombre)){
+			Registry::addMessage("Ya existe una categoría con este nombre", "error", "nombre");
 		}
         return Registry::getMessages(true);
+	}
+
+	public function getCategoriaByNombre($nombre, $ignoreId=0){
+		$db = Registry::getDb();
+		$query = "SELECT * FROM `categorias` WHERE `nombre`='".htmlentities(mysql_real_escape_string($nombre))."'";
+		if($ignoreId){
+			$query .= " AND `id` !=".(int)$ignoreId;
+		}
+		if($db->Query($query)){
+			if($db->getNumRows()){
+				$row = $db->fetcharray();
+				return new Categoria($row);
+			}
+		}
 	}
 
 	public function preUpdate(){
@@ -45,7 +61,7 @@ class Categoria extends Model {
 		if($db->Query($query)){
 			$total = $db->getNumRows();
 			//Order
-			if($data['order'] && $data['orderDir']){
+			if(isset($data['order']) && isset($data['orderDir'])){
 				//Secure Field
 				$orders = array("ASC", "DESC");
 				if(@in_array($data['order'], array_keys(get_class_vars(__CLASS__))) && in_array($data['orderDir'], $orders)){
