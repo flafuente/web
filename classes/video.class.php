@@ -22,8 +22,8 @@ class Video extends Model {
 		2 => "danger",
 	);
 	public $estados = array(
-		0 => "No aprovado",
-		1 => "Aprovado",
+		0 => "No aprobado",
+		1 => "Aprobado",
 		2 => "Rechazado",
 	);
 
