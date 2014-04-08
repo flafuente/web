@@ -32,6 +32,18 @@
                         Videos
                     </a>
                 </li>
+                <li class="<?=$active['admin']['categorias']?>">
+                    <a href="<?=Url::site("admin/categorias")?>">
+                        <span class="glyphicon glyphicon-bookmark"></span>
+                        Categorías
+                    </a>
+                </li>
+                <li class="<?=$active['admin']['tags']?>">
+                    <a href="<?=Url::site("admin/tags")?>">
+                        <span class="glyphicon glyphicon-asterisk"></span>
+                        Tags
+                    </a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>

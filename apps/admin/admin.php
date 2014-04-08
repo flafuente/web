@@ -108,4 +108,96 @@ class adminController extends Controller {
 		}
 		$this->ajax();
 	}
+
+	public function categorias(){
+		$config = Registry::getConfig();
+		$pag['total'] = 0;
+		$pag['limit'] = $_REQUEST['limit'] ? $_REQUEST['limit'] : $config->get("defaultLimit");
+		$pag['limitStart'] = $_REQUEST['limitStart'];
+		$this->setData("results", Categoria::select($_REQUEST, $pag['limit'], $pag['limitStart'], $pag['total']));
+		$this->setData("pag", $pag);
+		$html = $this->view("views.categoriasList");
+		$this->render($html);
+	}
+
+	public function categoriasEdit(){
+		$url = Registry::getUrl();
+		$categoria = new Categoria($url->vars[0]);
+		$this->setData("categoria", $categoria);
+		$html = $this->view("views.categoriasEdit");
+		$this->render($html);
+	}
+
+	public function categoriasSave(){
+		$categoria = new Categoria($_REQUEST['id']);
+		if($categoria->id){
+			$res = $categoria->update($_REQUEST);
+			if($res){
+				Registry::addMessage("Categoría actualizada satisfactoriamente", "success", "", Url::site("admin/categorias"));
+			}
+		}else{
+			$res = $categoria->insert($_REQUEST);
+			if($res){
+				Registry::addMessage("Categoría creada satisfactoriamente", "success", "", Url::site("admin/categorias"));
+			}
+		}
+		$this->ajax();
+	}
+
+	public function categoriasDelete(){
+		$url = Registry::getUrl();
+		$categoria = new Categoria($_REQUEST['id']);
+		if($categoria->id){
+			if($categoria->delete()){
+				Registry::addMessage("Categoría eliminada satisfactoriamente", "success", "", Url::site("admin/categorias"));
+			}
+		}
+		$this->ajax();
+	}
+
+	public function tags(){
+		$config = Registry::getConfig();
+		$pag['total'] = 0;
+		$pag['limit'] = $_REQUEST['limit'] ? $_REQUEST['limit'] : $config->get("defaultLimit");
+		$pag['limitStart'] = $_REQUEST['limitStart'];
+		$this->setData("results", Tag::select($_REQUEST, $pag['limit'], $pag['limitStart'], $pag['total']));
+		$this->setData("pag", $pag);
+		$html = $this->view("views.tagsList");
+		$this->render($html);
+	}
+
+	public function tagsEdit(){
+		$url = Registry::getUrl();
+		$tag = new Tag($url->vars[0]);
+		$this->setData("tag", $tag);
+		$html = $this->view("views.tagsEdit");
+		$this->render($html);
+	}
+
+	public function tagsSave(){
+		$tag = new Tag($_REQUEST['id']);
+		if($tag->id){
+			$res = $tag->update($_REQUEST);
+			if($res){
+				Registry::addMessage("Tag actualizado satisfactoriamente", "success", "", Url::site("admin/tags"));
+			}
+		}else{
+			$res = $tag->insert($_REQUEST);
+			if($res){
+				Registry::addMessage("Tag creado satisfactoriamente", "success", "", Url::site("admin/tags"));
+			}
+		}
+		$this->ajax();
+	}
+
+	public function tagsDelete(){
+		$url = Registry::getUrl();
+		$tag = new Tag($_REQUEST['id']);
+		if($tag->id){
+			if($tag->delete()){
+				Registry::addMessage("Tag eliminado satisfactoriamente", "success", "", Url::site("admin/tags"));
+			}
+		}
+		$this->ajax();
+	}
 }
