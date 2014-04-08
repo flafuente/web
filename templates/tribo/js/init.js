@@ -139,3 +139,9 @@ $(document).on('click', '.delete', function(e){
 	}
 	return false;
 });
+
+//Document ready
+$(document).ready(function(){
+	//Select2
+	$(".select2").select2();
+});

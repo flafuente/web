@@ -51,6 +51,15 @@ class Video extends Model {
 		if(!$this->titulo){
 			Registry::addMessage("Debes introducir un titulo", "error", "titulo");
 		}
+		//Categoria
+		if(!$this->categoriaId){
+			Registry::addMessage("Debes seleccionar una categoría", "error", "categoriaId");
+		}else{
+			$categoria = new Categoria($this->categoriaId);
+			if(!$categoria->id){
+				Registry::addMessage("La categoría seleccionada no existe", "error", "categoriaId");
+			}
+		}
         return Registry::getMessages(true);
 	}
 
@@ -98,6 +107,15 @@ class Video extends Model {
 		//Titulo
 		if(!$this->titulo){
 			Registry::addMessage("Debes introducir un titulo", "error", "titulo");
+		}
+		//Categoria
+		if(!$this->categoriaId){
+			Registry::addMessage("Debes seleccionar una categoría", "error", "categoriaId");
+		}else{
+			$categoria = new Categoria($this->categoriaId);
+			if(!$categoria->id){
+				Registry::addMessage("La categoría seleccionada no existe", "error", "categoriaId");
+			}
 		}
         return Registry::getMessages(true);
 	}

@@ -26,6 +26,18 @@ class videosController extends Controller {
 
 	public function nuevo(){
 		$this->setData("video", new Video());
+		$this->setData("categorias", Categoria::select(
+			array(
+				"order" => "nombre",
+				"orderDir" => "ASC"
+			)
+		));
+		$this->setData("tags", Tag::select(
+			array(
+				"order" => "nombre",
+				"orderDir" => "ASC"
+			)
+		));
 		$html = $this->view("views.nuevo");
 		$this->render($html);
 	}

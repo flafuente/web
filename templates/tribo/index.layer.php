@@ -13,6 +13,9 @@
 		<link href="<?=Url::template("css/custom.css");?>" media="screen" rel="stylesheet" type="text/css" />
 		<!-- Font Awensome CSS -->
 		<link href="<?=Url::template("css/font-awesome.min.css");?>" media="screen" rel="stylesheet" type="text/css" />
+		<!-- Select2 Plugin -->
+		<link href="<?=Url::template("css/select2.css");?>" media="screen" rel="stylesheet" type="text/css" />
+		<link href="<?=Url::template("css/select2-bootstrap.css");?>" media="screen" rel="stylesheet" type="text/css" />
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	    <!--[if lt IE 9]>
@@ -33,6 +36,9 @@
 		<script src="<?=Url::template("js/jssor.core.js");?>" type="text/javascript"></script>
 		<script src="<?=Url::template("js/jssor.utils.js");?>" type="text/javascript"></script>
 		<script src="<?=Url::template("js/jssor.slider.js");?>" type="text/javascript"></script>
+		<!-- Select2 Plugin -->
+		<script src="<?=Url::template("js/select2.min.js");?>" type="text/javascript"></script>
+		<script src="<?=Url::template("js/select2_locale_es.js");?>" type="text/javascript"></script>
 		<!-- Framework JS -->
 		<script src="<?=Url::template("js/init.js");?>" type="text/javascript"></script>
 		<!--/javascript-->
