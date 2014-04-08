@@ -18,7 +18,7 @@
 		<?php if(count($results)){ ?>
 			<?php foreach($results as $video){ ?>
 				<div class="media">
-					<a class="pull-left" href="#">
+					<a class="pull-left" href="<?=Url::site("videos/ver/".$video->id);?>">
 						<img class="media-object" src="holder.js/64x64">
 					</a>
 					<div class="media-body">

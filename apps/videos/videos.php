@@ -42,6 +42,18 @@ class videosController extends Controller {
 		$this->render($html);
 	}
 
+	public function ver(){
+		$url = Registry::getUrl();
+		$video = new Video($url->vars[0]);
+		if($video->id){
+			$this->setData("video", $video);
+			$html = $this->view("views.ver");
+			$this->render($html);
+		}else{
+			redirect(Url::site(), "Video incorrecto", "error");
+		}
+	}
+
 	public function save(){
 		$video = new Video();
 		$res = $video->insert($_REQUEST);
