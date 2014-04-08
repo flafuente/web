@@ -146,11 +146,11 @@ max-height: 540px;
 }
 
 .navbar-toggle{
-background-color:#575656;
-border:1px solid #D1B6A5;
+background-color:#15A8DE;
+border:1px solid #FCFAFA;
 }
 .navbar-toggle .icon-bar{
-background-color:#D1B6A5;
+background-color:#FCFAFA;
 }
 .menu-bg{
 background-image: url("../img/menu_bg.png");
@@ -342,6 +342,17 @@ height:32px;
 }
 .video-online img{
 max-width:304px;
+margin-bottom:10px;
+}
+
+.hi-tribo {
+	min-width:242px;
+}
+.social {
+	min-width:178px;
+}
+.video-online {
+	min-width:304px;
 }
 
 .social,.hi-tribo,.video-online{
@@ -623,7 +634,7 @@ font-weight:bolder;
     margin-right: 70px;
 
 }
-	.col-md-9 {
+	.navbar-inner {
    		width: 92%;
 	}
 }
