@@ -66,14 +66,14 @@ class Video extends Model {
 	}
 
 	public function syncTags($tagsIds = array()){
-		$actualTagsIds = VideoTag::select($this->id);
+		$actualTagsIds = Tag::getTagsIdsByVideoId($this->id);
 		//Quitar
         if(count($actualTagsIds)){
             foreach($actualTagsIds as $tagId){
                 if($tagId){
                     //Si el tag no ha sido pasado por parámetro...
                     if(!@in_array($tagId, $tagsIds)){
-                        VideoTag::deleteTag($tagId, $this->id);
+                        VideoTag::deleteTag($this->id, $tagId);
                     }
                 }
             }

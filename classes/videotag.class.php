@@ -17,7 +17,7 @@ class VideoTag extends Model {
 
 	public static function deleteTag($videoId, $tagId){
 		$db = Registry::getDb();
-		$query = "DELETE FROM `videos_tags` WHERE `videoId`=".(int)$videoId." AND tagId=".(int)$tagId;
+		$query = "DELETE FROM `videos_tags` WHERE `videoId`=".(int)$videoId." AND `tagId`=".(int)$tagId;
 		if($db->Query($query)){
 			return true;
 		}

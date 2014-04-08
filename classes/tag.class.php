@@ -50,6 +50,21 @@ class Tag extends Model {
 		}
 	}
 
+	public static function getTagsIdsByVideoId($videoId=0){
+		$db = Registry::getDb();
+        //Query
+		$query = "SELECT `tagId` FROM `videos_tags` WHERE `videoId`=".(int)$videoId;
+		if($db->Query($query)){
+			if($db->getNumRows()){
+				$rows = $db->loadArrayList();
+				foreach($rows as $row){
+					$results[] = $row["tagId"];
+				}
+				return $results;
+			}
+		}
+	}
+
 	public function getTabByNombre($nombre, $ignoreId=0){
 		$db = Registry::getDb();
 		$query = "SELECT * FROM `tags` WHERE `nombre`='".htmlentities(mysql_real_escape_string($nombre))."'";
