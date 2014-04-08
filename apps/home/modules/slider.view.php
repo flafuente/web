@@ -1,10 +1,5 @@
 <?php defined('_EXE') or die('Restricted access'); ?>
 
-<!-- JQuery JSSor -->
-<script src="<?=Url::template("js/jssor.core.js");?>" type="text/javascript"></script>
-<script src="<?=Url::template("js/jssor.utils.js");?>" type="text/javascript"></script>
-<script src="<?=Url::template("js/jssor.slider.js");?>" type="text/javascript"></script>
-
 <!-- Jssor Slider Begin -->
 <!-- You can move inline styles (except 'top', 'left', 'width' and 'height') to css file or css block. -->
 <div id="slider1_container" style="position: relative; top: 40px; left: 25px; width: 297px;height: 335px;">
