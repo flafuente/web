@@ -1,23 +1,24 @@
 <?php defined('_EXE') or die('Restricted access'); ?>
 
-<h1>
-	<span class="glyphicon glyphicon-user"></span>
-	Usuarios
-	<small>
-		Listar
-	</small>
-</h1>
-
-<div class="action">
-	<a class="btn btn-primary ladda-button" href="<?=Url::site("admin/usersEdit");?>" data-style="slide-left">
-		<span class="ladda-label">
-			Crear
-		</span>
-	</a>
-</div>
+<?php
+$toolBar['title'] = "Usuario";
+$toolBar['subtitle'] = "Listar";
+$toolBar['class'] = "user";
+$toolBar['buttons'][] = array(
+    "buttonClass" => "success",
+    "spanClass" => "plus",
+    "title" => "Nuevo",
+    "app" => "admin",
+    "action" => "usersEdit",
+);
+$controller->setData("toolBar", $toolBar);
+echo $controller->view("modules.toolbar");
+?>
 
 <div class="main">
-	<form method="post" action="<?=Url::site("users")?>">
+	<form method="post" action="<?=Url::site()?>" id="mainForm" name="mainForm" class="form-inline" role="form">
+		<input type="hidden" name="app" id="app" value="admin">
+		<input type="hidden" name="action" id="action" value="">
 		<?php if(count($results)){ ?>
 			<div class="table-responsive">
 				<table class="table table-striped">

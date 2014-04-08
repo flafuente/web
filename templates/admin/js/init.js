@@ -126,28 +126,82 @@ $(document).on('change', '.change-submit', function(e){
 	$('#mainForm').submit();
 });
 
-//delete buttons
-$(document).on('click', '.delete', function(e){
-	var res = false;
-	var confirmation = $(this).attr("confirm");
-	var action = $(this).attr("action");
-	if(confirmation){
-		res = confirm(confirmation);
-	}else{
-		res = true;
+//Toolbar function
+function doSubmit(element, app, action, requireIds, confirmation, ajax, modalId, noAjax){
+	element.removeAttr("prevent-ladda");
+	if(requireIds && $("#mainForm input:checkbox:checked").length<=0){
+		alert("Debes seleccionar un elemento");
+		element.attr("prevent-ladda", "true");
+		return false;
 	}
-	if(res){
-		$('#action').val(action);
-		$('#mainForm').submit();
+	if(!ajax){
+		$('#mainForm').removeClass("ajaxF");
 	}else{
-		Ladda.stopAll();
+		$('#mainForm').addClass("ajaxF");
+	}
+	if(confirmation){
+		if(!confirm(confirmation)){
+			element.removeClass("disabled");
+			element.disabled = false;
+			element.attr("prevent-ladda", "true");
+			return false;
+		}
+	}
+	if(modalId){
+		$("#" + modalId).on('shown.bs.modal', function (e) {
+			Ladda.stopAll();
+		});
+		$("#" + modalId).modal('show');
+		return false;
+	}
+	if(!action || noAjax){
+		window.location.href = URL + app + "/" +  action;
+		return false;
+	}
+	if(element){
+		if(element.length){
+			if(element.hasClass("disabled")){
+				return false;
+			}else{
+				element.addClass("disabled");
+				element.disabled = true;
+			}
+		}
+	}
+	if(app){
+		$('#mainForm input[name=app]').val(app);
+	}
+	if(action){
+		$('#mainForm input[name=action]').val(action);
+	}
+	$('#mainForm').submit();
+	if(ajax){
+		element.removeClass("disabled");
+		element.disabled = false;
+		$('#mainForm input[name=app]').val("");
+		$('#mainForm input[name=action]').val("");
 	}
 	return false;
+}
+
+//IDS requiered buttons
+$(document).on('click', '.ids', function(e){
+	var atLeastOneIsChecked = $('table :checkbox:checked').length > 0;
+	if(atLeastOneIsChecked){
+		$(".idsButton").show();
+	}else{
+		$(".idsButton").hide();
+	}
 });
 
 $(document).ready(function(){
 	//Bootsrap Switches
-	$("input[type='checkbox']").bootstrapSwitch();
+	$("input[type='checkbox'].switch").bootstrapSwitch();
 	//Lada spinners
 	Ladda.bind('.ladda-button');
+});
+
+//Check Alls
+$(document).on('click', '.checkall', function(e){
+	$(document).find(':checkbox').prop('checked', this.checked);
 });

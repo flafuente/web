@@ -2,13 +2,44 @@
 
 <?php $currentUser = Registry::getUser();?>
 
-<h1>
-	<span class="glyphicon glyphicon-user"></span>
-	Usuarios
-	<small>
-		<?=$user->id ? "Editar" : "Nuevo";?>
-	</small>
-</h1>
+<?php
+if($user->id){
+	$toolBar['subtitle'] = "Editar usuario";
+	$title = "Guardar";
+}else{
+	$toolBar['subtitle'] = "Nuevo usuario";
+	$title = "Crear";
+}
+$toolBar['title'] = "Usuarios";
+$toolBar['class'] = "user";
+$toolBar['buttons'][] = array(
+    "buttonClass" => "success",
+    "spanClass" => "ok",
+    "title" => $title,
+    "app" => "admin",
+    "action" => "usersSave",
+);
+$toolBar['buttons'][] = array(
+    "buttonClass" => "primary",
+    "spanClass" => "chevron-left",
+    "title" => "Cancelar",
+    "app" => "admin",
+    "action" => "users",
+    "noAjax" => true,
+);
+if($video->id){
+	$toolBar['buttons'][] = array(
+	    "buttonClass" => "danger",
+	    "spanClass" => "remove",
+	    "title" => "Eliminar",
+	    "app" => "admin",
+	    "action" => "usersDelete",
+	    "confirmation" => "¿Deseas realmente eliminar este usuario?",
+	);
+}
+$controller->setData("toolBar", $toolBar);
+echo $controller->view("modules.toolbar");
+?>
 
 <div class="main">
 	<form method="post" name="mainForm" id="mainForm" action="<?=Url::site();?>" class="form-horizontal ajax" role="form" autocomplete="off">
@@ -27,14 +58,14 @@
 								Estado
 							</label>
 							<div class="col-sm-10">
-								<input type="checkbox" name="statusId" id="statusId" value="1" <?php if($user->statusId) echo "checked";?>>
+								<input type="checkbox" class="switch" name="statusId" id="statusId" value="1" <?php if($user->statusId) echo "checked";?>>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">
 								Rol
 							</label>
-							<div class="col-sm-10">
+							<div class="col-sm-8">
 								<select class="form-control" name="roleId" id="roleId">
 									<?php $s = array(); ?>
 									<?php $s[$user->roleId] = "selected"; ?>
@@ -52,7 +83,7 @@
 							<label class="col-sm-2 control-label">
 								Nombre
 							</label>
-							<div class="col-sm-10">
+							<div class="col-sm-8">
 								<input type="text" id="nombre" name="nombre" class="form-control" value="<?=Helper::sanitize($user->nombre);?>">
 							</div>
 						</div>
@@ -60,7 +91,7 @@
 							<label class="col-sm-2 control-label">
 								Apellidos
 							</label>
-							<div class="col-sm-10">
+							<div class="col-sm-8">
 								<input type="text" id="apellidos" name="apellidos" class="form-control" value="<?=Helper::sanitize($user->apellidos);?>">
 							</div>
 						</div>
@@ -68,7 +99,7 @@
 							<label class="col-sm-2 control-label">
 								Email
 							</label>
-							<div class="col-sm-10">
+							<div class="col-sm-8">
 								<input type="text" id="email" name="email" class="form-control" value="<?=Helper::sanitize($user->email);?>">
 							</div>
 						</div>
@@ -76,29 +107,8 @@
 							<label class="col-sm-2 control-label">
 								Contraseña
 							</label>
-							<div class="col-sm-10">
+							<div class="col-sm-8">
 								<input type="password" id="password" name="password" class="form-control">
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
-								<?php if($user->id){ ?>
-									<button class="btn btn-danger ladda-button delete" data-style="slide-left" action="usersDelete" confirm="¿Deseas realmente eliminar este usuario?">
-										<span class="ladda-label">
-											Eliminar
-										</span>
-									</button>
-								<?php } ?>
-								<a class="btn btn-default ladda-button" data-spinner-color="#000" data-style="slide-left" href="<?=Url::site("admin/users");?>">
-									<span class="ladda-label">
-										Cancelar
-									</span>
-								</a>
-								<button class="btn btn-primary ladda-button" data-style="slide-left">
-									<span class="ladda-label">
-										<?=$user->id ? "Guardar" : "Crear";?>
-									</span>
-								</button>
 							</div>
 						</div>
 					</div>
