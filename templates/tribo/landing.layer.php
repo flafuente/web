@@ -39,13 +39,7 @@
 		<div class='fr'>
 			<a href='<?=Url::site("home/inicio");?>'><div class='izq'></div><div class='mid'>ENTRAR</div><div class='dcha'></div></a>
 		</div>
-		<div class='social'>
-							<a href='#'><img src='<?=Url::template("img/twitter.png")?>' title='Twitter' /></a>
-							<a href='#'><img src='<?=Url::template("img/facebook.png")?>' title='Facebook' /></a>
-							<a href='#'><img src='<?=Url::template("img/vimeo.png")?>' title='Vimeo' /></a>
-							<a href='#'><img src='<?=Url::template("img/instagram.png")?>' title='Instagram' /></a>
-							<a href='#'><img src='<?=Url::template("img/flickr.png")?>' title='Flickr' /></a>
-						</div>
+		<?=$controller->view("modules.social");?>
 	</div>
 	<!-- Debugging Modals -->
     <?php $config = Registry::getConfig(); ?>
