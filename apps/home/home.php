@@ -28,6 +28,30 @@ class homeController extends Controller {
 		$html = $this->view("views.tu_haces_tribo");
 		$this->render($html);
 	}
+
+
+	public function en_corto(){
+		$html = $this->view("views.en_corto");
+		$this->render($html);
+	}
+	public function noticias(){
+		$html = $this->view("views.noticias");
+		$this->render($html);
+	}
+	public function musica(){
+		$html = $this->view("views.musica");
+		$this->render($html);
+	}
+	public function juegos(){
+		$html = $this->view("views.juegos");
+		$this->render($html);
+	}
+	public function fotos(){
+		$html = $this->view("views.fotos");
+		$this->render($html);
+	}
+
+
 	public function programa(){
 		$html = $this->view("views.programa");
 		$this->render($html);

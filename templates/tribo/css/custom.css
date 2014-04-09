@@ -517,6 +517,7 @@ font-weight:bolder;
 	position: relative;
 	top: 120px;
 	min-height: 24px;
+	color: black;
 }
 .th_square .prox{
 	font-size: 11px;
@@ -570,6 +571,119 @@ font-weight:bolder;
 	font-size: 12px;
 	margin-right: 105px;
 }
+
+/*TU HACES TRIBO - EN CORTO*/
+.tu_haces_in{
+	text-align: center;
+}
+.tu_haces_in .banner{
+	width: 100%;
+	max-width: 937px;
+}
+.main_tu_haces{
+	text-align: center;
+}
+.main_tu_haces a{
+	color: #333;
+}
+.main_tu_haces .botonsubir{
+	color: white;
+	background-color: #00A100;
+	padding: 10px 20px 10px 20px;
+	text-transform: uppercase;
+}
+.main_tu_haces h4 {
+	text-align: right;
+	border-bottom: 2px solid #00A100;
+}
+.main_tu_haces .th_video{
+	padding: 2px;
+}
+.main_tu_haces .th_video img {
+	width: 100%;
+}
+.main_tu_haces .th_video_info{
+	text-align: left;
+}
+.main_tu_haces .th_video_info div {
+	padding: 0px;
+}
+.main_tu_haces .th_hace {
+	font-size: 8px;
+	font-family: HelveticaNB;
+	word-spacing: -1px;
+}
+.en_corto .main_tu_haces h3{
+	color: #00A100;
+}
+.en_corto .th_titulo{
+	color: #00A100;
+}
+.lat_tu_haces{
+	padding: 0px;
+}
+.lat_tu_haces .social{
+	background-color: #ADACAC;
+	padding: 2px;
+}
+#twitter-widget-0 {
+	min-width: initial !important;
+	max-height: 285px;
+}
+.sec_down{
+	height: 30px;
+	background-size: 95% !important;
+	margin-left: 3px;
+}
+.thin_red{
+	background: url(../img/tu_haces/tit_musica.png) no-repeat 3px;
+	background-color: #AE032B;
+}
+.thin_green{
+	background: url(../img/tu_haces/tit_corto.png) no-repeat 3px;
+	background-color: #AE032B;
+}
+.thin_purple{
+	background: url(../img/tu_haces/tit_fotos.png) no-repeat 3px;
+	background-color: #6F1D7C;
+}
+.thin_yellow{
+	background: url(../img/tu_haces/tit_noticias.png) no-repeat 3px;
+	background-color: #BDBB03;
+}
+.thin_pink{
+	background: url(../img/tu_haces/tit_juegos.png) no-repeat 3px;
+	background-color: #E50A90;
+}
+.en_corto .selected{
+	background: url(../img/tu_haces/tit_cortos.png) no-repeat 3px;
+	background-color: #FFFFFF !important;
+	border: 1px solid  #00A100 !important;
+}
+/*
+HACER PARA EL RESTO
+.thin_reds{
+	background: url(../img/tu_haces/tit_musicas.png) no-repeat;
+	background-color: #FFFFFF;
+	border: 1px solid  #AE032B;
+}
+.thin_purples{
+	background: url(../img/tu_haces/tit_fotoss.png) no-repeat;
+	background-color: #FFFFFF;
+	border: 1px solid  #6F1D7C;
+}
+.thin_yellows{
+	background: url(../img/tu_haces/tit_noticiass.png) no-repeat;
+	background-color: #FFFFFF;
+	border: 1px solid  #BDBB03;
+}
+.thin_pinks{
+	background: url(../img/tu_haces/tit_juegoss.png) no-repeat;
+	background-color: #FFFFFF;
+	border: 1px solid  #E50A90;
+}
+*/
+
 
 /*SINTONIZANOS*/
 .si_map{
