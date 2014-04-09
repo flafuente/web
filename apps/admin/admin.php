@@ -5,16 +5,28 @@ defined('_EXE') or die('Restricted access');
 class adminController extends Controller {
 
 	public function init(){
+		$url = Registry::getUrl();
 		$config = Registry::getConfig();
 		$config->set("template", "admin");
 		$user = Registry::getUser();
 		if($user->roleId<2){
 			redirect(Url::site());
+		}else{
+			if(!$user->checkPermisos($url->action) && $url->action!="index"){
+				redirect(Url::site());
+			}
 		}
 	}
 
 	public function index(){
-		$this->users();
+		$user = Registry::getUser();
+		if($user->checkPermisos("usuarios")){
+			$this->users();
+		}elseif($user->checkPermisos("cortos")){
+			$this->videos();
+		}else{
+			redirect(Url::site());
+		}
 	}
 
 	public function users(){

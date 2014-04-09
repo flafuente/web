@@ -80,6 +80,26 @@ echo $controller->view("modules.toolbar");
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label">
+							Accesos
+						</label>
+						<div class="col-sm-8">
+							<select class="form-control select2" name="permisos[]" id="permisos" multiple="true">
+								<?php $s = array(); ?>
+								<?php foreach($user->secciones as $seccionId=>$seccionString){ ?>
+									<?php $permisos = json_decode($user->permisos); ?>
+									<?php $selected = ""; ?>
+									<?php if(@in_array($seccionId, $permisos)){ ?>
+										<?php $selected = "selected"; ?>
+									<?php } ?>
+									<option value="<?=$seccionId?>" <?=$selected?>>
+										<?=$seccionString;?>
+									</option>
+								<?php } ?>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">
 							Nombre
 						</label>
 						<div class="col-sm-8">

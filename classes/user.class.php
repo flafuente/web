@@ -5,6 +5,7 @@ class User extends Model {
 	public $statusId;
 	public $verified;
 	public $roleId;
+	public $permisos;
 	public $nombre;
 	public $apellidos;
 	public $email;
@@ -14,6 +15,16 @@ class User extends Model {
 	public $dateInsert;
 	public $dateUpdate;
 	public $lastvisitDate;
+
+	public $secciones = array(
+		"todo"		=> "Todo",
+		"noticias" 	=> "Notícias",
+		"cortos" 	=> "Cortos",
+		"musica" 	=> "Música",
+		"juegos" 	=> "Juegos",
+		"usuarios" 	=> "Usuarios",
+		"logs" 		=> "Logs",
+	);
 
 	public $statusesCss = array(
 		0 => "danger",
@@ -27,11 +38,36 @@ class User extends Model {
 		1 => "Usuario",
 		2 => "Administrador"
 	);
-	public static $reservedVarsChild = array("roles", "statuses", "statusesCss");
+	public static $reservedVarsChild = array("secciones", "roles", "statuses", "statusesCss");
 
 	public function init(){
 		parent::$dbTable = "users";
 		parent::$reservedVarsChild = self::$reservedVarsChild;
+	}
+
+	public function checkPermisos($seccion=""){
+		//Es una acción?
+		if(!@in_array($seccion, $this->secciones)){
+			switch($seccion){
+				//Cortos
+				case 'users':
+				case 'usersEdit':
+				case 'usersSave':
+				case 'usersDelete':
+					$seccion = "usuarios";
+				break;
+				//Usuarios
+				case 'videos':
+				case 'videosEdit':
+				case 'videosSave':
+				case 'videosDelete':
+					$seccion = "cortos";
+				break;
+			}
+		}
+		if(@in_array($seccion, json_decode($this->permisos)) || @in_array("todo", json_decode($this->permisos))){
+			return true;
+		}
 	}
 
 	public function getStatusString(){
@@ -81,11 +117,15 @@ class User extends Model {
 		return Registry::getMessages(true);
 	}
 
-	public function preInsert(){
+	public function preInsert($data=array()){
 		//Passwd encryption
 		$this->password = User::encrypt($this->password);
 		//Register Date
 		$this->dateInsert = date("Y-m-d H:i:s");
+		//Permisos
+		if(isset($data["permisos"])){
+			$this->permisos = json_encode($data["permisos"]);
+		}
 	}
 
 	public function postInsert(){
@@ -119,6 +159,10 @@ class User extends Model {
 		}
 		//Update Date
 		$this->dateUpdate = date("Y-m-d H:i:s");
+		//Permisos
+		if(isset($data["permisos"])){
+			$this->permisos = json_encode($data["permisos"]);
+		}
 	}
 
 	public function login($login, $password){
