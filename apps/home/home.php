@@ -28,4 +28,8 @@ class homeController extends Controller {
 		$html = $this->view("views.tu_haces_tribo");
 		$this->render($html);
 	}
+	public function programa(){
+		$html = $this->view("views.programa");
+		$this->render($html);
+	}
 }

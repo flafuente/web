@@ -70,14 +70,10 @@
                             Sintonízanos
                         </a>
                     </li>
-                    <li class='dropdown'>
+                    <li class='dropdown <?=$active["home"]["programa"];?>'>
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">Programas <b class="caret"></b></a>
                         <ul class="dropdown-menu col-md-12" id="menu1">
-                            <li><a href='#'>Programa 1</a>
-                            </li>
-                            <li><a href='#'>Programa 2</a>
-                            </li>
-                            <li><a href='#'>Programa 3</a>
+                            <li><a href='<?=Url::site("home/programa");?>'>Programa 1</a>
                             </li>
                         </ul>
                     </li>

@@ -213,6 +213,36 @@ margin-top:15px;
 height:134px;
 }
 
+#slider1_container .subtitle_programa{
+position: absolute; bottom: 35px; left: 0px; width: 100%;  line-height:5px;
+background-color: #fcfafa;
+height: 65px;
+padding-left:20px;
+color:#6f1d7c;
+}
+#slider1_container .subtitle_programa h2{
+font-size:21px;
+margin-top:13px;
+font-weight: 900;
+}
+#slider1_container .subtitle_programa p{
+
+}
+
+
+.jssord03l, .jssord03r, .jssord03ldn, .jssord03rdn
+            {
+                position: absolute;
+                cursor: pointer;
+                display: block;
+                overflow:hidden;
+            }
+
+.jssord03l { background: url(../img/flecha_dcha.png) no-repeat; }
+.jssord03r { background: url(../img/flecha_izq.png) no-repeat; }
+.jssord03ldn { background: url(../img/flecha_dcha.png) no-repeat; }
+.jssord03rdn { background: url(../img/flecha_izq.png) no-repeat; }
+
 #slider1_container .subtitle{
 position: absolute; bottom: 0px; left: 10px; width: 270px;  line-height:20px;
 }
@@ -664,6 +694,12 @@ font-weight:bolder;
 
 }
 @media (max-width: 767px){
+	.navbar-nav > li.dropdown > .dropdown-menu {
+		display: none !important;
+	} 
+	.navbar-nav > li.open > .dropdown-menu {
+		display: block !important;
+	} 
 	.socialm {
 		margin-right:0px;
 		position:static;
