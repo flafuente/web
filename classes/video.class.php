@@ -8,6 +8,7 @@ class Video extends Model {
 	public $titulo;
 	public $descripcion;
 	public $file;
+	public $visitas;
 	public $dateInsert;
 	public $dateUpdate;
 
@@ -36,6 +37,16 @@ class Video extends Model {
 
 	public function getCategoriaString(){
 		return $this->categorias[$this->categoriaId];
+	}
+
+	public function addVisita(){
+		//Creamos la visita
+		$videoVisita = new VideoVisita();
+		$videoVisita->videoId = $this->id;
+		$videoVisita->insert();
+		//Actualizamos el total
+		$this->visitas = VideoVisita::getTotalVisitasByVideoId($this->id);
+		return $this->update();
 	}
 
 	public function getEstadoString(){

@@ -46,6 +46,8 @@ class videosController extends Controller {
 		$url = Registry::getUrl();
 		$video = new Video($url->vars[0]);
 		if($video->id){
+			//Creamos la visita
+			$video->addVisita();
 			$this->setData("video", $video);
 			$html = $this->view("views.ver");
 			$this->render($html);
