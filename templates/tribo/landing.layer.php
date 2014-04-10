@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html style='height:100%;' lang="es">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +19,7 @@
 			videojs.options.flash.swf = "<?=Url::template("js/video-js/video-js.swf");?>";
 		</script>
 	</head> 
-	<body> 
+	<body style='height:100%;'> 
 	<div class='hidden-xs publi'>
 	publicidad
 	</div>
