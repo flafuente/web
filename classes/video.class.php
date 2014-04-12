@@ -8,6 +8,8 @@ class Video extends Model {
 	public $titulo;
 	public $descripcion;
 	public $file;
+	public $size;
+	public $type;
 	public $visitas;
 	public $dateInsert;
 	public $dateUpdate;
@@ -27,12 +29,18 @@ class Video extends Model {
 		1 => "Aprobado",
 		2 => "Rechazado",
 	);
+	public $path = "/files/";
 
-	public static $reservedVarsChild = array("categorias", "estados", "estadosCss");
+	public static $reservedVarsChild = array("path", "categorias", "estados", "estadosCss");
 
 	public function init(){
 		parent::$dbTable = "videos";
 		parent::$reservedVarsChild = self::$reservedVarsChild;
+	}
+
+	public function getPath(){
+		$config = Registry::getConfig();
+		return $config->get("path")."/".$this->path."/".$this->file;
 	}
 
 	public function getCategoriaString(){
@@ -57,7 +65,7 @@ class Video extends Model {
 		return $this->estadosCss[$this->estadoId];
 	}
 
-	public function validateInsert(){
+	public function validateInsert($data=array()){
 		//Titulo
 		if(!$this->titulo){
 			Registry::addMessage("Debes introducir un titulo", "error", "titulo");
@@ -71,12 +79,20 @@ class Video extends Model {
 				Registry::addMessage("La categoría seleccionada no existe", "error", "categoriaId");
 			}
 		}
+		//Archivo?
+		if(!$this->file){
+			Registry::addMessage("Debes subir un archivo", "error");
+		}elseif(!file_exists($this->getPath())){
+			Registry::addMessage("Error al subir el archivo. Inténtalo más tarde", "error");
+		}
         return Registry::getMessages(true);
 	}
 
 	public function preInsert(){
 		$user = Registry::getUser();
 		$this->userId = $user->id;
+		//File upload
+		$this->size = @filesize($this->getPath());
 		$this->dateInsert = date("Y-m-d H:i:s");
 	}
 

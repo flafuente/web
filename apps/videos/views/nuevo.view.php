@@ -72,6 +72,28 @@
 							</div>
 						<?php } ?>
 						<div class="form-group">
+							<label class="col-sm-2 control-label">
+								Archivo
+							</label>
+							<div class="col-sm-8">
+								<input type="hidden" name="file" id="filename" value="">
+								<span class="btn btn-success fileinput-button">
+							        <i class="glyphicon glyphicon-plus"></i>
+							        <span>Seleccionar...</span>
+							        <!-- The file input field used as target for the file upload widget -->
+							        <input id="fileupload" type="file" name="files[]" accept="*">
+							    </span>
+							    <br>
+							    <br>
+							    <!-- The global progress bar -->
+							    <div id="progress" class="progress hidden">
+							        <div class="progress-bar progress-bar-success"></div>
+							    </div>
+							    <!-- The container for the uploaded files -->
+							    <div id="files" class="files"></div>
+							</div>
+						</div>
+						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
 								<a class="btn btn-default ladda-button" data-spinner-color="#000" data-style="slide-left" href="<?=Url::site("videos");?>">
 									<span class="ladda-label">
@@ -91,3 +113,35 @@
 		</div>
 	</form>
 </div>
+
+<script>
+	$(function () {
+		// Change this to the location of your server-side upload handler:
+    	var url = "<?=Url::site('api/upload');?>";
+		$('#fileupload').fileupload({
+	        url: url,
+	        dataType: 'json',
+	        done: function (e, data) {
+	            $.each(data.result.files, function (index, file) {
+	            	if(!file.error){
+		                $('<p/>').text(file.name).appendTo('#files');
+		                $("#filename").val(file.name);
+		            }else{
+		            	$("#filename").val("");
+		            	alert(file.error);
+		            	$('#progress').hide();
+		            }
+	            });
+	        },
+	        progressall: function (e, data) {
+	            var progress = parseInt(data.loaded / data.total * 100, 10);
+	            $('#progress .progress-bar').show().css(
+	                'width',
+	                progress + '%'
+	            );
+	        }
+	    })/*.on('fileuploadsubmit', function (e, data) {
+		   data.formData = data.context.find(':input').serializeArray();
+		});*/
+	});
+</script>

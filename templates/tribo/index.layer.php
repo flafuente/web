@@ -13,6 +13,8 @@
 		<link href="<?=Url::template("css/custom.css");?>" media="screen" rel="stylesheet" type="text/css" />
 		<!-- Font Awensome CSS -->
 		<link href="<?=Url::template("css/font-awesome.min.css");?>" media="screen" rel="stylesheet" type="text/css" />
+		<!-- JQuery File Upload Plugin -->
+		<link href="<?=Url::template("css/jquery.fileupload.css");?>" media="screen" rel="stylesheet" type="text/css" />
 		<!-- Select2 Plugin -->
 		<link href="<?=Url::template("css/select2.css");?>" media="screen" rel="stylesheet" type="text/css" />
 		<link href="<?=Url::template("css/select2-bootstrap.css");?>" media="screen" rel="stylesheet" type="text/css" />
@@ -39,6 +41,13 @@
 		<!-- Select2 Plugin -->
 		<script src="<?=Url::template("js/select2.min.js");?>" type="text/javascript"></script>
 		<script src="<?=Url::template("js/select2_locale_es.js");?>" type="text/javascript"></script>
+		<!-- JQuery Upload -->
+		<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+		<script src="<?=Url::template("js/jquery.ui.widget.js");?>" type="text/javascript"></script>
+		<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+		<script src="<?=Url::template("js/jquery.iframe-transport.js");?>" type="text/javascript"></script>
+		<!-- The basic File Upload plugin -->
+		<script src="<?=Url::template("js/jquery.fileupload.js");?>" type="text/javascript"></script>
 		<!-- Framework JS -->
 		<script src="<?=Url::template("js/init.js");?>" type="text/javascript"></script>
 		<!--/javascript-->
