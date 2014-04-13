@@ -2,6 +2,8 @@
 //No direct access
 defined('_EXE') or die('Restricted access');
 
+set_time_limit(0);
+
 class apiController extends Controller {
 
 	public function init(){}
