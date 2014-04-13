@@ -86,7 +86,7 @@
 							    <br>
 							    <br>
 							    <!-- The global progress bar -->
-							    <div id="progress" class="progress hidden">
+							    <div id="progress" class="progress">
 							        <div class="progress-bar progress-bar-success"></div>
 							    </div>
 							    <!-- The container for the uploaded files -->
