@@ -129,7 +129,7 @@ echo $controller->view("modules.toolbar");
 						        <i class="glyphicon glyphicon-plus"></i>
 						        <span>Select files...</span>
 						        <!-- The file input field used as target for the file upload widget -->
-						        <input id="fileupload" type="file" name="files[]" accept="*">
+						        <input id="fileupload" type="file" name="files[]" accept="video/*">
 						    </span>
 						    <br>
 						    <br>
