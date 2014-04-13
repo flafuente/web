@@ -12,8 +12,8 @@
 
 <div class="main">
 	<form method="post" name="mainForm" id="mainForm" action="<?=Url::site();?>" class="form-horizontal ajax" role="form" autocomplete="off">
-		<input type="hidden" name="app" id="app" value="videos">
-		<input type="hidden" name="action" id="action" value="save">
+		<input type="hidden" name="app" id="app" value="">
+		<input type="hidden" name="action" id="action" value="">
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
@@ -100,7 +100,7 @@
 										Cancelar
 									</span>
 								</a>
-								<button class="btn btn-primary ladda-button" data-style="slide-left">
+								<button class="btn btn-primary ladda-button" id="submit" data-style="slide-left">
 									<span class="ladda-label">
 										Crear
 									</span>
@@ -129,19 +129,23 @@
 		            }else{
 		            	$("#filename").val("");
 		            	alert(file.error);
-		            	$('#progress').hide();
 		            }
 	            });
 	        },
 	        progressall: function (e, data) {
 	            var progress = parseInt(data.loaded / data.total * 100, 10);
-	            $('#progress .progress-bar').show().css(
+	            $('#progress .progress-bar').css(
 	                'width',
 	                progress + '%'
 	            );
 	        }
-	    })/*.on('fileuploadsubmit', function (e, data) {
-		   data.formData = data.context.find(':input').serializeArray();
-		});*/
+	    })
+	});
+
+	$("#submit").on( "click", function() {
+		$("#app").val("videos");
+		$("#action").val("save");
+		$("#mainForm").submit();
+		return false;
 	});
 </script>

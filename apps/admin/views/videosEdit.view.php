@@ -134,7 +134,7 @@ echo $controller->view("modules.toolbar");
 						    <br>
 						    <br>
 						    <!-- The global progress bar -->
-						    <div id="progress" class="progress hidden">
+						    <div id="progress" class="progress">
 						        <div class="progress-bar progress-bar-success"></div>
 						    </div>
 						    <!-- The container for the uploaded files -->
@@ -162,13 +162,12 @@ echo $controller->view("modules.toolbar");
 		            }else{
 		            	$("#filename").val("");
 		            	alert(file.error);
-		            	$('#progress').hide();
 		            }
 	            });
 	        },
 	        progressall: function (e, data) {
 	            var progress = parseInt(data.loaded / data.total * 100, 10);
-	            $('#progress .progress-bar').show().css(
+	            $('#progress .progress-bar').css(
 	                'width',
 	                progress + '%'
 	            );
