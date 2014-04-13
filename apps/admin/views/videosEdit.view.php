@@ -152,6 +152,7 @@ echo $controller->view("modules.toolbar");
 		// Change this to the location of your server-side upload handler:
     	var url = "<?=Url::site('api/upload');?>";
 		$('#fileupload').fileupload({
+			maxChunkSize: 10000000,
 	        url: url,
 	        dataType: 'json',
 	        done: function (e, data) {
