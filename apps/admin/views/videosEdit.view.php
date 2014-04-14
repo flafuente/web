@@ -119,6 +119,7 @@ echo $controller->view("modules.toolbar");
 							</div>
 						</div>
 					<?php } ?>
+					<!-- Archivo -->
 					<div class="form-group">
 						<label class="col-sm-2 control-label">
 							Archivo
@@ -139,6 +140,15 @@ echo $controller->view("modules.toolbar");
 						    </div>
 						    <!-- The container for the uploaded files -->
 						    <div id="files" class="files"></div>
+						</div>
+					</div>
+					<!-- Comentario -->
+					<div class="form-group">
+						<label class="col-sm-2 control-label">
+							Comentario
+						</label>
+						<div class="col-sm-8">
+							<textarea id="comentario" name="comentario" class="form-control"><?=Helper::sanitize($video->comentario);?></textarea>
 						</div>
 					</div>
 				</div>

@@ -13,13 +13,15 @@ class videosController extends Controller {
 
 	public function index(){
 		$config = Registry::getConfig();
-		$pag['total'] = 0;
-		$pag['limit'] = $_REQUEST['limit'] ? $_REQUEST['limit'] : $config->get("defaultLimit");
-		$pag['limitStart'] = $_REQUEST['limitStart'];
 		//Forzamos a mostrar sólo los videos publicados
 		$_REQUEST["estadoId"] = 1;
-		$this->setData("results", Video::select($_REQUEST, $pag['limit'], $pag['limitStart'], $pag['total']));
-		$this->setData("pag", $pag);
+		$this->setData("videosNovedades", Video::select(
+			array(
+				"order" => "dateInsert",
+				"orderDir" => "DESC"
+			), 5));
+		$html = $this->view("views.list");
+		$this->setData("videosRankingSemanal", Video::getRankingSemanal(5));
 		$html = $this->view("views.list");
 		$this->render($html);
 	}

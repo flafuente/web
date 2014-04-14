@@ -6,7 +6,7 @@
 
 <!-- tribo Cortos, noticias... -->
 
-<a href="<?php echo Url::site("home/en_corto"); ?>">
+<a href="<?php echo Url::site("videos"); ?>">
     <div class="col-md-2 c_green th_square">
         <!--
         <h1><span>tribo</span> en Corto</h1>

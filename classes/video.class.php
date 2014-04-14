@@ -7,6 +7,7 @@ class Video extends Model {
 	public $categoriaId;
 	public $titulo;
 	public $descripcion;
+	public $comentario;
 	public $file;
 	public $size;
 	public $type;
@@ -154,6 +155,22 @@ class Video extends Model {
 	public function postUpdate($data = array()){
 		//Añadimos/quitamos los tags
 		$this->syncTags($data["tags"]);
+	}
+
+	public function getRankingSemanal($limit=5){
+		$db = Registry::getDb();
+        //Query
+		$query = "SELECT videoId, count(id) as total FROM videos_visitas GROUP BY videoId ORDER BY total DESC LIMIT ".(int)$limit;
+		//Total
+		if($db->Query($query)){
+			if($db->getNumRows()){
+				$rows = $db->loadArrayList();
+				foreach($rows as $row){
+					$results[] = new Video($row["videoId"]);
+				}
+				return $results;
+			}
+		}
 	}
 
 	public function select($data=array(), $limit=0, $limitStart=0, &$total=null){

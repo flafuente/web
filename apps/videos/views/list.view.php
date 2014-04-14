@@ -1,38 +1,69 @@
 <?php defined('_EXE') or die('Restricted access'); ?>
 
-<h1>
-	Videos
-	<small>
-		Listar
-	</small>
-</h1>
+<?php defined('_EXE') or die('Restricted access'); ?>
+<!-- Logo Cabecera -->
+<div class="contenido en_corto">
+    <div class="tu_haces_in">
+        <img class="logo" src="<?=Url::template("/img/tu_haces/en_corto/logo.png");?>" alt="Tribo en Corto" title="Tribo en Corto" />
+        <br />
+        <br />
+        <img class="banner" src="<?=Url::template("/img/tu_haces/en_corto/banner.png");?>" alt="Tribo en Corto" title="Tribo en Corto" />
+    </div>
+    <div style="clear: both;"></div><br />
+    <div class="col-md-9 main_tu_haces">
+        <h3>Un espacio creativo para los amantes del cine</h3>
+        Nuestra apuesta por la creatividad alternativa.<br />
+        Da a conocer tus dotes como director, actor o productor. Sube tu cortometraje, y da a conocer tu visión personal del mundo.<br />
+        <h3>Queremos ser tu altavoz</h3>
+        Una oportunidad para expresar tu creatividad y conocer que está pasando en el mundo del cine alternativo.
+        <br /><br /><br />
+        <a href="<?=Url::site("videos/nuevo");?>" class="botonsubir"><i class="fa fa-arrow-up" style="margin-right: 10px;"></i>Sube tu corto</a>
+        <br /><br />
+        <a href="">¿Cómo subir un corto?</a>
+        <br /><br /><br />
 
-<a class="btn btn-primary ladda-button" href="<?=Url::site("videos/nuevo");?>" data-style="slide-left">
-	<span class="ladda-label">
-		Crear
-	</span>
-</a>
+        <!-- Ranking semanal -->
+        <?php if(count($videosRankingSemanal)){ ?>
+	        <h4 style="width: 183px;">Cortos más populares</h4>
+	        <?php foreach($videosRankingSemanal as $video){ ?>
+	            <div class="col-md-3 th_video">
+	                <?php $controller->setData("video", $video); ?>
+	                <?=$controller->view("modules.video");?>
+	            </div>
+	        <?php } ?>
+	        <div style="clear: both;"></div><br />
+	    <?php } ?>
 
-<div class="main">
-	<form method="post" action="<?=Url::site("users")?>">
-		<?php if(count($results)){ ?>
-			<?php foreach($results as $video){ ?>
-				<div class="media">
-					<a class="pull-left" href="<?=Url::site("videos/ver/".$video->id);?>">
-						<img class="media-object" src="holder.js/64x64">
-					</a>
-					<div class="media-body">
-						<h4 class="media-heading"><?=$video->titulo;?></h4>
-						<?=$video->getCategoriaString();?>
-					</div>
-				</div>
-			<?php } ?>
-			<?php $controller->setData("pag", $pag); ?>
-			<?=$controller->view("modules.pagination");?>
-		<?php }else{ ?>
-			<blockquote>
-		  		<p>No se han encontrado videos</p>
-			</blockquote>
-		<?php } ?>
-	</form>
+		<!-- Últimos cortos -->
+        <?php if(count($videosNovedades)){ ?>
+	        <h4 style="width: 124px;">Últimos Cortos</h4>
+	        <?php foreach($videosNovedades as $video){ ?>
+	            <div class="col-md-3 th_video">
+	                <?php $controller->setData("video", $video); ?>
+	                <?=$controller->view("modules.video");?>
+	            </div>
+	        <?php } ?>
+	        <div style="clear: both;"></div><br />
+	    <?php } ?>
+
+    </div>
+    <div class="col-md-3 lat_tu_haces">
+        <a class="twitter-timeline" href="https://twitter.com/pepocivs" data-widget-id="453902978185822208">Tweets por @pepocivs</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        <br /><br />
+        <img class="banner" src="<?=Url::template("/img/tu_haces/en_corto/siguenos.png");?>" alt="Siguenos en las Redes sociales" title="Siguenos en las Redes sociales" />
+        <?=$controller->view("modules.social");?>
+        <img class="comenta" src="<?=Url::template("/img/tu_haces/en_corto/comenta_tribo.png");?>" alt="Comenta Tribo" title="Comenta Tribo" />
+    </div>
+    <div style="clear: both;"></div><br />
+    <div class="col-md-1"></div>
+    <div class="col-md-2 sec_down thin_green selected"></div>
+    <div class="col-md-2 sec_down thin_yellow"></div>
+    <div class="col-md-2 sec_down thin_red"></div>
+    <div class="col-md-2 sec_down thin_pink"></div>
+    <div class="col-md-2 sec_down thin_purple"></div>
+
 </div>
+<!-- tribo Cortos, noticias... -->
+
+<div style="clear: both;"></div><br />

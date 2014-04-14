@@ -93,6 +93,40 @@ class Helper{
     }
 
     /**
+     * Converts a date to human relative
+     *
+     * @param  string $date Non-human readable date
+     * @return string Human readable date
+     */
+    public function relativeDate($date=""){
+        if($date && $date!="0000-00-00 00:00:00" && $date!="00:00:00" && $date!="0000-00-00"){
+            $ptime = strtotime($date);
+            $etime = strtotime("now") - $ptime;
+            if ($etime < 1){
+                $r = 'unos segundos';
+            }else{
+                $a = array( 12 * 30 * 24 * 60 * 60  =>  'años',
+                            30 * 24 * 60 * 60       =>  'meses',
+                            24 * 60 * 60            =>  'días',
+                            60 * 60                 =>  'horas',
+                            60                      =>  'minutos',
+                            1                       =>  'segundos'
+                            );
+                foreach ($a as $secs => $str){
+                    $d = $etime / $secs;
+                    if ($d >= 1){
+                        $r = round($d);
+                        break;
+                    }
+                }
+            }
+            return $r.' '.$str;
+        }else{
+            return "-";
+        }
+    }
+
+    /**
      * Converts bytes to human readable size
      * @param  integer $bytes     Bytes
      * @param  integer $precision Precision

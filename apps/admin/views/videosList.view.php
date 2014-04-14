@@ -29,6 +29,7 @@ echo $controller->view("modules.toolbar");
 							<th><?=Helper::sortableLink("categoriaId", "Categoría");?></th>
 							<th><?=Helper::sortableLink("titulo", "Título");?></th>
 							<th><?=Helper::sortableLink("userId", "Usuario");?></th>
+							<th><?=Helper::sortableLink("visitas", "Visitas");?></th>
 							<th><?=Helper::sortableLink("dateInsert", "Fecha creación");?></th>
 							<th><?=Helper::sortableLink("dateUpdate", "Fecha actualización");?></th>
 						</tr>
@@ -57,6 +58,7 @@ echo $controller->view("modules.toolbar");
 										<?=Helper::sanitize($user->email);?>
 									</a>
 								</td>
+								<td><?=$video->visitas;?></td>
 								<td><?=Helper::humanDate($video->dateInsert);?></td>
 								<td><?=Helper::humanDate($video->dateUpdate);?></td>
 							</tr>

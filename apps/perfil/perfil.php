@@ -2,7 +2,7 @@
 //No direct access
 defined('_EXE') or die('Restricted access');
 
-class accountController extends Controller {
+class perfilController extends Controller {
 
 	public function init(){
 		$user = Registry::getUser();
@@ -27,7 +27,7 @@ class accountController extends Controller {
 		//Prevent status change
 		$_REQUEST['statusId'] = $user->statusId;
 		if($user->update($_REQUEST)){
-			Registry::addMessage(Registry::translate("CTRL_ACCOUNT_UPDATE_OK"), "success", "", Url::site());
+			Registry::addMessage("Cambios guardados satisfactoriamente", "success", "", Url::site());
 		}
 		$this->ajax();
 	}
