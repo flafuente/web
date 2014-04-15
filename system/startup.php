@@ -28,6 +28,8 @@ include 'system/libs/phpmailer/class.smtp.php';
 include 'system/libs/phpmailer/class.pop3.php';
 //File Upload
 include 'system/libs/uploadHandler.php';
+//Resize Class
+include 'system/libs/resize-class.php';
 
 //Languages
 $language = new Language();

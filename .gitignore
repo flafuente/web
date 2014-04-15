@@ -1,2 +1,4 @@
-files/*
-!.htaccess
+files/videos/*
+!files/.htaccess
+files/images/*
+files/tmp/*

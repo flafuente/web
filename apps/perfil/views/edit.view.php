@@ -8,11 +8,14 @@
 </h1>
 
 <div class="main">
-	<form method="post" action="<?=Url::site();?>" class="form-horizontal ajax" role="form" autocomplete="off">
+	<form method="post" action="<?=Url::site();?>" class="form-horizontal ajax" role="form" autocomplete="off" enctype="multipart/form-data">
 		<input type="hidden" name="app" id="app" value="perfil">
 		<input type="hidden" name="action" id="action" value="save">
 		<div class="row">
 			<div class="col-md-12">
+				<!-- Foto -->
+				<img src="<?=$user->getFotoUrl();?>" class="img-circle">
+				<input type="file" id="foto" name="foto" accept="image/*">
 				<!-- Username -->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
@@ -32,7 +35,7 @@
 						<?php $s[$user->sexo]; ?>
 						<input type="radio" goup="sexo" name="sexo" id="sexo1" value="1" <?=$s[1]?>>
 						Femenino
-						<input type="radio" goup="sexo" name="sexo" id="sexo2" value="2" <?=$s[1]?>>
+						<input type="radio" goup="sexo" name="sexo" id="sexo2" value="2" <?=$s[2]?>>
 						Masculino
 					</div>
 				</div>

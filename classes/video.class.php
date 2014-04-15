@@ -30,7 +30,7 @@ class Video extends Model {
 		1 => "Aprobado",
 		2 => "Rechazado",
 	);
-	public $path = "/files/";
+	public $path = "/files/videos/";
 
 	public static $reservedVarsChild = array("path", "categorias", "estados", "estadosCss");
 

@@ -25,6 +25,8 @@ class User extends Model {
 	public $dateUpdate;
 	public $lastvisitDate;
 
+	public $fotosPath = "/files/images/";
+
 	public $secciones = array(
 		"todo"		=> "Todo",
 		"noticias" 	=> "Notícias",
@@ -47,12 +49,22 @@ class User extends Model {
 		1 => "Usuario",
 		2 => "Administrador"
 	);
-	public static $reservedVarsChild = array("secciones", "roles", "statuses", "statusesCss");
+
+	public static $reservedVarsChild = array("fotosPath", "secciones", "roles", "statuses", "statusesCss");
 
 	public function init(){
 		parent::$dbTable = "users";
 		parent::$reservedVarsChild = self::$reservedVarsChild;
 	}
+
+    public function getFotoUrl(){
+        $config = Registry::getConfig();
+        if($this->foto){
+            return Url::site($this->fotosPath.$this->foto);
+        }else{
+            return Url::template("img/tu_haces/en_corto/user_icon.png");
+        }
+    }
 
 	public function checkPermisos($seccion=""){
 		//Es una acción?
@@ -135,6 +147,8 @@ class User extends Model {
 		if(isset($data["permisos"])){
 			$this->permisos = json_encode($data["permisos"]);
 		}
+		//Foto
+        $this->uploadFoto($_FILES["foto"]);
 	}
 
 	public function postInsert(){
@@ -171,6 +185,33 @@ class User extends Model {
 		//Permisos
 		if(isset($data["permisos"])){
 			$this->permisos = json_encode($data["permisos"]);
+		}
+		//Foto
+        $this->uploadFoto($_FILES["foto"]);
+	}
+
+	public function uploadFoto($resource){
+		if($resource["size"]){
+			$config = Registry::getConfig();
+	        $uploadDir = $config->get("path").$this->fotosPath;
+	        $uploadTempDir = $config->get("path")."/files/tmp/";
+	        //Tmp Upload
+	        $temp = explode(".", $resource["name"]);
+	        $extension = end($temp);
+	        $newName = md5(uniqid());
+	        $tmpName = $newName.".".$extension;
+	        if(move_uploaded_file($resource["tmp_name"], $uploadTempDir.$tmpName)){
+	            //New name
+	            $newName = $newName.".png";
+	            //Resize
+	            $resizeObj = new resize($uploadTempDir.$tmpName);
+	            $resizeObj->resizeImage(512, 512);
+	            $resizeObj->saveImage($uploadDir.$newName, 0);
+	            @unlink($uploadTempDir.$tmpName);
+	            $this->foto = $newName;
+	        }
+		}else{
+			$this->foto = null;
 		}
 	}
 
