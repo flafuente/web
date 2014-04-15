@@ -18,7 +18,7 @@
                     <div class='mid'>> Regístrate</div>
                     <div class='dcha'></div>
                 </a>
-                <a href='<?=Url::site("account");?>'>
+                <a href='<?=Url::site("perfil");?>'>
                     <img src='<?=Url::template("/img/user.png");?>' title='Perfil' />
                 </a>
             </div>
@@ -40,7 +40,7 @@
                 </a>
             </div>
             <div class='socialm col-md-3 visible-xs'>
-                <a href='<?=Url::site("account");?>'>
+                <a href='<?=Url::site("perfil");?>'>
                     <img src='<?=Url::template("/img/user.png");?>' title='Perfil' />
                 </a>
             </div>
