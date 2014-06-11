@@ -36,7 +36,7 @@ echo $controller->view("modules.toolbar");
                             <tr>
                                 <td><?=$categoria->id;?></a></td>
                                 <td>
-                                    <a href="<?=Url::site("admin/edit/".$categoria->id);?>">
+                                    <a href="<?=Url::site("admin/categorias/edit/".$categoria->id);?>">
                                         <?=Helper::sanitize($categoria->nombre);?>
                                     </a>
                                 </td>

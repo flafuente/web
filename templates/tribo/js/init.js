@@ -115,7 +115,7 @@ function checkFormField(formElement, fieldName, fieldValue){
 		    value: fieldValue
 		}).appendTo(formElement);
 	}else{
-		return field;
+		field.val(fieldValue);
 	}
 }
 
@@ -136,6 +136,8 @@ $(document).on('click', '.delete', function(e){
 	if(res){
 		$('#action').val("delete");
 		$('#mainForm').submit();
+	}else{
+		Ladda.stopAll();
 	}
 	return false;
 });

@@ -11,12 +11,12 @@
         </h1>
     </div>
     <div class="pull-right" style="margin-top: 25px;">
-        <?php if(count($toolBar['buttons'])){ ?>
-            <?php foreach($toolBar['buttons'] as $button){ ?>
+        <?php if (count($toolBar['buttons'])) { ?>
+            <?php foreach ($toolBar['buttons'] as $button) { ?>
                 <button
                     data-style="slide-left"
                     class="btn btn-small btn-<?=$button['buttonClass']?> ladda-button"
-                    <?php if($button['id']){?> id="<?=$button['id']?>" <?php } ?>
+                    <?php if ($button['id']) {?> id="<?=$button['id']?>" <?php } ?>
                     onClick="doSubmit($(this), '<?=$button['app']?>', '<?=$button['action']?>', '<?=$button['requireIds']?>', '<?=$button['confirmation']?>', '<?=$button['ajax']?>', '<?=$button['modal']?>', '<?=$button['noAjax']?>');"
                     >
                     <span class="glyphicon glyphicon-<?=$button['spanClass']?>"></span>

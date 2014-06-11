@@ -3,6 +3,8 @@
 //Pass trought index
 define("_EXE", 1);
 
-//Startup
-require('system/startup.php');
+//Configuration
+include 'config.php';
 
+//Startup
+require 'system/startup.php';

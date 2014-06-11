@@ -1,58 +1,59 @@
 <?php
+
 /**
  * Registry Class
  *
  * @package LightFramework\Core
  */
-class Registry{
+class Registry
+{
+    /**
+     * Current Url object
+     * @var object
+     */
+    private static $url = NULL;
 
-	/**
-	 * Current Url object
-	 * @var object
-	 */
-	private static $url = NULL;
+    /**
+     * Current Database object
+     * @var object
+     */
+    private static $db = NULL;
 
-	/**
-	 * Current Database object
-	 * @var object
-	 */
-	private static $db = NULL;
+    /**
+     * Current Config object
+     * @var object
+     */
+    private static $config = NULL;
 
-	/**
-	 * Current Config object
-	 * @var object
-	 */
-	private static $config = NULL;
+    /**
+     * Current User object
+     * @var object
+     */
+    private static $user = NULL;
 
-	/**
-	 * Current User object
-	 * @var object
-	 */
-	private static $user = NULL;
+    /**
+     * Current Template object
+     * @var object
+     */
+    private static $template = NULL;
 
-	/**
-	 * Current Template object
-	 * @var object
-	 */
-	private static $template = NULL;
+    /**
+     * Current Messages array
+     * @var array
+     */
+    private static $messages = array();
 
-	/**
-	 * Current Messages array
-	 * @var array
-	 */
-	private static $messages = array();
+    /**
+     * Current Language object
+     * @var object
+     */
+    private static $language = NULL;
 
-	/**
-	 * Current Language object
-	 * @var object
-	 */
-	private static $language = NULL;
-
-	/**
-	 * Current Debug values
-	 * @var array
-	 */
-	private static $debug = array();
+    /**
+     * Current Debug values
+     * @var array
+     */
+    private static $debug = array();
 
     /**
      * Current Mailer object
@@ -65,15 +66,16 @@ class Registry{
      *
      * @return object Mailer
      */
-    public function getMailer(){
-        if(self::$mailer == NULL){
+    public function getMailer()
+    {
+        if (self::$mailer == NULL) {
             $config = Registry::getConfig();
             $mail = new PHPMailer();
             $mail->isSMTP();
             $mail->Host = $config->get("mailHost");;
             $mail->Port = $config->get("mailPort");
             $mail->SMTPAuth = true;
-            if($config->get("mailSecure")){
+            if ($config->get("mailSecure")) {
                 $mail->SMTPSecure = $config->get("mailSecure");
             }
             $mail->Username = $config->get("mailUsername");
@@ -81,13 +83,15 @@ class Registry{
             $mail->setFrom($config->get("mailFromAdress"), $config->get("mailFromName"));
             self::$mailer = $mail;
         }
+
         return self::$mailer;
     }
 
-	/**
+    /**
      * Preserve the current debug (for ajax/redirections)
      */
-    public static function preserveDebug(){
+    public static function preserveDebug()
+    {
         $_SESSION['debug'] = self::$debug;
     }
 
@@ -97,7 +101,8 @@ class Registry{
      * @param  mixed $message String/array/object to store
      * @return bool
      */
-    public function addDebugMessage($message){
+    public function addDebugMessage($message)
+    {
         $current = self::getDebug("messages");
         //Backtrace
         ob_start();
@@ -108,21 +113,23 @@ class Registry{
             "message" => $message,
             "trace" => $trace,
         );
+
         return self::setDebug("messages", $current);
     }
 
-	/**
-	 * Get the current Debug Log
-	 *
-	 * @param  string $key Log Key (variable)
-	 * @return multiple      Debug Log or Value of passed Log Key
-	 */
-	public static function getDebug($key=""){
-		if($key){
-			return self::$debug[$key];
-		}else{
-			return self::$debug;
-		}
+    /**
+     * Get the current Debug Log
+     *
+     * @param  string   $key Log Key (variable)
+     * @return multiple Debug Log or Value of passed Log Key
+     */
+    public static function getDebug($key="")
+    {
+        if ($key) {
+            return self::$debug[$key];
+        } else {
+            return self::$debug;
+        }
     }
 
     /**
@@ -131,8 +138,9 @@ class Registry{
      * @param string $key  Key
      * @param string $data Value
      */
-    public static function setDebug($key, $data){
-		self::$debug[$key] = $data;
+    public static function setDebug($key, $data)
+    {
+        self::$debug[$key] = $data;
     }
 
     /**
@@ -140,11 +148,23 @@ class Registry{
      *
      * @return object Url
      */
-	public static function getUrl(){
-		if(self::$url == NULL){
-			self::$url = new Url();
-		}
-		return self::$url;
+    public static function getUrl()
+    {
+        if (self::$url == NULL) {
+            self::$url = new Url();
+        }
+
+        return self::$url;
+    }
+
+    /**
+     * Set an Url object
+     *
+     * @return object Url
+     */
+    public static function setUrl($urlObject)
+    {
+        self::$url = $urlObject;
     }
 
     /**
@@ -153,58 +173,68 @@ class Registry{
      * @param  string $lang Desired language
      * @return object Url
      */
-    public static function getLanguage($lang=""){
-		if(self::$language == NULL){
-			self::$language = new Language($lang);
-		}
-		return self::$language;
+    public static function getLanguage($lang="")
+    {
+        if (self::$language == NULL) {
+            self::$language = new Language($lang);
+        }
+
+        return self::$language;
     }
 
     /**
      * Get the current Data Base object
      * @return object Data Base
      */
-	public static function getDb(){
-		$config = self::getConfig();
-		if(self::$db == NULL){
-			self::$db = new Database($config->get("dbHost"), $config->get("dbUser"), $config->get("dbPass"), $config->get("dbName"));
-		}
-		return self::$db;
+    public static function getDb()
+    {
+        $config = self::getConfig();
+        if (self::$db == NULL) {
+            self::$db = new Database($config->get("dbHost"), $config->get("dbUser"), $config->get("dbPass"), $config->get("dbName"));
+        }
+
+        return self::$db;
     }
 
     /**
      * Get the current User object
      * @return object User
      */
-	public static function getUser(){
-		if(self::$user == NULL){
-			session_start();
-			self::$user = new User($_SESSION['userId']);
-		}
-		return self::$user;
+    public static function getUser()
+    {
+        if (self::$user == NULL) {
+            session_start();
+            self::$user = new User($_SESSION['userId']);
+        }
+
+        return self::$user;
     }
 
     /**
      * Get the current Config object
      * @return object Config
      */
-    public static function getConfig(){
-		if(self::$config == NULL){
-			global $_config;
-			self::$config = new Config($_config);
-		}
-		return self::$config;
+    public static function getConfig()
+    {
+        if (self::$config == NULL) {
+            global $_config;
+            self::$config = new Config($_config);
+        }
+
+        return self::$config;
     }
 
     /**
      * Get the current Template object
      * @return object Template
      */
-	public static function getTemplate(){
-		if(self::$template == NULL){
-			self::$template = new Template();
-		}
-		return self::$template;
+    public static function getTemplate()
+    {
+        if (self::$template == NULL) {
+            self::$template = new Template();
+        }
+
+        return self::$template;
     }
 
     /**
@@ -215,12 +245,14 @@ class Registry{
      * @param string  $field   Related Form field
      * @param string  $url     Url to redirect
      */
-    public static function addMessage($message="", $type=1, $field="", $url=""){
-		session_start();
-		$msg = new Message($message, $type, $field, $url);
-		$_SESSION['messages'][] = $msg;
-		self::$messages[] = $_SESSION['messages'];
-		return true;
+    public static function addMessage($message="", $type=1, $field="", $url="")
+    {
+        session_start();
+        $msg = new Message($message, $type, $field, $url);
+        $_SESSION['messages'][] = $msg;
+        self::$messages[] = $_SESSION['messages'];
+
+        return true;
     }
 
     /**
@@ -229,15 +261,17 @@ class Registry{
      * @param  bool  $keep Don't delete the messages
      * @return array List of Message objects
      */
-    public static function getMessages($keep=false){
-    	session_start();
-    	$messages = $_SESSION['messages'];
-    	self::$messages = $messages;
-    	if(!$keep){
-    		self::$messages = array();
-			$_SESSION['messages'] = array();
-		}
-		return $messages;
+    public static function getMessages($keep=false)
+    {
+        session_start();
+        $messages = $_SESSION['messages'];
+        self::$messages = $messages;
+        if (!$keep) {
+            self::$messages = array();
+            $_SESSION['messages'] = array();
+        }
+
+        return $messages;
     }
 
     /**
@@ -246,8 +280,10 @@ class Registry{
      * @param  string $string String to be translated
      * @return string Translated string
      */
-    public static function translate($string=""){
-    	$lang = self::getLanguage();
-		return $lang->translate($string);
+    public static function translate($string="")
+    {
+        $lang = self::getLanguage();
+
+        return $lang->translate($string);
     }
 }

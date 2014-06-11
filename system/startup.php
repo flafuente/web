@@ -1,43 +1,19 @@
 <?php
 
-//Configuration
-include("config.php");
+//Functions
+require 'system/functions.php';
 
-//Autoload Classes
-function __autoload($class_name) {
-	//System
-	$file = "system".DIRECTORY_SEPARATOR."classes".DIRECTORY_SEPARATOR.strtolower($class_name).".class.php";
-    if (is_file($file)){
-        include $file;
-        return;
-    }
-	//Custom
-    $file = "classes".DIRECTORY_SEPARATOR.strtolower($class_name).".class.php";
-    if (is_file($file)){
-        include $file;
-        return;
-    }
-}
+//Composer autoload
+require 'vendor/autoload.php';
 
-//Libs
-//SQL Formater (For better debugging)
-include 'system/libs/SqlFormatter.php';
-//PHPMailer
-include 'system/libs/phpmailer/class.phpmailer.php';
-include 'system/libs/phpmailer/class.smtp.php';
-include 'system/libs/phpmailer/class.pop3.php';
-//File Upload
-include 'system/libs/uploadHandler.php';
-//Resize Class
-include 'system/libs/resize-class.php';
-
-//Languages
+//Language init
 $language = new Language();
 
-//Registry
+//Registry init
 $registry = new Registry();
 
-//Router
+//Router init
 $router = new Router();
-$router->delegate();
 
+//Delegate
+$router->delegate();

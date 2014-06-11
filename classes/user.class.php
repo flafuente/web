@@ -1,354 +1,551 @@
 <?php
-class User extends Model {
 
-	public $id;
-	public $statusId;
-	public $verified;
-	public $roleId;
-	public $permisos;
-	public $username;
-	public $nombre;
-	public $apellidos;
-	public $email;
-	public $password;
-	public $recoveryHash;
-	public $verificationHash;
-	public $foto;
-	public $sexo;
-	public $fechaNacimiento;
-	public $ubicacion;
-	public $biografia;
-	public $intereses;
-	public $trabajo;
-	public $estudios;
-	public $dateInsert;
-	public $dateUpdate;
-	public $lastvisitDate;
+/**
+ * User Class
+ *
+ * @package LightFramework\Core
+ */
+class User extends Model
+{
+    /**
+     * Id
+     * @var int
+     */
+    public $id;
 
-	public $fotosPath = "/files/images/";
+    /**
+     * Status Id
+     * @var int
+     */
+    public $statusId;
 
-	public $secciones = array(
-		"todo"		=> "Todo",
-		"noticias" 	=> "Notícias",
-		"cortos" 	=> "Cortos",
-		"musica" 	=> "Música",
-		"juegos" 	=> "Juegos",
-		"usuarios" 	=> "Usuarios",
-		"logs" 		=> "Logs",
-	);
+    /**
+     * Role Id
+     * @var int
+     */
+    public $roleId;
 
-	public $statusesCss = array(
-		0 => "danger",
-		1 => "success",
-	);
-	public $statuses = array(
-		0 => "Bloqueado",
-		1 => "Activo",
-	);
-	public $roles = array(
-		1 => "Usuario",
-		2 => "Administrador"
-	);
+    /**
+     * Email
+     * @var string
+     */
+    public $email;
 
-	public static $reservedVarsChild = array("fotosPath", "secciones", "roles", "statuses", "statusesCss");
+    /**
+     * Username
+     * @var string
+     */
+    public $username;
 
-	public function init(){
-		parent::$dbTable = "users";
-		parent::$reservedVarsChild = self::$reservedVarsChild;
-	}
+    /**
+     * Password
+     * @var string
+     */
+    public $password;
 
-    public function getFotoUrl(){
-        $config = Registry::getConfig();
-        if($this->foto){
+    /**
+     * Recovery Hash
+     * @var string
+     */
+    public $recoveryHash;
+
+    public $verified;
+    public $nombre;
+    public $apellidos;
+    public $foto;
+    public $sexo;
+    public $fechaNacimiento;
+    public $ubicacion;
+    public $biografia;
+    public $intereses;
+    public $trabajo;
+    public $estudios;
+    public $permisos;
+
+    /**
+     * Insert date
+     * @var string
+     */
+    public $dateInsert;
+
+    /**
+     * Update date
+     * @var string
+     */
+    public $dateUpdate;
+
+    /**
+     * Last visit date
+     * @var string
+     */
+    public $lastvisitDate;
+
+    /**
+     * Ruta de subida de las imágenes
+     * @var string
+     */
+    public $fotosPath = "/files/images/";
+
+    /**
+     * Secciones
+     * @var array
+     */
+    public $secciones = array(
+        "todo"      => "Todo",
+        "noticias"  => "Notícias",
+        "cortos"    => "Cortos",
+        "musica"    => "Música",
+        "juegos"    => "Juegos",
+        "usuarios"  => "Usuarios",
+        "logs"      => "Logs",
+    );
+
+    /**
+     * Status CSS classes
+     * @var array
+     */
+    public $statusesCss = array(
+        0 => "danger",
+        1 => "success",
+    );
+
+    /**
+     * Status types
+     * @var array
+     */
+    public $statuses = array(
+        0 => "Bloqueado",
+        1 => "Activo",
+    );
+
+    /**
+     * Roles
+     * @var array
+     */
+    public $roles = array(
+        1 => "Usuario",
+        2 => "Administrador"
+    );
+
+    /**
+     * Reserved vars (not at database table)
+     * @var array
+     */
+    public static $reservedVarsChild = array("fotosPath", "secciones", "roles", "statuses", "statusesCss");
+
+    /**
+     * Class initialization
+     *
+     * @return void
+     */
+    public function init()
+    {
+        parent::$dbTable = "users";
+        parent::$reservedVarsChild = self::$reservedVarsChild;
+    }
+
+    /**
+     * Get the user status
+     *
+     * @return string User status
+     */
+    public function getStatusString()
+    {
+        return $this->statuses[$this->statusId];
+    }
+
+    /**
+     * Get the CSS class for user status
+     *
+     * @return string CSS Class
+     */
+    public function getStatusCssString()
+    {
+        return $this->statusesCss[$this->statusId];
+    }
+
+    /**
+     * Get the role of the user
+     *
+     * @param integer $roleId Role (optional)
+     *
+     * @return string Role
+     */
+    public function getRoleString($roleId=0)
+    {
+        if (!$roleId) {
+            $roleId = $this->roleId;
+        }
+        if ($roleId) {
+            return $this->roles[$roleId];
+        } else {
+            return "-";
+        }
+    }
+
+    public function getFotoUrl()
+    {
+        if ($this->foto) {
             return Url::site($this->fotosPath.$this->foto);
-        }else{
+        } else {
             return Url::template("img/tu_haces/en_corto/user_icon.png");
         }
     }
 
-	public function checkPermisos($seccion=""){
-		//Es una acción?
-		if(!@in_array($seccion, $this->secciones)){
-			switch($seccion){
-				//Cortos
-				case 'users':
-				case 'usersEdit':
-				case 'usersSave':
-				case 'usersDelete':
-					$seccion = "usuarios";
-				break;
-				//Usuarios
-				case 'videos':
-				case 'videosEdit':
-				case 'videosSave':
-				case 'videosDelete':
-					$seccion = "cortos";
-				break;
-			}
-		}
-		if(@in_array($seccion, json_decode($this->permisos)) || @in_array("todo", json_decode($this->permisos))){
-			return true;
-		}
-	}
+    public function checkPermisos($seccion="")
+    {
+        //Es una acción?
+        if (!@in_array($seccion, $this->secciones)) {
+            switch ($seccion) {
+                //Usuarios
+                case 'users':
+                case 'usersEdit':
+                case 'usersSave':
+                case 'usersDelete':
+                    $seccion = "usuarios";
+                break;
+                //Cortos
+                case 'videos':
+                case 'videosEdit':
+                case 'videosSave':
+                case 'videosDelete':
+                    $seccion = "cortos";
+                break;
+            }
+        }
+        if (@in_array($seccion, json_decode($this->permisos)) || @in_array("todo", json_decode($this->permisos))) {
+            return true;
+        }
+    }
 
-	public function getStatusString(){
-		return $this->statuses[$this->statusId];
-	}
+    /**
+     * Insert validation
+     *
+     * @return array Object Messages
+     */
+    public function validateInsert($data=array())
+    {
+        //Check nombre
+        if (!$this->nombre) {
+            Registry::addMessage("Debes introcurir tu nombre", "error", "nombre");
+        }
+        //Check apellidos
+        if (!$this->apellidos) {
+            Registry::addMessage("Debes introducir tus apellidos", "error", "apellidos");
+        }
+        //Check email
+        if (!$this->email) {
+            Registry::addMessage("Debes introducir tu email", "error", "email");
+        } elseif ($this->getUserByEmail($this->email)) {
+            Registry::addMessage("Este email ya esta registrado", "error", "email");
+        }
+        //Password?
+        if (!empty($data) && !$this->dateInsert) {
+            if (!$this->password) {
+                Registry::addMessage("Debes introcir una contraseña", "error", "password");
+            } elseif (strlen($this->password)<6) {
+                Registry::addMessage("La contraseña debe tenter al menos 6 caracteres", "error", "password");
+            } elseif ($this->password!=$data["password2"]) {
+                Registry::addMessage("Las contraseñas no coinciden", "error", "password");
+            }
+        }
 
-	public function getStatusCssString(){
-		return $this->statusesCss[$this->statusId];
-	}
+        return Registry::getMessages(true);
+    }
 
-	public function getRoleString($roleId=0){
-		if(!$roleId){
-			$roleId = $this->roleId;
-		}
-		if($roleId){
-			return $this->roles[$roleId];
-		}else{
-			return "-";
-		}
-	}
-
-	public function validateInsert($data=array()){
-		//Check nombre
-		if(!$this->nombre){
-			Registry::addMessage("Debes introcurir tu nombre", "error", "nombre");
-		}
-		//Check apellidos
-		if(!$this->apellidos){
-			Registry::addMessage("Debes introducir tus apellidos", "error", "apellidos");
-		}
-		//Check email
-		if(!$this->email){
-			Registry::addMessage("Debes introducir tu email", "error", "email");
-		}elseif($this->getUserByEmail($this->email)){
-			Registry::addMessage("Este email ya esta registrado", "error", "email");
-		}
-		//Password?
-		if(!empty($data) && !$this->dateInsert){
-			if(!$this->password){
-				Registry::addMessage("Debes introcir una contraseña", "error", "password");
-			}elseif(strlen($this->password)<6){
-				Registry::addMessage("La contraseña debe tenter al menos 6 caracteres", "error", "password");
-			}elseif($this->password!=$data["password2"]){
-				Registry::addMessage("Las contraseñas no coinciden", "error", "password");
-			}
-		}
-		return Registry::getMessages(true);
-	}
-
-	public function preInsert($data=array()){
-		//Passwd encryption
-		$this->password = User::encrypt($this->password);
-		//Register Date
-		$this->dateInsert = date("Y-m-d H:i:s");
-		//Permisos
-		if(isset($data["permisos"])){
-			$this->permisos = json_encode($data["permisos"]);
-		}
-		//Foto
+    /**
+     * Pre-Insert actions
+     *
+     * @return void
+     */
+    public function preInsert($data=array())
+    {
+        //Passwd encryption
+        $this->password = User::encrypt($this->password);
+        //Register Date
+        $this->dateInsert = date("Y-m-d H:i:s");
+        //Permisos
+        if (isset($data["permisos"])) {
+            $this->permisos = json_encode($data["permisos"]);
+        }
+        //Foto
         $this->uploadFoto($_FILES["foto"]);
-	}
+    }
 
-	public function postInsert(){
-		$this->sendVerification();
-	}
+    public function postInsert()
+    {
+        $this->sendVerification();
+    }
 
-	public function validateUpdate($data=array()){
-		//Check nombre
-		if(!$this->nombre){
-			Registry::addMessage("Debes introcuri tu nombre", "error", "nombre");
-		}
-		//Check apellidos
-		if(!$this->apellidos){
-			Registry::addMessage("Debes introducir tus apellidos", "error", "apellidos");
-		}
-		//Check email
-		if(!$this->email){
-			Registry::addMessage("Debes introducir tu email", "error", "email");
-		}elseif($this->getUserByEmail($this->email, $this->id)){
-			Registry::addMessage("Este email ya esta registrado", "error", "email");
-		}
-		return Registry::getMessages(true);
-	}
+    /**
+     * Update validation
+     *
+     * @return array Object Messages
+     */
+    public function validateUpdate()
+    {
+        //Check nombre
+        if (!$this->nombre) {
+            Registry::addMessage("Debes introcuri tu nombre", "error", "nombre");
+        }
+        //Check apellidos
+        if (!$this->apellidos) {
+            Registry::addMessage("Debes introducir tus apellidos", "error", "apellidos");
+        }
+        //Check email
+        if (!$this->email) {
+            Registry::addMessage("Debes introducir tu email", "error", "email");
+        } elseif ($this->getUserByEmail($this->email, $this->id)) {
+            Registry::addMessage("Este email ya esta registrado", "error", "email");
+        }
 
-	public function preUpdate($data=array()){
-		//Prevent blank password override
-		if($data['password']){
-			$this->password = User::encrypt($data['password']);
-		}else{
-			$this->password = null;
-		}
-		//Update Date
-		$this->dateUpdate = date("Y-m-d H:i:s");
-		//Permisos
-		if(isset($data["permisos"])){
-			$this->permisos = json_encode($data["permisos"]);
-		}
-		//Foto
+        return Registry::getMessages(true);
+    }
+
+    /**
+     * Pre-Update actions
+     *
+     * @return void
+     */
+    public function preUpdate($data=array())
+    {
+        //Prevent blank password override
+        if ($data['password']) {
+            $this->password = User::encrypt($data['password']);
+        } else {
+            $this->password = null;
+        }
+        //Update Date
+        $this->dateUpdate = date("Y-m-d H:i:s");
+        //Permisos
+        if (isset($data["permisos"])) {
+            $this->permisos = json_encode($data["permisos"]);
+        }
+        //Foto
         $this->uploadFoto($_FILES["foto"]);
-	}
+    }
 
-	public function uploadFoto($resource){
-		if($resource["size"]){
-			$config = Registry::getConfig();
-	        $uploadDir = $config->get("path").$this->fotosPath;
-	        $uploadTempDir = $config->get("path")."/files/tmp/";
-	        //Tmp Upload
-	        $temp = explode(".", $resource["name"]);
-	        $extension = end($temp);
-	        $newName = md5(uniqid());
-	        $tmpName = $newName.".".$extension;
-	        if(move_uploaded_file($resource["tmp_name"], $uploadTempDir.$tmpName)){
-	            //New name
-	            $newName = $newName.".png";
-	            //Resize
-	            $resizeObj = new resize($uploadTempDir.$tmpName);
-	            $resizeObj->resizeImage(512, 512);
-	            $resizeObj->saveImage($uploadDir.$newName, 0);
-	            @unlink($uploadTempDir.$tmpName);
-	            $this->foto = $newName;
-	        }
-		}else{
-			$this->foto = null;
-		}
-	}
+    public function uploadFoto($resource)
+    {
+        if ($resource["size"]) {
+            $config = Registry::getConfig();
+            $uploadDir = $config->get("path").$this->fotosPath;
+            $uploadTempDir = $config->get("path")."/files/tmp/";
+            //Tmp Upload
+            $temp = explode(".", $resource["name"]);
+            $extension = end($temp);
+            $newName = md5(uniqid());
+            $tmpName = $newName.".".$extension;
+            if (move_uploaded_file($resource["tmp_name"], $uploadTempDir.$tmpName)) {
+                //New name
+                $newName = $newName.".png";
+                //Resize
+                $resizeObj = new resize($uploadTempDir.$tmpName);
+                $resizeObj->resizeImage(512, 512);
+                $resizeObj->saveImage($uploadDir.$newName, 0);
+                @unlink($uploadTempDir.$tmpName);
+                $this->foto = $newName;
+            }
+        } else {
+            $this->foto = null;
+        }
+    }
 
-	public function login($login, $password){
-		$db = Registry::getDb();
-		$query = "SELECT * FROM `users` WHERE
-		`email`='".htmlspecialchars(mysql_real_escape_string(trim($login)))."' AND
-		`password`='".User::encrypt($password)."' AND `statusId`=1 LIMIT 1;";
-		if($db->query($query)){
-			if($db->getNumRows()){
-				$row = $db->fetcharray();
-				$user = new User($row);
-				//Set Session
-				session_start();
-				$_SESSION['userId'] = $user->id;
-				//Update lastVisitDate
-				$user->lastvisitDate = date("Y-m-d H:i:s");
-				$user->update();
-                return true;
-			}
-		}
-	}
+    /**
+     * Login
+     *
+     * @param string $login    Username or email
+     * @param string $password Plain password
+     *
+     * @return bool
+     */
+    public static function login($login, $password)
+    {
+        $db = Registry::getDb();
+        $rows = $db->query("SELECT * FROM `users` WHERE (username=:username OR email=:email) AND password=:password AND statusId=1",
+            array(
+                ":email" => $login,
+                ":username" => $login,
+                ":password" => User::encrypt($password)
+            )
+        );
+        if ($rows) {
+            $user = new User($rows[0]);
+            //Set Session
+            session_start();
+            $_SESSION['userId'] = $user->id;
+            $_SESSION['lang'] = $user->language;
+            //Update lastVisitDate
+            $user->lastvisitDate = date("Y-m-d H:i:s");
+            $user->update();
 
-	public function logout(){
-		session_start();
-		$_SESSION = array();
-		session_unset();
-		session_destroy();
-		return true;
-	}
+            return true;
+        }
+    }
 
-	public function encrypt($password=""){
-		return md5(sha1(trim($password)));
-	}
+    /**
+     * Logout
+     *
+     * @return bool
+     */
+    public static function logout()
+    {
+        //Destroy PHP Session
+        session_start();
+        $_SESSION = array();
+        session_unset();
+        session_destroy();
 
-	public function select($data=array(), $limit=0, $limitStart=0, &$total=null){
-		$db = Registry::getDb();
+        return true;
+    }
+
+    /**
+     * Password encryption
+     *
+     * @param string $password Plain password
+     *
+     * @return string Encrypted password
+     */
+    public static function encrypt($password="")
+    {
+        return md5(sha1(trim($password)));
+    }
+
+    /**
+     * Object selection
+     *
+     * @param array   $data       Conditionals and Order values
+     * @param integer $limit      Limit
+     * @param integer $limitStart Limit start
+     * @param int     $total      Total rows found
+     *
+     * @return array Objects found
+     */
+    public static function select($data=array(), $limit=0, $limitStart=0, &$total=null)
+    {
+        $db = Registry::getDb();
         //Query
-		$query = "SELECT * FROM `users` WHERE 1=1 ";
-		//Total
-		if($db->Query($query)){
-			$total = $db->getNumRows();
-			//Order
-			if(isset($data['order']) && isset($data['orderDir'])){
-				//Secure Field
-				$orders = array("ASC", "DESC");
-				if(@in_array($data['order'], array_keys(get_class_vars(__CLASS__))) && in_array($data['orderDir'], $orders)){
-					$query .= " ORDER BY `".mysql_real_escape_string($data['order'])."` ".mysql_real_escape_string($data['orderDir']);
-				}
-			}
-			//Limit
-			if($limit){
-				$query .= " LIMIT ".(int)$limitStart.", ".(int)$limit;
-			}
-			if($total){
-				if($db->Query($query)){
-					if($db->getNumRows()){
-						$rows = $db->loadArrayList();
-						foreach($rows as $row){
-							$results[] = new User($row);
-						}
-						return $results;
-					}
-				}
-			}
-		}
-	}
+        $query = "SELECT * FROM `users` WHERE 1=1 ";
+        //Total
+        $total = count($db->Query($query));
+        if ($total) {
+            //Order
+            if ($data['order'] && $data['orderDir']) {
+                //Secure Field
+                $orders = array("ASC", "DESC");
+                if (@in_array($data['order'], array_keys(get_class_vars(__CLASS__))) && in_array($data['orderDir'], $orders)) {
+                    $query .= " ORDER BY `".$data['order']."` ".$data['orderDir'];
+                }
+            }
+            //Limit
+            if ($limit) {
+                $query .= " LIMIT ".(int) $limitStart.", ".(int) $limit;
+            }
+            $rows = $db->Query($query);
+            if (count($rows)) {
+                foreach ($rows as $row) {
+                    $results[] = new User($row);
+                }
 
-	public function getUserByEmail($email, $ignoreId=0){
-		$db = Registry::getDb();
-		$query = "SELECT * FROM `users` WHERE `email`='".htmlentities(mysql_real_escape_string($email))."'";
-		if($ignoreId){
-			$query .= " AND `id` !=".(int)$ignoreId;
-		}
-		if($db->Query($query)){
-			if($db->getNumRows()){
-				$row = $db->fetcharray();
-				return new User($row);
-			}
-		}
-	}
+                return $results;
+            }
+        }
+    }
 
-	public function getUserByRecoveryHash($hash){
-		$db = Registry::getDb();
-		$query = "SELECT * FROM `users` WHERE `recoveryHash`='".htmlentities(mysql_real_escape_string($hash))."'";
-		if($db->Query($query)){
-			if($db->getNumRows()){
-				$row = $db->fetcharray();
-				return new User($row);
-			}
-		}
-	}
+    /**
+     * Get an User by email
+     *
+     * @param string  $email    Email to search
+     * @param integer $ignoreId User id to be ignored (optional)
+     *
+     * @return bool|object User
+     */
+    public static function getUserByEmail($email, $ignoreId=0)
+    {
+        $db = Registry::getDb();
+        $params = array();
+        $query = "SELECT * FROM `users` WHERE email = :email";
+        $params[":email"] = $email;
+        //Ignore Id
+        if ($ignoreId) {
+            $params[":ignoreId"] = $ignoreId;
+            $query .= " AND `id` != :ignoreId";
+        }
+        $rows = $db->query($query, $params);
+        if (count($rows)) {
+            return new User($rows[0]);
+        }
+    }
 
-	public function getUserByVerificationHash($hash){
-		$db = Registry::getDb();
-		$query = "SELECT * FROM `users` WHERE `verificationHash`='".htmlentities(mysql_real_escape_string($hash))."'";
-		if($db->Query($query)){
-			if($db->getNumRows()){
-				$row = $db->fetcharray();
-				return new User($row);
-			}
-		}
-	}
+    /**
+     * Get an User by username
+     *
+     * @param string  $username Username to search
+     * @param integer $ignoreId User id to be ignored (optional)
+     *
+     * @return bool|object User
+     */
+    public static function getUserByUsername($username, $ignoreId=0)
+    {
+        $db = Registry::getDb();
+        $params = array();
+        $query = "SELECT * FROM `users` WHERE username = :username";
+        $params[":username"] = $username;
+        //Ignore Id
+        if ($ignoreId) {
+            $params[":ignoreId"] = $ignoreId;
+            $query .= " AND `id` != :ignoreId";
+        }
+        $rows = $db->query($query, $params);
+        if (count($rows)) {
+            return new User($rows[0]);
+        }
+    }
 
-	public function sendRecovery(){
-		$config = Registry::getConfig();
-		$this->recoveryHash = bin2hex(openssl_random_pseudo_bytes(16));
-		$this->update();
-		$mailer = Registry::getMailer();
-		$mailer->addAddress($this->email);
-		$mailer->Subject = utf8_decode("Recuperación de la cuenta");
-		$mailer->msgHTML(
-			Template::renderEmail(
-				"accountRecovery",
-				array(
-					"hash" => $this->recoveryHash
-				), $config->get("template")
-			)
-		);
-		$mailer->send();
-	}
+    /**
+     * Get an User by Recovery hash
+     *
+     * @param string $hash Hash to search
+     *
+     * @return bool|object User
+     */
+    public static function getUserByRecoveryHash($recoveryHash)
+    {
+        $db = Registry::getDb();
+        $rows = $db->query("SELECT * FROM `users` WHERE recoveryHash = :recoveryHash",
+            array(
+                ":recoveryHash" => $recoveryHash
+            )
+        );
+        if (count($rows)) {
+            return new User($rows[0]);
+        }
+    }
 
-	public function sendVerification(){
-		$config = Registry::getConfig();
-		$this->verificationHash = bin2hex(openssl_random_pseudo_bytes(16));
-		$this->update();
-		$mailer = Registry::getMailer();
-		$mailer->addAddress($this->email);
-		$mailer->Subject = utf8_decode("Activación de la cuenta");
-		$mailer->msgHTML(
-			Template::renderEmail(
-				"accountVerification",
-				array(
-					"hash" => $this->verificationHash
-				), $config->get("template")
-			)
-		);
-		$mailer->send();
-	}
+    /**
+     * Sends a recovery email to current User
+     *
+     * @return bool
+     */
+    public function sendRecovery()
+    {
+        $this->recoveryHash = bin2hex(openssl_random_pseudo_bytes(16));
+        $this->update();
+        $mailer = Registry::getMailer();
+        $mailer->addAddress($this->email);
+        $mailer->Subject = utf8_decode(Registry::translate("EMAILS_ACCOUNT_RECOVERY_SUBJECT"));
+        $mailer->msgHTML(
+            Template::renderEmail(
+                "accountRecovery",
+                array(
+                    "hash" => $this->recoveryHash
+                ), "bootstrap"
+            )
+        );
+        if ($mailer->send()) {
+            return true;
+        } else {
+            Registry::addMessage(Registry::translate("MODL_USER_RECOVERY_EMAIL_ERROR"), "error");
+        }
+    }
 }

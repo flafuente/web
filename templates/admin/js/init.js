@@ -117,7 +117,7 @@ function checkFormField(formElement, fieldName, fieldValue){
 		    value: fieldValue
 		}).appendTo(formElement);
 	}else{
-		return field;
+		field.val(fieldValue);
 	}
 }
 
@@ -155,6 +155,11 @@ function doSubmit(element, app, action, requireIds, confirmation, ajax, modalId,
 		return false;
 	}
 	if(!action || noAjax){
+		//Check router
+		var router = $('#mainForm input[name=router]').val();
+		if(router){
+			app = router + "/" + app;
+		}
 		window.location.href = URL + app + "/" +  action;
 		return false;
 	}

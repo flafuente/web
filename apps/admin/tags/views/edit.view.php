@@ -10,6 +10,8 @@ if ($tag->id) {
 }
 $toolBar['title'] = "Tags";
 $toolBar['class'] = "bookmark";
+
+//Botón de Guardar / crear
 $toolBar['buttons'][] = array(
     "buttonClass" => "success",
     "spanClass" => "ok",
@@ -17,6 +19,7 @@ $toolBar['buttons'][] = array(
     "app" => "tags",
     "action" => "save",
 );
+//Botón de cancelar
 $toolBar['buttons'][] = array(
     "buttonClass" => "primary",
     "spanClass" => "chevron-left",
@@ -26,6 +29,7 @@ $toolBar['buttons'][] = array(
     "noAjax" => true,
 );
 if ($tag->id) {
+    //Botón de eliminar
     $toolBar['buttons'][] = array(
         "buttonClass" => "danger",
         "spanClass" => "remove",

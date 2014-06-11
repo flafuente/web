@@ -50,12 +50,12 @@ echo $controller->view("modules.toolbar");
                                     <?=Helper::sanitize($categoria->nombre);?>
                                 </td>
                                 <td>
-                                    <a href="<?=Url::site("admin/videosEdit/".$video->id);?>">
+                                    <a href="<?=Url::site("admin/videos/edit/".$video->id);?>">
                                         <?=Helper::sanitize($video->titulo);?>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="<?=Url::site("admin/usersEdit/".$user->id);?>">
+                                    <a href="<?=Url::site("admin/users/edit/".$user->id);?>">
                                         <?=Helper::sanitize($user->email);?>
                                     </a>
                                 </td>

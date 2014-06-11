@@ -9,6 +9,7 @@ return array(
     'Categoria' => $baseDir . '/classes/categoria.class.php',
     'Config' => $baseDir . '/system/classes/config.class.php',
     'Controller' => $baseDir . '/system/classes/controller.class.php',
+    'ControllerRouter' => $baseDir . '/system/classes/controllerrouter.class.php',
     'Database' => $baseDir . '/system/classes/database.class.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/File/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/File/Iterator/Facade.php',
