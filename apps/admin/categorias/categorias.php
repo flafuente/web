@@ -6,16 +6,11 @@ class categoriasController extends Controller
 {
     public function init()
     {
+        //Revisamos si tiene permisos para acceder a esta sección
         $url = Registry::getUrl();
-        $config = Registry::getConfig();
-        $config->set("template", "admin");
         $user = Registry::getUser();
-        if ($user->roleId<2) {
+        if (!$user->checkPermisos($url->action)) {
             redirect(Url::site());
-        } else {
-            if (!$user->checkPermisos($url->action)) {
-                redirect(Url::site());
-            }
         }
     }
 

@@ -73,10 +73,11 @@ class Router
                 //Check if its a ControllerRouter
                 $class = $appName."ControllerRouter";
                 if (class_exists($class)) {
+                    //Init
+                    $controller = new $class();
                     //No action?
                     if ($action=="index") {
-                        //Init
-                        $controller = new $class();
+                        //Action
                         $controller->$action();
                     } else {
                         //New App Path

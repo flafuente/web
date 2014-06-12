@@ -6,9 +6,12 @@ class adminControllerRouter extends Controller
 {
     public function init()
     {
+        //Usamos el template Admin
+        $config = Registry::getConfig();
+        $config->set("template", "admin");
+        //Nos aseguramos de que es admin
         $user = Registry::getUser();
-        $url = Registry::getUrl();
-        if (!$user->checkPermisos($url->action)) {
+        if ($user->roleId<2) {
             redirect(Url::site());
         }
     }
