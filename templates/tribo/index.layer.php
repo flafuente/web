@@ -54,9 +54,6 @@
 		<link rel="shortcut icon" href="<?=Url::template("img/favicon.png")?>">
 	</head>
 	<body class="">
-		<!-- Module publiTop -->
-		<?=$controller->view("modules.publiTop");?>
-		<!--/Module publiTop-->
 
 		<!-- Module topMenu -->
 		<?=$controller->view("modules.topMenu");?>
@@ -67,9 +64,6 @@
 
 			<div class='row top hidden-xs'></div>
 
-	        <!-- Module publiLat -->
-	        <?=$controller->view("modules.publiLat");?>
-	        <!--/Module publiLat-->
 
 			<div class='col-md-8'>
 
@@ -93,16 +87,9 @@
 				<?=$content?>
 				<!--/content-->
 
-				<div class="col-md-12 footer">
-					tribotv©2014
-				</div>
-
-	        </div>
-	        <!-- Module publiLat -->
-	        <?=$controller->view("modules.publiLat");?>
-	        <!--/Module publiLat-->
-
+	        </div>	
 	    </div>
+		<?=$controller->view("modules.Footer");?>
 		<!--/mainContainer-->
 
 	    <!-- Debugging Modals -->

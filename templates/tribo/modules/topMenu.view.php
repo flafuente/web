@@ -3,94 +3,37 @@
 <?php $user = Registry::getUser(); ?>
 <?php $config = Registry::getConfig(); ?>
 
-<nav class="navbar" role="navigation">
-    <div class='menu-bg hidden-xs'>
-    </div>
-    <div class="container">
-        
-        <div class='col-md-9 col-md-offset-2 topete'>
-            <div class='userzone col-md-4 hidden-xs'>
-                <a href='#' class='last'>
-                    <img src='<?=Url::template("/img/herramientas.png");?>' title='Herramientas' />
-                </a>
-                <a href='<?=Url::site("login/register");?>' class='reg'>
-                    <div class='izq'></div>
-                    <div class='mid'>> Regístrate</div>
-                    <div class='dcha'></div>
-                </a>
-                <a href='<?=Url::site("perfil");?>'>
-                    <img src='<?=Url::template("/img/user.png");?>' title='Perfil' />
-                </a>
-            </div>
-            <div class='socialm col-md-3'>
-                <a href='#'>
-                    <img src='<?=Url::template("/img/twitter.png");?>' title='Twitter' />
-                </a>
-                <a href='#'>
-                    <img src='<?=Url::template("/img/facebook.png");?>' title='Facebook' />
-                </a>
-                <a href='#'>
-                    <img src='<?=Url::template("/img/vimeo.png");?>' title='Vimeo' />
-                </a>
-                <a href='#'>
-                    <img src='<?=Url::template("/img/instagram.png");?>' title='Instagram' />
-                </a>
-                <a href='#'>
-                    <img src='<?=Url::template("/img/flickr.png");?>' title='Flickr' />
-                </a>
-            </div>
-            <div class='socialm col-md-3 visible-xs'>
-                <a href='<?=Url::site("perfil");?>'>
-                    <img src='<?=Url::template("/img/user.png");?>' title='Perfil' />
-                </a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-ex1-collapse navbar-collapse ">
 
-                <ul class="nav navbar-nav navbar-inner col-md-9">
-                    <?php $url = Registry::getUrl(); ?>
-                    <?php $active = array(); ?>
-                    <?php $active[$url->app][$url->action] = "active"; ?>
-                    <li class='visible-xs'>
-                        <a href="<?=Url::site("home");?>">Inicio</a>
-                    </li>
-                    <li class="<?=$active["home"]["inicio"];?>">
-                        <a class="" href='<?=Url::site("home/inicio");?>'>Hi! tribo tv</a>
-                    </li>
-                    <li class="<?=$active["home"]["sintonizanos"];?>">
-                        <a class="" href='<?=Url::site("home/sintonizanos");?>'>
-                            Sintonízanos
-                        </a>
-                    </li>
-                    <li class='dropdown <?=$active["home"]["programa"];?>'>
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Programas <b class="caret"></b></a>
-                        <ul class="dropdown-menu col-md-12" id="menu1">
-                            <li><a href='<?=Url::site("home/programa");?>'>Programa 1</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a class="" href='#'>TV en directo</a>
-                    </li>
-                    <li class="<?=$active["home"]["tu_haces_tribo"];?>">
-                        <a class="" href='<?=Url::site("home/tu_haces_tribo");?>'>Tu haces tribo</a>
-                    </li>
-                    <li><a class="" href='#'>Contacta</a>
-                    </li>
-                </ul>
-                <a href='<?=Url::site("home");?>' class='hidden-xs logo'>
-                    <img src='<?=Url::template("/img/logo.png");?>' />
-                </a>
-            </div>
-        </div>
-        <!-- /.navbar-collapse -->
+    <div class="container">
+		<div class="row-fluid">
+			<div class='col-md-4 topleft'>
+				<div class='col-md-12 pull-left mid'>
+					<a class='rsep' href='#'>
+						<img src='<?=Url::template("/img/user.png");?>' title='Panel' />
+					</a>
+					<a class='rsep' href='#'>
+						<img src='<?=Url::template("/img/lupa.png");?>' title='Buscar' />
+					</a>
+					<a class='rsep' href='#'>
+						<img src='<?=Url::template("/img/contact.png");?>' title='Contacta' />
+					</a>
+				</div>
+			</div>
+			<div class='col-md-3  col-md-offset-1'>
+				<a href='<?=Url::site("home");?>' class='logo'>
+					<img src='<?=Url::template("/img/logo.png");?>' />
+				</a>
+			</div>
+			<div class='col-md-4 topright'>
+				<div class='col-md-12 mid pull-right'>
+				<a class='pull-right lsep' href='#'>
+					<img src='<?=Url::template("/img/twitter.png");?>' title='Twitter' />
+				</a>				
+				<a class='pull-right lsep' href='#'>
+					<img src='<?=Url::template("/img/facebook.png");?>' title='Facebook' />
+				</a>
+				</div>
+			</div>
+		</div>
     </div>
     <!-- /.container -->
-</nav>
