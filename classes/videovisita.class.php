@@ -18,6 +18,22 @@ class VideoVisita extends Model
         $this->dateInsert = date("Y-m-d H:i:s");
     }
 
+    public function getVideosVisitasByVideoId($videoId)
+    {
+        $db = Registry::getDb();
+        $params = array();
+        $query = "SELECT * FROM `videos_visitas` WHERE `videoId`=:videoId";
+        $params[":videoId"] = $videoId;
+        $rows = $db->query($query, $params);
+        if (count($rows)) {
+            foreach ($rows as $row) {
+                $results[] = new VideoVisita($row);
+            }
+
+            return $results;
+        }
+    }
+
     public function getTotalVisitasByVideoId($videoId=0)
     {
         if ($videoId) {

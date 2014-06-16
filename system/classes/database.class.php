@@ -58,6 +58,7 @@ class Database
     public function query($query, $params=null, $fetchmode=PDO::FETCH_ASSOC)
     {
         $config = Registry::getConfig();
+        $this->error = null;
         //Debug
         if ($config->get("debug")) {
             //Save the previous stored time

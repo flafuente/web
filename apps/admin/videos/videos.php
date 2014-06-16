@@ -29,7 +29,11 @@ class videosController extends Controller
     public function edit()
     {
         $url = Registry::getUrl();
-        $this->setData("video", new Video($url->vars[0]));
+        $video = new Video($url->vars[0]);
+        $this->setData("video", $video);
+        if ($video->id) {
+            $this->setData("videosArchivos", VideoArchivo::getVideosArchivosByVideoId($video->id));
+        }
         $this->setData("categorias", Categoria::select(
             array(
                 "order" => "nombre",
@@ -72,5 +76,17 @@ class videosController extends Controller
             }
         }
         $this->ajax();
+    }
+
+    public function saveArchivo()
+    {
+        $videoArchivo = new VideoArchivo($_REQUEST['id']);
+        if ($videoArchivo->id) {
+            $videoArchivo->estadoId = $_REQUEST["estadoId"];
+            $videoArchivo->comentario = $_REQUEST["comentario"];
+            if ($videoArchivo->update()) {
+                Registry::addMessage("Archivo actualizado satisfactoriamente", "success");
+            }
+        }
     }
 }

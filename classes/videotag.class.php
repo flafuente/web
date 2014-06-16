@@ -30,6 +30,22 @@ class VideoTag extends Model
         }
     }
 
+    public static function getVideosTagsByVideoId($videoId=0)
+    {
+        $db = Registry::getDb();
+        $params = array();
+        $query = "SELECT * FROM `videos_tags` WHERE `videoId`=:videoId";
+        $params[":videoId"] = $videoId;
+        $rows = $db->query($query, $params);
+        if (count($rows)) {
+            foreach ($rows as $row) {
+                $results[] = new VideoTag($row);
+            }
+
+            return $results;
+        }
+    }
+
     public function select($data=array(), $limit=0, $limitStart=0, &$total=null)
     {
         $db = Registry::getDb();

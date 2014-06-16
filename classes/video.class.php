@@ -7,10 +7,7 @@ class Video extends Model
     public $categoriaId;
     public $titulo;
     public $descripcion;
-    public $comentario;
-    public $file;
-    public $size;
-    public $type;
+    public $videoArchivoId;
     public $visitas;
     public $dateInsert;
     public $dateUpdate;
@@ -26,25 +23,16 @@ class Video extends Model
         2 => "danger",
     );
     public $estados = array(
-        0 => "No aprobado",
-        1 => "Aprobado",
-        2 => "Rechazado",
+        0 => "No publicado",
+        1 => "Publicado",
     );
-    public $path = "/files/videos/";
 
-    public static $reservedVarsChild = array("path", "categorias", "estados", "estadosCss");
+    public static $reservedVarsChild = array("categorias", "estados", "estadosCss");
 
     public function init()
     {
         parent::$dbTable = "videos";
         parent::$reservedVarsChild = self::$reservedVarsChild;
-    }
-
-    public function getPath()
-    {
-        $config = Registry::getConfig();
-
-        return $config->get("path")."/".$this->path."/".$this->file;
     }
 
     public function getCategoriaString()
@@ -56,6 +44,7 @@ class Video extends Model
     {
         //Creamos la visita
         $videoVisita = new VideoVisita();
+        $videoVisita->videoId = $this->id;
         $videoVisita->videoId = $this->id;
         $videoVisita->insert();
         //Actualizamos el total
@@ -90,10 +79,8 @@ class Video extends Model
             }
         }
         //Archivo?
-        if (!$this->file) {
+        if (!$data["file"]) {
             Registry::addMessage("Debes subir un archivo", "error");
-        } elseif (!file_exists($this->getPath())) {
-            Registry::addMessage("Error al subir el archivo. Inténtalo más tarde", "error");
         }
 
         return Registry::getMessages(true);
@@ -103,15 +90,20 @@ class Video extends Model
     {
         $user = Registry::getUser();
         $this->userId = $user->id;
-        //File upload
-        $this->size = @filesize($this->getPath());
         $this->dateInsert = date("Y-m-d H:i:s");
     }
 
     public function postInsert($data = array())
     {
+        $user = Registry::getUser();
         //Añadimos/quitamos los tags
         $this->syncTags($data["tags"]);
+        //Add Video
+        $videoArchivo = new VideoArchivo();
+        $videoArchivo->userId = $user->id;
+        $videoArchivo->videoId = $this->id;
+        $videoArchivo->file = $data["file"];
+        $videoArchivo->insert();
     }
 
     public function syncTags($tagsIds = array())
@@ -215,6 +207,31 @@ class Video extends Model
                 }
 
                 return $results;
+            }
+        }
+    }
+
+    public function postDelete()
+    {
+        //Eliminamos los tags
+        $tags = VideoTag::getVideosTagsByVideoId($this->id);
+        if (is_array($tags)) {
+            foreach ($tags as $tag) {
+                $tag->delete();
+            }
+        }
+        //Eliminamos las visitas
+        $visitas = VideoVisita::getVideosVisitasByVideoId($this->id);
+        if (is_array($visitas)) {
+            foreach ($visitas as $visita) {
+                $visita->delete();
+            }
+        }
+        //Eliminamos los archivos
+        $archivos = VideoArchivo::getVideosArchivosByVideoId($this->id);
+        if (is_array($archivos)) {
+            foreach ($archivos as $archivo) {
+                $archivo->delete();
             }
         }
     }

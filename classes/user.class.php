@@ -123,8 +123,10 @@ class User extends Model
      * @var array
      */
     public $roles = array(
-        1 => "Usuario",
-        2 => "Administrador"
+        1 => "Regular",
+        2 => "Tribber",
+        3 => "Validador",
+        4 => "Administrador"
     );
 
     /**
@@ -142,6 +144,16 @@ class User extends Model
     {
         parent::$dbTable = "users";
         parent::$reservedVarsChild = self::$reservedVarsChild;
+    }
+
+    /**
+     * Devuelve el nombre y los apellidos
+     *
+     * @return string
+     */
+    public function getFullName()
+    {
+        return $this->nombre." ".$this->apellidos;
     }
 
     /**

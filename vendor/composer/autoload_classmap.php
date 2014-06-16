@@ -561,6 +561,7 @@ return array(
     'Url' => $baseDir . '/system/classes/url.class.php',
     'User' => $baseDir . '/classes/user.class.php',
     'Video' => $baseDir . '/classes/video.class.php',
+    'VideoArchivo' => $baseDir . '/classes/videoArchivo.class.php',
     'VideoTag' => $baseDir . '/classes/videotag.class.php',
     'VideoVisita' => $baseDir . '/classes/videovisita.class.php',
     'phpmailerException' => $vendorDir . '/phpmailer/phpmailer/class.phpmailer.php',

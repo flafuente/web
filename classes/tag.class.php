@@ -61,7 +61,7 @@ class Tag extends Model
     {
         $db = Registry::getDb();
         $params = array();
-        $query = "SELECT `tagId` FROM `tags` WHERE `id` IN (SELECT `tagId` FROM `videos_tags` WHERE `videoId`=:videoId)";
+        $query = "SELECT `id` FROM `tags` WHERE `id` IN (SELECT `tagId` FROM `videos_tags` WHERE `videoId`=:videoId)";
         $params[":videoId"] = $videoId;
         $rows = $db->query($query, $params);
         if (count($rows)) {
