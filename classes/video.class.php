@@ -12,11 +12,6 @@ class Video extends Model
     public $dateInsert;
     public $dateUpdate;
 
-    public $categorias = array(
-        1 => "Categoría 1",
-        2 => "Categoría 2",
-        3 => "Categoría 3"
-    );
     public $estadosCss = array(
         0 => "default",
         1 => "success",
@@ -27,17 +22,12 @@ class Video extends Model
         1 => "Publicado",
     );
 
-    public static $reservedVarsChild = array("categorias", "estados", "estadosCss");
+    public static $reservedVarsChild = array("estados", "estadosCss");
 
     public function init()
     {
         parent::$dbTable = "videos";
         parent::$reservedVarsChild = self::$reservedVarsChild;
-    }
-
-    public function getCategoriaString()
-    {
-        return $this->categorias[$this->categoriaId];
     }
 
     public function addVisita()

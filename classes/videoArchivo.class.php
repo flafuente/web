@@ -18,7 +18,7 @@ class VideoArchivo extends Model
         2 => "danger",
     );
     public $estados = array(
-        0 => "No publicado",
+        0 => "Pendiente",
         1 => "Aprobado",
         2 => "Rechazado",
     );
