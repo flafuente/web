@@ -9,18 +9,30 @@ class videosController extends Controller
         //Revisamos si tiene permisos para acceder a esta sección
         $url = Registry::getUrl();
         $user = Registry::getUser();
-        if (!$user->checkPermisos($url->action)) {
+        if (!$user->checkPermisos($url->app)) {
             redirect(Url::site());
         }
     }
 
     public function index()
     {
+        $user = Registry::getUser();
         $config = Registry::getConfig();
         $pag['total'] = 0;
         $pag['limit'] = $_REQUEST['limit'] ? $_REQUEST['limit'] : $config->get("defaultLimit");
         $pag['limitStart'] = $_REQUEST['limitStart'];
-        $this->setData("results", Video::select($_REQUEST, $pag['limit'], $pag['limitStart'], $pag['total']));
+        $selectVideos = array(
+            "order" => "nombre",
+            "orderDir" => "ASC"
+        );
+        //Limitamos las categorías de los validadores
+        if($user->roleId==3){
+            $categoriasIds = $user->getCategoriasIds();
+            if(is_array($categoriasIds) && count($categoriasIds)){
+                $selectVideos["categoriasIds"] = $categoriasIds;
+            }
+        }
+        $this->setData("results", Video::select($selectVideos, $pag['limit'], $pag['limitStart'], $pag['total']));
         $this->setData("pag", $pag);
         $html = $this->view("views.list");
         $this->render($html);
@@ -28,18 +40,25 @@ class videosController extends Controller
 
     public function edit()
     {
+        $user = Registry::getUser();
         $url = Registry::getUrl();
         $video = new Video($url->vars[0]);
         $this->setData("video", $video);
         if ($video->id) {
             $this->setData("videosArchivos", VideoArchivo::getVideosArchivosByVideoId($video->id));
         }
-        $this->setData("categorias", Categoria::select(
-            array(
-                "order" => "nombre",
-                "orderDir" => "ASC"
-            )
-        ));
+        $selectCategorias = array(
+            "order" => "nombre",
+            "orderDir" => "ASC"
+        );
+        //Limitamos las categorías de los validadores
+        if($user->roleId==3){
+            $categoriasIds = $user->getCategoriasIds();
+            if(is_array($categoriasIds) && count($categoriasIds)){
+                $selectCategorias["categoriasIds"] = $categoriasIds;
+            }
+        }
+        $this->setData("categorias", Categoria::select($selectCategorias));
         $this->setData("tags", Tag::select(
             array(
                 "order" => "nombre",

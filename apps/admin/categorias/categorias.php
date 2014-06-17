@@ -9,7 +9,7 @@ class categoriasController extends Controller
         //Revisamos si tiene permisos para acceder a esta sección
         $url = Registry::getUrl();
         $user = Registry::getUser();
-        if (!$user->checkPermisos($url->action)) {
+        if (!$user->checkPermisos($url->app)) {
             redirect(Url::site());
         }
     }

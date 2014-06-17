@@ -53,6 +53,7 @@ echo $controller->view("modules.toolbar");
                     Detalles
                 </div>
                 <div class="panel-body">
+                    <!-- Estado -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
                             Estado
@@ -61,6 +62,7 @@ echo $controller->view("modules.toolbar");
                             <input type="checkbox" class="switch" name="statusId" id="statusId" value="1" <?php if($user->statusId) echo "checked";?>>
                         </div>
                     </div>
+                    <!-- Rol -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
                             Rol
@@ -79,6 +81,7 @@ echo $controller->view("modules.toolbar");
                             </select>
                         </div>
                     </div>
+                    <!-- Accesos -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
                             Accesos
@@ -87,7 +90,7 @@ echo $controller->view("modules.toolbar");
                             <select class="form-control select2" name="permisos[]" id="permisos" multiple="true">
                                 <?php $s = array(); ?>
                                 <?php foreach ($user->secciones as $seccionId=>$seccionString) { ?>
-                                    <?php $permisos = json_decode($user->permisos); ?>
+                                    <?php $permisos = $user->getCategoriasIds(); ?>
                                     <?php $selected = ""; ?>
                                     <?php if (@in_array($seccionId, $permisos)) { ?>
                                         <?php $selected = "selected"; ?>
@@ -99,6 +102,30 @@ echo $controller->view("modules.toolbar");
                             </select>
                         </div>
                     </div>
+                    <!-- Categorías -->
+                    <?php if (is_array($categorias) && count($categorias)) { ?>
+                        <div class="form-group" id="fieldCategoria" style="display:none">
+                            <label class="col-sm-2 control-label">
+                                Categoría
+                            </label>
+                            <div class="col-sm-8">
+                                <select class="form-control select2" name="categorias[]" id="categorias" multiple="true">
+                                    <?php $s = array(); ?>
+                                    <?php foreach ($categorias as $categoria) { ?>
+                                        <?php $categoriasUser = $user->getCategoriasIds(); ?>
+                                        <?php $selected = ""; ?>
+                                        <?php if (@in_array($categoria->id, $categoriasUser)) { ?>
+                                            <?php $selected = "selected"; ?>
+                                        <?php } ?>
+                                        <option value="<?=$categoria->id?>" <?=$selected?>>
+                                            <?=$categoria->nombre;?>
+                                        </option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                    <?php } ?>
+                    <!-- Nombre -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
                             Nombre
@@ -107,6 +134,7 @@ echo $controller->view("modules.toolbar");
                             <input type="text" id="nombre" name="nombre" class="form-control" value="<?=Helper::sanitize($user->nombre);?>">
                         </div>
                     </div>
+                    <!-- Apellidos -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
                             Apellidos
@@ -115,6 +143,7 @@ echo $controller->view("modules.toolbar");
                             <input type="text" id="apellidos" name="apellidos" class="form-control" value="<?=Helper::sanitize($user->apellidos);?>">
                         </div>
                     </div>
+                    <!-- Email -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
                             Email
@@ -123,6 +152,7 @@ echo $controller->view("modules.toolbar");
                             <input type="text" id="email" name="email" class="form-control" value="<?=Helper::sanitize($user->email);?>">
                         </div>
                     </div>
+                    <!-- Contraseña -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
                             Contraseña
@@ -199,3 +229,18 @@ echo $controller->view("modules.toolbar");
         </div>
     </div>
 </form>
+
+<script>
+    $(document).on('change', '#roleId', function (e) {
+        roleChange();
+    });
+    $(document).ready(function () {
+        roleChange();
+    });
+    function roleChange(){
+        $("#fieldCategoria").hide();
+        if ($("#roleId").val()==3) {
+            $("#fieldCategoria").show();
+        }
+    }
+</script>

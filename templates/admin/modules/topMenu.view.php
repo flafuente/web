@@ -28,7 +28,7 @@
                         </a>
                     </li>
                 <?php } ?>
-                <?php if($user->checkPermisos("cortos")){ ?>
+                <?php if($user->checkPermisos("videos")){ ?>
                     <li class="<?=$active['admin']['videos']?>">
                         <a href="<?=Url::site("admin/videos")?>">
                             <span class="glyphicon glyphicon-facetime-video"></span>

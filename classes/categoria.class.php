@@ -68,6 +68,11 @@ class Categoria extends Model
         $db = Registry::getDb();
         //Query
         $query = "SELECT * FROM `categorias` WHERE 1=1 ";
+        //Where
+        if(isset($data["categoriasIds"])){
+            //INSECURE!
+            $query .= " AND `id` IN (".implode(",", $data["categoriasIds"]).") ";
+        }
         //Total
         $total = count($db->Query($query));
         if ($total) {

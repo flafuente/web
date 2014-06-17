@@ -61,7 +61,11 @@ class User extends Model
     public $trabajo;
     public $estudios;
     public $permisos;
-
+    /**
+     * Categorías que puede gestionar como validador (JSON)
+     * @var string
+     */
+    public $categorias;
     /**
      * Insert date
      * @var string
@@ -91,13 +95,13 @@ class User extends Model
      * @var array
      */
     public $secciones = array(
-        "todo"      => "Todo",
-        "noticias"  => "Notícias",
-        "cortos"    => "Cortos",
-        "musica"    => "Música",
-        "juegos"    => "Juegos",
-        "usuarios"  => "Usuarios",
-        "logs"      => "Logs",
+        "todo"          => "Todo",
+        "usuarios"      => "Usuarios",
+        "contenidos"    => "Contenidos",
+        "videos"        => "Vídeos",
+        "pariilla"      => "Parrilla",
+        "programas"     => "Programas",
+        "capitulos"     => "Capítulos",
     );
 
     /**
@@ -144,6 +148,16 @@ class User extends Model
     {
         parent::$dbTable = "users";
         parent::$reservedVarsChild = self::$reservedVarsChild;
+    }
+
+    public function getCategoriasIds()
+    {
+        return json_decode($this->categorias);
+    }
+
+    public function getPermisos()
+    {
+        return json_decode($this->permisos);
     }
 
     /**
@@ -204,28 +218,10 @@ class User extends Model
         }
     }
 
-    public function checkPermisos($seccion="")
+    public function checkPermisos($app="")
     {
-        //Es una acción?
-        if (!@in_array($seccion, $this->secciones)) {
-            switch ($seccion) {
-                //Usuarios
-                case 'users':
-                case 'usersEdit':
-                case 'usersSave':
-                case 'usersDelete':
-                    $seccion = "usuarios";
-                break;
-                //Cortos
-                case 'videos':
-                case 'videosEdit':
-                case 'videosSave':
-                case 'videosDelete':
-                    $seccion = "cortos";
-                break;
-            }
-        }
-        if (@in_array($seccion, json_decode($this->permisos)) || @in_array("todo", json_decode($this->permisos))) {
+        $permisos = $this->getPermisos();
+        if (@in_array($app, $permisos) || @in_array("todo", $permisos)) {
             return true;
         }
     }
@@ -280,6 +276,10 @@ class User extends Model
         if (isset($data["permisos"])) {
             $this->permisos = json_encode($data["permisos"]);
         }
+        //Categorias
+        if (isset($data["categorias"])) {
+            $this->categorias = json_encode($data["categorias"]);
+        }
         //Foto
         $this->uploadFoto($_FILES["foto"]);
     }
@@ -332,6 +332,10 @@ class User extends Model
         //Permisos
         if (isset($data["permisos"])) {
             $this->permisos = json_encode($data["permisos"]);
+        }
+        //Categorias
+        if (isset($data["categorias"])) {
+            $this->categorias = json_encode($data["categorias"]);
         }
         //Foto
         $this->uploadFoto($_FILES["foto"]);

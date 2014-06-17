@@ -9,7 +9,7 @@ class usersController extends Controller
         //Revisamos si tiene permisos para acceder a esta sección
         $url = Registry::getUrl();
         $user = Registry::getUser();
-        if (!$user->checkPermisos($url->action)) {
+        if (!$user->checkPermisos($url->app)) {
             redirect(Url::site());
         }
     }
@@ -29,8 +29,8 @@ class usersController extends Controller
     public function edit()
     {
         $url = Registry::getUrl();
-        $user = new User($url->vars[0]);
-        $this->setData("user", $user);
+        $this->setData("user", new User($url->vars[0]));
+        $this->setData("categorias", Categoria::select());
         $html = $this->view("views.edit");
         $this->render($html);
     }
