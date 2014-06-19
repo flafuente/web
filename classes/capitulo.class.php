@@ -2,11 +2,19 @@
 class Capitulo extends Model
 {
     public $id;
+    public $url;
     public $userId;
     public $programaId;
     public $estadoId;
+    public $thumbnail;
+    public $temporada;
+    public $capitulo;
     public $nombre;
     public $descripcion;
+    // H:i:S
+    public $duracion;
+    //Y-d-m
+    public $fechaEmision;
     public $dateInsert;
     public $dateUpdate;
 
@@ -38,7 +46,7 @@ class Capitulo extends Model
         return $this->estadosCss[$this->estadoId];
     }
 
-    public function validateInsert($data=array())
+    public function validateInsert()
     {
         //Titulo
         if (!$this->titulo) {

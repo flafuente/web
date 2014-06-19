@@ -2,9 +2,13 @@
 class Programa extends Model
 {
     public $id;
+    public $categoriaId;
     public $userId;
     public $estadoId;
-    public $nombre;
+    public $banner;
+    public $thumbnail;
+    public $titulo;
+    public $subtitulo;
     public $descripcion;
     public $dateInsert;
     public $dateUpdate;
@@ -37,7 +41,7 @@ class Programa extends Model
         return $this->estadosCss[$this->estadoId];
     }
 
-    public function validateInsert($data=array())
+    public function validateInsert()
     {
         //Titulo
         if (!$this->titulo) {
