@@ -39,3 +39,16 @@ div.main{
 .pagination li a{
 	cursor: pointer;	
 }
+
+/* Toolbar */
+.toolbar .title{
+	width: auto;
+	float: left;
+}
+.toolbar .tools{
+	padding-top: 30px;
+}
+.toolbar .tools button{
+	float: right;
+	margin-left: 15px;
+}

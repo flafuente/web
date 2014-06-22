@@ -3,42 +3,50 @@
 <?php $currentUser = Registry::getUser();?>
 
 <?php
-if ($user->id) {
-    $toolBar['subtitle'] = "Editar usuario";
+//Toolbar
+if ($categoria->id) {
+    $subtitle = "Editar usuario";
     $title = "Guardar";
 } else {
-    $toolBar['subtitle'] = "Nuevo usuario";
+    $subtitle = "Nuevo usuario";
     $title = "Crear";
 }
-$toolBar['title'] = "Usuarios";
-$toolBar['class'] = "user";
-$toolBar['buttons'][] = array(
-    "buttonClass" => "success",
-    "spanClass" => "ok",
-    "title" => $title,
-    "app" => "users",
-    "action" => "save",
-);
-$toolBar['buttons'][] = array(
-    "buttonClass" => "primary",
-    "spanClass" => "chevron-left",
-    "title" => "Cancelar",
-    "app" => "users",
-    "action" => "index",
-    "noAjax" => true,
-);
-if ($video->id) {
-    $toolBar['buttons'][] = array(
-        "buttonClass" => "danger",
-        "spanClass" => "remove",
-        "title" => "Eliminar",
-        "app" => "users",
-        "action" => "delete",
-        "confirmation" => "¿Deseas realmente eliminar este usuario?",
+Toolbar::addTitle("Usuarios", "glyphicon-user", $subtitle);
+if ($categoria->id) {
+    //Delete button
+    Toolbar::addButton(
+        array(
+            "title" => "Eliminar",
+            "app" => "users",
+            "action" => "delete",
+            "class" => "danger",
+            "spanClass" => "remove",
+            "confirmation" => "¿Deseas realmente eliminar este usuario?",
+        )
     );
 }
-$controller->setData("toolBar", $toolBar);
-echo $controller->view("modules.toolbar");
+//Cancel button
+Toolbar::addButton(
+    array(
+        "title" => "Cancelar",
+        "app" => "users",
+        "action" => "index",
+        "class" => "primary",
+        "spanClass" => "chevron-left",
+        "noAjax" => true,
+    )
+);
+//Save button
+Toolbar::addButton(
+    array(
+        "title" => $title,
+        "app" => "users",
+        "action" => "save",
+        "class" => "success",
+        "spanClass" => "ok",
+    )
+);
+Toolbar::render();
 ?>
 
 <form method="post" name="mainForm" id="mainForm" action="<?=Url::site();?>" class="form-horizontal ajax" role="form" autocomplete="off">
@@ -237,7 +245,8 @@ echo $controller->view("modules.toolbar");
     $(document).ready(function () {
         roleChange();
     });
-    function roleChange(){
+    public function roleChange()
+    {
         $("#fieldCategoria").hide();
         if ($("#roleId").val()==3) {
             $("#fieldCategoria").show();

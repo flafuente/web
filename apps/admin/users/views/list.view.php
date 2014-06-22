@@ -1,18 +1,20 @@
 <?php defined('_EXE') or die('Restricted access'); ?>
 
 <?php
-$toolBar['title'] = "Usuario";
-$toolBar['subtitle'] = "Listar";
-$toolBar['class'] = "user";
-$toolBar['buttons'][] = array(
-    "buttonClass" => "success",
-    "spanClass" => "plus",
-    "title" => "Nuevo",
-    "app" => "users",
-    "action" => "edit",
+//Toolbar
+Toolbar::addTitle("Usuarios", "glyphicon-user", "Listar");
+//Delete button
+Toolbar::addButton(
+    array(
+        "title" => "Nuevo",
+        "app" => "users",
+        "action" => "edit",
+        "class" => "success",
+        "spanClass" => "plus",
+        "noAjax" => true,
+    )
 );
-$controller->setData("toolBar", $toolBar);
-echo $controller->view("modules.toolbar");
+Toolbar::render();
 ?>
 
 <div class="main">

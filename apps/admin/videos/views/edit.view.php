@@ -1,42 +1,50 @@
 <?php defined('_EXE') or die('Restricted access'); ?>
 
 <?php
-if ($video->id) {
-    $toolBar['subtitle'] = "Editar vídeo";
+//Toolbar
+if ($categoria->id) {
+    $subtitle = "Editar vídeo";
     $title = "Guardar";
 } else {
-    $toolBar['subtitle'] = "Nuevo vídeo";
+    $subtitle = "Nuevo vídeo";
     $title = "Crear";
 }
-$toolBar['title'] = "Vídeos";
-$toolBar['class'] = "facetime-video";
-$toolBar['buttons'][] = array(
-    "buttonClass" => "success",
-    "spanClass" => "ok",
-    "title" => $title,
-    "app" => "videos",
-    "action" => "save",
-);
-$toolBar['buttons'][] = array(
-    "buttonClass" => "primary",
-    "spanClass" => "chevron-left",
-    "title" => "Cancelar",
-    "app" => "videos",
-    "action" => "index",
-    "noAjax" => true,
-);
-if ($video->id) {
-    $toolBar['buttons'][] = array(
-        "buttonClass" => "danger",
-        "spanClass" => "remove",
-        "title" => "Eliminar",
-        "app" => "videos",
-        "action" => "delete",
-        "confirmation" => "¿Deseas realmente eliminar este vídeo?",
+Toolbar::addTitle("Vídeos", "facetime-video", $subtitle);
+if ($categoria->id) {
+    //Delete button
+    Toolbar::addButton(
+        array(
+            "title" => "Eliminar",
+            "app" => "videos",
+            "action" => "delete",
+            "class" => "danger",
+            "spanClass" => "remove",
+            "confirmation" => "¿Deseas realmente eliminar este vídeo?",
+        )
     );
 }
-$controller->setData("toolBar", $toolBar);
-echo $controller->view("modules.toolbar");
+//Cancel button
+Toolbar::addButton(
+    array(
+        "title" => "Cancelar",
+        "app" => "videos",
+        "action" => "index",
+        "class" => "primary",
+        "spanClass" => "chevron-left",
+        "noAjax" => true,
+    )
+);
+//Save button
+Toolbar::addButton(
+    array(
+        "title" => $title,
+        "app" => "videos",
+        "action" => "save",
+        "class" => "success",
+        "spanClass" => "ok",
+    )
+);
+Toolbar::render();
 ?>
 
 <form method="post" name="mainForm" id="mainForm" action="<?=Url::site();?>" class="form-horizontal ajax" role="form" autocomplete="off">

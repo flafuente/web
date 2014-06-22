@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Capitulo' => $baseDir . '/classes/capitulo.class.php',
     'Categoria' => $baseDir . '/classes/categoria.class.php',
     'Config' => $baseDir . '/system/classes/config.class.php',
     'Controller' => $baseDir . '/system/classes/controller.class.php',
@@ -526,6 +527,7 @@ return array(
     'PHP_Token_XOR_EQUAL' => $vendorDir . '/phpunit/php-token-stream/PHP/Token.php',
     'PHP_Token_YIELD' => $vendorDir . '/phpunit/php-token-stream/PHP/Token.php',
     'POP3' => $vendorDir . '/phpmailer/phpmailer/class.pop3.php',
+    'Programa' => $baseDir . '/classes/programa.class.php',
     'Registry' => $baseDir . '/system/classes/registry.class.php',
     'Router' => $baseDir . '/system/classes/router.class.php',
     'SMTP' => $vendorDir . '/phpmailer/phpmailer/class.smtp.php',
@@ -558,6 +560,7 @@ return array(
     'Tag' => $baseDir . '/classes/tag.class.php',
     'Template' => $baseDir . '/system/classes/template.class.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/Text/Template.php',
+    'Toolbar' => $baseDir . '/system/classes/toolbar.class.php',
     'Url' => $baseDir . '/system/classes/url.class.php',
     'User' => $baseDir . '/classes/user.class.php',
     'Video' => $baseDir . '/classes/video.class.php',

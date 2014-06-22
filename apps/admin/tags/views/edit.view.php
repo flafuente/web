@@ -1,46 +1,50 @@
 <?php defined('_EXE') or die('Restricted access'); ?>
 
 <?php
-if ($tag->id) {
-    $toolBar['subtitle'] = "Editar tag";
+//Toolbar
+if ($categoria->id) {
+    $subtitle = "Editar tag";
     $title = "Guardar";
 } else {
-    $toolBar['subtitle'] = "Nuevo tag";
+    $subtitle = "Nuevo tag";
     $title = "Crear";
 }
-$toolBar['title'] = "Tags";
-$toolBar['class'] = "bookmark";
-
-//Botón de Guardar / crear
-$toolBar['buttons'][] = array(
-    "buttonClass" => "success",
-    "spanClass" => "ok",
-    "title" => $title,
-    "app" => "tags",
-    "action" => "save",
-);
-//Botón de cancelar
-$toolBar['buttons'][] = array(
-    "buttonClass" => "primary",
-    "spanClass" => "chevron-left",
-    "title" => "Cancelar",
-    "app" => "tags",
-    "action" => "index",
-    "noAjax" => true,
-);
-if ($tag->id) {
-    //Botón de eliminar
-    $toolBar['buttons'][] = array(
-        "buttonClass" => "danger",
-        "spanClass" => "remove",
-        "title" => "Eliminar",
-        "app" => "tags",
-        "action" => "delete",
-        "confirmation" => "¿Deseas realmente eliminar este tag?",
+Toolbar::addTitle("Tags", "glyphicon-asterisk", $subtitle);
+if ($categoria->id) {
+    //Delete button
+    Toolbar::addButton(
+        array(
+            "title" => "Eliminar",
+            "app" => "tags",
+            "action" => "delete",
+            "class" => "danger",
+            "spanClass" => "remove",
+            "confirmation" => "¿Deseas realmente eliminar este tag?",
+        )
     );
 }
-$controller->setData("toolBar", $toolBar);
-echo $controller->view("modules.toolbar");
+//Cancel button
+Toolbar::addButton(
+    array(
+        "title" => "Cancelar",
+        "app" => "tags",
+        "action" => "index",
+        "class" => "primary",
+        "spanClass" => "chevron-left",
+        "noAjax" => true,
+    )
+);
+//Save button
+Toolbar::addButton(
+    array(
+        "title" => $title,
+        "app" => "tags",
+        "action" => "save",
+        "class" => "success",
+        "spanClass" => "ok",
+    )
+);
+Toolbar::render();
 ?>
 
 <form method="post" name="mainForm" id="mainForm" action="<?=Url::site();?>" class="form-horizontal ajax" role="form" autocomplete="off">

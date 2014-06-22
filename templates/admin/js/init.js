@@ -126,11 +126,21 @@ $(document).on('change', '.change-submit', function(e){
 	$('#mainForm').submit();
 });
 
-//Toolbar function
-function doSubmit(element, app, action, requireIds, confirmation, ajax, modalId, noAjax){
+//Toolbar
+$(document).on('click', '.toolbar button', function(e){
+	//Data
+	element = $(this);
+	app = element.attr("data-app"); 
+	action = element.attr("data-action"); 
+	requireIds = element.attr("data-requiereids"); 
+	confirmation = element.attr("data-confirmation");
+	ajax = element.attr("data-ajax");
+	modalId = element.attr("data-modal"); 
+	noAjax = element.attr("data-noajax");
+	//Start
 	element.removeAttr("prevent-ladda");
 	if(requireIds && $("#mainForm input:checkbox:checked").length<=0){
-		alert("Debes seleccionar un elemento");
+		alert("You must select an element first");
 		element.attr("prevent-ladda", "true");
 		return false;
 	}
@@ -187,16 +197,6 @@ function doSubmit(element, app, action, requireIds, confirmation, ajax, modalId,
 		$('#mainForm input[name=action]').val("");
 	}
 	return false;
-}
-
-//IDS requiered buttons
-$(document).on('click', '.ids', function(e){
-	var atLeastOneIsChecked = $('table :checkbox:checked').length > 0;
-	if(atLeastOneIsChecked){
-		$(".idsButton").show();
-	}else{
-		$(".idsButton").hide();
-	}
 });
 
 $(document).ready(function(){
