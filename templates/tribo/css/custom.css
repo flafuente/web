@@ -94,6 +94,13 @@ nav div, h1, h2, h3, h4, h5, h6 {
   color: #000;
 }
 
+/*Parrilla*/
+div.parrilla {
+	background-color: #FFFFFF;
+	padding: 3px;
+}
+
+
 /* Debug Footer */
 .footerDebug .navbar{
 	border-radius: 0px;
