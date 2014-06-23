@@ -62,12 +62,9 @@
 		<!--mainContainer-->
 		<div class="container main">
 
-			<div class="row-fluid">
-				<img src='<?=Url::template("/img/homeslide1.png");?>' title='Slider' />
-			</div>
-
+			<?=$controller->view("modules.homeSlider");?>
+			<?=$controller->view("modules.mainMenu");?>
 			<div class='col-md-8'>
-
 				<!--alerts-->
 				<?php $messages = Registry::getMessages(); ?>
 				<div id="mensajes-sys">
