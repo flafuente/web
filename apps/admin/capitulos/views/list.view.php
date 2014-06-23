@@ -2,12 +2,12 @@
 
 <?php
 //Toolbar
-Toolbar::addTitle("Programas", "glyphicon-film", "Listar");
+Toolbar::addTitle("Capítulos", "glyphicon-th-list", "Listar");
 //Delete button
 Toolbar::addButton(
     array(
         "title" => "Nuevo",
-        "app" => "programas",
+        "app" => "capitulos",
         "action" => "edit",
         "class" => "success",
         "spanClass" => "plus",
@@ -20,7 +20,7 @@ Toolbar::render();
 <div class="main">
     <form method="post" action="<?=Url::site()?>" id="mainForm" name="mainForm" class="form-inline" role="form">
         <input type="hidden" name="router" id="router" value="admin">
-        <input type="hidden" name="app" id="app" value="programas">
+        <input type="hidden" name="app" id="app" value="capitulos">
         <input type="hidden" name="action" id="action" value="">
         <?php if (count($results)) { ?>
             <div class="table-responsive">
@@ -29,36 +29,42 @@ Toolbar::render();
                         <tr>
                             <th><?=Helper::sortableLink("id", "Id");?></th>
                             <th><?=Helper::sortableLink("estadoId", "Estado");?></th>
-                            <th><?=Helper::sortableLink("categoriaId", "Categoría");?></th>
+                            <th><?=Helper::sortableLink("programaId", "Programa");?></th>
                             <th><?=Helper::sortableLink("titulo", "Título");?></th>
+                            <th><?=Helper::sortableLink("temporada", "Temporada");?></th>
+                            <th><?=Helper::sortableLink("episodio", "Episodio");?></th>
+                            <th><?=Helper::sortableLink("fechaEmision", "Fecha emisión");?></th>
                             <th><?=Helper::sortableLink("dateInsert", "Fecha creación");?></th>
                             <th><?=Helper::sortableLink("dateUpdate", "Fecha actualización");?></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($results as $programa) { ?>
-                            <?php $categoria = new Categoria($programa->categoriaId); ?>
+                        <?php foreach ($results as $capitulo) { ?>
+                            <?php $programa = new Programa($capitulo->programaId); ?>
                             <tr>
-                                <td><?=$programa->id;?></td>
+                                <td><?=$capitulo->id;?></td>
                                 <td>
-                                    <span class="label label-<?=$programa->getEstadoCssString();?>">
-                                        <?=$programa->getEstadoString();?>
+                                    <span class="label label-<?=$capitulo->getEstadoCssString();?>">
+                                        <?=$capitulo->getEstadoString();?>
                                     </span>
                                 </td>
                                 <td>
-                                    <?php if ($categoria->id) { ?>
-                                        <?=Helper::sanitize($categoria->nombre);?>
+                                    <?php if ($programa->id) { ?>
+                                        <?=Helper::sanitize($programa->titulo);?>
                                     <?php } else { ?>
                                         -
                                     <?php } ?>
                                 </td>
                                 <td>
-                                    <a href="<?=Url::site("admin/programas/edit/".$programa->id);?>">
-                                        <?=Helper::sanitize($programa->titulo);?>
+                                    <a href="<?=Url::site("admin/capitulos/edit/".$capitulo->id);?>">
+                                        <?=Helper::sanitize($capitulo->titulo);?>
                                     </a>
                                 </td>
-                                <td><?=Helper::humanDate($programa->dateInsert);?></td>
-                                <td><?=Helper::humanDate($programa->dateUpdate);?></td>
+                                <td><?=$capitulo->temporada;?></td>
+                                <td><?=$capitulo->episodio;?></td>
+                                <td><?=Helper::humanDate($capitulo->fechaEmision);?></td>
+                                <td><?=Helper::humanDate($capitulo->dateInsert);?></td>
+                                <td><?=Helper::humanDate($capitulo->dateUpdate);?></td>
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -68,7 +74,7 @@ Toolbar::render();
             </div>
         <?php } else { ?>
             <blockquote>
-                <p>No se han encontrado programas</p>
+                <p>No se han encontrado capítulos</p>
             </blockquote>
         <?php } ?>
     </form>

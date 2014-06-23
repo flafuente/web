@@ -2,7 +2,7 @@
 
 <?php
 //Toolbar
-if ($categoria->id) {
+if ($tag->id) {
     $subtitle = "Editar tag";
     $title = "Guardar";
 } else {
@@ -10,7 +10,7 @@ if ($categoria->id) {
     $title = "Crear";
 }
 Toolbar::addTitle("Tags", "glyphicon-asterisk", $subtitle);
-if ($categoria->id) {
+if ($tag->id) {
     //Delete button
     Toolbar::addButton(
         array(

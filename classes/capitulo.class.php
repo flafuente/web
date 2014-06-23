@@ -8,8 +8,8 @@ class Capitulo extends Model
     public $estadoId;
     public $thumbnail;
     public $temporada;
-    public $capitulo;
-    public $nombre;
+    public $episodio;
+    public $titulo;
     public $descripcion;
     // H:i:S
     public $duracion;
@@ -82,7 +82,7 @@ class Capitulo extends Model
     {
         $db = Registry::getDb();
         //Query
-        $query = "SELECT * FROM `programas` WHERE 1=1 ";
+        $query = "SELECT * FROM `capitulos` WHERE 1=1 ";
         //Total
         $total = count($db->Query($query));
         if ($total) {
@@ -101,7 +101,7 @@ class Capitulo extends Model
             $rows = $db->Query($query);
             if (count($rows)) {
                 foreach ($rows as $row) {
-                    $results[] = new Capitulos($row);
+                    $results[] = new Capitulo($row);
                 }
 
                 return $results;

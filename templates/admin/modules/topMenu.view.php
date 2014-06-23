@@ -28,6 +28,14 @@
                         </a>
                     </li>
                 <?php } ?>
+                <?php if ($user->checkPermisos("capitulos")) { ?>
+                    <li class="<?=$active['admin']['capitulos']?>">
+                        <a href="<?=Url::site("admin/capitulos")?>">
+                            <span class="glyphicon glyphicon-th-list"></span>
+                            Capítulos
+                        </a>
+                    </li>
+                <?php } ?>
                 <?php if ($user->checkPermisos("usuarios")) { ?>
                     <li class="<?=$active['admin']['users']?>">
                         <a href="<?=Url::site("admin/users")?>">

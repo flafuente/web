@@ -2,7 +2,7 @@
 
 <?php
 //Toolbar
-if ($categoria->id) {
+if ($programa->id) {
     $subtitle = "Editar programa";
     $title = "Guardar";
 } else {
@@ -10,7 +10,7 @@ if ($categoria->id) {
     $title = "Crear";
 }
 Toolbar::addTitle("Programas", "glyphicon-film", $subtitle);
-if ($categoria->id) {
+if ($programa->id) {
     //Delete button
     Toolbar::addButton(
         array(

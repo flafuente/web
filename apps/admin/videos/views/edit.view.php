@@ -10,7 +10,7 @@ if ($video->id) {
     $title = "Crear";
 }
 Toolbar::addTitle("Vídeos", "facetime-video", $subtitle);
-if ($categoria->id) {
+if ($video->id) {
     //Delete button
     Toolbar::addButton(
         array(

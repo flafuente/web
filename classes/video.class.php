@@ -175,10 +175,16 @@ class Video extends Model
         $db = Registry::getDb();
         //Query
         $query = "SELECT * FROM `videos` WHERE 1=1 ";
+        $params = array();
         //Where
-        if(isset($data["categoriasIds"])){
+        if (isset($data["categoriasIds"])) {
             //INSECURE!
             $query .= " AND `categoriaId` IN (".implode(",", $data["categoriasIds"]).") ";
+        }
+        if (isset($data["estadoId"])) {
+            //INSECURE!
+            $query .= " AND `estadoId`=:estadoId";
+            $params[":estadoId"] = $data["estadoId"];
         }
         //Total
         $total = count($db->Query($query));
