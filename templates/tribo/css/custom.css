@@ -62,6 +62,9 @@ outline: 0;
 }
 
 /*Main Menu*/
+.nav-pills li a{
+	color: #333;
+}
 nav div, h1, h2, h3, h4, h5, h6 {
   font-family: 'Pompiere';
   text-transform: uppercase;
@@ -69,7 +72,7 @@ nav div, h1, h2, h3, h4, h5, h6 {
 
 .nav li {
   margin-top: 12px;
-  font-size: 24px;
+  font-size: 15px;
   text-transform: uppercase;
 }
 

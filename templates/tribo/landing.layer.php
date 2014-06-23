@@ -63,8 +63,8 @@
 		<div class="container main">
 
 			<?=$controller->view("modules.homeSlider");?>
-			<?=$controller->view("modules.mainMenu");?>
-			<div class='col-md-8'>
+
+			<div class='col-md-12'>
 				<!--alerts-->
 				<?php $messages = Registry::getMessages(); ?>
 				<div id="mensajes-sys">
@@ -86,6 +86,17 @@
 				<!--/content-->
 
 	        </div>
+			<div class='col-md-3'>
+				<?=$controller->view("modules.mainMenu");?>
+			</div>
+			<div class='col-md-9' style="padding-right: 0px;">
+				<div class='col-md-8'>
+
+				</div>
+				<div class='col-md-4' style="padding-left: 0px; padding-right: 0px;">
+					<?=$controller->view("modules.twitter");?>
+				</div>
+			</div>
 	    </div>
 		<?=$controller->view("modules.Footer");?>
 		<!--/mainContainer-->
