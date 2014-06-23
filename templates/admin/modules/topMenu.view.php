@@ -20,7 +20,15 @@
             <ul class="nav navbar-nav">
                 <?php $url = Registry::getUrl(); ?>
                 <?php $active[$url->app][$url->action] = "active"; ?>
-                <?php if($user->checkPermisos("usuarios")){ ?>
+                <?php if ($user->checkPermisos("programas")) { ?>
+                    <li class="<?=$active['admin']['programas']?>">
+                        <a href="<?=Url::site("admin/programas")?>">
+                            <span class="glyphicon glyphicon-film"></span>
+                            Programas
+                        </a>
+                    </li>
+                <?php } ?>
+                <?php if ($user->checkPermisos("usuarios")) { ?>
                     <li class="<?=$active['admin']['users']?>">
                         <a href="<?=Url::site("admin/users")?>">
                             <span class="glyphicon glyphicon-user"></span>
@@ -28,7 +36,7 @@
                         </a>
                     </li>
                 <?php } ?>
-                <?php if($user->checkPermisos("videos")){ ?>
+                <?php if ($user->checkPermisos("videos")) { ?>
                     <li class="<?=$active['admin']['videos']?>">
                         <a href="<?=Url::site("admin/videos")?>">
                             <span class="glyphicon glyphicon-facetime-video"></span>
@@ -36,7 +44,7 @@
                         </a>
                     </li>
                 <?php } ?>
-                <?php if($user->checkPermisos("todo")){ ?>
+                <?php if ($user->checkPermisos("todo")) { ?>
                     <li class="<?=$active['admin']['categorias']?>">
                         <a href="<?=Url::site("admin/categorias")?>">
                             <span class="glyphicon glyphicon-bookmark"></span>

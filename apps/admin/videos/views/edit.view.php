@@ -2,7 +2,7 @@
 
 <?php
 //Toolbar
-if ($categoria->id) {
+if ($video->id) {
     $subtitle = "Editar vídeo";
     $title = "Guardar";
 } else {
@@ -81,6 +81,7 @@ Toolbar::render();
                             Estado
                         </label>
                         <div class="col-sm-8">
+                            <input type="hidden" name="estadoId" value="0">
                             <input type="checkbox" class="switch" name="estadoId" id="estadoId" value="1" <?php if($video->estadoId) echo "checked";?>>
                         </div>
                     </div>
@@ -96,7 +97,7 @@ Toolbar::render();
                                     <?php $s[$video->categoriaId] = "selected"; ?>
                                     <?php foreach ($categorias as $categoria) { ?>
                                         <option value="<?=$categoria->id?>" <?=$s[$categoria->id]?>>
-                                            <?=$categoria->nombre;?>
+                                            <?=Helper::sanitize($categoria->nombre);?>
                                         </option>
                                     <?php } ?>
                                 </select>

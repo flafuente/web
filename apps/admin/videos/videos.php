@@ -21,14 +21,14 @@ class videosController extends Controller
         $pag['total'] = 0;
         $pag['limit'] = $_REQUEST['limit'] ? $_REQUEST['limit'] : $config->get("defaultLimit");
         $pag['limitStart'] = $_REQUEST['limitStart'];
+        //Limitamos las categorías de los validadores
         $selectVideos = array(
             "order" => "nombre",
             "orderDir" => "ASC"
         );
-        //Limitamos las categorías de los validadores
-        if($user->roleId==3){
+        if ($user->roleId==3) {
             $categoriasIds = $user->getCategoriasIds();
-            if(is_array($categoriasIds) && count($categoriasIds)){
+            if (is_array($categoriasIds) && count($categoriasIds)) {
                 $selectVideos["categoriasIds"] = $categoriasIds;
             }
         }
@@ -47,14 +47,14 @@ class videosController extends Controller
         if ($video->id) {
             $this->setData("videosArchivos", VideoArchivo::getVideosArchivosByVideoId($video->id));
         }
+        //Limitamos las categorías de los validadores
         $selectCategorias = array(
             "order" => "nombre",
             "orderDir" => "ASC"
         );
-        //Limitamos las categorías de los validadores
-        if($user->roleId==3){
+        if ($user->roleId==3) {
             $categoriasIds = $user->getCategoriasIds();
-            if(is_array($categoriasIds) && count($categoriasIds)){
+            if (is_array($categoriasIds) && count($categoriasIds)) {
                 $selectCategorias["categoriasIds"] = $categoriasIds;
             }
         }

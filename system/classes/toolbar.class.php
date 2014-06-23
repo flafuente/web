@@ -41,7 +41,7 @@ class Toolbar
         <div class="toolbar row">
             <div class="title">
                 <h1>
-                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon <?=$title["class"]?>"></span>
                     <?=Helper::sanitize($title["title"]);?>
                     <small>
                        <?=Helper::sanitize($title["subtitle"]);?>

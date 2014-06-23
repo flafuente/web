@@ -67,6 +67,7 @@ Toolbar::render();
                             Estado
                         </label>
                         <div class="col-sm-10">
+                            <input type="hidden" name="statusId" value="0">
                             <input type="checkbox" class="switch" name="statusId" id="statusId" value="1" <?php if($user->statusId) echo "checked";?>>
                         </div>
                     </div>

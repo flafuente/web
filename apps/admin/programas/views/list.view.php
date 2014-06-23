@@ -2,12 +2,12 @@
 
 <?php
 //Toolbar
-Toolbar::addTitle("Vídeos", "facetime-video", "Listar");
+Toolbar::addTitle("Programas", "glyphicon-film", "Listar");
 //Delete button
 Toolbar::addButton(
     array(
         "title" => "Nuevo",
-        "app" => "videos",
+        "app" => "programas",
         "action" => "edit",
         "class" => "success",
         "spanClass" => "plus",
@@ -20,7 +20,7 @@ Toolbar::render();
 <div class="main">
     <form method="post" action="<?=Url::site()?>" id="mainForm" name="mainForm" class="form-inline" role="form">
         <input type="hidden" name="router" id="router" value="admin">
-        <input type="hidden" name="app" id="app" value="videos">
+        <input type="hidden" name="app" id="app" value="programas">
         <input type="hidden" name="action" id="action" value="">
         <?php if (count($results)) { ?>
             <div class="table-responsive">
@@ -31,21 +31,19 @@ Toolbar::render();
                             <th><?=Helper::sortableLink("estadoId", "Estado");?></th>
                             <th><?=Helper::sortableLink("categoriaId", "Categoría");?></th>
                             <th><?=Helper::sortableLink("titulo", "Título");?></th>
-                            <th><?=Helper::sortableLink("userId", "Usuario");?></th>
-                            <th><?=Helper::sortableLink("visitas", "Visitas");?></th>
                             <th><?=Helper::sortableLink("dateInsert", "Fecha creación");?></th>
                             <th><?=Helper::sortableLink("dateUpdate", "Fecha actualización");?></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($results as $video) { ?>
-                            <?php $user = new User($video->userId); ?>
-                            <?php $categoria = new Categoria($video->categoriaId); ?>
+                        <?php foreach ($results as $programa) { ?>
+                            <?php $categoria = new Categoria($programa->categoriaId); ?>
+                            <?php $categoria = new Categoria($programa->categoriaId); ?>
                             <tr>
-                                <td><?=$video->id;?></a></td>
+                                <td><?=$programa->id;?></a></td>
                                 <td>
-                                    <span class="label label-<?=$video->getEstadoCssString();?>">
-                                        <?=$video->getEstadoString();?>
+                                    <span class="label label-<?=$programa->getEstadoCssString();?>">
+                                        <?=$programa->getEstadoString();?>
                                     </span>
                                 </td>
                                 <td>
@@ -56,18 +54,12 @@ Toolbar::render();
                                     <?php } ?>
                                 </td>
                                 <td>
-                                    <a href="<?=Url::site("admin/videos/edit/".$video->id);?>">
-                                        <?=Helper::sanitize($video->titulo);?>
+                                    <a href="<?=Url::site("admin/programas/edit/".$programa->id);?>">
+                                        <?=Helper::sanitize($programa->titulo);?>
                                     </a>
                                 </td>
-                                <td>
-                                    <a href="<?=Url::site("admin/users/edit/".$user->id);?>">
-                                        <?=Helper::sanitize($user->email);?>
-                                    </a>
-                                </td>
-                                <td><?=$video->visitas;?></td>
-                                <td><?=Helper::humanDate($video->dateInsert);?></td>
-                                <td><?=Helper::humanDate($video->dateUpdate);?></td>
+                                <td><?=Helper::humanDate($programa->dateInsert);?></td>
+                                <td><?=Helper::humanDate($programa->dateUpdate);?></td>
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -77,7 +69,7 @@ Toolbar::render();
             </div>
         <?php } else { ?>
             <blockquote>
-                <p>No se han encontrado videos</p>
+                <p>No se han encontrado programas</p>
             </blockquote>
         <?php } ?>
     </form>
