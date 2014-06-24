@@ -60,6 +60,47 @@ outline: 0;
     width: 960px;
 	padding:0px;
 }
+
+/*Main Menu*/
+.nav-pills li a{
+	color: #333;
+}
+nav div, h1, h2, h3, h4, h5, h6 {
+  font-family: 'Pompiere';
+  text-transform: uppercase;
+}
+
+.nav li {
+  margin-top: 12px;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+.nav li a {
+  color: #000;
+}
+
+.nav li:last-child {
+  margin-bottom: 10px;
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus {
+  color: #000;
+  background-color: transparent;
+}
+
+.nav-pills>li.active>a:hover {
+  background-color: #eee;
+  color: #000;
+}
+
+/*Parrilla*/
+div.parrilla {
+	background-color: #FFFFFF;
+	padding: 3px;
+}
+
+
 /* Debug Footer */
 .footerDebug .navbar{
 	border-radius: 0px;
