@@ -17,8 +17,8 @@
 <div class='col-md-12'>
 	<div class="parrilla">
 		<div class="parrilla-cabecera">
-			<h1>AHORA EN<br />TRIBO</h1>
-			<h2>Ver la Parrilla&nbsp;&nbsp;+</h2>
+			<h1>AHORA<br />EN TRIBO</h1>
+			<h2>Ver la Parrilla&nbsp;&nbsp;<div class="circulo">+</div></h2>
 		</div>
 		<?php
 		for($x=0; $x<3; $x++){
@@ -37,5 +37,5 @@
 
 <!-- Sintonizanos -->
 <div class='col-md-12'>
-	SINTONIZANOS
+	<a href="<?=Url::site("sintonizanos");?>" class="btn sintonizanos"><img src="<?=Url::template("img/weirdicon.png")?>" />&nbsp;&nbsp;SINTONÍZANOS</a>
 </div>

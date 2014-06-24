@@ -97,9 +97,68 @@ nav div, h1, h2, h3, h4, h5, h6 {
 /*Parrilla*/
 div.parrilla {
 	background-color: #FFFFFF;
-	padding: 3px;
+	
+}
+div.parrilla-cabecera {
+	background-color: #17B5E9;
+	padding: 0px 5px 1px 10px;
+}
+div.parrilla-cabecera h1 {
+	color: #FFF;
+	font-size: 17px;
+	font-weight: bold;
+	padding-top: 5px;
+	font-family: HelveticaNH;
+}
+div.parrilla-cabecera h2 {
+	font-size: 12px;
+	text-align: right;
+	color: #FFF;
+	font-family: HelveticaNB;
+	text-transform: initial;
+}
+div.parrilla-cabecera h2 .circulo {
+	background-color: #FFF;
+	color: #17B5E9;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	border-radius: 20px;
+	padding: 0px 6px 0px 0px;
+	float: right;
+	width: 21px;
+	height: 21px;
+	margin-top: -5px;
+	font-size: 17px;
+}
+div.parrilla-contenido {
+	min-height: 40px;
+	margin: 25px 10px 0px 10px;
+	/* border-top: black 2px solid; */
+	color: #17B5E9;
+	padding-bottom: 20px;
+}
+.line {
+	border-bottom: 2px solid #CCC;
+}
+div.parrilla-contenido span.titulo {
+	font-size: 17px;
+}
+div.parrilla-contenido span.hora {
+	color: black;
+	width: 100%;
+	float: left;
+	font-size: 17px;
 }
 
+a.sintonizanos {
+	width: 100%;
+	margin-top: 20px;
+	padding: 11px 0px 11px 0px;
+	color: white;
+	background-color: #9A9A9A;
+	border-color: #ccc;
+	font-size: 17px;
+}
 
 /* Debug Footer */
 .footerDebug .navbar{
