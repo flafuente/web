@@ -73,12 +73,8 @@ class Video extends Model
             Registry::addMessage("Debes subir un archivo", "error");
         }
         //Publicado?
-        if ($this->estadoId==1) {
-            //Tiene archivo de vídeo válido?
-            $videosArchivos = VideoArchivo::getVideosArchivosByVideoId($this->id, 1);
-            if (!count($videosArchivos)) {
-                Registry::addMessage("No puedes publicar un vídeo si no contiene archivos verificados", "error", "estadoId");
-            }
+        if ($this->estadoId==1 && !$this->videoArchivoId) {
+            Registry::addMessage("No puedes publicar un vídeo si no contiene archivos verificados", "error", "estadoId");
         }
 
         return Registry::getMessages(true);
@@ -150,12 +146,8 @@ class Video extends Model
             }
         }
         //Publicado?
-        if ($this->estadoId==1) {
-            //Tiene archivo de vídeo válido?
-            $videosArchivos = VideoArchivo::getVideosArchivosByVideoId($this->id, 1);
-            if (!count($videosArchivos)) {
-                Registry::addMessage("No puedes publicar un vídeo si no contiene archivos verificados", "error", "estadoId");
-            }
+        if ($this->estadoId==1 && !$this->videoArchivoId) {
+            Registry::addMessage("No puedes publicar un vídeo si no contiene archivos verificados", "error", "estadoId");
         }
 
         return Registry::getMessages(true);
@@ -197,13 +189,27 @@ class Video extends Model
             //INSECURE!
             $query .= " AND `categoriaId` IN (".implode(",", $data["categoriasIds"]).") ";
         }
-        if (isset($data["estadoId"])) {
-            //INSECURE!
-            $query .= " AND `estadoId`=:estadoId";
+        //Búsqueda
+        if ($data["search"]) {
+            $query .= " AND (
+                `titulo` LIKE '%:titulo%' OR
+                `descripcion` LIKE '%:descripcion%'
+            ) ";
+            $params[":titulo"] = "%".$data["search"]."%";
+            $params[":descripcion"] = "%".$data["search"]."%";
+        }
+        //Estado
+        if (isset($data["estadoId"]) && $data["estadoId"]!="-1") {
+            $query .= " AND `estadoId`=:estadoId ";
             $params[":estadoId"] = $data["estadoId"];
         }
+        //Categoría
+        if ($data["categoriaId"]) {
+            $query .= " AND `categoriaId`=:categoriaId ";
+            $params[":categoriaId"] = $data["categoriaId"];
+        }
         //Total
-        $total = count($db->Query($query));
+        $total = count($db->Query($query, $params));
         if ($total) {
             //Order
             if ($data['order'] && $data['orderDir']) {
@@ -217,7 +223,7 @@ class Video extends Model
             if ($limit) {
                 $query .= " LIMIT ".(int) $limitStart.", ".(int) $limit;
             }
-            $rows = $db->Query($query);
+            $rows = $db->Query($query, $params);
             if (count($rows)) {
                 foreach ($rows as $row) {
                     $results[] = new Video($row);

@@ -59,6 +59,29 @@ class VideoArchivo extends Model
         return $this->estadosCss[$this->estadoId];
     }
 
+    /**
+     * Publicar archivo de vídeo.
+     *
+     * Modifica el VideoArchivoId del vídeo asociado.
+     * Elimina los otros archivos de vídeo.
+     *
+     * @return void
+     */
+    public function publicar()
+    {
+        //Modifica el VideoArchivoId del vídeo asociado.
+        $video = new Video($this->videoId);
+        $video->videoArchivoId = $this->id;
+        $video->update();
+        //Elimina los otros archivos de vídeo.
+        $archivosInvalidos = $this->getVideosArchivosByVideoId($this->videoId, 2);
+        if (is_array($archivosInvalidos) && count($archivosInvalidos)) {
+            foreach ($archivosInvalidos as $archivoInvalido) {
+                $archivoInvalido->delete();
+            }
+        }
+    }
+
     public function validateInsert()
     {
         //Archivo?
@@ -84,6 +107,14 @@ class VideoArchivo extends Model
     public function preUpdate()
     {
         $this->dateUpdate = date("Y-m-d H:i:s");
+    }
+
+    public function postUpdate()
+    {
+        //Publicado?
+        if ($this->estadoId==1) {
+            $this->publicar();
+        }
     }
 
     public static function getVideosArchivosByVideoId($videoId=0, $estadoId=null)

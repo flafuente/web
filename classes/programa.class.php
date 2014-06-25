@@ -78,8 +78,31 @@ class Programa extends Model
         $db = Registry::getDb();
         //Query
         $query = "SELECT * FROM `programas` WHERE 1=1 ";
+        $params = array();
+        //Where
+        //Búsqueda
+        if ($data["search"]) {
+            $query .= " AND (
+                `titulo` LIKE '%:titulo%' OR
+                `subtitulo` LIKE '%:subtitulo%' OR
+                `descripcion` LIKE '%:descripcion%'
+            ) ";
+            $params[":titulo"] = "%".$data["search"]."%";
+            $params[":subtitulo"] = "%".$data["search"]."%";
+            $params[":descripcion"] = "%".$data["search"]."%";
+        }
+        //Estado
+        if (isset($data["estadoId"]) && $data["estadoId"]!="-1") {
+            $query .= " AND `estadoId`=:estadoId ";
+            $params[":estadoId"] = $data["estadoId"];
+        }
+        //Categoría
+        if ($data["categoriaId"]) {
+            $query .= " AND `categoriaId`=:categoriaId ";
+            $params[":categoriaId"] = $data["categoriaId"];
+        }
         //Total
-        $total = count($db->Query($query));
+        $total = count($db->Query($query, $params));
         if ($total) {
             //Order
             if ($data['order'] && $data['orderDir']) {
@@ -93,7 +116,7 @@ class Programa extends Model
             if ($limit) {
                 $query .= " LIMIT ".(int) $limitStart.", ".(int) $limit;
             }
-            $rows = $db->Query($query);
+            $rows = $db->Query($query, $params);
             if (count($rows)) {
                 foreach ($rows as $row) {
                     $results[] = new Programa($row);

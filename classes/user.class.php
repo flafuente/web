@@ -440,10 +440,30 @@ class User extends Model
     public static function select($data=array(), $limit=0, $limitStart=0, &$total=null)
     {
         $db = Registry::getDb();
+        $params = array();
         //Query
         $query = "SELECT * FROM `users` WHERE 1=1 ";
+        //Where
+        //Búsqueda
+        if ($data["search"]) {
+            $query .= " AND (
+                `username` LIKE :username OR
+                `email` LIKE :email OR
+                `nombre` LIKE :nombre OR
+                `apellidos` LIKE :apellidos
+            ) ";
+            $params[":username"] = "%".$data["search"]."%";
+            $params[":email"] = "%".$data["search"]."%";
+            $params[":nombre"] = "%".$data["search"]."%";
+            $params[":apellidos"] = "%".$data["search"]."%";
+        }
+        //Estado
+        if (isset($data["statusId"]) && $data["statusId"]!="-1") {
+            $query .= " AND `statusId`=:statusId ";
+            $params[":statusId"] = $data["statusId"];
+        }
         //Total
-        $total = count($db->Query($query));
+        $total = count($db->Query($query, $params));
         if ($total) {
             //Order
             if ($data['order'] && $data['orderDir']) {
@@ -457,7 +477,7 @@ class User extends Model
             if ($limit) {
                 $query .= " LIMIT ".(int) $limitStart.", ".(int) $limit;
             }
-            $rows = $db->Query($query);
+            $rows = $db->Query($query, $params);
             if (count($rows)) {
                 foreach ($rows as $row) {
                     $results[] = new User($row);

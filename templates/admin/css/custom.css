@@ -52,3 +52,15 @@ div.main{
 	float: right;
 	margin-left: 15px;
 }
+
+/* Filters */
+form#mainForm div.fiters{
+	margin-bottom:15px
+}
+div.filters div.filter{
+	margin-bottom: 10px;
+}
+
+div.filters div.filter select{
+	width: 100%;
+}

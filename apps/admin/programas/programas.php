@@ -22,6 +22,7 @@ class programasController extends Controller
         $pag['limitStart'] = $_REQUEST['limitStart'];
         $this->setData("results", Programa::select($_REQUEST, $pag['limit'], $pag['limitStart'], $pag['total']));
         $this->setData("pag", $pag);
+        $this->setData("categorias", Categoria::select());
         $html = $this->view("views.list");
         $this->render($html);
     }

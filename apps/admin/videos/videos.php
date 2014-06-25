@@ -34,6 +34,7 @@ class videosController extends Controller
         }
         $this->setData("results", Video::select($selectVideos, $pag['limit'], $pag['limitStart'], $pag['total']));
         $this->setData("pag", $pag);
+        $this->setData("categorias", Categoria::select());
         $html = $this->view("views.list");
         $this->render($html);
     }

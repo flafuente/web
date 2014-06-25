@@ -69,7 +69,7 @@ class Categoria extends Model
         //Query
         $query = "SELECT * FROM `categorias` WHERE 1=1 ";
         //Where
-        if(isset($data["categoriasIds"])){
+        if (isset($data["categoriasIds"])) {
             //INSECURE!
             $query .= " AND `id` IN (".implode(",", $data["categoriasIds"]).") ";
         }
@@ -83,6 +83,8 @@ class Categoria extends Model
                 if (@in_array($data['order'], array_keys(get_class_vars(__CLASS__))) && in_array($data['orderDir'], $orders)) {
                     $query .= " ORDER BY `".$data['order']."` ".$data['orderDir'];
                 }
+            } else {
+                $query .= " ORDER BY `nombre` ASC";
             }
             //Limit
             if ($limit) {
