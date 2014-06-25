@@ -120,8 +120,8 @@ div.parrilla-cabecera h2 {
 div.parrilla-cabecera h2 .circulo {
 	background-color: #FFF;
 	color: #17B5E9;
-	-webkit-border-radius: 7px;
-	-moz-border-radius: 7px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
 	border-radius: 20px;
 	padding: 0px 6px 0px 0px;
 	float: right;
@@ -157,7 +157,31 @@ a.sintonizanos {
 	color: white;
 	background-color: #9A9A9A;
 	border-color: #ccc;
-	font-size: 17px;
+	font-size: 13px;
+	height: 50px;
+}
+
+/*Twitter widget*/
+div.twitter {
+	margin-top: 20px;
+	background-color: #FFF;
+}
+div.tweets {
+	max-height: 540px;
+	overflow: auto;
+}
+div.tweet {
+	margin-top: 10px;
+	padding: 3px;
+}
+img.imagen {
+	float: left;
+}
+div.tiempo {
+	float: right;
+}
+div.nombreuser {
+	float: left;
 }
 
 /* Debug Footer */
