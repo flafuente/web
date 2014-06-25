@@ -72,6 +72,14 @@ class Video extends Model
         if (!$data["file"]) {
             Registry::addMessage("Debes subir un archivo", "error");
         }
+        //Publicado?
+        if ($this->estadoId==1) {
+            //Tiene archivo de vídeo válido?
+            $videosArchivos = VideoArchivo::getVideosArchivosByVideoId($this->id, 1);
+            if (!count($videosArchivos)) {
+                Registry::addMessage("No puedes publicar un vídeo si no contiene archivos verificados", "error", "estadoId");
+            }
+        }
 
         return Registry::getMessages(true);
     }
@@ -139,6 +147,14 @@ class Video extends Model
             $categoria = new Categoria($this->categoriaId);
             if (!$categoria->id) {
                 Registry::addMessage("La categoría seleccionada no existe", "error", "categoriaId");
+            }
+        }
+        //Publicado?
+        if ($this->estadoId==1) {
+            //Tiene archivo de vídeo válido?
+            $videosArchivos = VideoArchivo::getVideosArchivosByVideoId($this->id, 1);
+            if (!count($videosArchivos)) {
+                Registry::addMessage("No puedes publicar un vídeo si no contiene archivos verificados", "error", "estadoId");
             }
         }
 

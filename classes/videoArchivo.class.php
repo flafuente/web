@@ -86,12 +86,16 @@ class VideoArchivo extends Model
         $this->dateUpdate = date("Y-m-d H:i:s");
     }
 
-    public static function getVideosArchivosByVideoId($videoId=0)
+    public static function getVideosArchivosByVideoId($videoId=0, $estadoId=null)
     {
         $db = Registry::getDb();
         $params = array();
         $query = "SELECT * FROM `videos_archivos` WHERE `videoId`=:videoId";
         $params[":videoId"] = $videoId;
+        if (isset($estadoId)) {
+            $query .= " AND `estadoId`:estadoId ";
+            $params[":estadoId"] = $estadoId;
+        }
         $rows = $db->query($query, $params);
         if (count($rows)) {
             foreach ($rows as $row) {

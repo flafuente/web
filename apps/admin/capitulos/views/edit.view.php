@@ -184,7 +184,7 @@ Toolbar::render();
                             Fecha de emisión
                         </label>
                         <div class="col-sm-8">
-                            <input type="date" id="fechaEmision" name="fechaEmision" class="form-control" value="<?=Helper::sanitize($capitulo->fechaEmision);?>">
+                            <input type="date" id="fechaEmision" name="fechaEmision" placeholder="YYYY-mm-dd" class="form-control" value="<?=Helper::sanitize($capitulo->fechaEmision);?>">
                         </div>
                     </div>
                 </div>

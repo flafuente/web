@@ -5,6 +5,7 @@ class Capitulo extends Model
     public $url;
     public $userId;
     public $programaId;
+    public $videoId;
     public $estadoId;
     public $thumbnail;
     public $temporada;
@@ -48,6 +49,10 @@ class Capitulo extends Model
 
     public function validateInsert()
     {
+        //Programa
+        if (!$this->programa) {
+            Registry::addMessage("Debes seleccionar un programa", "error", "programa");
+        }
         //Titulo
         if (!$this->titulo) {
             Registry::addMessage("Debes introducir un titulo", "error", "titulo");
@@ -65,6 +70,10 @@ class Capitulo extends Model
 
     public function validateUpdate()
     {
+        //Programa
+        if (!$this->programa) {
+            Registry::addMessage("Debes seleccionar un programa", "error", "programa");
+        }
         //Titulo
         if (!$this->titulo) {
             Registry::addMessage("Debes introducir un titulo", "error", "titulo");
