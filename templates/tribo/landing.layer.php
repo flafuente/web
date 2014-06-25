@@ -86,14 +86,14 @@
 				<!--/content-->
 
 	        </div>
-			<div class='col-md-3'>
+			<div class='col-md-2' style='padding-left: 0px;'>
 				<?=$controller->view("modules.mainMenu");?>
 			</div>
-			<div class='col-md-9' style="padding-right: 0px;">
-				<div class='col-md-8'>
+			<div class='col-md-10' style="padding-right: 0px;">
+				<div class='col-md-9'>
 
 				</div>
-				<div class='col-md-4' style="padding-left: 0px; padding-right: 0px;">
+				<div class='col-md-3' style="padding-left: 0px; padding-right: 0px;">
 					<?=$controller->view("modules.twitter");?>
 				</div>
 			</div>

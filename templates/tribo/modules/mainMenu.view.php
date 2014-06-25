@@ -1,5 +1,5 @@
 <?php defined('_EXE') or die('Restricted access'); ?>
-<div class='col-md-12'>
+<div class='col-md-12' style='padding-left: 0px; padding-right: 0px;'>
 	<ul class="nav nav-pills nav-stacked">
 	  <!--  class="active" -->
 	 	<?php $url = Registry::getUrl(); ?>
@@ -14,7 +14,7 @@
 </div>
 
 <!-- PARRILLA -->
-<div class='col-md-12'>
+<div class='col-md-12' style='padding-left: 0px; padding-right: 0px;'>
 	<div class="parrilla">
 		<div class="parrilla-cabecera">
 			<h1>AHORA<br />EN TRIBO</h1>
@@ -36,6 +36,6 @@
 </div>
 
 <!-- Sintonizanos -->
-<div class='col-md-12'>
+<div class='col-md-12' style='padding-left: 0px; padding-right: 0px;'>
 	<a href="<?=Url::site("sintonizanos");?>" class="btn sintonizanos"><img src="<?=Url::template("img/weirdicon.png")?>" />&nbsp;&nbsp;SINTONÍZANOS</a>
 </div>
