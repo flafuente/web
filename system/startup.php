@@ -6,10 +6,6 @@ require 'system/functions.php';
 //Composer autoload
 require 'vendor/autoload.php';
 
-//Libs
-//Upload Handler
-require 'system/libs/uploadHandler.php';
-
 //Language init
 $language = new Language();
 

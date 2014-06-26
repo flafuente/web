@@ -132,8 +132,93 @@ Toolbar::render();
                             <textarea id="descripcion" name="descripcion" class="form-control"><?=Helper::sanitize($programa->descripcion);?></textarea>
                         </div>
                     </div>
+                    <!-- Banner -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            Banner
+                        </label>
+                        <div class="col-sm-8">
+                            <div id="banner-preview" class="preview" style="display:none">
+                                <img src="">
+                                <button type="button" class="btn btn-small btn-danger" data-url="">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </div>
+                            <div class="upload-div">
+                                <input type="hidden" id="banner" name="banner" value="">
+                                <span class="btn btn-success fileinput-button">
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                    <span>Examinar...</span>
+                                    <!-- The file input field used as target for the file upload widget -->
+                                    <input type="file" class="fileupload" accept="image/*"
+                                    data-target="banner" data-width="510" data-height="150"
+                                    data-progres="banner-progress" data-preview="banner-preview">
+                                </span>
+                                <br>
+                                <br>
+                                <!-- The global progress bar -->
+                                <div id="banner-progress" class="progress">
+                                    <div class="progress-bar progress-bar-success"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </form>
+
+<script>
+    //Document Ready
+    $(function () {
+        //File Upload
+        $('.fileupload').fileupload({
+            url: "<?=Url::site('api/uploadImage');?>",
+            formData: "",
+            dataType: 'json',
+            imageCrop: true,
+            imageMaxHeight: $(this).attr("data-height"),
+            imageMaxWidth: $(this).attr("data-width"),
+            imageForceResize: true,
+            done: function (e, data) {
+                var element = $(this);
+                $.each(data.result.files, function (index, file) {
+                    if (!file.error) {
+                        $('#' + element.attr('data-target')).val(file.name);
+                        $('#' + element.attr('data-preview') + ' img').attr('src', file.thumbnailUrl);
+                        $('#' + element.attr('data-preview') + 'button').attr('data-url', file.deleteUrl);
+                        $('#' + element.attr('data-preview')).show();
+                        element.closest('div.upload-div').hide();
+                    } else {
+                        $('#' + element.attr('data-target')).val("");
+                        alert(file.error);
+                    }
+                });
+            },
+            progressall: function (e, data) {
+                var progress = parseInt(data.loaded / data.total * 100, 10);
+                $('#' + $(this).attr('data-progres') + ' .progress-bar').css(
+                    'width',
+                    progress + '%'
+                );
+            },
+            /*destroy: function (e, data) {
+                var element = $(this);
+                $('#' + element.attr('data-preview')).hide();
+                $('#' + element.attr('data-target')).val("");
+                element.closest('div.upload-div').show();
+            }*/
+        })
+    });
+    //Eliminar
+    $(document).on('click', '.preview button', function (e) {
+        element = $(this);
+        $.get(element.attr('data-url'), function (data) {
+            element.closest('div.preview').hide();
+            element.closest('div.preview').parent().find('div.upload-div').show();
+        });
+
+        return false;
+    });
+</script>

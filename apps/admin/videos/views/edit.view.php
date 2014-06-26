@@ -156,7 +156,7 @@ Toolbar::render();
                                 <input type="hidden" name="file" id="filename" value="">
                                 <span class="btn btn-success fileinput-button">
                                     <i class="glyphicon glyphicon-plus"></i>
-                                    <span>Select files...</span>
+                                    <span>Examinar...</span>
                                     <!-- The file input field used as target for the file upload widget -->
                                     <input id="fileupload" type="file" name="files[]" accept="video/*">
                                 </span>
@@ -299,12 +299,10 @@ Toolbar::render();
     });
     //Document Ready
     $(function () {
-        // Change this to the location of your server-side upload handler:
-        var url = "<?=Url::site('api/upload');?>";
         //File Upload
         $('#fileupload').fileupload({
             maxChunkSize: 10000000,
-            url: url,
+            url: "<?=Url::site('api/uploadVideo');?>",
             formData: "",
             dataType: 'json',
             done: function (e, data) {

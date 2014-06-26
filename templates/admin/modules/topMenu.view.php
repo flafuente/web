@@ -36,6 +36,14 @@
                         </a>
                     </li>
                 <?php } ?>
+                <?php if ($user->checkPermisos("parrilla")) { ?>
+                    <li class="<?=$active['admin']['parrilla']?>">
+                        <a href="<?=Url::site("admin/parrilla")?>">
+                            <span class="glyphicon glyphicon-th"></span>
+                            Parilla
+                        </a>
+                    </li>
+                <?php } ?>
                 <?php if ($user->checkPermisos("usuarios")) { ?>
                     <li class="<?=$active['admin']['users']?>">
                         <a href="<?=Url::site("admin/users")?>">

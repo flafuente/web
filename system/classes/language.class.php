@@ -89,12 +89,15 @@ class Language
     public function getLanguages()
     {
         $languages = array();
-        $langFiles = scandir("languages/");
-        if (count($langFiles)) {
-            foreach ($langFiles as $langFile) {
-                $tmp = explode(".", $langFile);
-                if ($tmp[0]) {
-                    $languages[] = $tmp[0];
+        $path = "languages/";
+        if (file_exists($path)) {
+            $langFiles = scandir($path);
+            if (count($langFiles)) {
+                foreach ($langFiles as $langFile) {
+                    $tmp = explode(".", $langFile);
+                    if ($tmp[0]) {
+                        $languages[] = $tmp[0];
+                    }
                 }
             }
         }
