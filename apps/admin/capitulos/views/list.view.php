@@ -22,6 +22,18 @@ Toolbar::render();
         <input type="hidden" name="router" id="router" value="admin">
         <input type="hidden" name="app" id="app" value="capitulos">
         <input type="hidden" name="action" id="action" value="">
+        <!-- Filters -->
+        <div class="row filters">
+            <!-- Search -->
+            <div class="col-sm-3 col-xs-6 filter">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="search" value="<?=Helper::sanitize($_REQUEST["search"]);?>">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">Buscar</button>
+                    </span>
+                </div>
+            </div>
+        </div>
         <?php if (count($results)) { ?>
             <div class="table-responsive">
                 <table class="table table-striped">

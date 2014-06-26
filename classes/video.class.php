@@ -192,8 +192,8 @@ class Video extends Model
         //Búsqueda
         if ($data["search"]) {
             $query .= " AND (
-                `titulo` LIKE '%:titulo%' OR
-                `descripcion` LIKE '%:descripcion%'
+                `titulo` LIKE :titulo OR
+                `descripcion` LIKE :descripcion
             ) ";
             $params[":titulo"] = "%".$data["search"]."%";
             $params[":descripcion"] = "%".$data["search"]."%";

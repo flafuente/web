@@ -68,13 +68,19 @@ class Categoria extends Model
         $db = Registry::getDb();
         //Query
         $query = "SELECT * FROM `categorias` WHERE 1=1 ";
+        $params = array();
         //Where
         if (isset($data["categoriasIds"])) {
             //INSECURE!
             $query .= " AND `id` IN (".implode(",", $data["categoriasIds"]).") ";
         }
+        //Búsqueda
+        if ($data["search"]) {
+            $query .= " AND `nombre` LIKE :nombre";
+            $params[":nombre"] = "%".$data["search"]."%";
+        }
         //Total
-        $total = count($db->Query($query));
+        $total = count($db->Query($query, $params));
         if ($total) {
             //Order
             if ($data['order'] && $data['orderDir']) {
@@ -90,7 +96,7 @@ class Categoria extends Model
             if ($limit) {
                 $query .= " LIMIT ".(int) $limitStart.", ".(int) $limit;
             }
-            $rows = $db->Query($query);
+            $rows = $db->Query($query, $params);
             if (count($rows)) {
                 foreach ($rows as $row) {
                     $results[] = new Categoria($row);

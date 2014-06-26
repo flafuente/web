@@ -102,8 +102,15 @@ class Capitulo extends Model
         $db = Registry::getDb();
         //Query
         $query = "SELECT * FROM `capitulos` WHERE 1=1 ";
+        $params = array();
+        //Where
+        //Búsqueda
+        if ($data["search"]) {
+            $query .= " AND `nombre` LIKE :nombre";
+            $params[":nombre"] = "%".$data["search"]."%";
+        }
         //Total
-        $total = count($db->Query($query));
+        $total = count($db->Query($query, $params));
         if ($total) {
             //Order
             if ($data['order'] && $data['orderDir']) {
@@ -117,7 +124,7 @@ class Capitulo extends Model
             if ($limit) {
                 $query .= " LIMIT ".(int) $limitStart.", ".(int) $limit;
             }
-            $rows = $db->Query($query);
+            $rows = $db->Query($query, $params);
             if (count($rows)) {
                 foreach ($rows as $row) {
                     $results[] = new Capitulo($row);

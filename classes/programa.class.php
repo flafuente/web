@@ -124,9 +124,9 @@ class Programa extends Model
         //Búsqueda
         if ($data["search"]) {
             $query .= " AND (
-                `titulo` LIKE '%:titulo%' OR
-                `subtitulo` LIKE '%:subtitulo%' OR
-                `descripcion` LIKE '%:descripcion%'
+                `titulo` LIKE :titulo OR
+                `subtitulo` LIKE :subtitulo OR
+                `descripcion` LIKE :descripcion
             ) ";
             $params[":titulo"] = "%".$data["search"]."%";
             $params[":subtitulo"] = "%".$data["search"]."%";
