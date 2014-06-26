@@ -29,7 +29,9 @@ class Capitulo extends Model
         1 => "Publicado",
     );
 
-    public static $reservedVarsChild = array("estados", "estadosCss");
+    public $path = "/files/images/capitulos/";
+
+    public static $reservedVarsChild = array("estados", "estadosCss", "path");
 
     public function init()
     {
@@ -47,7 +49,7 @@ class Capitulo extends Model
         return $this->estadosCss[$this->estadoId];
     }
 
-    public function validateInsert()
+    private function validate()
     {
         //Programa
         if (!$this->programa) {
@@ -57,8 +59,25 @@ class Capitulo extends Model
         if (!$this->titulo) {
             Registry::addMessage("Debes introducir un titulo", "error", "titulo");
         }
+        //Thumbnail Upload
+        if (isset($_FILES["thumbnail"])) {
+            try {
+                $bulletProof = new BulletProof;
+                $this->thumbnail = $bulletProof
+                    ->uploadDir($config->get("path").$this->path)
+                    ->shrink(array("height"=>245, "width"=>240))
+                    ->upload($_FILES['thumbnail']);
+            } catch (ImageUploaderException $e) {
+                Registry::addMessage("Error al subir la imagen: ".$e->getMessage(), "error");
+            }
+        } else {
+            $this->thumbnail = null;
+        }
+    }
 
-        return Registry::getMessages(true);
+    public function validateInsert()
+    {
+        return $this->validate();
     }
 
     public function preInsert()
@@ -70,16 +89,7 @@ class Capitulo extends Model
 
     public function validateUpdate()
     {
-        //Programa
-        if (!$this->programa) {
-            Registry::addMessage("Debes seleccionar un programa", "error", "programa");
-        }
-        //Titulo
-        if (!$this->titulo) {
-            Registry::addMessage("Debes introducir un titulo", "error", "titulo");
-        }
-
-        return Registry::getMessages(true);
+        return $this->validate();
     }
 
     public function preUpdate()

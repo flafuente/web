@@ -32,21 +32,4 @@ class apiController extends Controller
             )
         );
     }
-
-    public function uploadImage()
-    {
-        //Clear error messages
-        Registry::getMessages();
-        //Config
-        $config = Registry::getConfig();
-        //Upload Handler
-        new UploadHandler(
-            array(
-                'upload_dir' => $config->get("path")."/files/images/programas/",
-                'upload_url' => Url::site("files/images/programas")."/",
-                "maxNumberOfFiles" => 1,
-                "accept_file_types" => "/\.(jpe?g|png)$/i",
-            )
-        );
-    }
 }

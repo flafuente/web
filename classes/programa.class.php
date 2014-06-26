@@ -23,12 +23,24 @@ class Programa extends Model
         1 => "Publicado",
     );
 
-    public static $reservedVarsChild = array("estados", "estadosCss");
+    public $path = "/files/images/programas/";
+
+    public static $reservedVarsChild = array("estados", "estadosCss", "path");
 
     public function init()
     {
         parent::$dbTable = "programas";
         parent::$reservedVarsChild = self::$reservedVarsChild;
+    }
+
+    public function getBannerUrl()
+    {
+        return Url::site($this->path.$this->banner);
+    }
+
+    public function getThumbnailUrl()
+    {
+        return Url::site($this->path.$this->thumbnail);
     }
 
     public function getEstadoString()
@@ -41,14 +53,48 @@ class Programa extends Model
         return $this->estadosCss[$this->estadoId];
     }
 
-    public function validateInsert()
+    private function validate()
     {
+        $config = Registry::getConfig();
         //Titulo
         if (!$this->titulo) {
             Registry::addMessage("Debes introducir un titulo", "error", "titulo");
         }
+        //Banner Upload
+        if (isset($_FILES["banner"])) {
+            try {
+                $bulletProof = new BulletProof;
+                $this->banner = $bulletProof
+                    ->uploadDir($config->get("path").$this->path)
+                    ->shrink(array("height"=>150, "width"=>510))
+                    ->upload($_FILES['banner']);
+            } catch (ImageUploaderException $e) {
+                Registry::addMessage("Error al subir la imagen: ".$e->getMessage(), "error");
+            }
+        } else {
+            $this->banner = null;
+        }
+        //Thumbnail Upload
+        if (isset($_FILES["thumbnail"])) {
+            try {
+                $bulletProof = new BulletProof;
+                $this->thumbnail = $bulletProof
+                    ->uploadDir($config->get("path").$this->path)
+                    ->shrink(array("height"=>245, "width"=>240))
+                    ->upload($_FILES['thumbnail']);
+            } catch (ImageUploaderException $e) {
+                Registry::addMessage("Error al subir la imagen: ".$e->getMessage(), "error");
+            }
+        } else {
+            $this->thumbnail = null;
+        }
 
         return Registry::getMessages(true);
+    }
+
+    public function validateInsert()
+    {
+        return $this->validate();
     }
 
     public function preInsert()
@@ -60,12 +106,7 @@ class Programa extends Model
 
     public function validateUpdate()
     {
-        //Titulo
-        if (!$this->titulo) {
-            Registry::addMessage("Debes introducir un titulo", "error", "titulo");
-        }
-
-        return Registry::getMessages(true);
+        return $this->validate();
     }
 
     public function preUpdate()
@@ -124,6 +165,18 @@ class Programa extends Model
 
                 return $results;
             }
+        }
+    }
+
+    public function postDelete()
+    {
+        $config = Registry::getConfig();
+        //Borramos los archivos
+        if ($this->banner) {
+            @unset($config->get("path").$this->path.$this->banner);
+        }
+        if ($this->thumbnail) {
+            @unset($config->get("path").$this->path.$this->thumbnail);
         }
     }
 }

@@ -36,6 +36,8 @@
         <script src="<?=Url::template("js/jquery.forms.js");?>" type="text/javascript"></script>
         <!-- Bootstrap Switch Plugin -->
         <script src="<?=Url::template("js/bootstrap-switch.min.js");?>" type="text/javascript"></script>
+        <!-- Bootstrap File Input Plugin -->
+        <script src="<?=Url::template("js/bootstrap.file-input.js");?>" type="text/javascript"></script>
         <!-- Bootstrap Ladda Plugin -->
         <script src="<?=Url::template("js/spin.min.js");?>" type="text/javascript"></script>
         <script src="<?=Url::template("js/ladda.min.js");?>" type="text/javascript"></script>

@@ -187,6 +187,20 @@ Toolbar::render();
                             <input type="date" id="fechaEmision" name="fechaEmision" placeholder="YYYY-mm-dd" class="form-control" value="<?=Helper::sanitize($capitulo->fechaEmision);?>">
                         </div>
                     </div>
+                    <!-- Thumbnail -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            Thumbnail
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="file" class="btn-primary btn" name="thumbnail" accept="image/*">
+                            <?php if ($capitulo->thumbnail) { ?>
+                                <a href="<?=$capitulo->getThumbnailUrl();?>" class="btn btn-default" target="_blank">
+                                    <span class="glyphicon glyphicon-eye-open"></span>
+                                </a>
+                            <?php } ?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

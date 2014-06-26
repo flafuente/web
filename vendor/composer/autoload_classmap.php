@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'BulletProof' => $baseDir . '/libs/bulletproof.php',
     'Capitulo' => $baseDir . '/classes/capitulo.class.php',
     'Categoria' => $baseDir . '/classes/categoria.class.php',
     'Config' => $baseDir . '/system/classes/config.class.php',
@@ -13,6 +14,7 @@ return array(
     'ControllerRouter' => $baseDir . '/system/classes/controllerrouter.class.php',
     'Database' => $baseDir . '/system/classes/database.class.php',
     'Helper' => $baseDir . '/system/classes/helper.class.php',
+    'ImageUploaderException' => $baseDir . '/libs/bulletproof.php',
     'Language' => $baseDir . '/system/classes/language.class.php',
     'Message' => $baseDir . '/system/classes/message.class.php',
     'Model' => $baseDir . '/system/classes/model.class.php',

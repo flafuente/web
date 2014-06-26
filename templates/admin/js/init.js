@@ -206,6 +206,8 @@ $(document).ready(function(){
 	Ladda.bind('.ladda-button');
 	//Select2
 	$(".select2").select2();
+	//Input files
+	$('input[type=file]').bootstrapFileInput();
 });
 
 //Check Alls
