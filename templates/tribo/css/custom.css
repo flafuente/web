@@ -165,23 +165,83 @@ a.sintonizanos {
 div.twitter {
 	margin-top: 20px;
 	background-color: #FFF;
+	padding: 0px 2px 0px 2px;
 }
-div.tweets {
-	max-height: 540px;
+div.twitter div.titulo {
+	color: #666;
+	padding: 10px 0px 0px 10px;
+}
+div.twitter div.tweets {
+	max-height: 366px;
 	overflow: auto;
 }
-div.tweet {
+div.twitter div.tweets div.tweet {
 	margin-top: 10px;
 	padding: 3px;
 }
-img.imagen {
+div.twitter div.tweets div.tweet  img.imagen {
 	float: left;
+	width: 39px;
 }
-div.tiempo {
+div.twitter div.tweets div.tweet div.tiempo {
+	color: #888;
+	float: right;
+	font-size: 9px;
+}
+div.twitter div.tweets div.tweet div.nombreuser {
+	font-size: 11px;
+	margin-left: 45px;
+}
+div.twitter div.tweets div.tweet div.nombreuser a{
+	color: #555;
+}
+div.twitter div.tweets div.tweet div.texto {
+	font-size: 9px;
+	margin: 6px 0px 0px 0px
+	color: #222;
+}
+div.twitter div.tweets div.tweet div.nret {
+	color: #999;
+	margin-top: 2px;
+	font-size: 10px;
+}
+div.twitter i.fa.fa-twitter {
+	font-size: 23px;
+}
+.square img {
+	width: 100%;
+}
+.square{
+	margin-top: 20px;
+}
+.sq_num i.fa.fa-heart-o {
+	color: #17B5E9;
+}
+div.sq_num {
 	float: right;
 }
-div.nombreuser {
+div.sq_title a {
+	color: #333;
+}
+div.sq_title {
 	float: left;
+}
+div.sq_content{
+	width: 100%;
+	background-color: #FFFFFF;
+	padding: 5px;
+	float: left;
+}
+.nopadding{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.separador{
+	clear: both;
+	border-bottom: 2px solid #CCC;
+	margin: auto;
+	height: 40px;
+	width: 98%;
 }
 
 /* Debug Footer */

@@ -26,7 +26,7 @@
 	$tweets = json_decode( json_encode($tweets), true);
 	?>
 	<div class="twitter">
-		<div class="titulo">Pjro   #Tribo</div>
+		<div class="titulo"><i class="fa fa-twitter"></i>&nbsp;&nbsp;&nbsp;#Tribo</div>
 		<div class="tweets">
 			<?php
 			//print_r($tweets);
@@ -62,17 +62,6 @@
 			$usuario = "@".$data["retweeted_status"]["user"]["screen_name"];
 		}
 
-
-
-
-
-
-
-
-
-
-
-
 		/*Impresion del tweet*/
 		?>
 		<div class="tweet">
@@ -83,21 +72,28 @@
 			<div class="nombreuser">
 				<?php echo $nombre; ?>
 				<br />
-				<?php echo $usuario; ?>
+				<?php echo link_it($usuario); ?>
 			</div>
 			<div style="clear: both;"></div>
 			<div class="texto">
-				<?php echo $tweet; ?>
+				<?php echo link_it($tweet); ?>
 			</div>
 			<div style="clear: both;"></div>
 			<div class="nret">
-				Nº: <?php echo $nret; ?>
+				<?php echo $nret; ?> RETWEETS
 			</div>
 		</div>
 		<?php
 	}
 
-
+	function link_it($text) { 
+	    $text= preg_replace("/(^|[\n ])([\w]*?)((ht|f)tp(s)?:\/\/[\w]+[^ \,\"\n\r\t<]*)/is", "$1$2<a href=\"$3\" target=\"_blank\" >$3</a>", $text);
+	    $text= preg_replace("/(^|[\n ])([\w]*?)((www|ftp)\.[^ \,\"\t\n\r<]*)/is", "$1$2<a href=\"http://$3\" target=\"_blank\" >$3</a>", $text);
+	    $text= preg_replace("/(^|[\n ])([a-z0-9&\-_\.]+?)@([\w\-]+\.([\w\-\.]+)+)/i", "$1<a href=\"mailto:$2@$3\" target=\"_blank\">$2@$3</a>", $text);
+    	$text= preg_replace("/@(\w+)/", '<a href="http://www.twitter.com/$1" target="_blank">@$1</a>', $text); 
+   		$text= preg_replace("/\#(\w+)/", '<a href="https://twitter.com/search?q=$1&src=typd" target="_blank">#$1</a>',$text); 
+	    return $text;
+	}
 	function time_passed($timestamp){
 	    //type cast, current time, difference in timestamps
 	    $timestamp      = (int) $timestamp;
