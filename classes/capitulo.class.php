@@ -51,6 +51,7 @@ class Capitulo extends Model
 
     private function validate()
     {
+        $config = Registry::getConfig();
         //Programa
         if (!$this->programa) {
             Registry::addMessage("Debes seleccionar un programa", "error", "programa");
