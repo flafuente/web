@@ -242,6 +242,7 @@ div.sq_content{
 	margin: auto;
 	height: 40px;
 	width: 98%;
+	margin-bottom: 30px;
 }
 
 /* Debug Footer */
@@ -257,3 +258,56 @@ div.sq_content{
 	padding-bottom: 50px;
 }
 /* End Debug Footer */
+
+.bor_lef{
+	border-left: 2px solid #CCC;
+}
+.l_circle{
+	-webkit-border-radius: 150px;
+	-moz-border-radius: 150px;
+	border-radius: 150px;
+	width: 120px;
+	height: 120px;
+	border: 1px solid #CCC;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+.l_circle:hover{
+	background-color: #17B5E9;
+}
+.circle_items{
+	text-align: center;
+}
+.webseries{
+	background-image: url("../img/home/webseries.png");
+}
+.moda{
+	background-image: url("../img/home/moda.png");
+}
+.gamers{
+	background-image: url("../img/home/gamers.png");
+}
+.periodismo{
+	background-image: url("../img/home/periodismo.png");
+}
+.humor{
+	background-image: url("../img/home/humor.png");
+}
+.webseries:hover{
+	background-image: url("../img/home/webseries_o.png");
+}
+.moda:hover{
+	background-image: url("../img/home/moda_o.png");
+}
+.gamers:hover{
+	background-image: url("../img/home/gamers_o.png");
+}
+.periodismo:hover{
+	background-image: url("../img/home/periodismo_o.png");
+}
+.humor:hover{
+	background-image: url("../img/home/humor_o.png");
+}
+ .cir_desc{
+ 	font-size: 7px;
+ }

@@ -86,10 +86,10 @@
 				<!--/content-->
 
 	        </div>
-			<div class='col-md-2 nopadding'>
+			<div class='col-md-2 nopadding' style="padding-right: 5px;">
 				<?=$controller->view("modules.mainMenu");?>
 			</div>
-			<div class='col-md-10 nopadding'>
+			<div class='col-md-10 nopadding bor_lef'>
 				<div class='col-md-9 nopadding'>
 					<?=$controller->view("modules.Landingsecciones");?>
 				</div>
@@ -97,6 +97,9 @@
 					<?=$controller->view("modules.twitter");?>
 				</div>
 				<div class="separador"></div>
+				<div class='col-md-12 nopadding'>
+					<?=$controller->view("modules.bottomButtons");?>
+				</div>
 			</div>
 	    </div>
 		<?=$controller->view("modules.Footer");?>
