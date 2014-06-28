@@ -311,3 +311,47 @@ div.sq_content{
  .cir_desc{
  	font-size: 7px;
  }
+ 
+ /* jssor slider navigator skin 03 css */
+/*
+.jssorn03 div           (normal)
+.jssorn03 div:hover     (normal mouseover)
+.jssorn03 .av           (active)
+.jssorn03 .av:hover     (active mouseover)
+.jssorn03 .dn           (mousedown)
+*/
+.jssorn03 div,
+.jssorn03 div:hover,
+.jssorn03 .av {
+    width: 11px;
+    background: url(../img/sn.png) no-repeat;
+    overflow: hidden;
+    cursor: pointer;
+}
+.jssorn03 div:hover,
+.jssorn03 .av:hover {
+    background: url(../img/sh.png) no-repeat;
+}
+.jssorn03 .av {
+    background: url(../img/sa.png) no-repeat;
+}
+.jssorn03 .dn,
+.jssorn03 .dn:hover {
+    background: url(../img/sh.png) no-repeat;
+}
+
+#slider1_container  .title{
+position: absolute; bottom: 0px;  line-height:20px;
+height: 30px;
+width:100%;
+}
+#slider1_container  .title p span{
+background-color:#f8f4f4;
+height: 30px;
+padding:10px 12px;
+}
+#slider1_container  .title p{
+color:#464343;
+text-align:center;
+font-size:15px;
+}
