@@ -1,35 +1,101 @@
 <?php
+/**
+ * Modelo Vídeo
+ *
+ * @package Tribo\Modelos
+ */
 class Video extends Model
 {
+    /**
+     * Id
+     * @var int
+     */
     public $id;
+    /**
+     * Id del usuario creador
+     * @var int
+     */
     public $userId;
+    /**
+     * Id del estado del vídeo
+     * @var int
+     */
     public $estadoId;
+    /**
+     * Id de la categoría
+     * @var int
+     */
     public $categoriaId;
+    /**
+     * Título
+     * @var string
+     */
     public $titulo;
+    /**
+     * Descipción
+     * @var string
+     */
     public $descripcion;
+    /**
+     * Id del archivo de vídeo asociado
+     * @var int
+     */
     public $videoArchivoId;
+    /**
+     * Nº total de visitas recibidas
+     * @var int
+     */
     public $visitas;
+    /**
+     * Fecha de creación
+     * @var string
+     */
     public $dateInsert;
+    /**
+     * Fecha de modificación
+     * @var string
+     */
     public $dateUpdate;
 
+    /**
+     * Clases CSS de los estados
+     * @var array
+     */
     public $estadosCss = array(
         0 => "default",
         1 => "success",
         2 => "danger",
     );
+    /**
+     * Tipos de estado
+     * @var array
+     */
     public $estados = array(
         0 => "No publicado",
         1 => "Publicado",
     );
-
+    /**
+     * Variables reservadas (no están en la base de datos)
+     * @var array
+     */
     public static $reservedVarsChild = array("estados", "estadosCss");
 
+    /**
+     * Init.
+     * @return void
+     */
     public function init()
     {
+        //Tabla usada en la DB
         parent::$dbTable = "videos";
+        //Variables reservadas
         parent::$reservedVarsChild = self::$reservedVarsChild;
     }
 
+    /**
+     * Añade una visita al vídeo.
+     * @return bool
+     */
     public function addVisita()
     {
         //Creamos la visita
@@ -43,16 +109,28 @@ class Video extends Model
         return $this->update();
     }
 
+    /**
+     * Devuelve el estado actual del capítulo.
+     * @return string Estado
+     */
     public function getEstadoString()
     {
         return $this->estados[$this->estadoId];
     }
 
+    /**
+     * Devuelve la clase CSS del estado del capítulo.
+     * @return string Clase CSS
+     */
     public function getEstadoCssString()
     {
         return $this->estadosCss[$this->estadoId];
     }
 
+    /**
+     * Validación de creación.
+     * @return array Errores
+     */
     public function validateInsert($data=array())
     {
         //Titulo
@@ -80,6 +158,10 @@ class Video extends Model
         return Registry::getMessages(true);
     }
 
+    /**
+     * Acciones previas a la creación.
+     * @return void
+     */
     public function preInsert()
     {
         $user = Registry::getUser();
@@ -87,6 +169,10 @@ class Video extends Model
         $this->dateInsert = date("Y-m-d H:i:s");
     }
 
+    /**
+     * Acciones posteriores a la creación.
+     * @return void
+     */
     public function postInsert($data = array())
     {
         $user = Registry::getUser();
@@ -100,6 +186,11 @@ class Video extends Model
         $videoArchivo->insert();
     }
 
+    /**
+     * Añade y quita las tags al vídeo
+     * @param  array  $tagsIds Id's de las Tags a añadir
+     * @return void
+     */
     public function syncTags($tagsIds = array())
     {
         $actualTagsIds = Tag::getTagsIdsByVideoId($this->id);
@@ -130,6 +221,10 @@ class Video extends Model
         }
     }
 
+    /**
+     * Validación de modificación.
+     * @return array Errores
+     */
     public function validateUpdate()
     {
         //Titulo
@@ -153,17 +248,30 @@ class Video extends Model
         return Registry::getMessages(true);
     }
 
+    /**
+     * Acciones previas a la modificación.
+     * @return void
+     */
     public function preUpdate()
     {
         $this->dateUpdate = date("Y-m-d H:i:s");
     }
 
+    /**
+     * Acciones posteriores a la modificación.
+     * @return void
+     */
     public function postUpdate($data = array())
     {
         //Añadimos/quitamos los tags
         $this->syncTags($data["tags"]);
     }
 
+    /**
+     * Devuelve los vídeos más vistos esta semana.
+     * @param  integer $limit Límite
+     * @return array Objetoś vídeo
+     */
     public function getRankingSemanal($limit=5)
     {
         $db = Registry::getDb();
@@ -178,6 +286,14 @@ class Video extends Model
         }
     }
 
+    /**
+     * Obtiene registros de la base de datos.
+     * @param  array    $data           Condicionales / ordenación
+     * @param  integer  $limit          Límite de resultados (Paginación)
+     * @param  integer  $limitStart     Inicio de la limitación (Paginación)
+     * @param  int      $total          Total de filas encontradas (Paginación)
+     * @return array                    Modelos de la clase actual
+     */
     public function select($data=array(), $limit=0, $limitStart=0, &$total=null)
     {
         $db = Registry::getDb();
@@ -234,6 +350,10 @@ class Video extends Model
         }
     }
 
+    /**
+     * Acciones posteriores a la eñiminación.
+     * @return void
+     */
     public function postDelete()
     {
         //Eliminamos los tags

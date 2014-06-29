@@ -1,44 +1,85 @@
 <?php
+/**
+ * Modelo Tag
+ *
+ * @package Tribo\Modelos
+ */
 class Tag extends Model
 {
+    /**
+     * Id
+     * @var int
+     */
     public $id;
+    /**
+     * Nombre
+     * @var string
+     */
     public $nombre;
+    /**
+     * Fecha de creación
+     * @var string
+     */
     public $dateInsert;
+    /**
+     * Fecha de modificación
+     * @var string
+     */
     public $dateUpdate;
 
+    /**
+     * Init.
+     * @return void
+     */
     public function init()
     {
+        //Tabla usada en la DB
         parent::$dbTable = "tags";
+        //Variables reservadas
         parent::$reservedVarsChild = self::$reservedVarsChild;
     }
 
-    public function validateInsert()
+    /**
+     * Validación para creación/edición del capítulo.
+     * @return array Array de errores
+     */
+    private function validate()
     {
         //nombre
         if (!$this->nombre) {
             Registry::addMessage("Debes introducir un nombre", "error", "nombre");
-        } elseif ($this->getTabByNombre($this->nombre)) {
+        } elseif ($this->getTagByNombre($this->nombre, $this->id)) {
             Registry::addMessage("Ya existe un tag con este nombre", "error", "nombre");
         }
 
         return Registry::getMessages(true);
     }
 
+    /**
+     * Validación de creación.
+     * @return array Errores
+     */
+    public function validateInsert()
+    {
+        return $this->validate();
+    }
+
+    /**
+     * Acciones previas a la creación.
+     * @return void
+     */
     public function preInsert()
     {
         $this->dateInsert = date("Y-m-d H:i:s");
     }
 
+    /**
+     * Validación de modificación.
+     * @return array Errores
+     */
     public function validateUpdate()
     {
-        //nombre
-        if (!$this->nombre) {
-            Registry::addMessage("Debes introducir un nombre", "error", "nombre");
-        } elseif ($this->getTabByNombre($this->nombre, $this->id)) {
-            Registry::addMessage("Ya existe un tag con este nombre", "error", "nombre");
-        }
-
-        return Registry::getMessages(true);
+        return $this->validate();
     }
 
     public static function getTagsByVideoId($videoId=0)
@@ -57,6 +98,20 @@ class Tag extends Model
         }
     }
 
+    /**
+     * Acciones previas a la modificación.
+     * @return void
+     */
+    public function preUpdate()
+    {
+        $this->dateUpdate = date("Y-m-d H:i:s");
+    }
+
+    /**
+     * Busca los Ids de los Tags que contiene un vídeo.
+     * @param  integer $videoId Id del vídeo
+     * @return array Ids de los tags
+     */
     public static function getTagsIdsByVideoId($videoId=0)
     {
         $db = Registry::getDb();
@@ -73,7 +128,13 @@ class Tag extends Model
         }
     }
 
-    public function getTabByNombre($nombre, $ignoreId=0)
+    /**
+     * Busca un Tag por su nombre.
+     * @param  string  $nombre   Nombre
+     * @param  integer $ignoreId Id a ignorar
+     * @return object
+     */
+    public function getTagByNombre($nombre, $ignoreId=0)
     {
         $db = Registry::getDb();
         $params = array();
@@ -90,11 +151,14 @@ class Tag extends Model
         }
     }
 
-    public function preUpdate()
-    {
-        $this->dateUpdate = date("Y-m-d H:i:s");
-    }
-
+    /**
+     * Obtiene registros de la base de datos.
+     * @param  array    $data           Condicionales / ordenación
+     * @param  integer  $limit          Límite de resultados (Paginación)
+     * @param  integer  $limitStart     Inicio de la limitación (Paginación)
+     * @param  int      $total          Total de filas encontradas (Paginación)
+     * @return array                    Modelos de la clase actual
+     */
     public function select($data=array(), $limit=0, $limitStart=0, &$total=null)
     {
         $db = Registry::getDb();

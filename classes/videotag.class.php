@@ -1,17 +1,48 @@
 <?php
+/**
+ * Modelo VídeoTag
+ *
+ * @package Tribo\Modelos
+ */
 class VideoTag extends Model
 {
+    /**
+     * Id
+     * @var int
+     */
     public $id;
+    /**
+     * Id del vídeo
+     * @var int
+     */
     public $videoId;
+    /**
+     * Id del Tag
+     * @var int
+     */
     public $tagId;
+    /**
+     * Fecha de creación
+     * @var string
+     */
     public $dateInsert;
 
+    /**
+     * Init.
+     * @return void
+     */
     public function init()
     {
+        //Tabla usada en la DB
         parent::$dbTable = "videos_tags";
+        //Variables reservadas
         parent::$reservedVarsChild = self::$reservedVarsChild;
     }
 
+    /**
+     * Acciones previas a la creación.
+     * @return void
+     */
     public function preInsert()
     {
         $this->dateInsert = date("Y-m-d H:i:s");
@@ -30,6 +61,11 @@ class VideoTag extends Model
         }
     }
 
+    /**
+     * Devuelve los Tags asociados a un vídeo
+     * @param  integer $videoId Id del vídeo
+     * @return array Objetos VideoTag
+     */
     public static function getVideosTagsByVideoId($videoId=0)
     {
         $db = Registry::getDb();
@@ -46,6 +82,14 @@ class VideoTag extends Model
         }
     }
 
+    /**
+     * Obtiene registros de la base de datos.
+     * @param  array    $data           Condicionales / ordenación
+     * @param  integer  $limit          Límite de resultados (Paginación)
+     * @param  integer  $limitStart     Inicio de la limitación (Paginación)
+     * @param  int      $total          Total de filas encontradas (Paginación)
+     * @return array                    Modelos de la clase actual
+     */
     public function select($data=array(), $limit=0, $limitStart=0, &$total=null)
     {
         $db = Registry::getDb();

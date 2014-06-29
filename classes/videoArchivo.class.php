@@ -1,37 +1,108 @@
 <?php
+/**
+ * Modelo Archivo de Vídeo
+ *
+ * @package Tribo\Modelos
+ */
 class VideoArchivo extends Model
 {
+    /**
+     * Id
+     * @var int
+     */
     public $id;
+    /**
+     * Id del vídeo
+     * @var int
+     */
     public $videoId;
+    /**
+     * Id del usuario creador
+     * @var int
+     */
     public $userId;
+    /**
+     * Id del estado
+     * @var string
+     */
     public $estadoId;
+    /**
+     * Comentario
+     * @var string
+     */
     public $comentario;
+    /**
+     * Filename
+     * @var string
+     */
     public $file;
+    /**
+     * Tamaño del archivo
+     * @var int
+     */
     public $size;
+    /**
+     * Tipo de archivo
+     * @var string
+     */
     public $type;
+    /**
+     * Fecha de creación
+     * @var string
+     */
     public $dateInsert;
+    /**
+     * Fecha de modificación
+     * @var string
+     */
     public $dateUpdate;
 
+    /**
+     * Clases CSS de los estados
+     * @var array
+     */
     public $estadosCss = array(
         0 => "default",
         1 => "success",
         2 => "danger",
     );
+    /**
+     * Tipos de estado
+     * @var array
+     */
     public $estados = array(
         0 => "Pendiente",
         1 => "Aprobado",
         2 => "Rechazado",
     );
+    /**
+     * Ruta de los archivos de vídeo
+     * @var string
+     */
     public $path = "/files/videos/";
 
+    /**
+     * Variables reservadas (no están en la base de datos)
+     * @var array
+     */
     public static $reservedVarsChild = array("path", "estados", "estadosCss");
 
+    /**
+     * Init.
+     * @return void
+     */
     public function init()
     {
+        //Tabla usada en la DB
         parent::$dbTable = "videos_archivos";
+        //Variables reservadas
         parent::$reservedVarsChild = self::$reservedVarsChild;
     }
 
+    /**
+     * Devuelve la ruta absoluta al archivo de vídeo.
+     * @return string
+     */
     public function getPath()
     {
         $config = Registry::getConfig();
@@ -39,21 +110,37 @@ class VideoArchivo extends Model
         return $config->get("path")."/".$this->path."/".$this->file;
     }
 
+    /**
+     * Devuelve la URL del archivo de vídeo.
+     * @return string
+     */
     public function getUrl()
     {
         return Url::site($this->path."/".$this->file);
     }
 
+    /**
+     * Devuelve el tamaño del archivo en formato humano.
+     * @return string
+     */
     public function getSizeString()
     {
         return Helper::formatBytes($this->size);
     }
 
+    /**
+     * Devuelve el estado actual del capítulo.
+     * @return string Estado
+     */
     public function getEstadoString()
     {
         return $this->estados[$this->estadoId];
     }
 
+    /**
+     * Devuelve la clase CSS del estado del capítulo.
+     * @return string Clase CSS
+     */
     public function getEstadoCssString()
     {
         return $this->estadosCss[$this->estadoId];
@@ -61,10 +148,8 @@ class VideoArchivo extends Model
 
     /**
      * Publicar archivo de vídeo.
-     *
      * Modifica el VideoArchivoId del vídeo asociado.
      * Elimina los otros archivos de vídeo.
-     *
      * @return void
      */
     public function publicar()
@@ -82,6 +167,10 @@ class VideoArchivo extends Model
         }
     }
 
+    /**
+     * Validación de creación.
+     * @return array Errores
+     */
     public function validateInsert()
     {
         //Archivo?
@@ -94,6 +183,10 @@ class VideoArchivo extends Model
         return Registry::getMessages(true);
     }
 
+    /**
+     * Acciones previas a la creación.
+     * @return void
+     */
     public function preInsert()
     {
         //File upload
@@ -104,11 +197,19 @@ class VideoArchivo extends Model
         $this->dateInsert = date("Y-m-d H:i:s");
     }
 
+    /**
+     * Acciones previas a la modificación.
+     * @return void
+     */
     public function preUpdate()
     {
         $this->dateUpdate = date("Y-m-d H:i:s");
     }
 
+    /**
+     * Acciones posteriores a la modificación.
+     * @return void
+     */
     public function postUpdate()
     {
         //Publicado?
@@ -117,6 +218,12 @@ class VideoArchivo extends Model
         }
     }
 
+    /**
+     * Busca los archivos de vídeo asociados a un vídeo.
+     * @param  int $videoId  Id del vídeo
+     * @param  int  $estadoId Estado del los archivos de vídeo.
+     * @return array Objectos VideoArchivo
+     */
     public static function getVideosArchivosByVideoId($videoId=0, $estadoId=null)
     {
         $db = Registry::getDb();
@@ -137,6 +244,14 @@ class VideoArchivo extends Model
         }
     }
 
+    /**
+     * Obtiene registros de la base de datos.
+     * @param  array    $data           Condicionales / ordenación
+     * @param  integer  $limit          Límite de resultados (Paginación)
+     * @param  integer  $limitStart     Inicio de la limitación (Paginación)
+     * @param  int      $total          Total de filas encontradas (Paginación)
+     * @return array                    Modelos de la clase actual
+     */
     public function select($data=array(), $limit=0, $limitStart=0, &$total=null)
     {
         $db = Registry::getDb();
@@ -175,6 +290,10 @@ class VideoArchivo extends Model
         }
     }
 
+    /**
+     * Acciones posteriores a la eñiminación.
+     * @return void
+     */
     public function postDelete()
     {
         //Eliminamos el archivo
