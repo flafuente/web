@@ -62,11 +62,9 @@
 		<!--mainContainer-->
 		<div class="container main">
 
-			<div class='row top hidden-xs'></div>
+			<?=$controller->view("modules.homeSlider");?>
 
-
-			<div class='col-md-8'>
-
+			<div class='col-md-12'>
 				<!--alerts-->
 				<?php $messages = Registry::getMessages(); ?>
 				<div id="mensajes-sys">
@@ -84,10 +82,25 @@
 				<!--/alerts-->
 
 				<!--content-->
-				<?=$content?>
+				
 				<!--/content-->
 
-	        </div>	
+	        </div>
+			<div class='col-md-2 nopadding' style="padding-right: 5px;">
+				<?=$controller->view("modules.mainMenu");?>
+			</div>
+			<div class='col-md-10 nopadding bor_lef'>
+				<div class='col-md-9 nopadding'>
+					<?=$content;?>
+				</div>
+				<div class='col-md-3 nopadding'>
+					<?=$controller->view("modules.twitter");?>
+				</div>
+				<div class="separador"></div>
+				<div class='col-md-12 nopadding'>
+					<?=$controller->view("modules.bottomButtons");?>
+				</div>
+			</div>
 	    </div>
 		<?=$controller->view("modules.Footer");?>
 		<!--/mainContainer-->
