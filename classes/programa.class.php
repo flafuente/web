@@ -222,11 +222,11 @@ class Programa extends Model
 
     /**
      * Obtiene registros de la base de datos.
-     * @param  array    $data           Condicionales / ordenación
-     * @param  integer  $limit          Límite de resultados (Paginación)
-     * @param  integer  $limitStart     Inicio de la limitación (Paginación)
-     * @param  int      $total          Total de filas encontradas (Paginación)
-     * @return array                    Modelos de la clase actual
+     * @param  array   $data       Condicionales / ordenación
+     * @param  integer $limit      Límite de resultados (Paginación)
+     * @param  integer $limitStart Inicio de la limitación (Paginación)
+     * @param  int     $total      Total de filas encontradas (Paginación)
+     * @return array   Modelos de la clase actual
      */
     public function select($data=array(), $limit=0, $limitStart=0, &$total=null)
     {
@@ -291,10 +291,10 @@ class Programa extends Model
         $config = Registry::getConfig();
         //Borramos los archivos
         if ($this->banner) {
-            @unset($config->get("path").$this->path.$this->banner);
+            @unlink($config->get("path").$this->path.$this->banner);
         }
         if ($this->thumbnail) {
-            @unset($config->get("path").$this->path.$this->thumbnail);
+            @unlink($config->get("path").$this->path.$this->thumbnail);
         }
     }
 }
