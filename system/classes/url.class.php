@@ -94,8 +94,11 @@ class Url
     {
         //Get the current config
         $config = Registry::getConfig();
-        //Fix extra slashes
+        //Extra slashes
         $dir = $config->get("dir");
+        if ($dir=="/") {
+            $dir = "";
+        }
         //Read URL
         $url = trim(str_replace("//", "/", str_replace($dir, "", $uri)), "/");
         //Exclude GET params
