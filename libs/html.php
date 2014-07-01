@@ -73,4 +73,24 @@ class HTML
 
         return $html;
     }
+    function showRate($value, $max, $min = 0, $bullets = 5){
+        $html = "";
+        if($min > 0){
+            /*Ajuste de rango*/
+            $max = $max - $min;
+            $value = $value - $min;
+        }
+        $porcentaje = $value * 100 / $max;
+        $cuenta = 0;
+        $value_bullet = 100 / $bullets;
+        for($x=1; $x<=$bullets; $x++){
+            if($porcentaje < ($value_bullet * $x)){
+                $html .= "<div class='bullet'></div>";
+            }else{
+                $html .= "<div class='bullet bullet-blue'></div>";;
+            }
+        }
+
+        return $html;
+    }
 }

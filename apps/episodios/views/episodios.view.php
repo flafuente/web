@@ -28,7 +28,7 @@ for($x=19; $x>15; $x--){
 	seeEpisode("sq_musica.jpg", 
 			   "EN LA TRANQUILIDAD", 
 			   "episodios/princesa_rota", 
-			   rand(100, 9999), 
+			   rand(0, 1000), 
 			   "Isabel lleva ocho meses bajo atención hospitalaria. Varias cicatrices salpican su joven cuerpo, pero una amnesia, producida por un complejo traumatismo, le impide conocer la naturaleza de sus heridas.",
 			   "40:0".rand(0, 9),
 			   "CAPÍTULO ".$x);
@@ -38,6 +38,7 @@ function seeEpisode($img, $title, $url, $likes, $description, $duration, $name){
 	?>
 	<div class='col-md-6 square'>
 		<img src="<?=Url::template("img/".$img)?>" title="<?php echo $title; ?>" />
+		<div class="rating"><?=HTML::showRate($likes, 1000);?></div>
 		<div class="sq_content">
 			<div class="sq_title">
 				<a href="<?=Url::site($url);?>">
@@ -58,6 +59,7 @@ function seeEpisode($img, $title, $url, $likes, $description, $duration, $name){
 		<div class="sqd_description"><?php echo $description; ?></div>
 		<span class="sqd_info"><?php echo $duration; ?> | <?php echo $name; ?></span>
 	</div>
+	
 	<div style="clear: both;"></div>
 	<?php
 }

@@ -298,6 +298,25 @@ div.sq_content{
 	font-size: 17px;
 }
 
+/*Rating*/
+.rating{
+	position: absolute;
+	top: 6px;
+	left: 21px;
+}
+.bullet{
+	height: 7px;
+	width: 7px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	background-color: #FFF !important;
+	float: left;
+	margin: 1px;
+}
+.bullet-blue{
+	background-color: #12addf !important;
+}
 
 
 /* Debug Footer */

@@ -149,10 +149,11 @@
 </html>
 
 <?php
-function seeSquare($img, $title, $url, $num){
+function seeSquare($img, $title, $url, $likes){
 	?>
 	<div class='col-md-6 square'>
 		<img src="<?=Url::template("img/".$img)?>" title="<?php echo $title; ?>" />
+		<div class="rating"><?=HTML::showRate($likes, 999, 10);?></div>
 		<div class="sq_content">
 			<div class="sq_title">
 				<a href="<?=Url::site($url);?>">
@@ -160,7 +161,7 @@ function seeSquare($img, $title, $url, $num){
 				</a>
 			</div>
 			<div class="sq_num">
-				<?php echo $num; ?>
+				<?php echo $likes; ?>
 				<i class="fa fa-heart-o"></i>
 			</div>
 		</div>
