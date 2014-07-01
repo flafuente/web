@@ -1,16 +1,3 @@
-@font-face{
-	font-family: HelveticaNB;
-	src: url(../fonts/HelveticaNeueLTStd-Blk.otf);
-}
-@font-face{
-	font-family: HelveticaNH;
-	src: url(../fonts/HelveticaNeueLTStd-Hv.otf);
-}
-@font-face{
-	font-family: HelveticaNM;
-	src: url(../fonts/HelveticaNeueLTStd-Md.otf);
-}
-
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:700,400,400italic,300italic,300);
 html{
 	height: 100%;
@@ -20,7 +7,7 @@ body {
 	/* 50px is the height of the navbar - change this if the navbarn height changes */
 	
 	background-color:#f9f6f6;
-	font-family: "Open Sans", "HelveticaNM", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	font-family: "Open Sans", sans-serif;
 	height: 100%;
 }
 body{
