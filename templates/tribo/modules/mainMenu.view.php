@@ -6,10 +6,11 @@
 		<?php $active = array(); ?>
 		<?php $active[$url->app][$url->action] = "active"; ?>
 
-	  <li class="<?=$active["programas"];?>"><a href="<?=Url::site("programas");?>">PROGRAMAS</a></li>
-	  <li class="<?=$active["informativos"];?>"><a href="<?=Url::site("informativos");?>">INFORMATIVOS</a></li>
-	  <li class="<?=$active["tv-directo"];?>"><a href="<?=Url::site("tv-directo");?>">TV EN DIRECTO</a></li>
-	  <li class="<?=$active["tu-haces-tribo"];?>"><a href="<?=Url::site("tu-haces-tribo");?>">TÚ HACES TRIBO</a></li>
+	  <li class="<?=$active["programas"]["index"];?>"><a href="<?=Url::site("programas");?>">PROGRAMAS</a></li>
+	  <li class="<?=$active["informativos"]["index"];?>"><a href="<?=Url::site("informativos");?>">INFORMATIVOS</a></li>
+	  <li class="<?=$active["tvdirecto"]["index"];?>"><a href="<?=Url::site("tvdirecto");?>">TV EN DIRECTO</a></li>
+	  <li class="<?=$active["haztetriber"]["index"];?>"><a href="<?=Url::site("haztetriber");?>">HAZTE TRIBER</a></li>
+	  <li class="<?=$active["quienessomos"]["index"];?>"><a href="<?=Url::site("quienessomos");?>">QUIÉNES SOMOS</a></li>
 	</ul>
 </div>
 

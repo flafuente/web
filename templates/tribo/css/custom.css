@@ -70,7 +70,7 @@ outline: 0;
 	color: #464343;
 }
 nav div, h1, h2, h3, h4, h5, h6 {
-  font-family: "Open Sans", 'Pompiere';
+  font-family: "Open Sans";
   text-transform: uppercase;
 }
 
@@ -365,6 +365,11 @@ div.sq_content{
 	font-weight: 800;
 }
 
+
+/*HAZTE TRIBO*/
+.serie_info img{
+	width: 100%;
+}
 
 /* Debug Footer */
 .footerDebug .navbar{
