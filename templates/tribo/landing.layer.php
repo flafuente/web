@@ -153,6 +153,7 @@ function seeSquare($img, $title, $url, $likes){
 	?>
 	<div class='col-md-6 square'>
 		<img src="<?=Url::template("img/".$img)?>" title="<?php echo $title; ?>" />
+		<img class="arrow" src="<?=Url::template("img/arrow.png")?>" />
 		<div class="rating"><?=HTML::showRate($likes, 999, 10);?></div>
 		<div class="sq_content">
 			<div class="sq_title">

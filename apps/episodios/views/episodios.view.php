@@ -17,7 +17,7 @@
 	</div>
 	<div style="clear: both;"></div>
 	<div class='col-md-offset-6 col-md-6 epi_button'>
-		<a href="<?=Url::site("programa/n_programa");?>">site programa</a> <strong>|</strong> <a href="<?=Url::site("capitulos/n_programa");?>">todos los capitulos</a>
+		<a href="<?=Url::site("programas/n_programa");?>">site programa</a> <strong>|</strong> <a href="<?=Url::site("episodios/n_programa/all");?>">todos los capitulos</a>
 	</div>
 </div>
 
@@ -38,6 +38,7 @@ function seeEpisode($img, $title, $url, $likes, $description, $duration, $name){
 	?>
 	<div class='col-md-6 square'>
 		<img src="<?=Url::template("img/".$img)?>" title="<?php echo $title; ?>" />
+		<img class="arrow" src="<?=Url::template("img/arrow.png")?>" />
 		<div class="rating"><?=HTML::showRate($likes, 1000);?></div>
 		<div class="sq_content">
 			<div class="sq_title">

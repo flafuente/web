@@ -215,8 +215,19 @@ div.twitter div.tweets div.tweet div.nret {
 div.twitter i.fa.fa-twitter {
 	font-size: 23px;
 }
+
+/*Home*/
+.divprincipal{
+	padding-top: 20px;
+}
 .square img {
 	width: 100%;
+}
+.square img.arrow{
+	width: initial;
+	position: absolute;
+	bottom: 30px;
+	right: 30px;
 }
 .square{
 	margin-top: 20px;
@@ -315,7 +326,43 @@ div.sq_content{
 	margin: 1px;
 }
 .bullet-blue{
-	background-color: #12addf !important;
+	background-color: #17B5E9 !important;
+}
+
+/*Programas*/
+.title-line{
+	font-size: 17px;
+	text-transform: uppercase;
+	text-align: center;
+	background-image: url("../img/titbg.png");
+	background-repeat: repeat-x;
+	background-position: center center;
+	width: 95%;
+	margin: auto;
+}
+.title-line span{
+	background-color: #f9f6f6;
+	padding: 12px;
+	font-weight: bold;
+}
+.ver-todas-web{
+	color: #17B5E9;
+	text-align: right;
+	margin-top: 10px;
+}
+.ver-todas-web .circulo-azul{
+	background-color: #17B5E9;
+	color: #FFF;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	padding: 0px 7px 0px 0px;
+	float: right;
+	width: 24px;
+	height: 24px;
+	margin-top: -2px;
+	font-size: 19px;
+	font-weight: 800;
 }
 
 

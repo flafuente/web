@@ -65,7 +65,7 @@
 				<?=$controller->view("modules.mainMenu");?>
 			</div>
 			<div class='col-md-10 nopadding bor_lef'>
-				<div class='col-md-9 nopadding'>
+				<div class='col-md-9 nopadding divprincipal'>
 					<?=$content;?>
 				</div>
 				<div class='col-md-3 nopadding'>
