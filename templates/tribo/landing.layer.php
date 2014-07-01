@@ -61,15 +61,49 @@
 
 		<!--mainContainer-->
 		<div class="container main">
+
+			<?=$controller->view("modules.homeSlider");?>
+
+			<div class='col-md-12'>
+				<!--alerts-->
+				<?php $messages = Registry::getMessages(); ?>
+				<div id="mensajes-sys">
+				<?php if($messages){ ?>
+					<?php foreach($messages as $message){ ?>
+						<?php if($message->message){ ?>
+							<div class="alert alert-<?=$message->type?>">
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<?=$message->message?>
+							</div>
+						<?php } ?>
+					<?php } ?>
+				<?php } ?>
+				</div>
+				<!--/alerts-->
+
+				<!--content-->
+				
+				<!--/content-->
+
+	        </div>
 			<div class='col-md-2 nopadding' style="padding-right: 5px;">
 				<?=$controller->view("modules.mainMenu");?>
 			</div>
 			<div class='col-md-10 nopadding bor_lef'>
 				<div class='col-md-9 nopadding'>
-					<?=$content;?>
+					<?php
+					seeSquare("sq_deportes.jpg", "DEPORTES", "deportes", rand(10, 999));
+					seeSquare("sq_moda.jpg", "MODA", "moda", rand(10, 999));
+					seeSquare("sq_cocina.jpg", "COCINA", "cocina", rand(10, 999));
+					seeSquare("sq_musica.jpg", "MUSICA", "musica", rand(10, 999));
+					?>
 				</div>
 				<div class='col-md-3 nopadding'>
 					<?=$controller->view("modules.twitter");?>
+				</div>
+				<div class="separador"></div>
+				<div class='col-md-12 nopadding'>
+					<?=$controller->view("modules.bottomButtons");?>
 				</div>
 			</div>
 	    </div>
@@ -113,3 +147,24 @@
     	<?php } ?>
 	</body>
 </html>
+
+<?php
+function seeSquare($img, $title, $url, $num){
+	?>
+	<div class='col-md-6 square'>
+		<img src="<?=Url::template("img/".$img)?>" title="<?php echo $title; ?>" />
+		<div class="sq_content">
+			<div class="sq_title">
+				<a href="<?=Url::site($url);?>">
+				<?php echo $title; ?>
+				</a>
+			</div>
+			<div class="sq_num">
+				<?php echo $num; ?>
+				<i class="fa fa-heart-o"></i>
+			</div>
+		</div>
+	</div>
+	<?php
+}
+?>
