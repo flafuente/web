@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Trivo.tv - Administración</title>
+        <title>Tribo.tv - Administración</title>
         <!--css-->
         <!-- Bootstrap -->
         <link href="<?=Url::template("css/bootstrap.min.css");?>" media="screen" rel="stylesheet" type="text/css" />
