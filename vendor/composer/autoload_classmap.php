@@ -13,6 +13,7 @@ return array(
     'Controller' => $baseDir . '/system/classes/controller.class.php',
     'ControllerRouter' => $baseDir . '/system/classes/controllerrouter.class.php',
     'Database' => $baseDir . '/system/classes/database.class.php',
+    'HTML' => $baseDir . '/libs/html.php',
     'Helper' => $baseDir . '/system/classes/helper.class.php',
     'ImageUploaderException' => $baseDir . '/libs/bulletproof.php',
     'Language' => $baseDir . '/system/classes/language.class.php',

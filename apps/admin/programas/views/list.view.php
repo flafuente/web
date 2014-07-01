@@ -26,39 +26,18 @@ Toolbar::render();
         <div class="row filters">
             <!-- Search -->
             <div class="col-sm-3 col-xs-6 filter">
-                <div class="input-group">
-                    <input type="text" class="form-control" name="search" value="<?=Helper::sanitize($_REQUEST["search"]);?>">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="submit">Buscar</button>
-                    </span>
-                </div>
+                <?=HTML::search();?>
             </div>
             <?php if (count($categorias)) { ?>
                 <!-- Categoría -->
                 <div class="col-sm-3 col-xs-6 col-md-2 filter">
-                    <select class="form-control change-submit" name="categoriaId">
-                        <option value="0">Categoría</option>
-                        <?php $s = array();$s[$_REQUEST["estadoId"]] = "selected"; ?>
-                        <?php foreach ($categorias as $categoria) { ?>
-                            <option value="<?=$categoria->id?>" <?=$s[$categoria->id]?>>
-                                <?=Helper::sanitize($categoria->nombre);?>
-                            </option>
-                        <?php } ?>
-                    </select>
+                    <?=HTML::select("categoriaId", $categorias, $_REQUEST["categoriaId"], array("class" => "change-submit"), array("display" => "- Categoría -"), array("display" => "nombre")); ?>
                 </div>
             <?php } ?>
             <!-- Estado -->
             <div class="col-sm-3 col-xs-6 col-md-2 filter">
-                <select class="form-control change-submit" name="estadoId">
-                    <option value="-1">Estado</option>
-                    <?php $programaNull = new Programa(); ?>
-                    <?php $s = array();$s[$_REQUEST["estadoId"]] = "selected"; ?>
-                    <?php foreach ($programaNull->estados as $estadoId=>$estadoString) { ?>
-                        <option value="<?=$estadoId?>" <?=$s[$estadoId]?>>
-                            <?=Helper::sanitize($estadoString);?>
-                        </option>
-                    <?php } ?>
-                </select>
+                <?php $programaNull = new Programa(); ?>
+                <?=HTML::select("estadoId", $programaNull->estados, $_REQUEST["estadoId"], array("class" => "change-submit"), array("id" => "-1", "display" => "- Estado -")); ?>
             </div>
         </div>
         <!-- Results -->

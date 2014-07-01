@@ -92,15 +92,7 @@ Toolbar::render();
                                 Categoría
                             </label>
                             <div class="col-sm-8">
-                                <select class="form-control" name="categoriaId" id="categoriaId">
-                                    <?php $s = array(); ?>
-                                    <?php $s[$video->categoriaId] = "selected"; ?>
-                                    <?php foreach ($categorias as $categoria) { ?>
-                                        <option value="<?=$categoria->id?>" <?=$s[$categoria->id]?>>
-                                            <?=Helper::sanitize($categoria->nombre);?>
-                                        </option>
-                                    <?php } ?>
-                                </select>
+                                <?=HTML::select("categoriaId", $categorias, $video->categoriaId, null, null, array("display" => "nombre")); ?>
                             </div>
                         </div>
                     <?php } ?>
@@ -129,20 +121,8 @@ Toolbar::render();
                                 Tags
                             </label>
                             <div class="col-sm-8">
-                                <select class="form-control select2" multiple="true" name="tags[]" id="tags">
-                                    <?php $s = array(); ?>
-                                    <?php $currentTags = Tag::getTagsByVideoId($video->id); ?>
-                                    <?php if (Count($currentTags)) { ?>
-                                        <?php foreach ($currentTags as $tag) { ?>
-                                            <?php $s[$tag->id] = "selected"; ?>
-                                        <?php } ?>
-                                    <?php } ?>
-                                    <?php foreach ($tags as $tags) { ?>
-                                        <option value="<?=$tags->id?>" <?=$s[$tags->id]?>>
-                                            <?=$tags->nombre;?>
-                                        </option>
-                                    <?php } ?>
-                                </select>
+                                <?php $currentTags = Tag::getTagsByVideoId($video->id); ?>
+                                <?=HTML::select("tags[]", $tags, $currentTags, array("class" => "select2", "multiple" => "true")); ?>
                             </div>
                         </div>
                     <?php } ?>
@@ -154,12 +134,7 @@ Toolbar::render();
                             </label>
                             <div class="col-sm-8">
                                 <input type="hidden" name="file" id="filename" value="">
-                                <span class="btn btn-success fileinput-button">
-                                    <i class="glyphicon glyphicon-plus"></i>
-                                    <span>Examinar...</span>
-                                    <!-- The file input field used as target for the file upload widget -->
-                                    <input id="fileupload" type="file" name="files[]" accept="video/*">
-                                </span>
+                                <input id="fileupload" type="file" class="btn-primary btn" name="files[]" accept="video/*">
                                 <br>
                                 <br>
                                 <!-- The global progress bar -->

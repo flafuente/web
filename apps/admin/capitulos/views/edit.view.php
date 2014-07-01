@@ -93,15 +93,7 @@ Toolbar::render();
                                 Programa
                             </label>
                             <div class="col-sm-8">
-                                <select class="form-control" name="programaId" id="programaId">
-                                    <?php $s = array(); ?>
-                                    <?php $s[$capitulo->programaId] = "selected"; ?>
-                                    <?php foreach ($programas as $programa) { ?>
-                                        <option value="<?=$programa->id?>" <?=$s[$programa->id]?>>
-                                            <?=Helper::sanitize($programa->titulo);?>
-                                        </option>
-                                    <?php } ?>
-                                </select>
+                                <?=HTML::select("programaId", $programas, $capitulo->programaId, null, null, array("display" => "titulo")); ?>
                             </div>
                         </div>
                     <?php } ?>
@@ -112,15 +104,7 @@ Toolbar::render();
                                 Vídeo
                             </label>
                             <div class="col-sm-8">
-                                <select class="form-control" name="videoId" id="videoId">
-                                    <?php $s = array(); ?>
-                                    <?php $s[$capitulo->videoId] = "selected"; ?>
-                                    <?php foreach ($videos as $video) { ?>
-                                        <option value="<?=$video->id?>" <?=$s[$video->id]?>>
-                                            <?=Helper::sanitize($video->titulo);?>
-                                        </option>
-                                    <?php } ?>
-                                </select>
+                                <?=HTML::select("videoId", $videos, $capitulo->videoId, null, array("display" => "Ninguno"), array("display" => "titulo")); ?>
                             </div>
                         </div>
                     <?php } ?>

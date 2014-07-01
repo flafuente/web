@@ -26,25 +26,12 @@ Toolbar::render();
         <div class="row filters">
             <!-- Search -->
             <div class="col-sm-3 col-xs-6 filter">
-                <div class="input-group">
-                    <input type="text" class="form-control" name="search" value="<?=Helper::sanitize($_REQUEST["search"]);?>">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="submit">Buscar</button>
-                    </span>
-                </div>
+                <?=HTML::search();?>
             </div>
             <!-- Estado -->
             <div class="col-sm-3 col-xs-6 col-md-2 filter">
-                <select class="form-control change-submit" name="statusId">
-                    <option value="-1">Estado</option>
-                    <?php $userNull = new User(); ?>
-                    <?php $s = array();$s[$_REQUEST["statusId"]] = "selected"; ?>
-                    <?php foreach ($userNull->statuses as $statusId=>$estadoString) { ?>
-                        <option value="<?=$statusId?>" <?=$s[$statusId]?>>
-                            <?=Helper::sanitize($estadoString);?>
-                        </option>
-                    <?php } ?>
-                </select>
+                <?php $userNull = new User(); ?>
+                <?=HTML::select("statusId", $userNull->statuses, $_REQUEST["estadoId"], array("class" => "change-submit"), array("id" => "-1", "display" => "- Estado -")); ?>
             </div>
         </div>
         <!-- Results -->

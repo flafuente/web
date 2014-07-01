@@ -76,7 +76,7 @@ Toolbar::render();
                             </div>
                         </div>
                     <?php } ?>
-                    <!-- Estado -->
+             estadoId       <!-- Estado -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
                             Estado
@@ -93,15 +93,7 @@ Toolbar::render();
                                 Categoría
                             </label>
                             <div class="col-sm-8">
-                                <select class="form-control" name="categoriaId" id="categoriaId">
-                                    <?php $s = array(); ?>
-                                    <?php $s[$programa->categoriaId] = "selected"; ?>
-                                    <?php foreach ($categorias as $categoria) { ?>
-                                        <option value="<?=$categoria->id?>" <?=$s[$categoria->id]?>>
-                                            <?=Helper::sanitize($categoria->nombre);?>
-                                        </option>
-                                    <?php } ?>
-                                </select>
+                                <?=HTML::select("categoriaId", $categorias, $programa->categoriaId, null, null, array("display" => "nombre")); ?>
                             </div>
                         </div>
                     <?php } ?>

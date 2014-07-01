@@ -4,7 +4,7 @@
 
 <?php
 //Toolbar
-if ($categoria->id) {
+if ($user->id) {
     $subtitle = "Editar usuario";
     $title = "Guardar";
 } else {
@@ -12,7 +12,7 @@ if ($categoria->id) {
     $title = "Crear";
 }
 Toolbar::addTitle("Usuarios", "glyphicon-user", $subtitle);
-if ($categoria->id) {
+if ($user->id) {
     //Delete button
     Toolbar::addButton(
         array(
@@ -77,17 +77,7 @@ Toolbar::render();
                             Rol
                         </label>
                         <div class="col-sm-8">
-                            <select class="form-control" name="roleId" id="roleId">
-                                <?php $s = array(); ?>
-                                <?php $s[$user->roleId] = "selected"; ?>
-                                <?php foreach ($user->roles as $roleId=>$roleString) { ?>
-                                    <?php if ($currentUser->roleId>$roleId || $currentUser->roleId>=2) { ?>
-                                        <option value="<?=$roleId?>" <?=$s[$roleId]?>>
-                                            <?=$roleString;?>
-                                        </option>
-                                    <?php } ?>
-                                <?php } ?>
-                            </select>
+                            <?=HTML::select("roleId", $user->roles, $user->roleId, array("id" => "roleId")); ?>
                         </div>
                     </div>
                     <!-- Accesos -->
@@ -96,19 +86,8 @@ Toolbar::render();
                             Accesos
                         </label>
                         <div class="col-sm-8">
-                            <select class="form-control select2" name="permisos[]" id="permisos" multiple="true">
-                                <?php $s = array(); ?>
-                                <?php foreach ($user->secciones as $seccionId=>$seccionString) { ?>
-                                    <?php $permisos = $user->getCategoriasIds(); ?>
-                                    <?php $selected = ""; ?>
-                                    <?php if (@in_array($seccionId, $permisos)) { ?>
-                                        <?php $selected = "selected"; ?>
-                                    <?php } ?>
-                                    <option value="<?=$seccionId?>" <?=$selected?>>
-                                        <?=$seccionString;?>
-                                    </option>
-                                <?php } ?>
-                            </select>
+                            <?php $permisos = $user->getCategoriasIds(); ?>
+                            <?=HTML::select("permisos[]", $user->secciones, $permisos, array("class" => "select2", "multiple" => "true")); ?>
                         </div>
                     </div>
                     <!-- Categorías -->
@@ -118,19 +97,8 @@ Toolbar::render();
                                 Categoría
                             </label>
                             <div class="col-sm-8">
-                                <select class="form-control select2" name="categorias[]" id="categorias" multiple="true">
-                                    <?php $s = array(); ?>
-                                    <?php foreach ($categorias as $categoria) { ?>
-                                        <?php $categoriasUser = $user->getCategoriasIds(); ?>
-                                        <?php $selected = ""; ?>
-                                        <?php if (@in_array($categoria->id, $categoriasUser)) { ?>
-                                            <?php $selected = "selected"; ?>
-                                        <?php } ?>
-                                        <option value="<?=$categoria->id?>" <?=$selected?>>
-                                            <?=$categoria->nombre;?>
-                                        </option>
-                                    <?php } ?>
-                                </select>
+                                <?php $categoriasUser = $user->getCategoriasIds(); ?>
+                                <?=HTML::select("categorias[]", $categorias, $categoriasUser, array("class" => "select2", "multiple" => "true"), null, array("display" => "nombre")); ?>
                             </div>
                         </div>
                     <?php } ?>
@@ -246,7 +214,7 @@ Toolbar::render();
     $(document).ready(function () {
         roleChange();
     });
-    public function roleChange()
+    function roleChange()
     {
         $("#fieldCategoria").hide();
         if ($("#roleId").val()==3) {
