@@ -16,6 +16,9 @@ class parrillaController extends Controller
 
     public function index()
     {
+        //Programas
+        $this->setData("programas", Programa::select());
+        //Vista
         $html = $this->view("views.edit");
         $this->render($html);
     }

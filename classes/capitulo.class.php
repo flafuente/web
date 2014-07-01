@@ -123,6 +123,11 @@ class Capitulo extends Model
         parent::$reservedVarsChild = self::$reservedVarsChild;
     }
 
+    public function getFullNombre()
+    {
+        return $this->temporada."x".$this->episodio." - ".$this->titulo;
+    }
+
     /**
      * Devuelve la URL del Thumbnail.
      * @return string
@@ -158,8 +163,8 @@ class Capitulo extends Model
     {
         $config = Registry::getConfig();
         //Programa
-        if (!$this->programa) {
-            Registry::addMessage("Debes seleccionar un programa", "error", "programa");
+        if (!$this->programaId) {
+            Registry::addMessage("Debes seleccionar un programa", "error", "programaId");
         }
         //Titulo
         if (!$this->titulo) {
@@ -240,6 +245,11 @@ class Capitulo extends Model
         if ($data["search"]) {
             $query .= " AND `nombre` LIKE :nombre";
             $params[":nombre"] = "%".$data["search"]."%";
+        }
+        //Programa
+        if ($data["programaId"]) {
+            $query .= " AND `programaId`=:programaId";
+            $params[":programaId"] = $data["programaId"];
         }
         //Total
         $total = count($db->Query($query, $params));

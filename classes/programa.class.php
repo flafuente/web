@@ -228,7 +228,7 @@ class Programa extends Model
      * @param  int     $total      Total de filas encontradas (Paginación)
      * @return array   Modelos de la clase actual
      */
-    public function select($data=array(), $limit=0, $limitStart=0, &$total=null)
+    public static function select($data=array(), $limit=0, $limitStart=0, &$total=null)
     {
         $db = Registry::getDb();
         //Query
