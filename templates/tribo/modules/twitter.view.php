@@ -5,6 +5,18 @@
 		!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 	</script>
 	-->
+	<link href="<?=Url::template("js/scroll/jquery.mCustomScrollbar.css")?>" rel="stylesheet" />
+	<script src="<?=Url::template("js/scroll/jquery.mCustomScrollbar.concat.min.js")?>"></script>
+    <script>
+            $(window).load(function(){
+                $(".tweets").mCustomScrollbar({
+                    scrollButtons:{
+                        enable:true
+                    },
+                    theme:"dark"
+                });
+               });
+    </script>
 	<?php
 	include_once("templates/tribo/twitteroauth/twitteroauth.php"); //Path to twitteroauth library you downloaded in step 3
 	$twitteruser = "pepocivs"; //user name you want to reference

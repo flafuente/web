@@ -10,6 +10,8 @@
 	font-family: HelveticaNM;
 	src: url(../fonts/HelveticaNeueLTStd-Md.otf);
 }
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:700,400,400italic,300italic,300);
 html{
 	height: 100%;
 }
@@ -18,10 +20,12 @@ body {
 	/* 50px is the height of the navbar - change this if the navbarn height changes */
 	
 	background-color:#f9f6f6;
-	font-family: "HelveticaNM", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	font-family: "Open Sans", "HelveticaNM", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 	height: 100%;
 }
-
+body{
+	color: #464343;
+}
 /*TopMenu*/
 .topleft,.topright,.topmid{
 min-height:53px;
@@ -63,10 +67,10 @@ outline: 0;
 
 /*Main Menu*/
 .nav-pills li a{
-	color: #333;
+	color: #464343;
 }
 nav div, h1, h2, h3, h4, h5, h6 {
-  font-family: 'Pompiere';
+  font-family: "Open Sans", 'Pompiere';
   text-transform: uppercase;
 }
 
@@ -108,13 +112,13 @@ div.parrilla-cabecera h1 {
 	font-size: 17px;
 	font-weight: bold;
 	padding-top: 5px;
-	font-family: HelveticaNH;
+	/*font-family: HelveticaNH;*/
 }
 div.parrilla-cabecera h2 {
 	font-size: 12px;
 	text-align: right;
 	color: #FFF;
-	font-family: HelveticaNB;
+	/*font-family: HelveticaNB;*/
 	text-transform: initial;
 }
 div.parrilla-cabecera h2 .circulo {
@@ -123,12 +127,13 @@ div.parrilla-cabecera h2 .circulo {
 	-webkit-border-radius: 20px;
 	-moz-border-radius: 20px;
 	border-radius: 20px;
-	padding: 0px 6px 0px 0px;
+	padding: 0px 5px 0px 0px;
 	float: right;
 	width: 21px;
 	height: 21px;
 	margin-top: -5px;
-	font-size: 17px;
+	font-size: 21px;
+	font-weight: 800;
 }
 div.parrilla-contenido {
 	min-height: 40px;
@@ -136,6 +141,7 @@ div.parrilla-contenido {
 	/* border-top: black 2px solid; */
 	color: #17B5E9;
 	padding-bottom: 20px;
+	font-weight: bold;
 }
 .line {
 	border-bottom: 2px solid #CCC;
@@ -144,7 +150,7 @@ div.parrilla-contenido span.titulo {
 	font-size: 17px;
 }
 div.parrilla-contenido span.hora {
-	color: black;
+	color: #464343;
 	width: 100%;
 	float: left;
 	font-size: 17px;
@@ -191,6 +197,7 @@ div.twitter div.tweets div.tweet div.tiempo {
 div.twitter div.tweets div.tweet div.nombreuser {
 	font-size: 11px;
 	margin-left: 45px;
+	font-weight: bold;
 }
 div.twitter div.tweets div.tweet div.nombreuser a{
 	color: #555;
@@ -221,7 +228,7 @@ div.sq_num {
 	float: right;
 }
 div.sq_title a {
-	color: #333;
+	color: #464343;
 }
 div.sq_title {
 	float: left;
@@ -244,6 +251,54 @@ div.sq_content{
 	width: 98%;
 	margin-bottom: 30px;
 }
+
+
+/*Episodios*/
+.serie_info{
+
+}
+.serie_title{
+	font-size: 17px;
+	font-weight: 800;
+}
+.serie_when{
+	font-size: 15px;
+}
+.serie_description{
+	font-size: 12px;
+}
+.squaredesc {
+	padding-top: 20px;
+}
+.epi_button{
+	margin-top: 25px;
+	margin-bottom: 20px;
+	background-color: #9b9b9b;
+	color: white;
+	padding: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	text-align: center;
+}
+.epi_button a {
+	color: white;
+}
+.sqd_title {
+	color: #464343 !important;
+	font-size: 17px;
+}
+.sqd_description {
+	height: 120px;
+	overflow: auto;
+	font-size: 12px;
+}
+.sqd_info{
+	color: #CCC !important;
+	font-size: 17px;
+}
+
+
 
 /* Debug Footer */
 .footerDebug .navbar{
@@ -309,7 +364,7 @@ div.sq_content{
 	background-image: url("../img/home/humor_o.png");
 }
  .cir_desc{
- 	font-size: 7px;
+ 	font-size: 9px;
  }
  
  /* jssor slider navigator skin 03 css */

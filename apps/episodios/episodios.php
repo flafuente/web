@@ -7,7 +7,7 @@ class episodiosController extends Controller {
 	public function init(){}
 
 	public function index(){
-		$html = $this->view("views.secciones");
+		$html = $this->view("views.episodios");
 		$this->render($html);
 	}
 }
