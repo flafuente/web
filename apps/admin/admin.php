@@ -12,11 +12,11 @@ class adminControllerRouter extends Controller
         //Nos aseguramos de que es admin
         $user = Registry::getUser();
         if ($user->id) {
-            if ($user->roleId<3) {
-                redirect(Url::site());
+            if ($user->roleId<=USER_ROLE_VALIDADOR) {
+                Helper::redirect(Url::site());
             }
         } else {
-            redirect(Url::site("login"));
+            Helper::redirect(Url::site("login"));
         }
     }
 
@@ -24,11 +24,11 @@ class adminControllerRouter extends Controller
     {
         $user = Registry::getUser();
         if ($user->checkPermisos("usuarios")) {
-            redirect(Url::site("admin/users"));
+            Helper::redirect(Url::site("admin/users"));
         } elseif ($user->checkPermisos("cortos")) {
-            redirect(Url::site("admin/videos"));
+            Helper::redirect(Url::site("admin/videos"));
         } else {
-            redirect(Url::site());
+            Helper::redirect(Url::site());
         }
     }
 }

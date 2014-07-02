@@ -26,7 +26,7 @@ class loginController extends Controller {
 			$user->sendRecovery();
 			Registry::addMessage(Registry::translate("CTRL_LOGIN_RECOVERY_EMAIL_SENT"), "success");
 		}
-		redirect(Url::site());
+		Helper::redirect(Url::site());
 	}
 
 	public function restore(){
@@ -37,7 +37,7 @@ class loginController extends Controller {
 			$html = $this->view("views.restore");
 			$this->render($html);
 		}else{
-			redirect(Url::site());
+			Helper::redirect(Url::site());
 		}
 	}
 
@@ -54,7 +54,7 @@ class loginController extends Controller {
 		}else{
 			Registry::addMessage("Link de activación incorrecto", "error");
 		}
-		redirect(Url::site());
+		Helper::redirect(Url::site());
 	}
 
 	public function changePassword(){
@@ -92,7 +92,7 @@ class loginController extends Controller {
 	public function doLogout(){
 		$user = new User();
 		$user->logout();
-		redirect(Url::site());
+		Helper::redirect(Url::site());
 	}
 
 	public function register(){

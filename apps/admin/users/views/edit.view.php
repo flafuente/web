@@ -217,7 +217,7 @@ Toolbar::render();
     function roleChange()
     {
         $("#fieldCategoria").hide();
-        if ($("#roleId").val()==3) {
+        if ($("#roleId").val()==<?=USER_ROLE_VALIDADOR?> || $("#roleId").val()==<?=USER_ROLE_TRIBBER?>) {
             $("#fieldCategoria").show();
         }
     }

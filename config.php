@@ -28,6 +28,13 @@ $_config['dbUser'] = "tribotv_nano";
 $_config['dbPass'] = "LaTaronjaEsdeAlborayatet3";
 $_config['dbName'] = "tribotv_dev";
 
+//User Roles
+define("USER_ROLE_REGULAR", 	1);
+define("USER_ROLE_TRIBBER", 	2);
+define("USER_ROLE_COLABORADOR", 3);
+define("USER_ROLE_VALIDADOR", 	4);
+define("USER_ROLE_ADMIN", 		5);
+
 //Urls/Paths
 $_config['path'] = dirname(__FILE__);
 $_config['host'] = $_SERVER["SERVER_NAME"];

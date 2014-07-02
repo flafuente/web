@@ -10,7 +10,7 @@ class videosController extends Controller
         $url = Registry::getUrl();
         $user = Registry::getUser();
         if (!$user->checkPermisos($url->app)) {
-            redirect(Url::site());
+            Helper::redirect(Url::site());
         }
     }
 
@@ -26,7 +26,7 @@ class videosController extends Controller
             "order" => "nombre",
             "orderDir" => "ASC"
         );
-        if ($user->roleId==3) {
+        if ($user->roleId==USER_ROLE_VALIDADOR) {
             $categoriasIds = $user->getCategoriasIds();
             if (is_array($categoriasIds) && count($categoriasIds)) {
                 $selectVideos["categoriasIds"] = $categoriasIds;

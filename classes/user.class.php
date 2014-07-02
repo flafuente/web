@@ -129,8 +129,9 @@ class User extends Model
     public $roles = array(
         1 => "Regular",
         2 => "Tribber",
-        3 => "Validador",
-        4 => "Administrador"
+        3 => "Colaborador",
+        4 => "Validador",
+        5 => "Administrador"
     );
 
     /**

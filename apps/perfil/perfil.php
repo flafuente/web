@@ -7,7 +7,7 @@ class perfilController extends Controller {
 	public function init(){
 		$user = Registry::getUser();
 		if(!$user->id){
-			redirect(Url::site("login"));
+			Helper::redirect(Url::site("login"));
 		}
 	}
 

@@ -15,9 +15,13 @@ class homeController extends Controller {
 	public function index(){
 		$user = Registry::getUser();
 		if($user->id){
-			redirect(Url::site("home/home"));
+			Helper::redirect(Url::site("home/home"));
 		}else{
 			$this->render($html, "landing");
 		}
+	}
+
+	public function home(){
+		$this->render("");
 	}
 }

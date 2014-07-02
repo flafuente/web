@@ -7,7 +7,7 @@ class videosController extends Controller {
 	public function init(){
 		$user = Registry::getUser();
 		if(!$user->id){
-			redirect(Url::site("login"));
+			Helper::redirect(Url::site("login"));
 		}
 	}
 
@@ -54,7 +54,7 @@ class videosController extends Controller {
 			$html = $this->view("views.ver");
 			$this->render($html);
 		}else{
-			redirect(Url::site(), "Video incorrecto", "error");
+			Helper::redirect(Url::site(), "Video incorrecto", "error");
 		}
 	}
 
