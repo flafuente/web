@@ -121,8 +121,8 @@ Toolbar::render();
                                 Tags
                             </label>
                             <div class="col-sm-8">
-                                <?php $currentTags = Tag::getTagsByVideoId($video->id); ?>
-                                <?=HTML::select("tags[]", $tags, $currentTags, array("class" => "select2", "multiple" => "true")); ?>
+                                <?php $currentTags = Tag::getTagsIdsByVideoId($video->id); ?>
+                                <?=HTML::select("tags[]", $tags, $currentTags, array("class" => "select2", "multiple" => "true"), null, array("display" => "nombre")); ?>
                             </div>
                         </div>
                     <?php } ?>

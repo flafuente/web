@@ -13,6 +13,8 @@
         <link href="<?=Url::template("css/bootstrap-switch.min.css");?>" media="screen" rel="stylesheet" type="text/css" />
         <!-- Bootstrap Ladda Plugin -->
         <link href="<?=Url::template("css/ladda-themeless.min.css");?>" media="screen" rel="stylesheet" type="text/css" />
+        <!-- Bootstrap Color-Picker Plugin -->
+        <link href="<?=Url::template("css/bootstrap-colorpicker.min.css");?>" media="screen" rel="stylesheet" type="text/css" />
         <!-- Select2 Plugin -->
         <link href="<?=Url::template("css/select2.css");?>" media="screen" rel="stylesheet" type="text/css" />
         <link href="<?=Url::template("css/select2-bootstrap.css");?>" media="screen" rel="stylesheet" type="text/css" />
@@ -51,6 +53,8 @@
         <script src="<?=Url::template("js/jquery.iframe-transport.js");?>" type="text/javascript"></script>
         <!-- The basic File Upload plugin -->
         <script src="<?=Url::template("js/jquery.fileupload.js");?>" type="text/javascript"></script>
+        <!-- Bootstrap Color-Picker Plugin -->
+        <script src="<?=Url::template("js/bootstrap-colorpicker.min.js");?>" type="text/javascript"></script>
         <!-- Video JS -->
         <link href="<?=Url::template("assets/video-js/video-js.css");?>" rel="stylesheet">
         <script src="<?=Url::template("assets/video-js/video.js");?>"></script>

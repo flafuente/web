@@ -54,6 +54,7 @@ Toolbar::render();
                             <th><?=Helper::sortableLink("visitas", "Visitas");?></th>
                             <th><?=Helper::sortableLink("dateInsert", "Fecha creación");?></th>
                             <th><?=Helper::sortableLink("dateUpdate", "Fecha actualización");?></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -87,6 +88,10 @@ Toolbar::render();
                                 <td><?=$video->visitas;?></td>
                                 <td><?=Helper::humanDate($video->dateInsert);?></td>
                                 <td><?=Helper::humanDate($video->dateUpdate);?></td>
+                                <td>
+                                    <?=HTML::formLink("btn-xs btn-primary", "pencil", Url::site("admin/videos/edit/".$video->id)); ?>
+                                    <?=HTML::formLink("btn-xs btn-danger", "remove", Url::site("admin/videos/delete/".$video->id), null, null, "¿Deseas eliminar este vídeo?"); ?>
+                                </td>
                             </tr>
                         <?php } ?>
                     </tbody>

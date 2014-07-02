@@ -76,7 +76,7 @@ Toolbar::render();
                             </div>
                         </div>
                     <?php } ?>
-             estadoId       <!-- Estado -->
+                    <!-- Estado -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
                             Estado
@@ -97,6 +97,15 @@ Toolbar::render();
                             </div>
                         </div>
                     <?php } ?>
+                    <!-- Color -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            Color
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" id="color" name="color" class="form-control color-picker" value="<?=Helper::sanitize($programa->color);?>">
+                        </div>
+                    </div>
                     <!-- Título -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label">

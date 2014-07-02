@@ -127,7 +127,7 @@ $(document).on('change', '.change-submit', function(e){
 });
 
 //Toolbar
-$(document).on('click', '.toolbar button', function(e){
+$(document).on('click', '.formButton', function(e){
 	//Data
 	element = $(this);
 	app = element.attr("data-app"); 
@@ -137,18 +137,16 @@ $(document).on('click', '.toolbar button', function(e){
 	ajax = element.attr("data-ajax");
 	modalId = element.attr("data-modal"); 
 	noAjax = element.attr("data-noajax");
+	link = element.attr("data-link");
 	//Start
 	element.removeAttr("prevent-ladda");
+	//Requiere IDs
 	if(requireIds && $("#mainForm input:checkbox:checked").length<=0){
-		alert("You must select an element first");
+		alert("Debes seleccionar un elemento");
 		element.attr("prevent-ladda", "true");
 		return false;
 	}
-	if(!ajax){
-		$('#mainForm').removeClass("ajaxF");
-	}else{
-		$('#mainForm').addClass("ajaxF");
-	}
+	//Confirmation
 	if(confirmation){
 		if(!confirm(confirmation)){
 			element.removeClass("disabled");
@@ -157,6 +155,7 @@ $(document).on('click', '.toolbar button', function(e){
 			return false;
 		}
 	}
+	//Modal
 	if(modalId){
 		$("#" + modalId).on('shown.bs.modal', function (e) {
 			Ladda.stopAll();
@@ -164,6 +163,12 @@ $(document).on('click', '.toolbar button', function(e){
 		$("#" + modalId).modal('show');
 		return false;
 	}
+	//Link
+	if(link){
+		window.location.href = link;
+		return false;
+	}
+	//No action / non-ajax
 	if(!action || noAjax){
 		//Check router
 		var router = $('#mainForm input[name=router]').val();
@@ -173,6 +178,7 @@ $(document).on('click', '.toolbar button', function(e){
 		window.location.href = URL + app + "/" +  action;
 		return false;
 	}
+	//Disable element
 	if(element){
 		if(element.length){
 			if(element.hasClass("disabled")){
@@ -183,13 +189,23 @@ $(document).on('click', '.toolbar button', function(e){
 			}
 		}
 	}
+	//App
 	if(app){
 		$('#mainForm input[name=app]').val(app);
 	}
+	//Action
 	if(action){
 		$('#mainForm input[name=action]').val(action);
 	}
+	//Non-ajax
+	if(noAjax){
+		$('#mainForm').removeClass("ajax");
+	}else{
+		$('#mainForm').addClass("ajax");
+	}
+	//Submit
 	$('#mainForm').submit();
+	//Restore
 	if(ajax){
 		element.removeClass("disabled");
 		element.disabled = false;
@@ -208,6 +224,8 @@ $(document).ready(function(){
 	$(".select2").select2();
 	//Input files
 	$('input[type=file]').bootstrapFileInput();
+	//Color-picker
+	$('.color-picker').colorpicker();
 });
 
 //Check Alls

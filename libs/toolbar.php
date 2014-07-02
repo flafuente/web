@@ -3,7 +3,7 @@
 /**
  * Toolbar Class
  */
-class toolbar
+class Toolbar
 {
     /**
      * Current title
@@ -32,7 +32,7 @@ class toolbar
     }
 
     public static function render()
-    {
+    {   
         $title = self::$title;
         $buttons = self::$buttons;
         ?>
@@ -49,21 +49,17 @@ class toolbar
             <div class="tools">
                 <?php if (count($buttons)) { ?>
                     <?php foreach ($buttons as $button) { ?>
-                        <button
-                            data-style="slide-left"
-                            class="btn btn-small btn-<?=$button['class']?> ladda-button"
-                                <?php if ($button['id']) {?> id="<?=$button['id']?>" <?php } ?>
-                                <?php if ($button['app']) {?> data-app="<?=$button['app']?>" <?php } ?>
-                                <?php if ($button['action']) {?> data-action="<?=$button['action']?>" <?php } ?>
-                                <?php if ($button['requireIds']) {?> data-requireids="<?=$button['requireIds']?>" <?php } ?>
-                                <?php if ($button['confirmation']) {?> data-confirmation="<?=$button['confirmation']?>" <?php } ?>
-                                <?php if ($button['ajax']) {?> data-ajax="<?=$button['ajax']?>" <?php } ?>
-                                <?php if ($button['noAjax']) {?> data-noajax="<?=$button['noAjax']?>" <?php } ?>
-                                <?php if ($button['modal']) {?> data-modal="<?=$button['modal']?>" <?php } ?>
-                            >
-                            <span class="glyphicon glyphicon-<?=$button['spanClass']?>"></span>
-                            <?=$button['title']?>
-                        </button>
+                        <?=HTML::formButton("btn-".$button['class'], $button['spanClass'], $button['title'], array(
+                                "id" => $button['id'],
+                                "data-app" => $button['app'],
+                                "data-action" => $button['action'],
+                                "data-requireIds" => $button['requireIds'],
+                                "data-confirmation" => $button['confirmation'],
+                                "data-ajax" => $button['ajax'],
+                                "data-noAjax" => $button['noAjax'],
+                                "data-data-modal" => $button['modal'],
+                            )
+                        );?>
                     <?php } ?>
                 <?php } ?>
             </div>

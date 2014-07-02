@@ -5,6 +5,47 @@
  */
 class HTML
 {
+    public static function formButton($class = null, $spanClass = null, $display = null, $options = array()){
+        //Link
+        $html = "<button";
+
+        //Default Bootstrap Class
+        $options["class"] .= $class." btn ladda-button formButton";
+        //Default Ladda
+        $options["data-style"] = "slide-left";
+
+        //Atributes
+        foreach ((array) $options as $key => $value) {
+            $html .= " ".$key."='".Helper::sanitize($value)."'";
+        }
+
+        //Link
+        $html .= ">";
+
+        //Span
+        $html .= "<span class='glyphicon glyphicon-".Helper::sanitize($spanClass)."'></span>";
+
+        if(isset($display)){
+            $html .= Helper::sanitize($display);
+        }
+
+        //Link
+        $html .= "</button>";        
+
+        return $html;
+    }
+
+    public static function formLink($class = null, $spanClass = null, $href = null, $display = null, $options = array(), $confirmation = null){
+        //Href
+        $options["data-link"] = $href;
+        //Confirm
+        if(isset($confirmation)){
+            $options["data-confirmation"] = Helper::sanitize($confirmation);
+        }
+        //Form Button
+        return self::formButton($class, $spanClass, $display, $options);
+    }
+
     public static function search()
     {
         return '<div class="input-group">
@@ -18,9 +59,12 @@ class HTML
     public static function select($name, $list = array(), $selected = null, $options = array(), $firstOption = array(), $classOptions = array())
     {
         //Selected value
+        $selectedArray = array();
         if (is_array($selected)) {
-            foreach ($selected as $s) {
-                $selectedArray[$s] = "selected";
+            if(!empty($selected)){
+                foreach ($selected as $s) {
+                    $selectedArray[$s] = "selected";
+                }
             }
         } else {
             $selectedArray[$selected] = "selected";

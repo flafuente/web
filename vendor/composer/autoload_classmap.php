@@ -28,7 +28,7 @@ return array(
     'SqlFormatter' => $vendorDir . '/jdorn/sql-formatter/lib/SqlFormatter.php',
     'Tag' => $baseDir . '/classes/tag.class.php',
     'Template' => $baseDir . '/system/classes/template.class.php',
-    'Toolbar' => $baseDir . '/system/classes/toolbar.class.php',
+    'Toolbar' => $baseDir . '/libs/toolbar.php',
     'UploadHandler' => $baseDir . '/libs/uploadHandler.php',
     'Url' => $baseDir . '/system/classes/url.class.php',
     'User' => $baseDir . '/classes/user.class.php',
@@ -37,5 +37,4 @@ return array(
     'VideoTag' => $baseDir . '/classes/videotag.class.php',
     'VideoVisita' => $baseDir . '/classes/videovisita.class.php',
     'phpmailerException' => $vendorDir . '/phpmailer/phpmailer/class.phpmailer.php',
-    'toolbar' => $baseDir . '/libs/toolbar.php',
 );

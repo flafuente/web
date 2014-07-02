@@ -37,6 +37,11 @@ class Programa extends Model
      */
     public $thumbnail;
     /**
+     * Color
+     * @var string
+     */
+    public $color;
+    /**
      * Título
      * @var string
      */
