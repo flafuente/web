@@ -38,6 +38,7 @@ Toolbar::render();
                             <th><?=Helper::sortableLink("nombre", "Nombre");?></th>
                             <th><?=Helper::sortableLink("dateInsert", "Fecha creación");?></th>
                             <th><?=Helper::sortableLink("dateUpdate", "Fecha actualización");?></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,6 +52,10 @@ Toolbar::render();
                                 </td>
                                 <td><?=Helper::humanDate($categoria->dateInsert);?></td>
                                 <td><?=Helper::humanDate($categoria->dateUpdate);?></td>
+                                <td>
+                                    <?=HTML::formLink("btn-xs btn-primary", "pencil", Url::site("admin/categorias/edit/".$categoria->id)); ?>
+                                    <?=HTML::formLink("btn-xs btn-danger", "remove", Url::site("admin/categorias/delete/".$categoria->id), null, null, "¿Deseas eliminar esta categoría?"); ?>
+                                </td>
                             </tr>
                         <?php } ?>
                     </tbody>

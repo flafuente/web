@@ -38,19 +38,24 @@ Toolbar::render();
                             <th><?=Helper::sortableLink("nombre", "Nombre");?></th>
                             <th><?=Helper::sortableLink("dateInsert", "Fecha creación");?></th>
                             <th><?=Helper::sortableLink("dateUpdate", "Fecha actualización");?></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($results as $tags) { ?>
+                        <?php foreach ($results as $tag) { ?>
                             <tr>
-                                <td><?=$tags->id;?></a></td>
+                                <td><?=$tag->id;?></a></td>
                                 <td>
-                                    <a href="<?=Url::site("admin/tags/edit/".$tags->id);?>">
-                                        <?=Helper::sanitize($tags->nombre);?>
+                                    <a href="<?=Url::site("admin/tags/edit/".$tag->id);?>">
+                                        <?=Helper::sanitize($tag->nombre);?>
                                     </a>
                                 </td>
-                                <td><?=Helper::humanDate($tags->dateInsert);?></td>
-                                <td><?=Helper::humanDate($tags->dateUpdate);?></td>
+                                <td><?=Helper::humanDate($tag->dateInsert);?></td>
+                                <td><?=Helper::humanDate($tag->dateUpdate);?></td>
+                                <td>
+                                    <?=HTML::formLink("btn-xs btn-primary", "pencil", Url::site("admin/tags/edit/".$tag->id)); ?>
+                                    <?=HTML::formLink("btn-xs btn-danger", "remove", Url::site("admin/tags/delete/".$tag->id), null, null, "¿Deseas eliminar este Tag?"); ?>
+                                </td>
                             </tr>
                         <?php } ?>
                     </tbody>

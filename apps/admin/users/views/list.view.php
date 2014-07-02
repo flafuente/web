@@ -48,6 +48,7 @@ Toolbar::render();
                             <th><?=Helper::sortableLink("apellidos", "Apellidos");?></th>
                             <th><?=Helper::sortableLink("dateInsert", "Fecha creación");?></th>
                             <th><?=Helper::sortableLink("dateUpdate", "Fecha actualización");?></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -69,6 +70,10 @@ Toolbar::render();
                                 <td><?=$user->apellidos;?></td>
                                 <td><?=Helper::humanDate($user->dateInsert);?></td>
                                 <td><?=Helper::humanDate($user->dateUpdate);?></td>
+                                <td>
+                                    <?=HTML::formLink("btn-xs btn-primary", "pencil", Url::site("admin/users/edit/".$user->id)); ?>
+                                    <?=HTML::formLink("btn-xs btn-danger", "remove", Url::site("admin/users/delete/".$user->id), null, null, "¿Deseas eliminar este usuario?"); ?>
+                                </td>
                             </tr>
                         <?php } ?>
                     </tbody>

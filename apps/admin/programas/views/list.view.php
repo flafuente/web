@@ -52,6 +52,7 @@ Toolbar::render();
                             <th><?=Helper::sortableLink("titulo", "Título");?></th>
                             <th><?=Helper::sortableLink("dateInsert", "Fecha creación");?></th>
                             <th><?=Helper::sortableLink("dateUpdate", "Fecha actualización");?></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -78,6 +79,10 @@ Toolbar::render();
                                 </td>
                                 <td><?=Helper::humanDate($programa->dateInsert);?></td>
                                 <td><?=Helper::humanDate($programa->dateUpdate);?></td>
+                                <td>
+                                    <?=HTML::formLink("btn-xs btn-primary", "pencil", Url::site("admin/programas/edit/".$programa->id)); ?>
+                                    <?=HTML::formLink("btn-xs btn-danger", "remove", Url::site("admin/programas/delete/".$programa->id), null, null, "¿Deseas eliminar este programa?"); ?>
+                                </td>
                             </tr>
                         <?php } ?>
                     </tbody>

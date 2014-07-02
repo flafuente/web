@@ -43,6 +43,7 @@ Toolbar::render();
                             <th><?=Helper::sortableLink("fechaEmision", "Fecha emisión");?></th>
                             <th><?=Helper::sortableLink("dateInsert", "Fecha creación");?></th>
                             <th><?=Helper::sortableLink("dateUpdate", "Fecha actualización");?></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -72,6 +73,10 @@ Toolbar::render();
                                 <td><?=Helper::humanDate($capitulo->fechaEmision);?></td>
                                 <td><?=Helper::humanDate($capitulo->dateInsert);?></td>
                                 <td><?=Helper::humanDate($capitulo->dateUpdate);?></td>
+                                <td>
+                                    <?=HTML::formLink("btn-xs btn-primary", "pencil", Url::site("admin/capitulos/edit/".$capitulo->id)); ?>
+                                    <?=HTML::formLink("btn-xs btn-danger", "remove", Url::site("admin/capitulos/delete/".$capitulo->id), null, null, "¿Deseas eliminar este capítulo?"); ?>
+                                </td>
                             </tr>
                         <?php } ?>
                     </tbody>
