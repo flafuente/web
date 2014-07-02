@@ -71,6 +71,17 @@
 				<div class='col-md-3 nopadding'>
 					<?=$controller->view("modules.twitter");?>
 				</div>
+				<?php
+				$pag = explode("/", $_SERVER["REQUEST_URI"]);
+				$pag = $pag[count($pag)-1];
+				if($pag == "haztetriber"){
+				?>
+				<div class='col-md-12 nopadding'>
+					<?=$controller->view("views.haztetriberBottom");?>
+				</div>
+				<?php
+				}
+				?>
 			</div>
 	    </div>
 		<?=$controller->view("modules.Footer");?>

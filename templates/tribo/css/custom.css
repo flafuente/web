@@ -9,8 +9,6 @@ body {
 	background-color:#f9f6f6;
 	font-family: "Open Sans", sans-serif;
 	height: 100%;
-}
-body{
 	color: #464343;
 }
 /*TopMenu*/
@@ -262,7 +260,7 @@ div.sq_content{
 .serie_when{
 	font-size: 15px;
 }
-.serie_description{
+.serie_description, .haztetriber_description, .haztetriber_contacta {
 	font-size: 12px;
 }
 .squaredesc {
@@ -353,9 +351,59 @@ div.sq_content{
 }
 
 
-/*HAZTE TRIBO*/
+/*HAZTE TRIBER*/
 .serie_info img{
 	width: 100%;
+}
+.haztetriber_title{
+	font-size: 19px;
+	font-weight: 800;
+}
+.control-label img{
+	width: initial;
+	margin-top: -4px;
+}
+.l-left{
+	text-align: left !important;
+}
+.l-right{
+	text-align: right !important;
+}
+.yareg{
+	color: #9b9b9b;
+	font-size: 12px;
+}
+.haztetriber_contacta a{
+	color: #464343;
+	font-weight: bold;
+}
+label {
+	font-weight: normal !important;
+}
+.well {
+	background-color: #efecec !important;
+	border-radius: 2px !important;
+}
+.form-control {
+	border-radius: 2px !important;
+}
+.btn-tribo-blue {
+	color: #fff;
+	background-color: #13b6ea;
+	border-color: #94d6eb;
+}
+.btn-tribo-grey {
+	color: #fff;
+	background-color: #9b9b9b;
+	border-color: #9b9b9b;
+}
+.btn {
+	border-radius: 2px !important;
+	font-family: "Open Sans" !important;
+}
+.btn:hover, .btn:focus {
+	color: #FFF !important;
+	text-decoration: none;
 }
 
 /* Debug Footer */
