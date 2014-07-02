@@ -22,6 +22,6 @@ class homeController extends Controller {
 	}
 
 	public function home(){
-		$this->render("");
+		$this->render();
 	}
 }

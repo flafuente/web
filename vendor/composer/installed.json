@@ -173,19 +173,19 @@
         "source": {
             "type": "git",
             "url": "https://github.com/arall/LightFramework-core.git",
-            "reference": "c865fd69e85d30fcfe240430ef7b4a4ca6e4e906"
+            "reference": "9ef3c07107d59e14ebe85e1aeb550f55859d3dc7"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/arall/LightFramework-core/zipball/c865fd69e85d30fcfe240430ef7b4a4ca6e4e906",
-            "reference": "c865fd69e85d30fcfe240430ef7b4a4ca6e4e906",
+            "url": "https://api.github.com/repos/arall/LightFramework-core/zipball/9ef3c07107d59e14ebe85e1aeb550f55859d3dc7",
+            "reference": "9ef3c07107d59e14ebe85e1aeb550f55859d3dc7",
             "shasum": ""
         },
         "require": {
             "jdorn/sql-formatter": "1.3.*@dev",
             "phpmailer/phpmailer": "dev-master"
         },
-        "time": "2014-07-02 18:23:08",
+        "time": "2014-07-02 18:41:49",
         "type": "library",
         "installation-source": "source",
         "autoload": {
