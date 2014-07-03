@@ -16,6 +16,7 @@ body {
 min-height:53px;
 padding:0px;
 }
+
 .lsep{
 
 }
@@ -72,15 +73,25 @@ nav div, h1, h2, h3, h4, h5, h6 {
 .nav li:last-child {
   margin-bottom: 10px;
 }
-
+li.active a {
+	color: #9b9b9b !important;
+}
+.nav>li>a:hover, .nav>li>a:focus {
+	text-decoration: none;
+	color: #9b9b9b;
+	background: none !important;
+}
+.nav-pills>li.active>a:hover {
+	background-color: #f9f6f6 !important;
+	color: #000;
+}
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus {
   color: #000;
-  background-color: transparent;
+  background-color: none !important;
 }
-
-.nav-pills>li.active>a:hover {
-  background-color: #eee;
-  color: #000;
+.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
+color: #000;
+background-color: none !important;
 }
 
 /*Parrilla*/
@@ -418,7 +429,7 @@ label {
 	background-color: #faf6f6;
 	color: #37353a;
 	float: right;
-	z-index: 151;
+	z-index: 999999;
 	border: 1px solid #CCC;
 	border-top: 4px solid #13b6ea;
 	padding: 10px;
