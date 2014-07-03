@@ -110,6 +110,50 @@
         "description": "PHPMailer is a full-featured email creation and transfer class for PHP"
     },
     {
+        "name": "light-framework/core",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/arall/LightFramework-core.git",
+            "reference": "9ef3c07107d59e14ebe85e1aeb550f55859d3dc7"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/arall/LightFramework-core/zipball/9ef3c07107d59e14ebe85e1aeb550f55859d3dc7",
+            "reference": "9ef3c07107d59e14ebe85e1aeb550f55859d3dc7",
+            "shasum": ""
+        },
+        "require": {
+            "jdorn/sql-formatter": "1.3.*@dev",
+            "phpmailer/phpmailer": "dev-master"
+        },
+        "time": "2014-07-02 18:41:49",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "classmap": [
+                "src/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Gerard Arall",
+                "email": "gerard.arall@gmail.com"
+            }
+        ],
+        "description": "LightFramework Core.",
+        "homepage": "https://github.com/arall/LightFramework-core",
+        "keywords": [
+            "framework",
+            "highlight"
+        ]
+    },
+    {
         "name": "faisalman/simple-excel-php",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -164,50 +208,6 @@
             "tsv",
             "writer",
             "xml"
-        ]
-    },
-    {
-        "name": "light-framework/core",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/arall/LightFramework-core.git",
-            "reference": "9ef3c07107d59e14ebe85e1aeb550f55859d3dc7"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/arall/LightFramework-core/zipball/9ef3c07107d59e14ebe85e1aeb550f55859d3dc7",
-            "reference": "9ef3c07107d59e14ebe85e1aeb550f55859d3dc7",
-            "shasum": ""
-        },
-        "require": {
-            "jdorn/sql-formatter": "1.3.*@dev",
-            "phpmailer/phpmailer": "dev-master"
-        },
-        "time": "2014-07-02 18:41:49",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "classmap": [
-                "src/"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Gerard Arall",
-                "email": "gerard.arall@gmail.com"
-            }
-        ],
-        "description": "LightFramework Core.",
-        "homepage": "https://github.com/arall/LightFramework-core",
-        "keywords": [
-            "framework",
-            "highlight"
         ]
     }
 ]
