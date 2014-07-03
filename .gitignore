@@ -2,4 +2,3 @@ files/videos/*
 !files/.htaccess
 files/images/programas/*
 files/tmp/*
-composer.lock

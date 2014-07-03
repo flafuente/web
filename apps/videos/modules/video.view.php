@@ -10,6 +10,6 @@
     <div>
         <span class="th_titulo"><?=Helper::sanitize($video->titulo)?></span>
         <br />
-        <span class="th_hace">De <strong><?=Helper::sanitize($author->nombre)?></strong> hace <?=Helper::relativeDate($video->dateInsert);?></span>
+        <span class="th_hace">De <strong><?=Helper::sanitize($author->nombre)?></strong> hace <?=HTML::relativeDate($video->dateInsert);?></span>
     </div>
 </div>

@@ -5,6 +5,11 @@
  */
 class HTML
 {
+    
+    public function relativeDate(){
+        
+    }
+    
     public static function formButton($class = null, $spanClass = null, $display = null, $options = array()){
         //Link
         $html = "<button";
