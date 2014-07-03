@@ -53,8 +53,8 @@
 		<!--/javascript-->
 		<link rel="shortcut icon" href="<?=Url::template("img/favicon.png")?>">
 	</head>
-	<body class="">
-
+	<body class="body">
+		<div class="mask" style="display: none;"></div>
 		<!-- Module topMenu -->
 		<?=$controller->view("modules.topMenu");?>
 		<!--/Module topMenu-->
