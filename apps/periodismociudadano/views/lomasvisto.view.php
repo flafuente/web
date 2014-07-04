@@ -34,7 +34,7 @@ function showMasVisto($titulo, $img, $donde, $reproducciones, $autor, $fecha){
 			</div>
 			<div class='col-md-12 nopadding'><div class="mv-titulo"><?= $titulo; ?></div></div>
 			<div class='col-md-12 nopadding'><div class="mv-donde"><?= $donde; ?></div><div class="mv-reproducciones"> | <?= number_format($reproducciones, 0, ",", "."); ?> reproducciones</div></div>
-			<div class='col-md-12 nopadding'><div class="mv-autor"><span>por</span> <?= $autor; ?></div><div class="mv-fecha"> | <?= date("d/m/Y", strtotime($fecha)); ?> </span>a las</span> <?= date("H:i", strtotime($fecha)); ?></div></div>
+			<div class='col-md-12 nopadding'><div class="mv-autor"><span>por</span> <?= $autor; ?></div><div class="mv-fecha"> | <?= date("d/m/Y", strtotime($fecha)); ?> <span>a las</span> <?= date("H:i", strtotime($fecha)); ?></div></div>
 			<div style="clear: both;"></div>
 		</div>
 	</div>
