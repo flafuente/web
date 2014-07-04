@@ -503,6 +503,43 @@ label {
 	top: 0px;
 }
 
+/*VIDEO*/
+.video{
+	min-height: 350px;
+	background-color: #333;
+}
+.video-info{
+	background-color: #FFF;
+}
+.vd-ruta, .vd-codigo, .vd-capitulo, .vd-attr, .vd-temporada, .video-desc{
+	float: left;
+}
+.vd-ruta{
+	margin-top: 10px;
+	font-size: 12px;
+}
+.vd-codigo{
+	font-size: 17px;
+}
+.vd-capitulo{
+	font-weight: bold;
+	font-size: 17px;
+}
+.vd-attr{
+	color: #9b9b9b;
+	font-size: 12px;
+}
+.vd-temporada{
+	color: #13b6ea;
+	font-size: 12px;
+	font-weight: bold;
+}
+.video-desc{
+	margin-top: 10px;
+}
+
+
+
 
 /* Debug Footer */
 .footerDebug .navbar{

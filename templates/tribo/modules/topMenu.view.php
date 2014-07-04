@@ -34,7 +34,7 @@
 						<div style="clear: both;"></div>
 						<br />
 						<form class="l_form" action="" method="POST"> 
-							<div class="col-md-12"><input class="form-control" type="text" name="name" placeholder="Nombre" value="" /></div>
+							<div class="col-md-12"><input class="form-control" type="text" name="search" placeholder="Buscar..." value="" /></div>
 							<div class="forgot col-md-8"></div>
 							<div class="col-md-4 l-right"><button type="submit" class="btn btn-tribo-blue ladda-button">Buscar</button></div>
 							<div style="clear: both;"></div>
