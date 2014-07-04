@@ -65,6 +65,12 @@ nav div, h1, h2, h3, h4, h5, h6 {
   margin-top: 12px;
   font-size: 15px;
   text-transform: uppercase;
+	letter-spacing: -1px;
+	font-size: 14px;
+}
+.nav>li>a {
+  padding: 10px 0px 10px 0px;
+
 }
 
 .nav li a {
@@ -75,11 +81,11 @@ nav div, h1, h2, h3, h4, h5, h6 {
   margin-bottom: 10px;
 }
 li.active > a {
-	color: #9b9b9b !important;
+	color: #17B5E9 !important;
 }
 .nav>li>a:hover, .nav>li>a:focus {
 	text-decoration: none;
-	color: #9b9b9b;
+	color: #17B5E9;
 	background: none !important;
 }
 .nav-pills>li.active>a:hover {
@@ -91,8 +97,8 @@ li.active > a {
   background-color: none !important;
 }
 .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
-color: #000;
-background-color: none !important;
+	color: #000;
+	background-color: none !important;
 }
 
 /*Menu Dropdown*/
@@ -380,8 +386,8 @@ div.sq_content{
 }
 .title-line span{
 	background-color: #f9f6f6;
-	padding: 12px;
 	font-weight: bold;
+	padding: 0px 12px 0px 12px;
 }
 .ver-todas-web{
 	color: #17B5E9;
@@ -403,6 +409,67 @@ div.sq_content{
 	font-weight: 800;
 }
 
+/*Periodismo Ciudadano*/
+.video-info .title-line, .lomasvisto .title-line{
+	background-image: url("../img/titbgw.png");
+}
+.video-info .title-line span, .lomasvisto .title-line span{
+	background-color: #FFF;
+}
+#gmap_canvas img{
+	max-width:none!important;
+	background:none!important;
+	width:100%;
+}
+.lomasvisto{
+	margin-top: 20px;
+	padding-top: 10px;
+	background-color: #FFF;
+
+}
+.lomasvisto .title-line{
+	font-size: 11px;
+	margin-top: 5px;
+}
+.mv-sqare, .mv-more{
+	border-top: 1px solid #9b9b9b;
+	padding-top: 15px;
+	margin-top: 15px;
+}
+.mv-more{
+	background-image: url("../img/arrdown.png");
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 50px;
+	cursor: pointer;
+}
+
+.mv-titulo{
+	font-size: 12px;
+	font-weight: bold;
+}
+.mv-donde, .mv-autor, .mv-reproducciones, .mv-fecha{
+	float: left;
+	font-size: 10px;
+}
+.mv-donde{
+	color: #17B5E9;
+}
+.mv-autor span, .mv-fecha span{
+	color: #9b9b9b;
+}
+.mv-sqare .cropimg{
+	height: 100px;
+}
+
+/*General Cropping*/
+.cropimg{
+	width: 100%;
+	overflow: hidden;
+}
+.cropimg img{
+	width: 100%;
+}
 
 /*HAZTE TRIBER*/
 .serie_info img{
@@ -442,7 +509,7 @@ label {
 }
 .btn-tribo-blue {
 	color: #fff;
-	background-color: #13b6ea;
+	background-color: #17B5E9;
 	border-color: #94d6eb;
 }
 .btn-tribo-grey {
@@ -473,7 +540,7 @@ label {
 	float: right;
 	z-index: 999999;
 	border: 1px solid #CCC;
-	border-top: 4px solid #13b6ea;
+	border-top: 4px solid #17B5E9;
 	padding: 10px;
 }
 .contact_form {
@@ -530,7 +597,7 @@ label {
 	font-size: 12px;
 }
 .vd-temporada{
-	color: #13b6ea;
+	color: #17B5E9;
 	font-size: 12px;
 	font-weight: bold;
 }

@@ -18,8 +18,8 @@
 	  		
 	  	</ul>
 	  </li>
-	  <li class="<?=$active["informativos"]["index"];?>">
-	  	<a href="<?=Url::site("informativos");?>">INFORMATIVOS</a>
+	  <li class="<?=$active["periodismociudadano"]["index"];?>">
+	  	<a href="<?=Url::site("periodismociudadano");?>">PERIODISMO CIUDADANO</a>
 	  </li>
 	  <li class="<?=$active["tvdirecto"]["index"];?>">
 	  	<a href="<?=Url::site("tvdirecto");?>">TV EN DIRECTO</a>
