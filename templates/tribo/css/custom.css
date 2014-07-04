@@ -10,6 +10,7 @@ body {
 	font-family: "Open Sans", sans-serif;
 	height: 100%;
 	color: #464343;
+	/*letter-spacing: -1px;*/
 }
 /*TopMenu*/
 .topleft,.topright,.topmid{
@@ -73,7 +74,7 @@ nav div, h1, h2, h3, h4, h5, h6 {
 .nav li:last-child {
   margin-bottom: 10px;
 }
-li.active a {
+li.active > a {
 	color: #9b9b9b !important;
 }
 .nav>li>a:hover, .nav>li>a:focus {
@@ -93,6 +94,41 @@ li.active a {
 color: #000;
 background-color: none !important;
 }
+
+/*Menu Dropdown*/
+.submenu{
+	position: absolute;
+	background-color: #FFF;
+	left: 140px;
+	top: 0px;
+	z-index: 99999;
+	width: 380px;
+	box-shadow: 10px 10px 5px #888888;
+	box-shadow: 0px 0px 7px 0px #888888;
+	padding: 10px;
+}
+.submenu li{
+	list-style:none;
+	float: left;
+	padding: 10px 0px 10px 40px;
+	text-transform: normal;
+}
+.submenu li:hover, .submenu li:hover a{
+	background-color: #e40d7e !important;
+	color: #FFF !important;
+
+}
+.triangle{
+	width: 0;
+	height: 0;
+	border: 10px solid transparent;
+	border-right: 10px solid #FFF;
+	float: left;
+	position: absolute;
+	top: 10px;
+	left: -20px;
+}
+
 
 /*Parrilla*/
 div.parrilla {
@@ -161,6 +197,12 @@ a.sintonizanos {
 	border-color: #ccc;
 	font-size: 13px;
 	height: 50px;
+}
+a.betriber {
+	font-weight: 800;
+	font-size: 26px;
+	padding-top: 5px;
+	letter-spacing: -1px;
 }
 
 /*Twitter widget*/
@@ -418,7 +460,7 @@ label {
 }
 
 /*Menu LOGIN*/
-.login_form {
+.login_form, .contact_form, .search_form {
 	position: absolute;
 	top: 100%;
 	margin-top: -25px;
@@ -434,18 +476,15 @@ label {
 	border-top: 4px solid #13b6ea;
 	padding: 10px;
 }
-.triangle{
-	width: 0;
-	height: 0;
-	border: 10px solid transparent;
-	border-left: 10px solid #e9e9e9;
-	border-bottom: 10px solid #e9e9e9;
-	float: left;
-	position: absolute;
-	top: -20px;
-	left: 30px;
+.contact_form {
+	left: 60px;
+	height: 290px;
 }
-.login_form h1{
+.search_form {
+	left: 30px;
+	height: 250px;
+}
+.login_form h1, .contact_form h1, .search_form h1{
 	font-size: 17px;
 	margin-top: -2px;
 	font-weight: bold;
