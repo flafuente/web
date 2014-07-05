@@ -146,4 +146,6 @@ $(document).on('click', '.delete', function(e){
 $(document).ready(function(){
 	//Select2
 	$(".select2").select2();
+	//Input files
+	$('input[type=file]').bootstrapFileInput();
 });

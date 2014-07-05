@@ -152,7 +152,7 @@ class Video extends Model
         }
         //Publicado?
         if ($this->estadoId==1 && !$this->videoArchivoId) {
-            Registry::addMessage("No puedes publicar un vídeo si no contiene archivos verificados", "error", "estadoId");
+            Registry::addMessage("No puedes publicar un vídeo si no contiene archivos verificados", "error");
         }
 
         return Registry::getMessages(true);
@@ -188,7 +188,7 @@ class Video extends Model
 
     /**
      * Añade y quita las tags al vídeo
-     * @param  array  $tagsIds Id's de las Tags a añadir
+     * @param  array $tagsIds Id's de las Tags a añadir
      * @return void
      */
     public function syncTags($tagsIds = array())
@@ -242,7 +242,7 @@ class Video extends Model
         }
         //Publicado?
         if ($this->estadoId==1 && !$this->videoArchivoId) {
-            Registry::addMessage("No puedes publicar un vídeo si no contiene archivos verificados", "error", "estadoId");
+            Registry::addMessage("No puedes publicar un vídeo si no contiene archivos verificados", "error");
         }
 
         return Registry::getMessages(true);
@@ -270,7 +270,7 @@ class Video extends Model
     /**
      * Devuelve los vídeos más vistos esta semana.
      * @param  integer $limit Límite
-     * @return array Objetoś vídeo
+     * @return array   Objetoś vídeo
      */
     public function getRankingSemanal($limit=5)
     {
@@ -288,11 +288,11 @@ class Video extends Model
 
     /**
      * Obtiene registros de la base de datos.
-     * @param  array    $data           Condicionales / ordenación
-     * @param  integer  $limit          Límite de resultados (Paginación)
-     * @param  integer  $limitStart     Inicio de la limitación (Paginación)
-     * @param  int      $total          Total de filas encontradas (Paginación)
-     * @return array                    Modelos de la clase actual
+     * @param  array   $data       Condicionales / ordenación
+     * @param  integer $limit      Límite de resultados (Paginación)
+     * @param  integer $limitStart Inicio de la limitación (Paginación)
+     * @param  int     $total      Total de filas encontradas (Paginación)
+     * @return array   Modelos de la clase actual
      */
     public function select($data=array(), $limit=0, $limitStart=0, &$total=null)
     {
