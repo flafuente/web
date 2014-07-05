@@ -45,9 +45,8 @@ class videosController extends Controller
     {
         $url = Registry::getUrl();
         $video = new Video($url->vars[0]);
-        if ($video->id) {
-            //Creamos la visita
-            $video->addVisita();
+        if ($video->checkPermission()) {
+            $this->setData("videosArchivos", VideoArchivo::getVideosArchivosByVideoId($video->id));
             $this->setData("video", $video);
             $html = $this->view("views.ver");
             $this->render($html);
@@ -58,10 +57,25 @@ class videosController extends Controller
 
     public function save()
     {
-        $video = new Video();
-        $res = $video->insert($_REQUEST);
-        if ($res) {
-            Registry::addMessage("Video enviado satisfactoriamente", "success", "", Url::site("videos"));
+        $video = new Video($_REQUEST["id"]);
+        if (!$video->id) {
+            if ($video->insert($_REQUEST)) {
+                Registry::addMessage("Video enviado satisfactoriamente", "success", "", Url::site("videos"));
+            }
+        } else {
+            if ($video->checkPermission()) {
+                $user = Registry::getUser();
+                //Add Video
+                $videoArchivo = new VideoArchivo();
+                $videoArchivo->userId = $user->id;
+                $videoArchivo->videoId = $video->id;
+                $videoArchivo->file = $_REQUEST["file"];
+                if ($videoArchivo->insert()) {
+                    Registry::addMessage("Archivo de vídeo subido satisfactoriamente", "success", "", Url::site("videos/ver/".$video->id));
+                }
+            } else {
+                Registry::addMessage("Video incorrecto", "error");
+            }
         }
         $this->ajax();
     }

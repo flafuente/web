@@ -24,6 +24,9 @@ $(document).on('submit', '.ajax', function(e){
 							if(field.length){
 								field.parent().parent().addClass("has-" + messages[x].type);
 								field.parent().append('<span class="help-block">' + messages[x].message + '</span>');
+							}else{
+								$("#mensajes-sys").append('<div class="alert alert-' + messages[x].type + '"><button type="button" class="close" data-dismiss="alert">&times;</button>' + messages[x].message + '</div>');
+								$('html,body').animate({ scrollTop: 0 }, 'slow');
 							}
 						//Url redirection
 						}else if(messages[x].url){

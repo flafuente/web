@@ -71,12 +71,9 @@
             </div>
             <div class='col-md-10 nopadding bor_lef'>
                 <div class='col-md-9 nopadding'>
-                    <?php
-                    seeSquare("sq_deportes.jpg", "DEPORTES", "deportes", rand(10, 999));
-                    seeSquare("sq_moda.jpg", "MODA", "moda", rand(10, 999));
-                    seeSquare("sq_cocina.jpg", "COCINA", "cocina", rand(10, 999));
-                    seeSquare("sq_musica.jpg", "MUSICA", "musica", rand(10, 999));
-                    ?>
+                    <!--content-->
+                    <?=$content;?>
+                    <!--/content-->
                 </div>
                 <div class='col-md-3 nopadding'>
                     <?=$controller->view("modules.twitter");?>
@@ -87,6 +84,9 @@
                 </div>
             </div>
         </div>
+        <!--/mainContainer-->
+
+        <!--footer-->
         <?=$controller->view("modules.Footer");?>
         <!--/mainContainer-->
 
@@ -95,27 +95,3 @@
         <!-- /Debug -->
     </body>
 </html>
-
-<?php
-function seeSquare($img, $title, $url, $likes)
-{
-    ?>
-    <div class='col-md-6 square'>
-        <img src="<?=Url::template("img/".$img)?>" title="<?php echo $title; ?>" />
-        <img class="arrow" src="<?=Url::template("img/arrow.png")?>" />
-        <div class="rating"><?=HTML::showRate($likes, 999, 10);?></div>
-        <div class="sq_content">
-            <div class="sq_title">
-                <a href="<?=Url::site($url);?>">
-                <?php echo $title; ?>
-                </a>
-            </div>
-            <div class="sq_num">
-                <?php echo $likes; ?>
-                <i class="fa fa-heart-o"></i>
-            </div>
-        </div>
-    </div>
-    <?php
-}
-?>

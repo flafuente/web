@@ -6,15 +6,10 @@ class homeController extends Controller
 {
     public function init() {}
 
-/*
     public function index()
     {
+        $this->setData("categorias", Categoria::select());
         $html = $this->view("views.secciones");
-        $this->render($html);
-    }
-*/
-    public function index()
-    {
         $this->render($html, "landing");
     }
 }

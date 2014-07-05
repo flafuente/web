@@ -24,6 +24,9 @@ $(document).on('submit', '.ajax', function(e){
 							if(field.length){
 								field.parent().parent().addClass("has-" + messages[x].type);
 								field.parent().append('<span class="help-block">' + messages[x].message + '</span>');
+							}else{
+								$("#mensajes-sys").append('<div class="alert alert-' + messages[x].type + '"><button type="button" class="close" data-dismiss="alert">&times;</button>' + messages[x].message + '</div>');
+								$('html,body').animate({ scrollTop: 0 }, 'slow');
 							}
 						//Url redirection
 						}else if(messages[x].url){
@@ -124,20 +127,91 @@ $(document).on('change', '.change-submit', function(e){
 	$('#mainForm').submit();
 });
 
-//delete buttons
-$(document).on('click', '.delete', function(e){
-	var res = false;
-	var confirmation = $(this).attr("confirm");
-	if(confirmation){
-		res = confirm(confirmation);
-	}else{
-		res = true;
+//Toolbar
+$(document).on('click', '.formButton', function(e){
+	//Data
+	element = $(this);
+	app = element.attr("data-app"); 
+	action = element.attr("data-action"); 
+	requireIds = element.attr("data-requiereids"); 
+	confirmation = element.attr("data-confirmation");
+	ajax = element.attr("data-ajax");
+	modalId = element.attr("data-modal"); 
+	noAjax = element.attr("data-noajax");
+	link = element.attr("data-link");
+	//Start
+	element.removeAttr("prevent-ladda");
+	//Requiere IDs
+	if(requireIds && $("#mainForm input:checkbox:checked").length<=0){
+		alert("Debes seleccionar un elemento");
+		element.attr("prevent-ladda", "true");
+		return false;
 	}
-	if(res){
-		$('#action').val("delete");
-		$('#mainForm').submit();
+	//Confirmation
+	if(confirmation){
+		if(!confirm(confirmation)){
+			element.removeClass("disabled");
+			element.disabled = false;
+			element.attr("prevent-ladda", "true");
+			return false;
+		}
+	}
+	//Modal
+	if(modalId){
+		$("#" + modalId).on('shown.bs.modal', function (e) {
+			Ladda.stopAll();
+		});
+		$("#" + modalId).modal('show');
+		return false;
+	}
+	//Link
+	if(link){
+		window.location.href = link;
+		return false;
+	}
+	//No action / non-ajax
+	if(!action || noAjax){
+		//Check router
+		var router = $('#mainForm input[name=router]').val();
+		if(router){
+			app = router + "/" + app;
+		}
+		window.location.href = URL + app + "/" +  action;
+		return false;
+	}
+	//Disable element
+	if(element){
+		if(element.length){
+			if(element.hasClass("disabled")){
+				return false;
+			}else{
+				element.addClass("disabled");
+				element.disabled = true;
+			}
+		}
+	}
+	//App
+	if(app){
+		$('#mainForm input[name=app]').val(app);
+	}
+	//Action
+	if(action){
+		$('#mainForm input[name=action]').val(action);
+	}
+	//Non-ajax
+	if(noAjax){
+		$('#mainForm').removeClass("ajax");
 	}else{
-		Ladda.stopAll();
+		$('#mainForm').addClass("ajax");
+	}
+	//Submit
+	$('#mainForm').submit();
+	//Restore
+	if(ajax){
+		element.removeClass("disabled");
+		element.disabled = false;
+		$('#mainForm input[name=app]').val("");
+		$('#mainForm input[name=action]').val("");
 	}
 	return false;
 });

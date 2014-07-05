@@ -92,6 +92,16 @@ class Video extends Model
         parent::$reservedVarsChild = self::$reservedVarsChild;
     }
 
+    public function checkPermission($userId=null)
+    {
+        if (!$userId) {
+            $user = Registry::getUser();
+            $userId = $user->id;
+        }
+
+        return ($this->id && $userId==$this->userId);
+    }
+
     /**
      * Añade una visita al vídeo.
      * @return bool
@@ -127,11 +137,7 @@ class Video extends Model
         return $this->estadosCss[$this->estadoId];
     }
 
-    /**
-     * Validación de creación.
-     * @return array Errores
-     */
-    public function validateInsert($data=array())
+    public function validate($data=array())
     {
         //Titulo
         if (!$this->titulo) {
@@ -146,13 +152,23 @@ class Video extends Model
                 Registry::addMessage("La categoría seleccionada no existe", "error", "categoriaId");
             }
         }
-        //Archivo?
-        if (!$data["file"]) {
-            Registry::addMessage("Debes subir un archivo", "error");
-        }
         //Publicado?
         if ($this->estadoId==1 && !$this->videoArchivoId) {
             Registry::addMessage("No puedes publicar un vídeo si no contiene archivos verificados", "error");
+        }
+    }
+
+    /**
+     * Validación de creación.
+     * @return array Errores
+     */
+    public function validateInsert($data=array())
+    {
+        $this->validate();
+
+        //Archivo?
+        if (!$data["file"]) {
+            Registry::addMessage("Debes subir un archivo", "error");
         }
 
         return Registry::getMessages(true);
@@ -227,23 +243,7 @@ class Video extends Model
      */
     public function validateUpdate()
     {
-        //Titulo
-        if (!$this->titulo) {
-            Registry::addMessage("Debes introducir un titulo", "error", "titulo");
-        }
-        //Categoria
-        if (!$this->categoriaId) {
-            Registry::addMessage("Debes seleccionar una categoría", "error", "categoriaId");
-        } else {
-            $categoria = new Categoria($this->categoriaId);
-            if (!$categoria->id) {
-                Registry::addMessage("La categoría seleccionada no existe", "error", "categoriaId");
-            }
-        }
-        //Publicado?
-        if ($this->estadoId==1 && !$this->videoArchivoId) {
-            Registry::addMessage("No puedes publicar un vídeo si no contiene archivos verificados", "error");
-        }
+        $this->validate();
 
         return Registry::getMessages(true);
     }

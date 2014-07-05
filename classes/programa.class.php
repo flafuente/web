@@ -188,6 +188,16 @@ class Programa extends Model
     }
 
     /**
+     * Combierte el nombre a slug
+     * @return string
+     */
+    public function slugify()
+    {
+        $slugify = new Cocur\Slugify\Slugify();
+        $this->slug =  $slugify->slugify($this->nombre);
+    }
+
+    /**
      * Validación de creación.
      * @return array Errores
      */
@@ -205,6 +215,7 @@ class Programa extends Model
         $user = Registry::getUser();
         $this->userId = $user->id;
         $this->dateInsert = date("Y-m-d H:i:s");
+        $this->slugify();
     }
 
     /**
@@ -223,6 +234,7 @@ class Programa extends Model
     public function preUpdate()
     {
         $this->dateUpdate = date("Y-m-d H:i:s");
+        $this->slugify();
     }
 
     /**

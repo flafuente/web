@@ -17,6 +17,16 @@ class Categoria extends Model
      */
     public $nombre;
     /**
+     * Thumbnail (filename)
+     * @var string
+     */
+    public $thumbnail;
+    /**
+     * Slug
+     * @var string
+     */
+    public $slug;
+    /**
      * Fecha de creación
      * @var string
      */
@@ -26,6 +36,18 @@ class Categoria extends Model
      * @var string
      */
     public $dateUpdate;
+
+    /**
+     * Ruta de las imágenes
+     * @var string
+     */
+    public $path = "/files/images/categorias/";
+
+    /**
+     * Variables reservadas (no están en la base de datos)
+     * @var array
+     */
+    public static $reservedVarsChild = array("path");
 
     /**
      * Init.
@@ -40,19 +62,58 @@ class Categoria extends Model
     }
 
     /**
+     * Devuelve la URL del Thumbnail.
+     * @return string
+     */
+    public function getThumbnailUrl()
+    {
+        return Url::site($this->path.$this->thumbnail);
+    }
+
+    public function validate()
+    {
+        $config = Registry::getConfig();
+        //nombre
+        if (!$this->nombre) {
+            Registry::addMessage("Debes introducir un nombre", "error", "nombre");
+        } elseif ($this->getCategoriaByNombre($this->nombre, $this->id)) {
+            Registry::addMessage("Ya existe una categoría con este nombre", "error", "nombre");
+        }
+        //Thumbnail Upload
+        if (isset($_FILES["thumbnail"])) {
+            try {
+                $bulletProof = new BulletProof;
+                $this->thumbnail = $bulletProof
+                    ->uploadDir($config->get("path").$this->path)
+                    ->shrink(array("height"=>144, "width"=>240))
+                    ->upload($_FILES['thumbnail']);
+            } catch (ImageUploaderException $e) {
+                Registry::addMessage("Error al subir la imagen: ".$e->getMessage(), "error");
+            }
+        } else {
+            $this->thumbnail = null;
+        }
+    }
+
+    /**
      * Validación de creación.
      * @return array Errores
      */
     public function validateInsert()
     {
-        //nombre
-        if (!$this->nombre) {
-            Registry::addMessage("Debes introducir un nombre", "error", "nombre");
-        } elseif ($this->getCategoriaByNombre($this->nombre)) {
-            Registry::addMessage("Ya existe una categoría con este nombre", "error", "nombre");
-        }
+        $this->validate();
 
         return Registry::getMessages(true);
+    }
+
+    /**
+     * Combierte el nombre a slug
+     * @return string
+     */
+    public function slugify()
+    {
+        $slugify = new Cocur\Slugify\Slugify();
+        $this->slug =  $slugify->slugify($this->nombre);
     }
 
     /**
@@ -62,6 +123,7 @@ class Categoria extends Model
     public function preInsert()
     {
         $this->dateInsert = date("Y-m-d H:i:s");
+        $this->slugify();
     }
 
     /**
@@ -70,12 +132,7 @@ class Categoria extends Model
      */
     public function validateUpdate()
     {
-        //nombre
-        if (!$this->nombre) {
-            Registry::addMessage("Debes introducir un nombre", "error", "nombre");
-        } elseif ($this->getCategoriaByNombre($this->nombre)) {
-            Registry::addMessage("Ya existe una categoría con este nombre", "error", "nombre");
-        }
+        $this->validate();
 
         return Registry::getMessages(true);
     }
@@ -110,15 +167,16 @@ class Categoria extends Model
     public function preUpdate()
     {
         $this->dateUpdate = date("Y-m-d H:i:s");
+        $this->slugify();
     }
 
     /**
      * Obtiene registros de la base de datos.
-     * @param  array    $data           Condicionales / ordenación
-     * @param  integer  $limit          Límite de resultados (Paginación)
-     * @param  integer  $limitStart     Inicio de la limitación (Paginación)
-     * @param  int      $total          Total de filas encontradas (Paginación)
-     * @return array                    Modelos de la clase actual
+     * @param  array   $data       Condicionales / ordenación
+     * @param  integer $limit      Límite de resultados (Paginación)
+     * @param  integer $limitStart Inicio de la limitación (Paginación)
+     * @param  int     $total      Total de filas encontradas (Paginación)
+     * @return array   Modelos de la clase actual
      */
     public function select($data=array(), $limit=0, $limitStart=0, &$total=null)
     {
