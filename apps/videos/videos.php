@@ -14,16 +14,10 @@ class videosController extends Controller
 
     public function index()
     {
-        //Novedades
-        $this->setData("videosNovedades", Video::select(
-            array(
-                "order" => "dateInsert",
-                "orderDir" => "DESC",
-                "estadoId" => 1,
-            ), 5));
-        $html = $this->view("views.list");
-        //Ranking
-        $this->setData("videosRankingSemanal", Video::getRankingSemanal(5));
+        $user = Registry::getUser();
+        $data = $_REQUEST;
+        $data["userId"] = $user->id;
+        $this->setData("videos", Video::select($data));
         $html = $this->view("views.list");
         $this->render($html);
     }

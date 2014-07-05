@@ -2,5 +2,5 @@ files/videos/*
 !files/.htaccess
 files/images/programas/*
 files/tmp/*
-vendor/.git
+vendor/
 composer.lock
