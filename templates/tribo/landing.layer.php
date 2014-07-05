@@ -30,6 +30,8 @@
         <script src="<?=Url::template("js/jquery-1.11.0.min.js");?>" type="text/javascript"></script>
         <!-- Bootstrap -->
         <script src="<?=Url::template("js/bootstrap.min.js");?>" type="text/javascript"></script>
+        <!-- Bootstrap File Input Plugin -->
+        <script src="<?=Url::template("js/bootstrap.file-input.js");?>" type="text/javascript"></script>
         <!-- JQuery Forms Plugin -->
         <script src="<?=Url::template("js/jquery.forms.js");?>" type="text/javascript"></script>
         <!-- Image Holder -->
