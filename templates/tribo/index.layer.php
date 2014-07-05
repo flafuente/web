@@ -56,11 +56,9 @@
         <link rel="shortcut icon" href="<?=Url::template("img/favicon.png")?>">
     </head>
     <body class="body">
-        <?php
-        $pag = explode("/", $_SERVER["REQUEST_URI"]);
-        $pag = $pag[count($pag)-1];
-        ?>
+
         <div class="mask" style="display: none;"></div>
+
         <!-- Module topMenu -->
         <?=$controller->view("modules.topMenu");?>
         <!--/Module topMenu-->
@@ -72,75 +70,43 @@
             </div>
             <div class='col-md-10 nopadding bor_lef'>
                 <div class='col-md-9 nopadding divprincipal'>
-                    <!--alerts-->
-                    <?php $messages = Registry::getMessages(); ?>
-                    <div id="mensajes-sys">
-                    <?php if ($messages) { ?>
-                        <?php foreach ($messages as $message) { ?>
-                            <?php if ($message->message) { ?>
-                                <div class="alert alert-<?=$message->type?>">
-                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                    <?=$message->message?>
-                                </div>
-                            <?php } ?>
-                        <?php } ?>
-                    <?php } ?>
-                    </div>
-                    <!--/alerts-->
+
+                    <!--messages-->
+                    <?=$controller->view("modules.messages");?>
+                    <!--/messages-->
+
                     <!--content-->
                     <?=$content;?>
                     <!--/content-->
+
                 </div>
+
+                <?php $url = Registry::getUrl(); ?>
+
                 <div class='col-md-3 nopadding'>
                     <?=$controller->view("modules.twitter"); ?>
-                    <?php if ($pag == "periodismociudadano") { ?>
+                    <?php if ($url->app == "periodismociudadano") { ?>
                         <?=$controller->view("views.lomasvisto"); ?>
                     <?php } ?>
                 </div>
-                <?php if ($pag == "haztetriber") { ?>
-                <div class='col-md-12 nopadding'>
-                    <?=$controller->view("views.haztetriberBottom"); ?>
-                </div>
+
+                <?php if ($url->app == "haztetriber") { ?>
+                    <div class='col-md-12 nopadding'>
+                        <?=$controller->view("views.haztetriberBottom"); ?>
+                    </div>
                 <?php } ?>
+
             </div>
         </div>
-        <?=$controller->view("modules.Footer");?>
         <!--/mainContainer-->
 
-        <!-- Debugging Modals -->
-        <?php $config = Registry::getConfig(); ?>
-        <?php if ($config->get("debug")) { ?>
-            <?php $debug = Registry::getDebug(); ?>
-            <!-- Current Queries Debug Modal -->
-            <?php $controller->setData("debug", $debug); ?>
-            <?php $controller->setData("debugModalId", "Current"); ?>
-            <?=$controller->view("modules.debugModalQueries");?>
-            <!-- Previous Queries Debug Modal -->
-            <?php if ($_SESSION['debug']['queries']) { ?>
-                <?php $controller->setData("debug", $_SESSION['debug']); ?>
-                <?php $controller->setData("debugModalId", "Last"); ?>
-                <?=$controller->view("modules.debugModalQueries");?>
-            <?php } ?>
-            <!-- Session Debug Modal -->
-            <?=$controller->view("modules.debugModalSession");?>
-            <!-- Current Messages Debug Modal -->
-            <?php $controller->setData("debug", $debug); ?>
-            <?php $controller->setData("debugModalId", "Current"); ?>
-            <?=$controller->view("modules.debugModalMessages");?>
-            <!-- Ajax Messages Debug Modal -->
-            <?php $controller->setData("debugModalId", "Ajax"); ?>
-            <?=$controller->view("modules.debugModalMessages");?>
-        <?php } ?>
-        <!-- /Debugging Modals -->
-        <?php if ($config->get("debug")) { ?>
-            <!-- Footer -->
-            <footer class="footerDebug">
-                <!-- Debugging Menu -->
-                <?php $controller->setData("debug", $debug); ?>
-                <?=$controller->view("modules.debugMenu");?>
-                <!-- /Debugging Menu -->
-            </footer>
-            <!-- /Footer -->
-        <?php } ?>
+        <!--footer-->
+        <?=$controller->view("modules.Footer");?>
+        <!--/footer-->
+
+        <!-- Debug -->
+        <?=$controller->view("modules.debug.menu");?>
+        <!-- /Debug -->
+
     </body>
 </html>
