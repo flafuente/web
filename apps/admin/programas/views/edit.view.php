@@ -20,6 +20,7 @@ if ($programa->id) {
             "class" => "danger",
             "spanClass" => "remove",
             "confirmation" => "¿Deseas realmente eliminar este programa?",
+            "noAjax" => true,
         )
     );
 }

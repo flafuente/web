@@ -172,7 +172,7 @@ $(document).on('click', '.formButton', function(e){
 		return false;
 	}
 	//No action / non-ajax
-	if(!action || noAjax){
+	if(!action && noAjax){
 		//Check router
 		var router = $('#mainForm input[name=router]').val();
 		if(router){

@@ -55,12 +55,13 @@ class tagsController extends Controller
     public function delete()
     {
         $url = Registry::getUrl();
-        $tag = new Tag($_REQUEST['id']);
+        $id = $_REQUEST["id"] ? $_REQUEST["id"] : $url->vars[0];
+        $tag = new Tag($id);
         if ($tag->id) {
             if ($tag->delete()) {
-                Registry::addMessage("Tag eliminado satisfactoriamente", "success", "", Url::site("admin/tags"));
+                Registry::addMessage("Tag eliminado satisfactoriamente", "success");
             }
         }
-        $this->ajax();
+        Helper::redirect(Url::site("admin/tags"));
     }
 }

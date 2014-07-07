@@ -22,6 +22,7 @@ if ($user->id) {
             "class" => "danger",
             "spanClass" => "remove",
             "confirmation" => "¿Deseas realmente eliminar este usuario?",
+            "noAjax" => true,
         )
     );
 }

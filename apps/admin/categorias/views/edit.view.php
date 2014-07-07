@@ -20,6 +20,7 @@ if ($categoria->id) {
             "class" => "danger",
             "spanClass" => "remove",
             "confirmation" => "¿Deseas realmente eliminar esta categoría?",
+            "noAjax" => true,
         )
     );
 }

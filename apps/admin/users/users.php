@@ -54,12 +54,14 @@ class usersController extends Controller
 
     public function delete()
     {
-        $user = new User($_REQUEST['id']);
+        $url = Registry::getUrl();
+        $id = $_REQUEST["id"] ? $_REQUEST["id"] : $url->vars[0];
+        $user = new User($id);
         if ($user->id) {
             if ($user->delete()) {
-                Registry::addMessage("Usuario eliminado satisfactoriamente", "success", "", Url::site("admin/users"));
+                Registry::addMessage("Usuario eliminado satisfactoriamente", "success");
             }
         }
-        $this->ajax();
+        Helper::redirect(Url::site("admin/users"));
     }
 }

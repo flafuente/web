@@ -20,6 +20,7 @@ if ($tag->id) {
             "class" => "danger",
             "spanClass" => "remove",
             "confirmation" => "¿Deseas realmente eliminar este tag?",
+            "noAjax" => true,
         )
     );
 }

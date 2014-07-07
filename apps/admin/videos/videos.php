@@ -89,13 +89,15 @@ class videosController extends Controller
 
     public function delete()
     {
-        $video = new Video($_REQUEST['id']);
+        $url = Registry::getUrl();
+        $id = $_REQUEST["id"] ? $_REQUEST["id"] : $url->vars[0];
+        $video = new Video($id);
         if ($video->id) {
             if ($video->delete()) {
-                Registry::addMessage("Video eliminado satisfactoriamente", "success", "", Url::site("admin/videos"));
+                Registry::addMessage("Video eliminado satisfactoriamente", "success");
             }
         }
-        $this->ajax();
+        Helper::redirect(Url::site("admin/videos"));
     }
 
     public function saveArchivo()

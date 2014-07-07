@@ -20,6 +20,7 @@ if ($capitulo->id) {
             "class" => "danger",
             "spanClass" => "remove",
             "confirmation" => "¿Deseas realmente eliminar este capítulo?",
+            "noAjax" => true,
         )
     );
 }

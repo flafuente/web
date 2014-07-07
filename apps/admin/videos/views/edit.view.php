@@ -20,6 +20,7 @@ if ($video->id) {
             "class" => "danger",
             "spanClass" => "remove",
             "confirmation" => "¿Deseas realmente eliminar este vídeo?",
+            "noAjax" => true,
         )
     );
 }

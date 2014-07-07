@@ -67,12 +67,14 @@ class programasController extends Controller
 
     public function delete()
     {
-        $programa = new Programa($_REQUEST['id']);
+        $url = Registry::getUrl();
+        $id = $_REQUEST["id"] ? $_REQUEST["id"] : $url->vars[0];
+        $programa = new Programa($id);
         if ($programa->id) {
             if ($programa->delete()) {
-                Registry::addMessage("Programa eliminado satisfactoriamente", "success", "", Url::site("admin/programas"));
+                Registry::addMessage("Programa eliminado satisfactoriamente", "success");
             }
         }
-        $this->ajax();
+        Helper::redirect(Url::site("admin/programas"));
     }
 }

@@ -53,12 +53,14 @@ class categoriasController extends Controller
 
     public function delete()
     {
-        $categoria = new Categoria($_REQUEST['id']);
+        $url = Registry::getUrl();
+        $id = $_REQUEST["id"] ? $_REQUEST["id"] : $url->vars[0];
+        $categoria = new Categoria($id);
         if ($categoria->id) {
             if ($categoria->delete()) {
-                Registry::addMessage("Categoría eliminada satisfactoriamente", "success", "", Url::site("admin/categorias"));
+                Registry::addMessage("Categoría eliminada satisfactoriamente", "success");
             }
         }
-        $this->ajax();
+        Helper::redirect(Url::site("admin/categorias"));
     }
 }

@@ -55,12 +55,14 @@ class capitulosController extends Controller
 
     public function delete()
     {
-        $capitulo = new Capitulo($_REQUEST['id']);
+        $url = Registry::getUrl();
+        $id = $_REQUEST["id"] ? $_REQUEST["id"] : $url->vars[0];
+        $capitulo = new Capitulo($id);
         if ($capitulo->id) {
             if ($capitulo->delete()) {
-                Registry::addMessage("Capítulo eliminado satisfactoriamente", "success", "", Url::site("admin/capitulos"));
+                Registry::addMessage("Capítulo eliminado satisfactoriamente", "success");
             }
         }
-        $this->ajax();
+        Helper::redirect(Url::site("admin/capitulos"));
     }
 }
