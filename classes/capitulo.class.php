@@ -129,6 +129,17 @@ class Capitulo extends Model
     }
 
     /**
+     * Devuelve la ruta del Thumbnail.
+     * @return string
+     */
+    public function getThumbnailPath()
+    {
+        $config = Registry::getConfig();
+
+        return $config->get("path").$this->path.$this->thumbnail;
+    }
+
+    /**
      * Devuelve la URL del Thumbnail.
      * @return string
      */
@@ -173,10 +184,13 @@ class Capitulo extends Model
         //Thumbnail Upload
         if (isset($_FILES["thumbnail"])) {
             try {
+                //Eliminamos la antigua
+                @unlink($this->getThumbnailPath());
+                //Subimos la nueva
                 $bulletProof = new BulletProof;
                 $this->thumbnail = $bulletProof
                     ->uploadDir($config->get("path").$this->path)
-                    ->shrink(array("height"=>245, "width"=>240))
+                    ->shrink(array("height"=>163, "width"=>269))
                     ->upload($_FILES['thumbnail']);
             } catch (ImageUploaderException $e) {
                 Registry::addMessage("Error al subir la imagen: ".$e->getMessage(), "error");

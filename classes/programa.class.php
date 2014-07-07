@@ -42,6 +42,11 @@ class Programa extends Model
      */
     public $color;
     /**
+     * Slug
+     * @var string
+     */
+    public $slug;
+    /**
      * Título
      * @var string
      */
@@ -109,12 +114,36 @@ class Programa extends Model
     }
 
     /**
+     * Devuelve la ruta del Banner.
+     * @return string
+     */
+    public function getBannerPath()
+    {
+        $config = Registry::getConfig();
+
+        return Url::site($this->path.$this->banner);
+    }
+
+    /**
+     * Devuelve la ruta del Thumbnail.
+     * @return string
+     */
+    public function getThumbnailPath()
+    {
+        $config = Registry::getConfig();
+
+        return $config->get("path").$this->path.$this->thumbnail;
+    }
+
+    /**
      * Devuelve la URL del Banner.
      * @return string
      */
     public function getBannerUrl()
     {
-        return Url::site($this->path.$this->banner);
+        $config = Registry::getConfig();
+
+        return $config->get("path").$this->path.$this->banner;
     }
 
     /**
@@ -145,6 +174,23 @@ class Programa extends Model
     }
 
     /**
+     * Busca una categoría por su slug.
+     * @param  string $slug Slug
+     * @return object
+     */
+    public function getProgramaBySlug($slug)
+    {
+        $db = Registry::getDb();
+        $params = array();
+        $query = "SELECT * FROM `programas` WHERE slug = :slug";
+        $params[":slug"] = $slug;
+        $rows = $db->query($query, $params);
+        if (count($rows)) {
+            return new Programa($rows[0]);
+        }
+    }
+
+    /**
      * Validación para creación/edición del capítulo.
      * @return array Array de errores
      */
@@ -158,6 +204,9 @@ class Programa extends Model
         //Banner Upload
         if (isset($_FILES["banner"])) {
             try {
+                //Eliminamos la antigua
+                @unlink($this->getBannerPath());
+                //Subimos la nueva
                 $bulletProof = new BulletProof;
                 $this->banner = $bulletProof
                     ->uploadDir($config->get("path").$this->path)
@@ -172,10 +221,13 @@ class Programa extends Model
         //Thumbnail Upload
         if (isset($_FILES["thumbnail"])) {
             try {
+                //Eliminamos la antigua
+                @unlink($this->getThumbnailPath());
+                //Subimos la nueva
                 $bulletProof = new BulletProof;
                 $this->thumbnail = $bulletProof
                     ->uploadDir($config->get("path").$this->path)
-                    ->shrink(array("height"=>245, "width"=>240))
+                    ->shrink(array("height"=>162, "width"=>269))
                     ->upload($_FILES['thumbnail']);
             } catch (ImageUploaderException $e) {
                 Registry::addMessage("Error al subir la imagen: ".$e->getMessage(), "error");
@@ -194,7 +246,7 @@ class Programa extends Model
     public function slugify()
     {
         $slugify = new Cocur\Slugify\Slugify();
-        $this->slug =  $slugify->slugify($this->nombre);
+        $this->slug =  $slugify->slugify($this->titulo);
     }
 
     /**

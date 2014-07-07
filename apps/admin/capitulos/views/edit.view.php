@@ -47,7 +47,7 @@ Toolbar::addButton(
 Toolbar::render();
 ?>
 
-<form method="post" name="mainForm" id="mainForm" action="<?=Url::site();?>" class="form-horizontal ajax" role="form" autocomplete="off">
+<form method="post" name="mainForm" id="mainForm" action="<?=Url::site();?>" class="form-horizontal ajax" role="form" autocomplete="off" enctype="multipart/form-data">
     <input type="hidden" name="router" id="router" value="admin">
     <input type="hidden" name="app" id="app" value="capitulos">
     <input type="hidden" name="action" id="action" value="save">
