@@ -181,6 +181,23 @@ class Categoria extends Model
     }
 
     /**
+     * Busca una categoría por su slug.
+     * @param  string $slug slug
+     * @return object
+     */
+    public function getCategoriaBySlug($slug)
+    {
+        $db = Registry::getDb();
+        $params = array();
+        $query = "SELECT * FROM `categorias` WHERE slug = :slug";
+        $params[":slug"] = $slug;
+        $rows = $db->query($query, $params);
+        if (count($rows)) {
+            return new Categoria($rows[0]);
+        }
+    }
+
+    /**
      * Busca una categoría por su nombre.
      * @param  string  $nombre   Nombre
      * @param  integer $ignoreId Id a ignorar

@@ -14,7 +14,7 @@
                 <div class="triangle"></div>
                 <?php foreach ($categorias as $categoria) { ?>
                     <li class="col-md-6">
-                        <a href="<?=Url::site("secciones/".$categoria->slug);?>">
+                        <a href="<?=Url::site("programas/seccion/".$categoria->slug);?>">
                             <?=Helper::sanitize($categoria->nombre);?>
                         </a>
                     </li>

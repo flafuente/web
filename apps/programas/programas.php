@@ -13,6 +13,22 @@ class programasController extends Controller
         $this->render($html);
     }
 
+    public function seccion()
+    {
+        $url = Registry::getUrl();
+        $data = array("estadoId"=>1);
+        //Categoría?
+        if ($url->vars[0]) {
+            $categoria = Categoria::getCategoriaBySlug($url->vars[0]);
+            if ($categoria->id) {
+                $data["categoriaId"] = $categoria->id;
+            }
+        }
+        $this->setData("programas", Programa::select($data));
+        $html = $this->view("views.programas");
+        $this->render($html);
+    }
+
     public function ver()
     {
         $url = Registry::getUrl();
