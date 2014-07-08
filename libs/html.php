@@ -5,12 +5,13 @@
  */
 class HTML
 {
-    
-    public function relativeDate(){
-        
+
+    public function relativeDate()
+    {
     }
-    
-    public static function formButton($class = null, $spanClass = null, $display = null, $options = array()){
+
+    public static function formButton($class = null, $spanClass = null, $display = null, $options = array())
+    {
         //Link
         $html = "<button";
 
@@ -30,21 +31,22 @@ class HTML
         //Span
         $html .= "<span class='glyphicon glyphicon-".Helper::sanitize($spanClass)."'></span>";
 
-        if(isset($display)){
+        if (isset($display)) {
             $html .= Helper::sanitize($display);
         }
 
         //Link
-        $html .= "</button>";        
+        $html .= "</button>";
 
         return $html;
     }
 
-    public static function formLink($class = null, $spanClass = null, $href = null, $display = null, $options = array(), $confirmation = null){
+    public static function formLink($class = null, $spanClass = null, $href = null, $display = null, $options = array(), $confirmation = null)
+    {
         //Href
         $options["data-link"] = $href;
         //Confirm
-        if(isset($confirmation)){
+        if (isset($confirmation)) {
             $options["data-confirmation"] = Helper::sanitize($confirmation);
         }
         //Form Button
@@ -66,7 +68,7 @@ class HTML
         //Selected value
         $selectedArray = array();
         if (is_array($selected)) {
-            if(!empty($selected)){
+            if (!empty($selected)) {
                 foreach ($selected as $s) {
                     $selectedArray[$s] = "selected";
                 }
@@ -83,7 +85,7 @@ class HTML
             //New array list
             $newList = array();
             foreach ($list as $object) {
-                $newList[$object->$classOptions['id']] = $object->$classOptions['display'];
+                $newList[(string) $object->$classOptions['id']] = $object->$classOptions['display'];
             }
             $list = $newList;
             unset($newList);
@@ -122,9 +124,10 @@ class HTML
 
         return $html;
     }
-    function showRate($value, $max, $min = 0, $bullets = 5){
+    function showRate($value, $max, $min = 0, $bullets = 5)
+    {
         $html = "";
-        if($min > 0){
+        if ($min > 0) {
             /*Ajuste de rango*/
             $max = $max - $min;
             $value = $value - $min;
@@ -132,10 +135,10 @@ class HTML
         $porcentaje = $value * 100 / $max;
         $cuenta = 0;
         $value_bullet = 100 / $bullets;
-        for($x=1; $x<=$bullets; $x++){
-            if($porcentaje < ($value_bullet * $x)){
+        for ($x=1; $x<=$bullets; $x++) {
+            if ($porcentaje < ($value_bullet * $x)) {
                 $html .= "<div class='bullet'></div>";
-            }else{
+            } else {
                 $html .= "<div class='bullet bullet-blue'></div>";;
             }
         }

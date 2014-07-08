@@ -12,10 +12,20 @@ class Categoria extends Model
      */
     public $id;
     /**
+     * Order
+     * @var int
+     */
+    public $order;
+    /**
      * Nombre
      * @var string
      */
     public $nombre;
+    /**
+     * Color
+     * @var string
+     */
+    public $color;
     /**
      * Thumbnail (filename)
      * @var string
@@ -116,14 +126,47 @@ class Categoria extends Model
         $this->slug =  $slugify->slugify($this->nombre);
     }
 
+    public function order()
+    {
+        //leemos las categorías
+        $categorias = Categoria::select();
+        $pos = 0;
+        if (count($categorias)) {
+            //Primero
+            if ($this->order==-1) {
+                $this->order = 1;
+                $pos++;
+            }
+            //Recorremos las categorías
+            foreach ($categorias as $categoria) {
+                $pos++;
+                //Si hemos indicado ir aquí...
+                if ($this->order==$pos) {
+                    $pos++;
+                }
+                //Movemos la categoría de posición
+                $categoria->order = $pos;
+                $categoria->update();
+            }
+            //Último
+            if ($this->order==-2) {
+                $pos++;
+                $this->order = $pos;
+            }
+        }
+    }
+
     /**
      * Acciones previas a la creación.
      * @return void
      */
-    public function preInsert()
+    public function preInsert($data = array())
     {
         $this->dateInsert = date("Y-m-d H:i:s");
         $this->slugify();
+        if ($data["order"]) {
+            $this->order();
+        }
     }
 
     /**
@@ -164,10 +207,13 @@ class Categoria extends Model
      * Acciones previas a la modificación.
      * @return void
      */
-    public function preUpdate()
+    public function preUpdate($data = array())
     {
         $this->dateUpdate = date("Y-m-d H:i:s");
         $this->slugify();
+        if ($data["order"]) {
+            $this->order();
+        }
     }
 
     /**
@@ -205,7 +251,7 @@ class Categoria extends Model
                     $query .= " ORDER BY `".$data['order']."` ".$data['orderDir'];
                 }
             } else {
-                $query .= " ORDER BY `nombre` ASC";
+                $query .= " ORDER BY `order` ASC";
             }
             //Limit
             if ($limit) {

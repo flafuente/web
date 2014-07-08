@@ -69,6 +69,35 @@ Toolbar::render();
                             <input type="text" id="nombre" name="nombre" class="form-control" value="<?=Helper::sanitize($categoria->nombre);?>">
                         </div>
                     </div>
+                    <!-- Orden -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            Orden
+                        </label>
+                        <div class="col-sm-8">
+                            <?php
+                                //Last
+                                $last = new stdClass();
+                                $last->id = "-2";
+                                $last->nombre = "- Último -";
+                                array_push($categorias, $last);
+                                //Select
+                                echo HTML::select("order", $categorias, $categoria->order, null,
+                                    array("id" => "-1", "display" => "- Primero -"),
+                                    array("id" => "order", "display" => "nombre")
+                                );
+                            ?>
+                        </div>
+                    </div>
+                    <!-- Color -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            Color
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" id="color" name="color" class="form-control color-picker" value="<?=Helper::sanitize($categoria->color);?>">
+                        </div>
+                    </div>
                     <!-- Thumbnail -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
