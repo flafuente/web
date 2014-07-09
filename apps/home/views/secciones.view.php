@@ -7,7 +7,7 @@
         <div class="rating"><?=HTML::showRate(rand(10, 999), 999, 10);?></div>
         <div class="sq_content">
             <div class="sq_title">
-                <a href="<?=Url::site("secciones/".$categoria->slug);?>">
+                <a href="<?=Url::site("/programas/seccion/".$categoria->slug);?>">
                     <?=$categoria->nombre;?>
                 </a>
             </div>

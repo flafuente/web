@@ -123,9 +123,14 @@ class Capitulo extends Model
         parent::$reservedVarsChild = self::$reservedVarsChild;
     }
 
+    public function getNumero()
+    {
+        return $this->temporada."x".str_pad($this->episodio, 2, "0", STR_PAD_LEFT);
+    }
+
     public function getFullTitulo()
     {
-        return $this->temporada."x".str_pad($this->episodio, 2, "0", STR_PAD_LEFT)." - ".$this->titulo;
+        return $this->getNumero()." - ".$this->titulo;
     }
 
     /**

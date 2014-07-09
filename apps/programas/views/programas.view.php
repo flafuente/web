@@ -5,16 +5,16 @@
 </div>
 
 <?php foreach ($programas as $programa) { ?>
-    <div class='col-md-6 square'>
-        <img src="<?=$programa->getThumbnailUrl()?>" title="<?=$programa->titulo; ?>" />
-        <img class="arrow" src="<?=Url::template("img/arrow.png")?>" />
-        <div class="sq_content">
-            <div class="sq_title">
-                <a href="<?=Url::site("programas/ver/".$programa->slug);?>">
+    <a href="<?=Url::site("programas/ver/".$programa->slug);?>">
+        <div class='col-md-6 square'>
+            <img src="<?=$programa->getThumbnailUrl()?>" title="<?=$programa->titulo; ?>" />
+            <img class="arrow" src="<?=Url::template("img/arrow.png")?>" />
+            <div class="sq_content">
+                <div class="sq_title">
                     <?=$programa->subtitulo; ?>
-                </a>
+                </div>
             </div>
-        </div>
+        </a>
     </div>
 <?php } ?>
 
