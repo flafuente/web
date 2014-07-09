@@ -277,7 +277,7 @@ class User extends Model
             } elseif (strlen($this->password)<6) {
                 Registry::addMessage("La contraseña debe tenter al menos 6 caracteres", "error", "password");
             } elseif ($this->password!=$data["password2"]) {
-                Registry::addMessage("Las contraseñas no coinciden", "error", "password");
+                //Registry::addMessage("Las contraseñas no coinciden", "error", "password");
             }
         }
 
@@ -305,12 +305,12 @@ class User extends Model
         }
     }
 
-    public function postInsert()
+    public function postInsert($data=array())
     {
         //Tribber?
         if ($this->roleId==USER_ROLE_TRIBBER) {
             //Mandamos email con los detalles de la cuenta
-            $this->sendWelcome();
+            $this->sendWelcome($data["password"]);
         }
     }
 
@@ -581,7 +581,7 @@ class User extends Model
                 "accountRecovery",
                 array(
                     "hash" => $this->recoveryHash
-                ), "bootstrap"
+                ), "admin"
             )
         );
         if ($mailer->send()) {
@@ -596,7 +596,7 @@ class User extends Model
      *
      * @return bool
      */
-    public function sendWelcome()
+    public function sendWelcome($password="")
     {
         $mailer = Registry::getMailer();
         $mailer->addAddress($this->email);
@@ -605,8 +605,9 @@ class User extends Model
             Template::renderEmail(
                 "accountWelcome",
                 array(
-                    "user" => $this
-                ), "bootstrap"
+                    "user" => $this,
+                    "password" => $password
+                ), "admin"
             )
         );
         if ($mailer->send()) {
