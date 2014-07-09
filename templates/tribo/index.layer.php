@@ -43,6 +43,9 @@
         <script src="<?=Url::template("js/jssor.core.js");?>" type="text/javascript"></script>
         <script src="<?=Url::template("js/jssor.utils.js");?>" type="text/javascript"></script>
         <script src="<?=Url::template("js/jssor.slider.js");?>" type="text/javascript"></script>
+        <!-- Video JS -->
+        <link href="<?=Url::template("assets/video-js/video-js.css");?>" rel="stylesheet">
+        <script src="<?=Url::template("assets/video-js/video.js");?>"></script>
         <!-- Select2 Plugin -->
         <script src="<?=Url::template("js/select2.min.js");?>" type="text/javascript"></script>
         <script src="<?=Url::template("js/select2_locale_es.js");?>" type="text/javascript"></script>
