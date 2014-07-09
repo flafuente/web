@@ -151,11 +151,17 @@ class User extends Model
         parent::$reservedVarsChild = self::$reservedVarsChild;
     }
 
+    /**
+     * @return array Ids de las categorías a las que tiene acceso
+     */
     public function getCategoriasIds()
     {
         return json_decode($this->categorias);
     }
 
+    /**
+     * @return array Ids de las secciones a las que tiene acceso
+     */
     public function getPermisos()
     {
         return json_decode($this->permisos);
@@ -210,6 +216,9 @@ class User extends Model
         }
     }
 
+    /**
+     * @return string Url de la foto de perfil
+     */
     public function getFotoUrl()
     {
         if ($this->foto) {
@@ -219,6 +228,12 @@ class User extends Model
         }
     }
 
+    /**
+     * Comprueba si el usuario actual tiene acceso a una sección.
+     *
+     * @param  string $app Sección
+     * @return bool
+     */
     public function checkPermisos($app="")
     {
         $permisos = $this->getPermisos();
@@ -227,12 +242,7 @@ class User extends Model
         }
     }
 
-    /**
-     * Insert validation
-     *
-     * @return array Object Messages
-     */
-    public function validateInsert($data=array())
+    public function validate()
     {
         //Check nombre
         if (!$this->nombre) {
@@ -245,9 +255,21 @@ class User extends Model
         //Check email
         if (!$this->email) {
             Registry::addMessage("Debes introducir tu email", "error", "email");
-        } elseif ($this->getUserByEmail($this->email)) {
+        } elseif ($this->getUserByEmail($this->email, $this->id)) {
             Registry::addMessage("Este email ya esta registrado", "error", "email");
         }
+        //Foto
+        $this->uploadFoto($_FILES["foto"]);
+    }
+
+    /**
+     * Insert validation
+     *
+     * @return array Object Messages
+     */
+    public function validateInsert($data=array())
+    {
+        $this->validate();
         //Password?
         if (!empty($data) && !$this->dateInsert) {
             if (!$this->password) {
@@ -281,13 +303,15 @@ class User extends Model
         if (isset($data["categorias"])) {
             $this->categorias = json_encode($data["categorias"]);
         }
-        //Foto
-        $this->uploadFoto($_FILES["foto"]);
     }
 
     public function postInsert()
     {
-        $this->sendVerification();
+        //Tribber?
+        if ($this->roleId==USER_ROLE_TRIBBER) {
+            //Mandamos email con los detalles de la cuenta
+            $this->sendWelcome();
+        }
     }
 
     /**
@@ -297,20 +321,7 @@ class User extends Model
      */
     public function validateUpdate()
     {
-        //Check nombre
-        if (!$this->nombre) {
-            Registry::addMessage("Debes introcuri tu nombre", "error", "nombre");
-        }
-        //Check apellidos
-        if (!$this->apellidos) {
-            Registry::addMessage("Debes introducir tus apellidos", "error", "apellidos");
-        }
-        //Check email
-        if (!$this->email) {
-            Registry::addMessage("Debes introducir tu email", "error", "email");
-        } elseif ($this->getUserByEmail($this->email, $this->id)) {
-            Registry::addMessage("Este email ya esta registrado", "error", "email");
-        }
+        $this->validate();
 
         return Registry::getMessages(true);
     }
@@ -338,30 +349,24 @@ class User extends Model
         if (isset($data["categorias"])) {
             $this->categorias = json_encode($data["categorias"]);
         }
-        //Foto
-        $this->uploadFoto($_FILES["foto"]);
     }
 
-    public function uploadFoto($resource)
+    public function uploadFoto($resource=null)
     {
-        if ($resource["size"]) {
+        //Banner Upload
+        if (isset($resource)) {
             $config = Registry::getConfig();
-            $uploadDir = $config->get("path").$this->fotosPath;
-            $uploadTempDir = $config->get("path")."/files/tmp/";
-            //Tmp Upload
-            $temp = explode(".", $resource["name"]);
-            $extension = end($temp);
-            $newName = md5(uniqid());
-            $tmpName = $newName.".".$extension;
-            if (move_uploaded_file($resource["tmp_name"], $uploadTempDir.$tmpName)) {
-                //New name
-                $newName = $newName.".png";
-                //Resize
-                $resizeObj = new resize($uploadTempDir.$tmpName);
-                $resizeObj->resizeImage(512, 512);
-                $resizeObj->saveImage($uploadDir.$newName, 0);
-                @unlink($uploadTempDir.$tmpName);
-                $this->foto = $newName;
+            try {
+                //Eliminamos la antigua
+                @unlink($this->getBannerPath());
+                //Subimos la nueva
+                $bulletProof = new BulletProof;
+                $this->foto = $bulletProof
+                    ->uploadDir($config->get("path").$this->fotosPath)
+                    ->shrink(array("height"=>512, "width"=>512))
+                    ->upload($resource);
+            } catch (ImageUploaderException $e) {
+                Registry::addMessage("Error al subir la imagen: ".$e->getMessage(), "error");
             }
         } else {
             $this->foto = null;
@@ -570,7 +575,7 @@ class User extends Model
         $this->update();
         $mailer = Registry::getMailer();
         $mailer->addAddress($this->email);
-        $mailer->Subject = utf8_decode(Registry::translate("EMAILS_ACCOUNT_RECOVERY_SUBJECT"));
+        $mailer->Subject = utf8_decode("Recuperación de la cuenta");
         $mailer->msgHTML(
             Template::renderEmail(
                 "accountRecovery",
@@ -582,7 +587,32 @@ class User extends Model
         if ($mailer->send()) {
             return true;
         } else {
-            Registry::addMessage(Registry::translate("MODL_USER_RECOVERY_EMAIL_ERROR"), "error");
+            Registry::addMessage("Error al enviar el email. Inténtalo de nuevo más tarde", "error");
+        }
+    }
+
+    /**
+     * Envía un email de bienvenida
+     *
+     * @return bool
+     */
+    public function sendWelcome()
+    {
+        $mailer = Registry::getMailer();
+        $mailer->addAddress($this->email);
+        $mailer->Subject = utf8_decode("Bienvenido a Tribo!");
+        $mailer->msgHTML(
+            Template::renderEmail(
+                "accountWelcome",
+                array(
+                    "user" => $this
+                ), "bootstrap"
+            )
+        );
+        if ($mailer->send()) {
+            return true;
+        } else {
+            Registry::addMessage("Error al enviar el email. Inténtalo de nuevo más tarde", "error");
         }
     }
 }
