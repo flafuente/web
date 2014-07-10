@@ -116,7 +116,7 @@ li.active > a {
 .submenu li{
 	list-style:none;
 	float: left;
-	padding: 10px 0px 10px 40px;
+	padding: 10px 0px 10px 10px;
 	text-transform: normal;
 }
 .submenu li:hover, .submenu li:hover a{
@@ -266,6 +266,8 @@ div.twitter i.fa.fa-twitter {
 }
 .square img {
 	width: 100%;
+	max-width: 269px;
+	max-height: 162px;
 }
 .square img.arrow{
 	width: initial;
@@ -478,6 +480,7 @@ div.sq_content{
 .haztetriber_title{
 	font-size: 19px;
 	font-weight: 800;
+	text-transform: uppercase;
 }
 .control-label img{
 	width: initial;
@@ -503,6 +506,12 @@ label {
 .well {
 	background-color: #efecec !important;
 	border-radius: 2px !important;
+}
+.well_title{
+	color: #13b6ea;
+	font-size: 16px;
+	margin-bottom: 10px;
+
 }
 .form-control {
 	border-radius: 2px !important;
