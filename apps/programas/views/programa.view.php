@@ -13,14 +13,40 @@
     </div>
     <div style="clear: both;"></div>
     <div class='col-md-offset-6 col-md-6 epi_button'>
-        <a href="<?=Url::site("programas/n_programa");?>">site programa</a> <strong>|</strong> <a href="<?=Url::site("episodios/n_programa/all");?>">todos los capitulos</a>
+        <a href="<?=Url::site("programas/n_programa");?>">site programa</a>
+        <strong>|</strong>
+        <a href="<?=Url::site("episodios/n_programa/all");?>">todos los capitulos</a>
     </div>
 </div>
 
-<?php
-if (count($capitulos)) {
-    foreach ($capitulos as $capitulo) {
-        $controller->setData("capitulo", $capitulo);
-        echo $controller->view("modules.capitulo-mini");
-    }
-}
+<!-- Temporadas TAB -->
+<?php if (count($temporadas)) { ?>
+
+    <ul class="nav nav-tabs" role="tablist">
+        <?php foreach ($temporadas as $temporada=>$capitulos) { ?>
+            <?php $active = $active ? "" : "active"; ?>
+            <li class="<?=$active?>">
+                <a href="#temporada<?=$temporada?>" role="tab" data-toggle="tab">
+                    Temporada <?=$temporada?>
+                </a>
+            </li>
+        <?php } ?>
+    </ul>
+
+    <?php $active = null; ?>
+
+    <div class="tab-content">
+        <?php foreach ($temporadas as $temporada=>$capitulos) { ?>
+            <?php $active = $active ? "" : "active"; ?>
+            <div class="tab-pane <?=$active?>" id="temporada<?=$temporada?>">
+                <!-- Cápítulos -->
+                <?php if (count($capitulos)) { ?>
+                    <?php foreach ($capitulos as $capitulo) { ?>
+                        <?php $controller->setData("capitulo", $capitulo); ?>
+                        <?=$controller->view("modules.capitulo-mini"); ?>
+                    <?php } ?>
+                <?php } ?>
+            </div>
+        <?php } ?>
+    </div>
+<?php } ?>

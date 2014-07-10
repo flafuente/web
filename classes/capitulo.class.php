@@ -123,11 +123,37 @@ class Capitulo extends Model
         parent::$reservedVarsChild = self::$reservedVarsChild;
     }
 
+    /**
+     * Ordena un array de capítulos indexado por temporada.
+     * @return array
+     */
+    public static function groupByTemporadas($capitulos = array())
+    {
+        $return = array();
+        if (count($capitulos)) {
+            foreach ($capitulos as $capitulo) {
+                $return[$capitulo->temporada][$capitulo->episodio] = $capitulo;
+            }
+        }
+
+        return $return;
+    }
+
+    /**
+     * Devuelve el número de temporada-episodio
+     * @example 2x04
+     * @return string
+     */
     public function getNumero()
     {
         return $this->temporada."x".str_pad($this->episodio, 2, "0", STR_PAD_LEFT);
     }
 
+    /**
+     * Devuelve el número y el título del capítulo
+     * @example 2x04 - Título
+     * @return string
+     */
     public function getFullTitulo()
     {
         return $this->getNumero()." - ".$this->titulo;

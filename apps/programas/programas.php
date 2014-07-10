@@ -38,7 +38,7 @@ class programasController extends Controller
             //Programa
             $this->setData("programa", $programa);
             //Capítulos
-            $this->setData("capitulos", Capitulo::select(array("programaId"=>$programa->id)));
+            $this->setData("temporadas", Capitulo::groupByTemporadas(Capitulo::select(array("programaId"=>$programa->id))));
             //View
             $html = $this->view("views.programa");
             $this->render($html);
