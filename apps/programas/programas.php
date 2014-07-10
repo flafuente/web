@@ -24,6 +24,7 @@ class programasController extends Controller
                 $data["categoriaId"] = $categoria->id;
             }
         }
+        $this->setData("categoria",$categoria);
         $this->setData("programas", Programa::select($data));
         $html = $this->view("views.programas");
         $this->render($html);

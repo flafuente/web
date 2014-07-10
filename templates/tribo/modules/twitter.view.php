@@ -18,41 +18,45 @@
                });
     </script>
 	<?php
-	include_once("templates/tribo/twitteroauth/twitteroauth.php"); //Path to twitteroauth library you downloaded in step 3
-	$twitteruser = "pepocivs"; //user name you want to reference
-	$notweets = 50; //how many tweets you want to retrieve
-	$consumerkey = "M8LPRrfMlVSgbqmiY39d6w"; //Noted keys from step 2
-	$consumersecret = "oV9StQWszT1HhyOSrBk2cZhe5RuUb6MDKXbvzhHVc"; //Noted keys from step 2
-	$accesstoken = "552317085-teYYibh7nL1veabhF3BsMzbhLqxZn9BnvnXjbn1M"; //Noted keys from step 2
-	$accesstokensecret = "Ch0OmXMy3Jk2RAVsqnSYHyjpYBmTEOw4BWAZGHk"; //Noted keys from step 2
+	if(is_callable('curl_init')){
 
-	function getConnectionWithAccessToken($cons_key, $cons_secret, $oauth_token, $oauth_token_secret) {
-	  $connection = new TwitterOAuth($cons_key, $cons_secret, $oauth_token, $oauth_token_secret);
-	  return $connection;
-	}
+		include_once("templates/tribo/twitteroauth/twitteroauth.php"); //Path to twitteroauth library you downloaded in step 3
+		$twitteruser = "pepocivs"; //user name you want to reference
+		$notweets = 50; //how many tweets you want to retrieve
+		$consumerkey = "M8LPRrfMlVSgbqmiY39d6w"; //Noted keys from step 2
+		$consumersecret = "oV9StQWszT1HhyOSrBk2cZhe5RuUb6MDKXbvzhHVc"; //Noted keys from step 2
+		$accesstoken = "552317085-teYYibh7nL1veabhF3BsMzbhLqxZn9BnvnXjbn1M"; //Noted keys from step 2
+		$accesstokensecret = "Ch0OmXMy3Jk2RAVsqnSYHyjpYBmTEOw4BWAZGHk"; //Noted keys from step 2
 
-	$connection = getConnectionWithAccessToken($consumerkey, $consumersecret, $accesstoken, $accesstokensecret);
+		function getConnectionWithAccessToken($cons_key, $cons_secret, $oauth_token, $oauth_token_secret) {
+		  $connection = new TwitterOAuth($cons_key, $cons_secret, $oauth_token, $oauth_token_secret);
+		  return $connection;
+		}
 
-	$tweets = $connection->get("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=".$twitteruser."&count=".$notweets);
+		$connection = getConnectionWithAccessToken($consumerkey, $consumersecret, $accesstoken, $accesstokensecret);
 
-	$tweets = json_decode( json_encode($tweets), true);
-	?>
-	<div class="twitter">
-		<div class="titulo"><i class="fa fa-twitter"></i>&nbsp;&nbsp;&nbsp;#Tribo</div>
-		<div class="tweets">
-			<?php
-			//print_r($tweets);
-			for($x=0; $x<count($tweets); $x++){
-				showTweet($tweets[$x]);
-			}
-			?>
+		$tweets = $connection->get("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=".$twitteruser."&count=".$notweets);
 
+		$tweets = json_decode( json_encode($tweets), true);
+		?>
+		<div class="twitter">
+			<div class="titulo"><i class="fa fa-twitter"></i>&nbsp;&nbsp;&nbsp;#Tribo</div>
+			<div class="tweets">
+				<?php
+				//print_r($tweets);
+				for($x=0; $x<count($tweets); $x++){
+					showTweet($tweets[$x]);
+				}
+				?>
+
+			</div>
 		</div>
-	</div>
 
 
 
 	<?php
+	}
+
 	function showTweet($data){
 		$fecha = time_passed(strtotime($data["created_at"]));
 		$nombre = $data["user"]["name"];

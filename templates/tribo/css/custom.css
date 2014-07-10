@@ -717,6 +717,11 @@ position: absolute; bottom: 0px;  line-height:20px;
 height: 30px;
 width:100%;
 }
+/*#slider1_container  div div a{
+	width:100%;
+	height:100%;
+
+	}*/
 #slider1_container  .title p span{
 background-color:#f8f4f4;
 height: 30px;

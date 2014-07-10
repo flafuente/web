@@ -14,16 +14,34 @@
     <!-- Slides Container -->
     <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 960px;            height: 310px; overflow: hidden;">
         <div>
-            <img u="image" src="<?=Url::template("/img/slide01.png");?>" />
-            <div class='title'>
+            <a href="<?=Url::site("haztetriber");?>"><img u="image" src="<?=Url::template("/img/home/slide0.jpg");?>" />
+            
+            </a>
+            <!--<div class='title'>
                 <p><span>tribo tv es..</span></p>
-            </div>
+            </div>-->
         </div>
         <div>
-            <img u="image" src="<?=Url::template("/img/slide01.png");?>" />
-            <div class='title'>
+            <img u="image" src="<?=Url::template("/img/home/slide1.jpg");?>" />
+            <!--<div class='title'>
                 <p><span>Sólo las personas saben lo que les gusta a las personas</span></p>
-            </div>
+            </div>-->
+        </div>
+        <div>
+            <a href="<?=Url::site("haztetriber");?>">
+            <img u="image" src="<?=Url::template("/img/home/slide2.jpg");?>" />
+            </a>
+            <!--<div class='title'>
+                <p><span>Sólo las personas saben lo que les gusta a las personas</span></p>
+            </div>-->
+        </div>
+        <div>
+            <a href="<?=Url::site("haztetriber");?>">
+            <img u="image" src="<?=Url::template("/img/home/slide3.jpg");?>" />
+            </a>
+            <!--<div class='title'>
+                <p><span>Sólo las personas saben lo que les gusta a las personas</span></p>
+            </div>-->
         </div>
     </div>
     <!-- navigator container -->
