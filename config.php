@@ -35,6 +35,9 @@ define("USER_ROLE_COLABORADOR", 3);
 define("USER_ROLE_VALIDADOR", 	4);
 define("USER_ROLE_ADMIN", 		5);
 
+//Categorías
+define("USER_CATEGORIA_PERIODISMOCIUTADANO",	7);
+
 //Urls/Paths
 $_config['path'] = dirname(__FILE__);
 $_config['host'] = $_SERVER["SERVER_NAME"];

@@ -123,12 +123,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jdorn/sql-formatter.git",
-                "reference": "ebeb18ffd93454572a829bb43c5ca8c3318c3d63"
+                "reference": "017b6628e7a3a96cfd9f96ec1531b974d1dea2b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jdorn/sql-formatter/zipball/ebeb18ffd93454572a829bb43c5ca8c3318c3d63",
-                "reference": "ebeb18ffd93454572a829bb43c5ca8c3318c3d63",
+                "url": "https://api.github.com/repos/jdorn/sql-formatter/zipball/017b6628e7a3a96cfd9f96ec1531b974d1dea2b7",
+                "reference": "017b6628e7a3a96cfd9f96ec1531b974d1dea2b7",
                 "shasum": ""
             },
             "require": {
@@ -168,7 +168,7 @@
                 "highlight",
                 "sql"
             ],
-            "time": "2014-06-05 15:00:04"
+            "time": "2014-07-08 22:36:13"
         },
         {
             "name": "light-framework/core",
@@ -176,12 +176,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/arall/LightFramework-core.git",
-                "reference": "9ef3c07107d59e14ebe85e1aeb550f55859d3dc7"
+                "reference": "fddac1487460fc514c05332063f5de5fffdce65c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/arall/LightFramework-core/zipball/9ef3c07107d59e14ebe85e1aeb550f55859d3dc7",
-                "reference": "9ef3c07107d59e14ebe85e1aeb550f55859d3dc7",
+                "url": "https://api.github.com/repos/arall/LightFramework-core/zipball/fddac1487460fc514c05332063f5de5fffdce65c",
+                "reference": "fddac1487460fc514c05332063f5de5fffdce65c",
                 "shasum": ""
             },
             "require": {
@@ -210,7 +210,7 @@
                 "framework",
                 "highlight"
             ],
-            "time": "2014-07-02 18:41:49"
+            "time": "2014-07-10 19:24:42"
         },
         {
             "name": "phpmailer/phpmailer",
@@ -218,12 +218,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPMailer/PHPMailer.git",
-                "reference": "022382c9bf970409dae5c3e7d248b38e2e2f9b74"
+                "reference": "1522094b825f37a7c7235d863555f3d12e01f677"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/022382c9bf970409dae5c3e7d248b38e2e2f9b74",
-                "reference": "022382c9bf970409dae5c3e7d248b38e2e2f9b74",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/1522094b825f37a7c7235d863555f3d12e01f677",
+                "reference": "1522094b825f37a7c7235d863555f3d12e01f677",
                 "shasum": ""
             },
             "require": {
@@ -263,7 +263,7 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
-            "time": "2014-06-13 09:18:30"
+            "time": "2014-07-09 21:56:40"
         }
     ],
     "packages-dev": [

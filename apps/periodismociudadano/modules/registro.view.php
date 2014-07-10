@@ -25,17 +25,19 @@
 
         <div class="well">
             <fieldset>
-                <form class="form-horizontal" role="form" method="post" name="loginForm" id="loginForm" action="">
+                <form method="post" action="<?=Url::site();?>" class="form-horizontal ajax" name="mainForm" id="mainForm" role="form" autocomplete="off" enctype="multipart/form-data">
+                    <input type="hidden" name="app" id="app" value="login">
+                    <input type="hidden" name="action" id="action" value="registerTribber">
                     <div class="form-group">
                         <label for="user" class="col-sm-offset-1 col-sm-3 control-label l-left"><img src="<?=Url::template("img/haztetriber/user.png");?>" />&nbsp;&nbsp;Usuario</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="user" name="user" />
+                            <input type="text" class="form-control" id="username" name="username" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="passw" class="col-sm-offset-1 col-sm-3 control-label l-left"><img src="<?=Url::template("img/haztetriber/passw.png");?>" />&nbsp;&nbsp;Contraseña</label>
                         <div class="col-sm-8">
-                            <input type="password" class="form-control" id="passw" name="passw" />
+                            <input type="password" class="form-control" id="password" name="password" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -47,11 +49,15 @@
                     <!-- Buttons -->
                     <div class="form-group">
                         <div class="col-sm-offset-1 col-sm-2 l-left">
-                            <button class="btn btn-tribo-grey ladda-button" data-style="slide-left">Regístrate</button>
+                            <?=HTML::formButton("btn-tribo-grey", null, "Regístrate", array(
+                                    "data-app" => "login",
+                                    "data-action" => "registerTribber"
+                                )
+                            );?>
                         </div>
                         <div class="col-sm-9 l-right">
                             <span class="yareg">Si ya estás registrado, accede como usuario:</span>
-                            <button class="btn btn-tribo-blue ladda-button" data-style="slide-left">Entrar</button>
+                            <?=HTML::formLink("btn-tribo-blue", null, Url::site("login"), "Entrar");?>
                         </div>
                     </div>
                 </form>

@@ -71,9 +71,15 @@
             </div>
             <div class='col-md-10 nopadding bor_lef'>
                 <div class='col-md-9 nopadding'>
+
+                    <!--messages-->
+                    <?=$controller->view("modules.messages");?>
+                    <!--/messages-->
+
                     <!--content-->
                     <?=$content;?>
                     <!--/content-->
+
                 </div>
                 <div class='col-md-3 nopadding'>
                     <?=$controller->view("modules.twitter");?>

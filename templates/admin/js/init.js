@@ -17,8 +17,8 @@ $(document).on('submit', '.ajax', function(e){
 					for(var x=0;x<messages.length;x++) {
 						//Field message
 						if(messages[x].field){
-							if(messages[x].type=="danger"){
-								messages[x].type = "error";
+							if(messages[x].type=="error"){
+								messages[x].type = "danger";
 							}
 							field = form.find("select[name=" + messages[x].field + "], input[name=" + messages[x].field + "], textarea[name=" + messages[x].field + "], checkbox[name=" + messages[x].field + "]");
 							if(field.length){

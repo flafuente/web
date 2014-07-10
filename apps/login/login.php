@@ -112,6 +112,29 @@ class loginController extends Controller
         $this->render($html);
     }
 
+    /**
+     * Registro de Tribber (periodismo ciutadano)
+     */
+    public function registerTribber()
+    {
+        //Try to register
+        $user = new User();
+        //Force disable account
+        $_REQUEST['statusId'] = 0;
+        //Force un-verified account
+        $_REQUEST['verified'] = 0;
+        //Forzamos la categoría
+        $_REQUEST['categorias'] = array(USER_CATEGORIA_PERIODISMOCIUTADANO);
+        //Force role
+        $_REQUEST['roleId'] = USER_ROLE_TRIBBER;
+        if ($user->insert($_REQUEST)) {
+            //Redirect to main page thought Message URL parameter
+            Registry::addMessage("Gracias por registrarte!", "success", "", Url::site());
+        }
+        //Do not render the template, just ajax (Messages)
+        $this->ajax();
+    }
+
     public function doRegister()
     {
         //Try to register
@@ -121,7 +144,7 @@ class loginController extends Controller
         //Force un-verified account
         $_REQUEST['verified'] = 0;
         //Force role
-        $_REQUEST['roleId'] = 1;
+        $_REQUEST['roleId'] = USER_ROLE_REGULAR;
         if ($user->insert($_REQUEST)) {
             //Do first login
             $user->login($_REQUEST['email'], $_REQUEST['password']);

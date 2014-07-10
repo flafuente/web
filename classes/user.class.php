@@ -257,15 +257,23 @@ class User extends Model
     {
         //Check nombre
         if (!$this->nombre) {
-            Registry::addMessage("Debes introcurir tu nombre", "error", "nombre");
+            //Registry::addMessage("Debes introcurir tu nombre", "error", "nombre");
         }
         //Check apellidos
         if (!$this->apellidos) {
-            Registry::addMessage("Debes introducir tus apellidos", "error", "apellidos");
+            //Registry::addMessage("Debes introducir tus apellidos", "error", "apellidos");
+        }
+         //Check username
+        if (!$this->username) {
+            Registry::addMessage("Debes introducir tu nombre de usuario", "error", "username");
+        } elseif ($this->getUserByUsername($this->username, $this->id)) {
+            Registry::addMessage("Este nombre de usuario ya esta registrado", "error", "username");
         }
         //Check email
         if (!$this->email) {
             Registry::addMessage("Debes introducir tu email", "error", "email");
+        } elseif (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+             Registry::addMessage("Email incorrecto", "error", "email");
         } elseif ($this->getUserByEmail($this->email, $this->id)) {
             Registry::addMessage("Este email ya esta registrado", "error", "email");
         }
@@ -312,7 +320,7 @@ class User extends Model
         }
         //Categorias
         if (isset($data["categorias"])) {
-            $this->categorias = json_encode($data["categorias"]);
+            $this->categorias = json_encode($data["categorias"]);;
         }
     }
 
