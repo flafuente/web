@@ -7,7 +7,7 @@
         <?php $active[$url->app][$url->action] = "active"; ?>
 
       <li class="<?=$active["programas"]["index"];?> withsub">
-        <a href="<?=Url::site("programas");?>">PROGRAMAS</a>
+        <a href="#">PROGRAMAS</a>
         <?php $categorias = Categoria::select(); ?>
         <?php if (count($categorias)) { ?>
             <ul class="submenu" style="display: none;">

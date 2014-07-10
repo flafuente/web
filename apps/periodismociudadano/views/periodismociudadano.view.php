@@ -27,8 +27,8 @@
 			<span>LOCALIZACIÓN TRIBERS</span>
 		</div>
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-		<div style="overflow:hidden;height:500px;">
-			<div id="gmap_canvas" style="height:500px;"></div>
+		<div style="overflow:hidden;height:300px;">
+			<div id="gmap_canvas" style="height:300px;"></div>
 		</div>
 		<script type="text/javascript">
 			function init_map(){
