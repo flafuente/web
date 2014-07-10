@@ -229,6 +229,17 @@ class User extends Model
     }
 
     /**
+     * @return string Path de la foto de perfil
+     */
+    public function getFotoPath()
+    {
+        $config = Registry::getConfig();
+        if ($this->foto) {
+            return Url::site($config->get("path").$this->fotosPath.$this->foto);
+        }
+    }
+
+    /**
      * Comprueba si el usuario actual tiene acceso a una sección.
      *
      * @param  string $app Sección
@@ -358,7 +369,9 @@ class User extends Model
             $config = Registry::getConfig();
             try {
                 //Eliminamos la antigua
-                @unlink($this->getBannerPath());
+                if ($this->foto) {
+                    @unlink($this->getFotoPath());
+                }
                 //Subimos la nueva
                 $bulletProof = new BulletProof;
                 $this->foto = $bulletProof
