@@ -614,7 +614,11 @@ label {
 	margin-top: 10px;
 }
 
-
+/*Search Top*/
+#searchResults{
+	height: 130px;
+	overflow: auto;
+}
 
 
 /* Debug Footer */

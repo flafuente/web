@@ -15,7 +15,7 @@
                     },
                     theme:"dark"
                 });
-               });
+            });
     </script>
 	<?php
 	if(is_callable('curl_init')){

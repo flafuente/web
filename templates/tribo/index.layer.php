@@ -114,5 +114,8 @@
         <?=$controller->view("modules.debug.menu");?>
         <!-- /Debug -->
 
+        <!-- Scripts -->
+        <?=$controller->view("modules.generalScripts");?>
+        <!-- /Scripts -->
     </body>
 </html>
