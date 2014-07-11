@@ -617,8 +617,35 @@ label {
 /*Search Top*/
 #searchResults{
 	height: 130px;
-	overflow: auto;
+	margin-top: -5px;
+	position: absolute;
+	top: 94px;
+	left: 25px;
+	width: 356px;
 }
+#searchResults div.mCustomScrollBox div.mCSB_container {
+	margin-right: 8px !important;
+}
+.result{
+	border: 1px solid #dddddd;
+	margin-bottom: -1px !important;
+	color: black;
+}
+.sq_result:nth-child(odd) div{
+	background: #ffffff;
+}
+.sq_result:nth-child(even) div{
+	background: #f2f2f3;
+}
+.result span{
+
+}
+.result h3{
+	margin: 12px;
+	font-size: 12px;
+	font-weight: bold;
+}
+
 
 
 /* Debug Footer */

@@ -1,14 +1,7 @@
-
-
 <script>
-    $(window).load(function(){
+    //$(window).load(function(){
+    $( document ).ready(function() {
         $(".sqd_description").mCustomScrollbar({
-            scrollButtons:{
-                enable:true
-            },
-            theme:"dark"
-        });
-        $("#searchResults").mCustomScrollbar({
             scrollButtons:{
                 enable:true
             },
