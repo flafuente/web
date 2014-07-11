@@ -13,7 +13,7 @@
     </div>
     <div style="clear: both;"></div>
     <div class='col-md-offset-6 col-md-6 epi_button'>
-        <a href="<?=Url::site("programas/n_programa");?>">site programa</a>
+        <a href="<?=Url::site("programas/ver/".$programa->slug);?>">site programa</a>
         <strong>|</strong>
         <a href="<?=Url::site("episodios/n_programa/all");?>">todos los capitulos</a>
     </div>

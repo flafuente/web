@@ -15,7 +15,7 @@
     </div>
     <div class="video-info">
         <div class="col-md-12 vd-ruta">
-            <a href="<?=Url::site('programas/'.$programa->slug);?>">
+            <a href="<?=Url::site('programas/ver/'.$programa->slug);?>">
                 <?=Helper::sanitize($programa->titulo);?>
             </a>
              /
@@ -58,7 +58,7 @@
     } ?>
 
     <div class='col-md-6 epi_button'>
-        <a href="<?=Url::site("programas/n_programa");?>">site programa</a>
+        <a href="<?=Url::site("programas/ver/".$programa->slug);?>">site programa</a>
         <strong>|</strong>
         <a href="<?=Url::site("episodios/n_programa/all");?>">todos los capitulos</a>
     </div>
