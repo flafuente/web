@@ -264,11 +264,11 @@ class User extends Model
             //Registry::addMessage("Debes introducir tus apellidos", "error", "apellidos");
         }
         //Check username
-        /*if (!$this->username) {
+        if (!$this->username) {
             Registry::addMessage("Debes introducir tu nombre de usuario", "error", "username");
         } elseif (User::getBy("username", $this->username, $this->id)) {
             Registry::addMessage("Este nombre de usuario ya esta registrado", "error", "username");
-        }*/
+        }
         //Check email
         if (!$this->email) {
             Registry::addMessage("Debes introducir tu email", "error", "email");
