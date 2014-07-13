@@ -174,23 +174,6 @@ class Programa extends Model
     }
 
     /**
-     * Busca una categoría por su slug.
-     * @param  string $slug Slug
-     * @return object
-     */
-    public function getProgramaBySlug($slug)
-    {
-        $db = Registry::getDb();
-        $params = array();
-        $query = "SELECT * FROM `programas` WHERE slug = :slug";
-        $params[":slug"] = $slug;
-        $rows = $db->query($query, $params);
-        if (count($rows)) {
-            return new Programa($rows[0]);
-        }
-    }
-
-    /**
      * Validación para creación/edición del capítulo.
      * @return array Array de errores
      */
@@ -200,6 +183,8 @@ class Programa extends Model
         //Titulo
         if (!$this->titulo) {
             Registry::addMessage("Debes introducir un titulo", "error", "titulo");
+        } elseif (Programa::getBy("titulo", $this->titulo, $this->id)) {
+            Registry::addMessage("Ya existe otro programa con este nombre", "error", "titulo");
         }
         //Banner Upload
         if (isset($_FILES["banner"])) {

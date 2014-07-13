@@ -10,7 +10,7 @@ class parrillaController extends Controller
         $url = Registry::getUrl();
         $user = Registry::getUser();
         if (!$user->checkPermisos($url->app)) {
-            Helper::redirect(Url::site());
+            Url::redirect(Url::site());
         }
     }
 

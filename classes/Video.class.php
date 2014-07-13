@@ -209,7 +209,7 @@ class Video extends Model
      */
     public function syncTags($tagsIds = array())
     {
-        $actualTagsIds = Tag::getTagsIdsByVideoId($this->id);
+        $actualTagsIds = VideoTag::getFieldBy("tagId", "videoId", $this->id);
         //Quitar
         if (count($actualTagsIds)) {
             foreach ($actualTagsIds as $tagId) {
@@ -357,21 +357,21 @@ class Video extends Model
     public function postDelete()
     {
         //Eliminamos los tags
-        $tags = VideoTag::getVideosTagsByVideoId($this->id);
+        $tags = VideoTag::getBy("videoId", $this->id);
         if (is_array($tags)) {
             foreach ($tags as $tag) {
                 $tag->delete();
             }
         }
         //Eliminamos las visitas
-        $visitas = VideoVisita::getVideosVisitasByVideoId($this->id);
+        $visitas = VideoVisita::getBy("videoId", $this->id);
         if (is_array($visitas)) {
             foreach ($visitas as $visita) {
                 $visita->delete();
             }
         }
         //Eliminamos los archivos
-        $archivos = VideoArchivo::getVideosArchivosByVideoId($this->id);
+        $archivos = VideoArchivo::getBy("videoId", $this->id);
         if (is_array($archivos)) {
             foreach ($archivos as $archivo) {
                 $archivo->delete();

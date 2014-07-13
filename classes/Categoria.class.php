@@ -86,7 +86,7 @@ class Categoria extends Model
         //nombre
         if (!$this->nombre) {
             Registry::addMessage("Debes introducir un nombre", "error", "nombre");
-        } elseif ($this->getCategoriaByNombre($this->nombre, $this->id)) {
+        } elseif (Categoria::getBy("nombre", $this->nombre, $this->id)) {
             Registry::addMessage("Ya existe una categoría con este nombre", "error", "nombre");
         }
         //Thumbnail Upload
@@ -178,46 +178,6 @@ class Categoria extends Model
         $this->validate();
 
         return Registry::getMessages(true);
-    }
-
-    /**
-     * Busca una categoría por su slug.
-     * @param  string $slug slug
-     * @return object
-     */
-    public function getCategoriaBySlug($slug)
-    {
-        $db = Registry::getDb();
-        $params = array();
-        $query = "SELECT * FROM `categorias` WHERE slug = :slug";
-        $params[":slug"] = $slug;
-        $rows = $db->query($query, $params);
-        if (count($rows)) {
-            return new Categoria($rows[0]);
-        }
-    }
-
-    /**
-     * Busca una categoría por su nombre.
-     * @param  string  $nombre   Nombre
-     * @param  integer $ignoreId Id a ignorar
-     * @return object
-     */
-    public function getCategoriaByNombre($nombre, $ignoreId=0)
-    {
-        $db = Registry::getDb();
-        $params = array();
-        $query = "SELECT * FROM `categorias` WHERE nombre = :nombre";
-        $params[":nombre"] = $nombre;
-        //Ignore Id
-        if ($ignoreId) {
-            $params[":ignoreId"] = $ignoreId;
-            $query .= " AND `id` != :ignoreId";
-        }
-        $rows = $db->query($query, $params);
-        if (count($rows)) {
-            return new Categoria($rows[0]);
-        }
     }
 
     /**

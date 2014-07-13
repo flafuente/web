@@ -10,7 +10,7 @@ class capitulosController extends Controller
         $url = Registry::getUrl();
         $user = Registry::getUser();
         if (!$user->checkPermisos($url->app)) {
-            Helper::redirect(Url::site());
+            Url::redirect(Url::site());
         }
     }
 
@@ -63,6 +63,6 @@ class capitulosController extends Controller
                 Registry::addMessage("Capítulo eliminado satisfactoriamente", "success");
             }
         }
-        Helper::redirect(Url::site("admin/capitulos"));
+        Url::redirect(Url::site("admin/capitulos"));
     }
 }

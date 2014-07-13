@@ -10,7 +10,7 @@ class videosController extends Controller
         $url = Registry::getUrl();
         $user = Registry::getUser();
         if (!$user->checkPermisos($url->app)) {
-            Helper::redirect(Url::site());
+            Url::redirect(Url::site());
         }
     }
 
@@ -46,7 +46,7 @@ class videosController extends Controller
         $video = new Video($url->vars[0]);
         $this->setData("video", $video);
         if ($video->id) {
-            $this->setData("videosArchivos", VideoArchivo::getVideosArchivosByVideoId($video->id));
+            $this->setData("videosArchivos", VideoArchivo::getBy("videoId", $video->id));
         }
         //Limitamos las categorías de los validadores
         $selectCategorias = array(
@@ -97,7 +97,7 @@ class videosController extends Controller
                 Registry::addMessage("Video eliminado satisfactoriamente", "success");
             }
         }
-        Helper::redirect(Url::site("admin/videos"));
+        Url::redirect(Url::site("admin/videos"));
     }
 
     public function saveArchivo()

@@ -10,7 +10,7 @@ class tagsController extends Controller
         $url = Registry::getUrl();
         $user = Registry::getUser();
         if (!$user->checkPermisos($url->app)) {
-            Helper::redirect(Url::site());
+            Url::redirect(Url::site());
         }
     }
 
@@ -62,6 +62,6 @@ class tagsController extends Controller
                 Registry::addMessage("Tag eliminado satisfactoriamente", "success");
             }
         }
-        Helper::redirect(Url::site("admin/tags"));
+        Url::redirect(Url::site("admin/tags"));
     }
 }

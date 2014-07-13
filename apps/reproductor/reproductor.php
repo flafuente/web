@@ -10,7 +10,7 @@ class reproductorController extends Controller
     {
         //$html = $this->view("views.reproductor");
         //$this->render($html);
-        Helper::redirect(Url::site(), "Capítulo incorrecto", "warning");
+        Url::redirect(Url::site(), "Capítulo incorrecto", "warning");
     }
 
     public function capitulo()
@@ -28,7 +28,7 @@ class reproductorController extends Controller
             $html = $this->view("views.reproductor");
             $this->render($html);
         } else {
-            Helper::redirect(Url::site(), "Capítulo incorrecto", "warning");
+            Url::redirect(Url::site(), "Capítulo incorrecto", "warning");
         }
     }
 }

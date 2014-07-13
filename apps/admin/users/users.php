@@ -10,7 +10,7 @@ class usersController extends Controller
         $url = Registry::getUrl();
         $user = Registry::getUser();
         if (!$user->checkPermisos($url->app)) {
-            Helper::redirect(Url::site());
+            Url::redirect(Url::site());
         }
     }
 
@@ -62,6 +62,6 @@ class usersController extends Controller
                 Registry::addMessage("Usuario eliminado satisfactoriamente", "success");
             }
         }
-        Helper::redirect(Url::site("admin/users"));
+        Url::redirect(Url::site("admin/users"));
     }
 }

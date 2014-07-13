@@ -25,30 +25,30 @@ class loginController extends Controller
 
     public function sendRecovery()
     {
-        $user = User::getUserByEmail($_REQUEST['email']);
+        $user = current(User::getBy("email", $_REQUEST['email']));
         if ($user->id) {
             $user->sendRecovery();
             Registry::addMessage("Te hemos mandado un email con los detalles para la recuperación de tu cuenta.", "success");
         }
-        Helper::redirect(Url::site());
+        Url::redirect(Url::site());
     }
 
     public function restore()
     {
         $url = Registry::getUrl();
-        $user = User::getUserByRecoveryHash($url->vars[0]);
+        $user = current(User::getBY("recoveryHash", $url->vars[0]));
         if ($user->id) {
             $this->setData("user", $user);
             $html = $this->view("views.restore");
             $this->render($html);
         } else {
-            Helper::redirect(Url::site());
+            Url::redirect(Url::site());
         }
     }
 
     public function verify()
     {
-        $url = Registry::getUrl();
+        /*$url = Registry::getUrl();
         $user = User::getUserByVerificationHash($url->vars[0]);
         if ($user->id) {
             print_pre($user);
@@ -60,13 +60,12 @@ class loginController extends Controller
         } else {
             Registry::addMessage("Link de activación incorrecto", "error");
         }
-        Helper::redirect(Url::site());
+        Url::redirect(Url::site());*/
     }
 
     public function changePassword()
     {
-        $url = Registry::getUrl();
-        $user = User::getUserByRecoveryHash($_REQUEST["recoveryHash"]);
+        $user = current(User::getBY("recoveryHash", $_REQUEST["recoveryHash"]));
         if ($user->id) {
             if ($_REQUEST['password']==$_REQUEST['password2']) {
                 $user->recoveryHash = "";
@@ -101,7 +100,7 @@ class loginController extends Controller
     {
         $user = new User();
         $user->logout();
-        Helper::redirect(Url::site());
+        Url::redirect(Url::site());
     }
 
     public function register()

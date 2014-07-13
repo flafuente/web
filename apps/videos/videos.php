@@ -8,7 +8,7 @@ class videosController extends Controller
     {
         $user = Registry::getUser();
         if (!$user->id) {
-            Helper::redirect(Url::site("login"));
+            Url::redirect(Url::site("login"));
         }
     }
 
@@ -46,12 +46,12 @@ class videosController extends Controller
         $url = Registry::getUrl();
         $video = new Video($url->vars[0]);
         if ($video->checkPermission()) {
-            $this->setData("videosArchivos", VideoArchivo::getVideosArchivosByVideoId($video->id));
+            $this->setData("videosArchivos", VideoArchivo::getBy("videoId", $video->id));
             $this->setData("video", $video);
             $html = $this->view("views.ver");
             $this->render($html);
         } else {
-            Helper::redirect(Url::site(), "Video incorrecto", "error");
+            Url::redirect(Url::site(), "Video incorrecto", "error");
         }
     }
 

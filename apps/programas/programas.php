@@ -19,7 +19,7 @@ class programasController extends Controller
         $data = array("estadoId"=>1);
         //Categoría?
         if ($url->vars[0]) {
-            $categoria = Categoria::getCategoriaBySlug($url->vars[0]);
+            $categoria = current(Categoria::getBy("slug", $$url->vars[0]));
             if ($categoria->id) {
                 $data["categoriaId"] = $categoria->id;
             }
@@ -33,7 +33,7 @@ class programasController extends Controller
     public function ver()
     {
         $url = Registry::getUrl();
-        $programa = Programa::getProgramaBySlug($url->vars[0]);
+        $programa = current(Programa::getBy("slug", $url->vars[0]));
         if ($programa->id) {
             //Programa
             $this->setData("programa", $programa);
@@ -43,7 +43,7 @@ class programasController extends Controller
             $html = $this->view("views.programa");
             $this->render($html);
         } else {
-            Helper::redirect(Url::site("programas"), "Programa no encontrado", "danger");
+            Url::redirect(Url::site("programas"), "Programa no encontrado", "danger");
         }
     }
 }

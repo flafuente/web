@@ -50,27 +50,6 @@ class VideoVisita extends Model
     }
 
     /**
-     * Busca las Visitas de un Vídeo.
-     * @param  int $videoId Id del vídeo
-     * @return array Objectos VideoVisita
-     */
-    public function getVideosVisitasByVideoId($videoId)
-    {
-        $db = Registry::getDb();
-        $params = array();
-        $query = "SELECT * FROM `videos_visitas` WHERE `videoId`=:videoId";
-        $params[":videoId"] = $videoId;
-        $rows = $db->query($query, $params);
-        if (count($rows)) {
-            foreach ($rows as $row) {
-                $results[] = new VideoVisita($row);
-            }
-
-            return $results;
-        }
-    }
-
-    /**
      * Devuelve el número total de las Visitas recibidas de un Vídeo.
      * @param  integer $videoId Id del vídeo
      * @return int
@@ -84,7 +63,7 @@ class VideoVisita extends Model
             $params[":videoId"] = $videoId;
             $rows = $db->query($query, $params);
             if (count($rows)) {
-                return $row[0]["total"];
+                return $rows[0]["total"];
             }
         }
     }

@@ -10,7 +10,7 @@ class categoriasController extends Controller
         $url = Registry::getUrl();
         $user = Registry::getUser();
         if (!$user->checkPermisos($url->app)) {
-            Helper::redirect(Url::site());
+            Url::redirect(Url::site());
         }
     }
 
@@ -62,6 +62,6 @@ class categoriasController extends Controller
                 Registry::addMessage("Categoría eliminada satisfactoriamente", "success");
             }
         }
-        Helper::redirect(Url::site("admin/categorias"));
+        Url::redirect(Url::site("admin/categorias"));
     }
 }

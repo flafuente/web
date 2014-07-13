@@ -8,7 +8,7 @@ class buscarController extends Controller
 
     public function index()
     {
-        //Helper::redirect(Url::site());
+        //Url::redirect(Url::site());
     }
 
     public function byAjax()

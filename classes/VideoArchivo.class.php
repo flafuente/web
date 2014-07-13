@@ -159,10 +159,12 @@ class VideoArchivo extends Model
         $video->videoArchivoId = $this->id;
         $video->update();
         //Elimina los otros archivos de vídeo.
-        $archivosInvalidos = $this->getVideosArchivosByVideoId($this->videoId, 2);
+        $archivosInvalidos = VideoArchivo::getBy("videoId", $this->videoId);
         if (is_array($archivosInvalidos) && count($archivosInvalidos)) {
             foreach ($archivosInvalidos as $archivoInvalido) {
-                $archivoInvalido->delete();
+                if ($archivoInvalido->estadoId==2) {
+                    $archivoInvalido->delete();
+                }
             }
         }
     }
@@ -219,38 +221,12 @@ class VideoArchivo extends Model
     }
 
     /**
-     * Busca los archivos de vídeo asociados a un vídeo.
-     * @param  int $videoId  Id del vídeo
-     * @param  int  $estadoId Estado del los archivos de vídeo.
-     * @return array Objectos VideoArchivo
-     */
-    public static function getVideosArchivosByVideoId($videoId=0, $estadoId=null)
-    {
-        $db = Registry::getDb();
-        $params = array();
-        $query = "SELECT * FROM `videos_archivos` WHERE `videoId`=:videoId";
-        $params[":videoId"] = $videoId;
-        if (isset($estadoId)) {
-            $query .= " AND `estadoId`:estadoId ";
-            $params[":estadoId"] = $estadoId;
-        }
-        $rows = $db->query($query, $params);
-        if (count($rows)) {
-            foreach ($rows as $row) {
-                $results[] = new VideoArchivo($row);
-            }
-
-            return $results;
-        }
-    }
-
-    /**
      * Obtiene registros de la base de datos.
-     * @param  array    $data           Condicionales / ordenación
-     * @param  integer  $limit          Límite de resultados (Paginación)
-     * @param  integer  $limitStart     Inicio de la limitación (Paginación)
-     * @param  int      $total          Total de filas encontradas (Paginación)
-     * @return array                    Modelos de la clase actual
+     * @param  array   $data       Condicionales / ordenación
+     * @param  integer $limit      Límite de resultados (Paginación)
+     * @param  integer $limitStart Inicio de la limitación (Paginación)
+     * @param  int     $total      Total de filas encontradas (Paginación)
+     * @return array   Modelos de la clase actual
      */
     public function select($data=array(), $limit=0, $limitStart=0, &$total=null)
     {

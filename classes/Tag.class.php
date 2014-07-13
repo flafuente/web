@@ -48,7 +48,7 @@ class Tag extends Model
         //nombre
         if (!$this->nombre) {
             Registry::addMessage("Debes introducir un nombre", "error", "nombre");
-        } elseif ($this->getTagByNombre($this->nombre, $this->id)) {
+        } elseif (Tag::getBY("nombre", $this->nombre, $this->id)) {
             Registry::addMessage("Ya existe un tag con este nombre", "error", "nombre");
         }
 
@@ -108,56 +108,12 @@ class Tag extends Model
     }
 
     /**
-     * Busca los Ids de los Tags que contiene un vídeo.
-     * @param  integer $videoId Id del vídeo
-     * @return array Ids de los tags
-     */
-    public static function getTagsIdsByVideoId($videoId=0)
-    {
-        $db = Registry::getDb();
-        $params = array();
-        $query = "SELECT `tagId` FROM `videos_tags` WHERE `videoId`=:videoId";
-        $params[":videoId"] = $videoId;
-        $rows = $db->query($query, $params);
-        if (count($rows)) {
-            foreach ($rows as $row) {
-                $results[] = $row["tagId"];
-            }
-
-            return $results;
-        }
-    }
-
-    /**
-     * Busca un Tag por su nombre.
-     * @param  string  $nombre   Nombre
-     * @param  integer $ignoreId Id a ignorar
-     * @return object
-     */
-    public function getTagByNombre($nombre, $ignoreId=0)
-    {
-        $db = Registry::getDb();
-        $params = array();
-        $query = "SELECT * FROM `tags` WHERE nombre = :nombre";
-        $params[":nombre"] = $nombre;
-        //Ignore Id
-        if ($ignoreId) {
-            $params[":ignoreId"] = $ignoreId;
-            $query .= " AND `id` != :ignoreId";
-        }
-        $rows = $db->query($query, $params);
-        if (count($rows)) {
-            return new Tag($rows[0]);
-        }
-    }
-
-    /**
      * Obtiene registros de la base de datos.
-     * @param  array    $data           Condicionales / ordenación
-     * @param  integer  $limit          Límite de resultados (Paginación)
-     * @param  integer  $limitStart     Inicio de la limitación (Paginación)
-     * @param  int      $total          Total de filas encontradas (Paginación)
-     * @return array                    Modelos de la clase actual
+     * @param  array   $data       Condicionales / ordenación
+     * @param  integer $limit      Límite de resultados (Paginación)
+     * @param  integer $limitStart Inicio de la limitación (Paginación)
+     * @param  int     $total      Total de filas encontradas (Paginación)
+     * @return array   Modelos de la clase actual
      */
     public function select($data=array(), $limit=0, $limitStart=0, &$total=null)
     {

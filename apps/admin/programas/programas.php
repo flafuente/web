@@ -10,7 +10,7 @@ class programasController extends Controller
         $url = Registry::getUrl();
         $user = Registry::getUser();
         if (!$user->checkPermisos($url->app)) {
-            Helper::redirect(Url::site());
+            Url::redirect(Url::site());
         }
     }
 
@@ -75,6 +75,6 @@ class programasController extends Controller
                 Registry::addMessage("Programa eliminado satisfactoriamente", "success");
             }
         }
-        Helper::redirect(Url::site("admin/programas"));
+        Url::redirect(Url::site("admin/programas"));
     }
 }
