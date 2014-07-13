@@ -51,7 +51,7 @@ class Seccion extends Model
         //Nombre
         if (!$this->nombre) {
             Registry::addMessage("Debes introducir un nombre para la sección", "error", "nombre");
-        }elseif(Seccion::getBy("nombre", $this->nombre, $this->id)){
+        } elseif (Seccion::getBy("nombre", $this->nombre, $this->id)) {
             Registry::addMessage("Ya existe una sección con este nombre", "error", "nombre");
         }
 
@@ -98,13 +98,14 @@ class Seccion extends Model
 
     /**
      * Envía un email a todos los contactos asociados.
-     * @param array $data Form data.
+     * @param  array $data Form data.
      * @return bool
      */
-    public function sendEmail($data){
+    public function sendEmail($data)
+    {
         $contactos = Contacto::getBy("seccionId", $this->id);
-        if(count($contactos)){
-            foreach($contactos as $contacto){
+        if (count($contactos)) {
+            foreach ($contactos as $contacto) {
                 //Preparamos el email
                 $mailer = Registry::getMailer();
                 $mailer->addAddress($contacto->email);
@@ -121,6 +122,7 @@ class Seccion extends Model
                 $mailer->send();
             }
         }
+
         return true;
     }
 
@@ -171,6 +173,20 @@ class Seccion extends Model
                 }
 
                 return $results;
+            }
+        }
+    }
+
+    /**
+     * Acciones posteriores a la eliminación.
+     * @return void
+     */
+    public function postDelete()
+    {
+        $contactos = Contacto::getBy("seccionId", $this->id);
+        if (count($contactos)) {
+            foreach ($contactos as $contacto) {
+                $contacto->delete();
             }
         }
     }

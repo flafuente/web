@@ -201,7 +201,7 @@
                         <?php if (count($capitulos)) { ?>
                             <?php foreach ($capitulos as $capitulo) { ?>
                                 <div class='external-event' event-color='ffd700' size-overlay='1'>
-                                    <?=$capitulo->getFullNombre();?>
+                                    <?=$capitulo->getFullTitulo();?>
                                 </div>
                             <?php } ?>
                         <?php } ?>
