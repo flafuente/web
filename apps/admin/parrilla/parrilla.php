@@ -18,6 +18,8 @@ class parrillaController extends Controller
     {
         //Programas
         $this->setData("programas", Programa::select());
+        //Eventos
+        $this->setData("eventos", Evento::select());
         //Vista
         $html = $this->view("views.edit");
         $this->render($html);

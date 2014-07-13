@@ -7,7 +7,6 @@ $eventos = Evento::select(array(
     'order' => 'fechaInicio',
     'orderDir' => 'ASC',
 ), 3);
-
 ?>
 
 <?php if (count($eventos)) { ?>
