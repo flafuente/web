@@ -176,12 +176,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/arall/LightFramework-core.git",
-                "reference": "fc67ebb71def7d490ecd725d1617e543f67ebd08"
+                "reference": "d4a04c1b964f725884d6a4e1948cdcaa0ddd615e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/arall/LightFramework-core/zipball/fc67ebb71def7d490ecd725d1617e543f67ebd08",
-                "reference": "fc67ebb71def7d490ecd725d1617e543f67ebd08",
+                "url": "https://api.github.com/repos/arall/LightFramework-core/zipball/d4a04c1b964f725884d6a4e1948cdcaa0ddd615e",
+                "reference": "d4a04c1b964f725884d6a4e1948cdcaa0ddd615e",
                 "shasum": ""
             },
             "require": {
@@ -213,7 +213,7 @@
                 "framework",
                 "highlight"
             ],
-            "time": "2014-07-13 10:11:28"
+            "time": "2014-07-13 11:09:40"
         },
         {
             "name": "phpmailer/phpmailer",

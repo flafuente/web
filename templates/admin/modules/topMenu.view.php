@@ -74,6 +74,22 @@
                         </a>
                     </li>
                 <?php } ?>
+                <?php if ($user->checkPermisos("secciones")) { ?>
+                    <li class="<?=$active['admin']['secciones']?>">
+                        <a href="<?=Url::site("admin/secciones")?>">
+                            <span class="glyphicon glyphicon-th-large"></span>
+                            Secciones
+                        </a>
+                    </li>
+                <?php } ?>
+                <?php if ($user->checkPermisos("contactos")) { ?>
+                    <li class="<?=$active['admin']['contactos']?>">
+                        <a href="<?=Url::site("admin/contactos")?>">
+                            <span class="glyphicon glyphicon-envelope"></span>
+                            Contactos
+                        </a>
+                    </li>
+                <?php } ?>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
