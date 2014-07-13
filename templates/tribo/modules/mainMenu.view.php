@@ -43,27 +43,9 @@
     });
 </script>
 
-<!-- PARRILLA -->
-<div class='col-md-12' style='padding-left: 0px; padding-right: 0px;'>
-    <div class="parrilla">
-        <div class="parrilla-cabecera">
-            <h1>AHORA<br />EN TRIBO</h1>
-            <h2>Ver la Parrilla&nbsp;&nbsp;<div class="circulo">+</div></h2>
-        </div>
-        <?php
-        for ($x=0; $x<3; $x++) {
-            if($x == 2) $cls = ""; else $cls = "line";
-            $hora = rand(1440, 86400);
-            ?>
-            <div class="parrilla-contenido <?php echo $cls; ?>">
-                <span class="hora"><?php echo date("H:i", $hora); ?></span>
-                <span class="titulo">TITULO <?php echo ($x+1); ?></span>
-            </div>
-            <?php
-        }
-        ?>
-    </div>
-</div>
+<!-- Parrilla Module -->
+<?=$controller->view("modules.parrilla");?>
+<!-- /Parrilla Module -->
 
 <!-- Sintonizanos -->
 <div class='col-md-12' style='padding-left: 0px; padding-right: 0px;'>

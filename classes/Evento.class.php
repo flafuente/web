@@ -119,6 +119,10 @@ class Evento extends Model
         $query = "SELECT * FROM `eventos` WHERE 1=1 ";
         $params = array();
         //Where
+        if (isset($data["fechaInicio"])) {
+            $query .= " AND `fechaInicio` >= :fechaInicio ";
+            $params[":fechaInicio"] = $data["fechaInicio"];
+        }
         //Total
         $total = count($db->Query($query, $params));
         if ($total) {
