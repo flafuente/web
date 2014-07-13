@@ -97,6 +97,34 @@ class Seccion extends Model
     }
 
     /**
+     * Envía un email a todos los contactos asociados.
+     * @param array $data Form data.
+     * @return bool
+     */
+    public function sendEmail($data){
+        $contactos = Contacto::getBy("seccionId", $this->id);
+        if(count($contactos)){
+            foreach($contactos as $contacto){
+                //Preparamos el email
+                $mailer = Registry::getMailer();
+                $mailer->addAddress($contacto->email);
+                $mailer->Subject = utf8_decode($subject);
+                $mailer->msgHTML(
+                    Template::renderEmail(
+                        "contactoSecciones",
+                        array(
+                            "data" => $data,
+                            "seccion" => $this
+                        ), "admin"
+                    )
+                );
+                $mailer->send();
+            }
+        }
+        return true;
+    }
+
+    /**
      * Obtiene registros de la base de datos.
      * @param  array   $data       Condicionales / ordenación
      * @param  integer $limit      Límite de resultados (Paginación)

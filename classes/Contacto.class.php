@@ -22,6 +22,11 @@ class Contacto extends Model
      */
     public $seccionId;
     /**
+     * Nombre
+     * @var string
+     */
+    public $nombre;
+    /**
      * Email
      * @var string
      */

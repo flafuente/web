@@ -1,6 +1,5 @@
-<?php defined('_EXE') or die('Restricted access');
+<?php defined('_EXE') or die('Restricted access'); ?>
 
-?>
 <div class='col-md-12 serie_info'>
 	<div class="col-md-12 video">
     </div>
@@ -26,7 +25,7 @@
 			¿Tienes alguna consulta o algo que enseñarnos?
 		</div>
 		<fieldset>
-			<form class="form-horizontal" role="form" method="post" name="loginForm" id="loginForm" action="">
+			<form class="form-horizontal ajax" role="form" method="post" name="mainForm" id="mainForm" action="<?=Url::site("colaboradores/contacto");?>">
 				<div class="form-group">
 				    <label for="user" class="col-sm-offset-1 col-sm-3 control-label l-left"><img src="<?=Url::template("img/haztetriber/user.png");?>" />&nbsp;&nbsp;Nombre</label>
 				    <div class="col-sm-4">
@@ -60,22 +59,23 @@
 				    	<input type="text" class="form-control" id="url" name="url" placeholder="Url" />
 				    </div>
 				</div>
-				<div class="form-group">
-				    <label for="email" class="col-sm-offset-1 col-sm-3 control-label l-left"><img src="<?=Url::template("img/haztetriber/seccion.png");?>" />&nbsp;&nbsp;Sección</label>
-				    <div class="col-sm-8">
-				    	<select class="form-control" id="seccion" name="seccion">
-				    		<?php
-				    		for($x=0; $x<15; $x++){
-				    			?><option value="seccion<?= ($x+1); ?>">Seccion <?= ($x+1); ?></option><?php
-				    		}
-				    		?>
-				    	</select>
-				    </div>
-				</div>
+				<?php if (count($secciones)) { ?>
+                    <!-- Sección -->
+                    <div class="form-group">
+					    <label for="email" class="col-sm-offset-1 col-sm-3 control-label l-left"><img src="<?=Url::template("img/haztetriber/seccion.png");?>" />&nbsp;&nbsp;Sección</label>
+					    <div class="col-sm-8">
+                            <?=HTML::select("seccionId", $secciones, null, null, null, array("display" => "nombre")); ?>
+                        </div>
+                    </div>
+                <?php } ?>
 				<!-- Buttons -->
 				<div class="form-group">
 				    <div class="col-sm-12 l-right">
-				    	<button class="btn btn-tribo-blue ladda-button" data-style="slide-left">Enviar</button>
+				    	<?=HTML::formButton("btn-tribo-blue", null, "Enviar", array(
+		                        "data-app" => "colaboradores",
+		                        "data-action" => "contacto"
+		                    )
+		                );?>
 				    </div>
 				</div>
 			</form>

@@ -20,11 +20,11 @@
                 </a>
             </div>
             <div class="col-md-4 l-right">
-                <button type="submit" class="btn btn-tribo-blue ladda-button" data-style="slide-left">
-                    <span class="ladda-label">
-                        Entra
-                    </span>
-                </button>
+                <?=HTML::formButton("btn-tribo-blue", null, "Entra", array(
+                        "data-app" => "login",
+                        "data-action" => "doLogin"
+                    )
+                );?>
             </div>
             <div style="clear: both;"></div>
         </form>
