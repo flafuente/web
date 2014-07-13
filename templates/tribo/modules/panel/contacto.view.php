@@ -7,25 +7,35 @@
     <div class="forgot col-md-12"><img style="float: left;" src='<?=Url::template("/img/contact.png");?>' title='Login' /><h1>&nbsp;&nbsp;&nbsp;CONTACTA CON NOSOTROS</h1></div>
     <div style="clear: both;"></div>
     <br />
-    <form class="l_form" action="" method="POST">
-        <div class="col-md-12"><input class="form-control" type="text" name="name" placeholder="Nombre" value="" /></div>
-        <div class="col-md-12"><input class="form-control" type="text" name="email" placeholder="Email"></div>
-
+    <form class="l_form ajax" role="form" method="post" name="mainForm" id="mainForm" action="<?=Url::site("contacto/enviar");?>">
+        <!-- Nombre -->
         <div class="col-md-12">
-            <select class="form-control" name="withwho">
-                <option value="all">Con quien quieres contactar</option>
-                <?php
-                for ($x=0; $x<10; $x++) {
-                    ?><option value="<?= ($x+1); ?>">Persona <?= ($x+1); ?></option><?php
-                }
-                ?>
-            </select>
+            <input class="form-control" type="text" name="nombre" placeholder="Nombre" value="" />
         </div>
+        <!-- Email -->
+        <div class="col-md-12">
+            <input class="form-control" type="text" name="email" placeholder="Email">
+        </div>
+        <?php $secciones = Seccion::select(); ?>
+        <?php if (count($secciones)) { ?>
+            <!-- Sección -->
+            <div class="col-md-12">
+                <?=HTML::select("seccionId", $secciones, null, null, null, array("display" => "nombre")); ?>
+            </div>
+        <?php } ?>
+        <!-- Mensaje -->
         <div class="col-md-12">
             <textarea class="form-control" name="mensaje" placeholder="Mensaje"></textarea>
         </div>
         <div class="forgot col-md-8"></div>
-        <div class="col-md-4 l-right"><button type="submit" class="btn btn-tribo-blue ladda-button">Enviar</button></div>
+        <!-- Buttons -->
+        <div class="col-md-4 l-right">
+            <?=HTML::formButton("btn-tribo-blue", null, "Enviar", array(
+                    "data-app" => "contacto",
+                    "data-action" => "enviar"
+                )
+            );?>
+        </div>
         <div style="clear: both;"></div>
     </form>
 </div>

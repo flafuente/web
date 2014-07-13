@@ -25,7 +25,7 @@
 			¿Tienes alguna consulta o algo que enseñarnos?
 		</div>
 		<fieldset>
-			<form class="form-horizontal ajax" role="form" method="post" name="mainForm" id="mainForm" action="<?=Url::site("colaboradores/contacto");?>">
+			<form class="form-horizontal ajax" role="form" method="post" name="mainForm" id="mainForm" action="<?=Url::site("contacto/enviar");?>">
 				<div class="form-group">
 				    <label for="user" class="col-sm-offset-1 col-sm-3 control-label l-left"><img src="<?=Url::template("img/haztetriber/user.png");?>" />&nbsp;&nbsp;Nombre</label>
 				    <div class="col-sm-4">
@@ -72,8 +72,8 @@
 				<div class="form-group">
 				    <div class="col-sm-12 l-right">
 				    	<?=HTML::formButton("btn-tribo-blue", null, "Enviar", array(
-		                        "data-app" => "colaboradores",
-		                        "data-action" => "contacto"
+		                        "data-app" => "contacto",
+		                        "data-action" => "enviar"
 		                    )
 		                );?>
 				    </div>
