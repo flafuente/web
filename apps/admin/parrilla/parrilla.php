@@ -22,4 +22,32 @@ class parrillaController extends Controller
         $html = $this->view("views.edit");
         $this->render($html);
     }
+
+    public function save()
+    {
+        $data["result"] = "error";
+        $evento = new Evento($_REQUEST['id']);
+        if ($evento->id) {
+            if ($evento->update($_REQUEST)) {
+                $data["result"] = "ok";
+            }
+        } else {
+            if ($evento->insert($_REQUEST)) {
+                $data["result"] = "ok";
+            }
+        }
+        $this->ajax($data);
+    }
+
+    public function delete()
+    {
+        $data["result"] = "error";
+        $evento = new Evento($_REQUEST['id']);
+        if ($evento->id) {
+            if ($evento->delete()) {
+                $data["result"] = "ok";
+            }
+        }
+        $this->ajax($data);
+    }
 }
