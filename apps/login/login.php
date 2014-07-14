@@ -8,13 +8,7 @@ class loginController extends Controller
 
     public function index()
     {
-        $this->login();
-    }
-
-    public function login()
-    {
-        $html = $this->view("views.login");
-        $this->render($html);
+        Url::redirect(Url::site());
     }
 
     public function recovery()
@@ -101,14 +95,6 @@ class loginController extends Controller
         $user = new User();
         $user->logout();
         Url::redirect(Url::site());
-    }
-
-    public function register()
-    {
-        //Load View to Template
-        $html = $this->view("views.register");
-        //Render the Template
-        $this->render($html);
     }
 
     /**
