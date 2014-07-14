@@ -98,7 +98,7 @@
 
                 <?php if ($url->app == "haztetriber") { ?>
                     <div class='col-md-12 nopadding'>
-                        <?=$controller->view("views.haztetriberBottom"); ?>
+                        <?=$controller->view("views.registroBottom"); ?>
                     </div>
                 <?php } ?>
 

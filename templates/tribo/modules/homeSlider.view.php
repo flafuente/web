@@ -14,7 +14,7 @@
     <!-- Slides Container -->
     <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 960px;            height: 310px; overflow: hidden;">
         <div>
-            <a href="<?=Url::site("haztetriber");?>"><img u="image" src="<?=Url::template("/img/home/slide0.jpg");?>" />
+            <a href="<?=Url::site("periodismociudadano#haztetriber");?>"><img u="image" src="<?=Url::template("/img/home/slide0.jpg");?>" />
             
             </a>
             <!--<div class='title'>
@@ -28,7 +28,7 @@
             </div>-->
         </div>
         <div>
-            <a href="<?=Url::site("haztetriber");?>">
+            <a href="<?=Url::site("periodismociudadano#haztetriber");?>">
             <img u="image" src="<?=Url::template("/img/home/slide2.jpg");?>" />
             </a>
             <!--<div class='title'>
@@ -36,7 +36,7 @@
             </div>-->
         </div>
         <div>
-            <a href="<?=Url::site("haztetriber");?>">
+            <a href="<?=Url::site("periodismociudadano#haztetriber");?>">
             <img u="image" src="<?=Url::template("/img/home/slide3.jpg");?>" />
             </a>
             <!--<div class='title'>
