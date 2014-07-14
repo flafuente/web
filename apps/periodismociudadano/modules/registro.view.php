@@ -2,14 +2,14 @@
 
 <div class='col-md-12'>
     <div class='video-info' style="padding: 5px;">
-        <div class='title-line'>
+        <div id="haztetriber" class='title-line'>
             <span>HAZTE TRIBER</span>
         </div>
         <div class="col-md-12 video">
         </div>
         <div style="clear: both;"></div>
         <br />
-        <div id="haztetriber" class="haztetriber_title">
+        <div class="haztetriber_title">
             ¿QUIERES SER TRIBER Y TRABAJAR CON NOSOTROS?
         </div>
         <br />
