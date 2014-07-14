@@ -260,6 +260,36 @@ div.twitter i.fa.fa-twitter {
 	font-size: 23px;
 }
 
+/*Sintonizanos*/
+.square-info{
+	background-color: #FFFFFF;
+	width: 100%;
+	min-height: 100px;
+	margin-top: 20px;
+
+}
+.square-info div.grey{
+	background-color: #9B9B9B;
+	color: #FFFFFF;
+	width: 100%;
+	font-size: 17px;
+	margin-bottom: 5px;
+}
+.square-info div {
+	padding: 10px;
+}
+div.cadena{
+	background-repeat: none;
+	height: 71px;
+	width: 168px;
+	background-position: 168px;
+	float: left;
+}
+.canalesd{
+	margin: auto;
+	width: 524px;
+}
+
 /*Home*/
 .divprincipal{
 	padding-top: 20px;
