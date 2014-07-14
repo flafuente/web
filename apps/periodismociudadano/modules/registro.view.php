@@ -9,7 +9,7 @@
         </div>
         <div style="clear: both;"></div>
         <br />
-        <div class="haztetriber_title">
+        <div id="haztetriber" class="haztetriber_title">
             ¿QUIERES SER TRIBER Y TRABAJAR CON NOSOTROS?
         </div>
         <br />
