@@ -161,7 +161,7 @@ class Seccion extends Model
         $contactosIds = SeccionContacto::getFieldBy("contactoId", "seccionId", $this->id);
         if (count($contactosIds)) {
             foreach ($contactosIds as $contactoId) {
-                $contacto = new Contactio($contactoId);
+                $contacto = new Contacto($contactoId);
                 if ($contacto->id) {
                     //Preparamos el email
                     $mailer = Registry::getMailer();
