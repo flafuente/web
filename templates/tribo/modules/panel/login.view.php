@@ -14,6 +14,9 @@
         <form class="l_form ajax" role="form" method="post" action="<?=Url::site("login/doLogin")?>">
             <div class="col-md-12"><input class="form-control" type="text" name="login" placeholder="Usuario" value="" /></div>
             <div class="col-md-12"><input class="form-control" type="password" name="password" placeholder="Password"></div>
+            <div class="col-md-12">
+                <input type="checkbox" value="1" name="remember"> Recordar
+            </div>
             <div class="forgot col-md-8">
                 <a href="<?=Url::site("login/recovery");?>">
                     ¿has olvidado tu contraseña?

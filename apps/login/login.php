@@ -76,7 +76,11 @@ class loginController extends Controller
     public function doLogin()
     {
         $user = new User();
-        $res = $user->login($_REQUEST['login'], $_REQUEST['password']);
+        $expiration = null;
+        if ($_REQUEST["remember"]) {
+            $expiration = 7776000;
+        }
+        $res = $user->login($_REQUEST['login'], $_REQUEST['password'], $expiration);
         if ($res==true) {
             $user = Registry::getUser();
             if ($user->roleId<2) {
