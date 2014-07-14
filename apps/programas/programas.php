@@ -19,10 +19,14 @@ class programasController extends Controller
         $data = array("estadoId"=>1);
         //Categoría?
         if ($url->vars[0]) {
-            $categoria = current(Categoria::getBy("slug", $$url->vars[0]));
+            $categoria = current(Categoria::getBy("slug", $url->vars[0]));
             if ($categoria->id) {
                 $data["categoriaId"] = $categoria->id;
+            } else {
+                Url::redirect(Url::site("programas"), "Programa no encontrado", "danger");
             }
+        } else {
+            Url::redirect(Url::site("programas"), "Programa no encontrado", "danger");
         }
         $this->setData("categoria",$categoria);
         $this->setData("programas", Programa::select($data));
