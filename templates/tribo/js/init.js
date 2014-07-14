@@ -132,12 +132,12 @@ $(document).on('click', '.formButton', function(e){
 	//Data
 	element = $(this);
 	if(!element.attr("data-selector")){
-		form = $(this).parent("form");
-		if(!form.length){
-			form = $("#mainForm");
+		$form = $(this).closest("form");
+		if(!$form.length){
+			$form = $("#mainForm");
 		}
 	}else{
-		form = $(element.attr("data-selector"));
+		$form = $(element.attr("data-selector"));
 	}
 	app = element.attr("data-app"); 
 	action = element.attr("data-action"); 
@@ -150,7 +150,7 @@ $(document).on('click', '.formButton', function(e){
 	//Start
 	element.removeAttr("prevent-ladda");
 	//Requiere IDs
-	if(requireIds && form.find("input:checkbox:checked").length<=0){
+	if(requireIds && $form.find("input:checkbox:checked").length<=0){
 		alert("Debes seleccionar un elemento");
 		element.attr("prevent-ladda", "true");
 		return false;
@@ -180,7 +180,7 @@ $(document).on('click', '.formButton', function(e){
 	//No action / non-ajax
 	if(!action && noAjax){
 		//Check router
-		var router = form.find('input[name=router]').val();
+		var router = $form.find('input[name=router]').val();
 		if(router){
 			app = router + "/" + app;
 		}
@@ -200,26 +200,26 @@ $(document).on('click', '.formButton', function(e){
 	}
 	//App
 	if(app){
-		form.find('input[name=app]').val(app);
+		$form.find('input[name=app]').val(app);
 	}
 	//Action
 	if(action){
-		form.find('input[name=action]').val(action);
+		$form.find('input[name=action]').val(action);
 	}
 	//Non-ajax
 	if(noAjax){
-		form.removeClass("ajax");
+		$form.removeClass("ajax");
 	}else{
-		form.addClass("ajax");
+		$form.addClass("ajax");
 	}
 	//Submit
-	form.submit();
+	$form.submit();
 	//Restore
 	if(ajax){
 		element.removeClass("disabled");
 		element.disabled = false;
-		form.find('input[name=app]').val("");
-		form.find('input[name=action]').val("");
+		$form.find('input[name=app]').val("");
+		$form.find('input[name=action]').val("");
 	}
 	return false;
 });
