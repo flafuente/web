@@ -132,6 +132,14 @@ $(document).on('change', '.change-submit', function(e){
 //Toolbar
 $(document).on('click', '.formButton', function(e){
 	//Data
+	if(!element.attr("data-selector")){
+		form = $(this).parent("form");
+		if(!form){
+			form = $("#mainForm");
+		}
+	}else{
+		form = $(element.attr("data-selector"));
+	}
 	element = $(this);
 	app = element.attr("data-app"); 
 	action = element.attr("data-action"); 
@@ -144,7 +152,7 @@ $(document).on('click', '.formButton', function(e){
 	//Start
 	element.removeAttr("prevent-ladda");
 	//Requiere IDs
-	if(requireIds && $("#mainForm input:checkbox:checked").length<=0){
+	if(requireIds && form.find("input:checkbox:checked").length<=0){
 		alert("Debes seleccionar un elemento");
 		element.attr("prevent-ladda", "true");
 		return false;
@@ -174,7 +182,7 @@ $(document).on('click', '.formButton', function(e){
 	//No action / non-ajax
 	if(!action && noAjax){
 		//Check router
-		var router = $('#mainForm input[name=router]').val();
+		var router = form.find('input[name=router]').val();
 		if(router){
 			app = router + "/" + app;
 		}
@@ -194,26 +202,26 @@ $(document).on('click', '.formButton', function(e){
 	}
 	//App
 	if(app){
-		$('#mainForm input[name=app]').val(app);
+		form.find('input[name=app]').val(app);
 	}
 	//Action
 	if(action){
-		$('#mainForm input[name=action]').val(action);
+		form.find('input[name=action]').val(action);
 	}
 	//Non-ajax
 	if(noAjax){
-		$('#mainForm').removeClass("ajax");
+		form.removeClass("ajax");
 	}else{
-		$('#mainForm').addClass("ajax");
+		form.addClass("ajax");
 	}
 	//Submit
-	$('#mainForm').submit();
+	$(selector).submit();
 	//Restore
 	if(ajax){
 		element.removeClass("disabled");
 		element.disabled = false;
-		$('#mainForm input[name=app]').val("");
-		$('#mainForm input[name=action]').val("");
+		form.find('input[name=app]').val("");
+		form.find('input[name=action]').val("");
 	}
 	return false;
 });
