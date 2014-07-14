@@ -1,25 +1,37 @@
-<?php defined('_EXE') or die('Restricted access'); 
-?>
+<?php defined('_EXE') or die('Restricted access'); ?>
+
+<?php $limit = 4; ?>
 
 <div class='title-line'>
     <span><?=$categoria->nombre; ?></span>
 </div>
-<?php if (count($programas)) { ?>
-    <?php foreach ($programas as $programa) { ?>
-        <a href="<?=Url::site("programas/ver/".$programa->slug);?>">
-            <div class='col-md-6 square'>
-                <img src="<?=$programa->getThumbnailUrl()?>" title="<?=$programa->titulo; ?>" />
-                <img class="arrow" src="<?=Url::template("img/arrow.png")?>" />
-                <div class="sq_content">
-                    <div class="sq_title">
-                        <?=$programa->subtitulo; ?>
+
+<div class="programas">
+    <?php if (count($programas)) { ?>
+        <?php foreach ($programas as $i=>$programa) { ?>
+            <?php if ($i>=$limit) { ?>
+                <?php $class = "hidden"; ?>
+            <?php } ?>
+            <a href="<?=Url::site("programas/ver/".$programa->slug);?>" class="<?=$class;?>">
+                <div class='col-md-6 square'>
+                    <img src="<?=$programa->getThumbnailUrl()?>" title="<?=$programa->titulo; ?>" />
+                    <img class="arrow" src="<?=Url::template("img/arrow.png")?>" />
+                    <div class="sq_content">
+                        <div class="sq_title">
+                            <?=$programa->subtitulo; ?>
+                        </div>
                     </div>
                 </div>
             </a>
+        <?php } ?>
+        <div class="col-md-offset-6 col-md-6 ver-todas-web">
+            Ver más&nbsp;&nbsp;<div class="circulo-azul more">+</div>
         </div>
     <?php } ?>
+</div>
 
-    <div class="col-md-offset-6 col-md-6 ver-todas-web">
-        Ver todas las Webseries&nbsp;&nbsp;<div class="circulo-azul">+</div>
-    </div>
-<?php } ?>
+<script>
+    $('.programas').on('click','.ver-todas-web', function () {
+        $('.programas a.hidden:lt(<?=$limit?>)').css('visibility','visible').hide().fadeIn().removeClass('hidden');
+    });
+</script>
