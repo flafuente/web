@@ -70,6 +70,18 @@ Toolbar::render();
                         </div>
                     </div>
                 </div>
+                <?php if (count($contactos)) { ?>
+                    <!-- Contactos -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            Contactos
+                        </label>
+                        <div class="col-sm-8">
+                            <?php $currentContactos = SeccionContacto::getFieldBy("contactoId", "seccionId", $seccion->id); ?>
+                            <?=HTML::select("contactos[]", $contactos, $currentContactos, array("class" => "select2", "multiple" => "true"), null, array("display" => "nombre")); ?>
+                        </div>
+                    </div>
+                <?php } ?>
             </div>
         </div>
     </div>

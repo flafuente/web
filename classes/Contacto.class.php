@@ -17,11 +17,6 @@ class Contacto extends Model
      */
     public $userId;
     /**
-     * Id de la sección
-     * @var int
-     */
-    public $seccionId;
-    /**
      * Nombre
      * @var string
      */
@@ -58,9 +53,9 @@ class Contacto extends Model
      */
     private function validate()
     {
-        //Sección
-        if (!$this->seccionId) {
-            Registry::addMessage("Debes seleccionar una seccion", "error", "seccionId");
+        //Nombre
+        if (!$this->nombre) {
+            Registry::addMessage("Debes introducir un nombre", "error", "nombre");
         }
         //Email
         if (!$this->email) {
@@ -127,11 +122,6 @@ class Contacto extends Model
         if ($data["search"]) {
             $query .= " AND `email` LIKE :email";
             $params[":email"] = "%".$data["search"]."%";
-        }
-        //SeccionId
-        if ($data["seccionId"]) {
-            $query .= " AND `seccionId`=:seccionId";
-            $params[":seccionId"] = $data["seccionId"];
         }
         //Total
         $total = count($db->Query($query, $params));

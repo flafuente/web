@@ -9,7 +9,7 @@ if ($contacto->id) {
     $subtitle = "Nuevo contacto";
     $title = "Crear";
 }
-Toolbar::addTitle("Sección", "glyphicon-envelope", $subtitle);
+Toolbar::addTitle("Contactos", "glyphicon-envelope", $subtitle);
 if ($contacto->id) {
     //Delete button
     Toolbar::addButton(
@@ -60,17 +60,6 @@ Toolbar::render();
                     Detalles
                 </div>
                 <div class="panel-body">
-                    <?php if (count($secciones)) { ?>
-                        <!-- Sección -->
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">
-                                Sección
-                            </label>
-                            <div class="col-sm-8">
-                                <?=HTML::select("seccionId", $secciones, $contacto->seccionId, null, null, array("display" => "nombre")); ?>
-                            </div>
-                        </div>
-                    <?php } ?>
                     <!-- Nombre -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label">

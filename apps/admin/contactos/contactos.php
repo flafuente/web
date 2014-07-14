@@ -30,7 +30,6 @@ class contactosController extends Controller
     {
         $url = Registry::getUrl();
         $this->setData("contacto", new Contacto($url->vars[0]));
-        $this->setData("secciones", Seccion::select());
         $html = $this->view("views.edit");
         $this->render($html);
     }

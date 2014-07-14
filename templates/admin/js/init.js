@@ -132,15 +132,15 @@ $(document).on('change', '.change-submit', function(e){
 //Toolbar
 $(document).on('click', '.formButton', function(e){
 	//Data
+	element = $(this);
 	if(!element.attr("data-selector")){
 		form = $(this).parent("form");
-		if(!form){
+		if(!form.length){
 			form = $("#mainForm");
 		}
 	}else{
 		form = $(element.attr("data-selector"));
 	}
-	element = $(this);
 	app = element.attr("data-app"); 
 	action = element.attr("data-action"); 
 	requireIds = element.attr("data-requiereids"); 
@@ -215,7 +215,7 @@ $(document).on('click', '.formButton', function(e){
 		form.addClass("ajax");
 	}
 	//Submit
-	$(selector).submit();
+	form.submit();
 	//Restore
 	if(ajax){
 		element.removeClass("disabled");

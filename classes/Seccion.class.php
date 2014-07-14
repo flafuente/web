@@ -79,6 +79,16 @@ class Seccion extends Model
     }
 
     /**
+     * Acciones posteriores a la creación.
+     * @return void
+     */
+    public function postInsert($data = array())
+    {
+        //Añadimos/quitamos los contactos
+        $this->syncContactos($data["contactos"]);
+    }
+
+    /**
      * Validación de modificación.
      * @return array Errores
      */
@@ -97,29 +107,77 @@ class Seccion extends Model
     }
 
     /**
+     * Acciones posteriores a la creación.
+     * @return void
+     */
+    public function postUpdate($data = array())
+    {
+        //Añadimos/quitamos los contactos
+        $this->syncContactos($data["contactos"]);
+    }
+
+    /**
+     * Añade y quita las tags al vídeo
+     * @param  array $tagsIds Id's de las Tags a añadir
+     * @return void
+     */
+    public function syncContactos($contactosIds = array())
+    {
+        $actualContactosIds = SeccionContacto::getFieldBy("contactoId", "seccionId", $this->id);
+        //Quitar
+        if (count($actualContactosIds)) {
+            foreach ($actualContactosIds as $contactoId) {
+                if ($contactoId) {
+                    //Si el contacto no ha sido pasado por parámetro...
+                    if (!@in_array($contactoId, $contactosIds)) {
+                        SeccionContacto::deleteContacto($this->id, $contactoId);
+                    }
+                }
+            }
+        }
+        //Añadir
+        if (count($contactosIds)) {
+            foreach ($contactosIds as $contactoId) {
+                if ($contactoId) {
+                    //Si el contacto no está actualmente...
+                    if (!@in_array($contactoId, $actualContactosIds)) {
+                        $seccionContacto = new SeccionContacto();
+                        $seccionContacto->seccionId = $this->id;
+                        $seccionContacto->contactoId = $contactoId;
+                        $seccionContacto->insert();
+                    }
+                }
+            }
+        }
+    }
+
+    /**
      * Envía un email a todos los contactos asociados.
      * @param  array $data Form data.
      * @return bool
      */
     public function sendEmail($data)
     {
-        $contactos = Contacto::getBy("seccionId", $this->id);
-        if (count($contactos)) {
-            foreach ($contactos as $contacto) {
-                //Preparamos el email
-                $mailer = Registry::getMailer();
-                $mailer->addAddress($contacto->email);
-                $mailer->Subject = utf8_decode($subject);
-                $mailer->msgHTML(
-                    Template::renderEmail(
-                        "contactoSecciones",
-                        array(
-                            "data" => $data,
-                            "seccion" => $this
-                        ), "admin"
-                    )
-                );
-                $mailer->send();
+        $contactosIds = SeccionContacto::getFieldBy("contactoId", "seccionId", $this->id);
+        if (count($contactosIds)) {
+            foreach ($contactosIds as $contactoId) {
+                $contacto = new Contactio($contactoId);
+                if ($contacto->id) {
+                    //Preparamos el email
+                    $mailer = Registry::getMailer();
+                    $mailer->addAddress($contacto->email);
+                    $mailer->Subject = utf8_decode("Nuevo mensaje de contacto");
+                    $mailer->msgHTML(
+                        Template::renderEmail(
+                            "contactoSecciones",
+                            array(
+                                "data" => $data,
+                                "seccion" => $this
+                            ), "admin"
+                        )
+                    );
+                    $mailer->send();
+                }
             }
         }
 
