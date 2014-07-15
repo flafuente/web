@@ -423,7 +423,7 @@ class User extends Model
             $user = new User($rows[0]);
             //Set Cookie
             $user->token = bin2hex(openssl_random_pseudo_bytes(16));
-            setcookie('auth', $user->token, time() + $expiration, "/", NULL);
+            setcookie('auth.tribo', $user->token, time() + $expiration, "/", NULL);
             //Update lastVisitDate
             $user->lastvisitDate = date("Y-m-d H:i:s");
             $user->update();
@@ -440,7 +440,8 @@ class User extends Model
     public static function logout()
     {
         //Destroy Cookies
-        setcookie("auth", "", time());
+        unset($_COOKIE['auth.tribo']);
+        setcookie('auth.tribo', null, -1, '/');
 
         return true;
     }
