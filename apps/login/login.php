@@ -76,7 +76,7 @@ class loginController extends Controller
     public function doLogin()
     {
         $user = new User();
-        $expiration = null;
+        $expiration = 7200;
         if ($_REQUEST["remember"]) {
             $expiration = 60*60*24*7*4*3;
         }
