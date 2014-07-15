@@ -20,3 +20,7 @@ $router = new Router();
 
 //Delegate
 $router->delegate();
+
+$config = Registry::getConfig();
+echo $config->get("host")."<br>";
+echo $config->get("dir")."<br>";
