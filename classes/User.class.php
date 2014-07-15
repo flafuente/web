@@ -425,8 +425,7 @@ class User extends Model
             //Set Cookie
             $user->token = bin2hex(openssl_random_pseudo_bytes(16));
             $config = Registry::getConfig();
-            $host = strstr($config->get("host"), ".tribo.tv") ? ".tribo.tv" : $config->get("host");
-            setcookie($config->get("cookie"), $user->token, time() + $expiration, $config->get("dir"), $host, false, true);
+            setcookie($config->get("cookie"), $user->token, time() + $expiration, $config->get("dir"), $config->get("host"), false, true);
             //Update lastVisitDate
             $user->lastvisitDate = date("Y-m-d H:i:s");
             $user->update();
@@ -445,8 +444,7 @@ class User extends Model
         $config = Registry::getConfig();
         //Destroy Cookies
         unset($_COOKIE[$config->get("cookie")]);
-        $host = strstr($config->get("host"), ".tribo.tv") ? ".tribo.tv" : $config->get("host");
-        setcookie($config->get("cookie"), null, -1, $config->get("dir"), $host, false, true);
+        setcookie($config->get("cookie"), null, -1, $config->get("dir"), $config->get("host"), false, true);
 
         return true;
     }
