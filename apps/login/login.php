@@ -78,7 +78,7 @@ class loginController extends Controller
         $user = new User();
         $expiration = null;
         if ($_REQUEST["remember"]) {
-            $expiration = 7776000;
+            $expiration = 60*60*24*7*4*3;
         }
         $res = $user->login($_REQUEST['login'], $_REQUEST['password'], $expiration);
         if ($res==true) {
