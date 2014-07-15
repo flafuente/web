@@ -426,6 +426,7 @@ class User extends Model
             $user->token = bin2hex(openssl_random_pseudo_bytes(16));
             $config = Registry::getConfig();
             $host = strstr($config->get("host"), ".tribo.tv") ? ".tribo.tv" : $config->get("host");
+            echo "Host: ".$host;
             setcookie($config->get("cookie"), $user->token, time() + $expiration, $config->get("dir"), $host, false, true);
             //Update lastVisitDate
             $user->lastvisitDate = date("Y-m-d H:i:s");
