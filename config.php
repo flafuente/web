@@ -12,6 +12,7 @@ $_config['template'] = "tribo";
 $_config['defaultApp'] = "home";
 $_config['defaultLimit'] = 10;
 $_config['debug'] = true;
+$_config['cookie'] = "authtribo";
 
 //Mail
 $_config['mailHost'] = "smtp.mandrillapp.com";

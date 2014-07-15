@@ -411,6 +411,7 @@ class User extends Model
      */
     public static function login($login, $password, $expiration=7200)
     {
+        $config = Registry::getConfig();
         $db = Registry::getDb();
         $rows = $db->query("SELECT * FROM `users` WHERE (username=:username OR email=:email) AND password=:password AND statusId=1",
             array(
@@ -423,7 +424,8 @@ class User extends Model
             $user = new User($rows[0]);
             //Set Cookie
             $user->token = bin2hex(openssl_random_pseudo_bytes(16));
-            setcookie('auth.tribo', $user->token, time() + $expiration, "/", NULL);
+            $config = Registry::getConfig();
+            setcookie($config->get("cookie"), $user->token, time() + $expiration, "/", "tribo.local", false, true);
             //Update lastVisitDate
             $user->lastvisitDate = date("Y-m-d H:i:s");
             $user->update();
@@ -439,9 +441,10 @@ class User extends Model
      */
     public static function logout()
     {
+        $config = Registry::getConfig();
         //Destroy Cookies
-        unset($_COOKIE['auth.tribo']);
-        setcookie('auth.tribo', null, -1, '/');
+        unset($_COOKIE[$config->get("cookie")]);
+        setcookie($config->get("cookie"), null, -1, "/", "tribo.local", false, true);
 
         return true;
     }
