@@ -12,17 +12,12 @@
         <?=Helper::sanitize($programa->descripcion);?>
     </div>
     <div style="clear: both;"></div>
-    <div class='col-md-offset-6 col-md-6 epi_button'>
-        <a href="<?=Url::site("programas/ver/".$programa->slug);?>">site programa</a>
-        <strong>|</strong>
-        <a href="<?=Url::site("episodios/n_programa/all");?>">todos los capitulos</a>
-    </div>
 </div>
 
 <!-- Temporadas TAB -->
 <?php if (count($temporadas)) { ?>
 
-    <ul class="nav nav-tabs" role="tablist">
+    <ul class="nav tabs nav-tabs" role="tablist">
         <?php foreach ($temporadas as $temporada=>$capitulos) { ?>
             <?php $active = $active ? "" : "active"; ?>
             <li class="<?=$active?>">
