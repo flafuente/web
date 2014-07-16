@@ -793,3 +793,10 @@ color:#464343;
 text-align:center;
 font-size:15px;
 }
+
+.nav.tabs li{
+    margin-bottom: 0 !important;
+}
+.nav.tabs li a{
+    padding:10px 5px;
+}

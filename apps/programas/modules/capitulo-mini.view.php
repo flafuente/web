@@ -3,7 +3,9 @@
 <?php $likes = rand(0, 1000); ?>
 
 <div class='col-md-6 square'>
-    <img src="<?=$capitulo->getThumbnailUrl();?>" title="<?=Helper::sanitize($capitulo->titulo); ?>" />
+    <a href="<?=Url::site("reproductor/capitulo/".$capitulo->id);?>">
+        <img src="<?=$capitulo->getThumbnailUrl();?>" title="<?=Helper::sanitize($capitulo->titulo); ?>" />
+    </a>
     <img class="arrow" src="<?=Url::template("img/arrow.png")?>" />
     <div class="rating">
         <?=HTML::showRate($likes, 1000);?>
@@ -19,6 +21,7 @@
             <i class="fa fa-heart-o"></i>
         </div>
     </div>
+
 </div>
 <div class='col-md-6 squaredesc'>
     <a  class="sqd_title" href="<?=Url::site("reproductor/capitulo/".$capitulo->id);?>">
