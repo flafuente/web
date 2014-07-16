@@ -8,7 +8,15 @@
         <div class='col-md-4 topleft'>
             <div class='col-md-12 pull-left mid'>
                 <!-- Login Module -->
-                <?=$controller->view("modules.panel.login");?>
+                <?
+				if (!$user->id) {
+                	echo $controller->view("modules.panel.login");
+                }else{
+                	?>
+                	 <img src="<?=$user->getFotoUrl();?>" class="img-circle profpic">
+                	<?php
+                }
+                ?>
                 <!-- /Login Module -->
                 <!-- Search Module -->
                 <?=$controller->view("modules.panel.search");?>
