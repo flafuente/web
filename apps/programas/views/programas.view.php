@@ -24,9 +24,11 @@
                 </div>
             </a>
         <?php } ?>
-        <div class="col-md-offset-6 col-md-6 ver-todas-web">
-            Ver más&nbsp;&nbsp;<div class="circulo-azul more">+</div>
-        </div>
+        <?php if ($i>=$limit) { ?>
+            <div class="col-md-offset-6 col-md-6 ver-todas-web">
+                Ver más&nbsp;&nbsp;<div class="circulo-azul more">+</div>
+            </div>
+        <?php } ?>
     <?php } ?>
 </div>
 
