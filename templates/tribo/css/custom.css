@@ -106,6 +106,36 @@ li.active > a {
 	width: 40px;
 	border: 1px solid #ebebeb;
 }
+.imgmdl{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+.utitle{
+	text-transform: initial;
+	margin-top: 10px !important;
+	margin-left: 25px;
+}
+.uname{
+	color: #428bca;
+}
+.proflink{
+	color: #333;
+}
+.profinfo{
+	margin-top: 5px;
+	margin-left: 10px;
+}
+.profinfo li{
+	list-style: none;
+}
+.profbottom{
+	background-color: #9b9b9b;
+	width: 100%;
+	height: 57px;
+	border-top: 1px solid #767676;
+	padding: 10px;
+}
 
 /*Mi perfil*/
 .profile-picture-sq, .profile-picture-sq > div {
@@ -607,6 +637,11 @@ label {
 	color: #fff;
 	background-color: #9b9b9b;
 	border-color: #9b9b9b;
+}
+.btn-tribo-purple {
+	color: #fff;
+	background-color: #6d2a82;
+	border-color: #9a4a8a;
 }
 .btn {
 	border-radius: 2px !important;

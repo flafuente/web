@@ -1,10 +1,15 @@
 <?php defined('_EXE') or die('Restricted access'); ?>
-
+<?php
+$stl = "";
+if (Registry::getUser()->id) {
+    $stl = "margin-top: -40px;left: 77px;";
+}
+?>
 <a class='rsep contact' href='#'>
     <img src='<?=Url::template("/img/contact.png");?>' title='Contacta' />
 </a>
-<div class="contact_form" style="display: none;">
-    <div class="forgot col-md-12"><img style="float: left;" src='<?=Url::template("/img/contact.png");?>' title='Login' /><h1>&nbsp;&nbsp;&nbsp;CONTACTA CON NOSOTROS</h1></div>
+<div class="contact_form" style="display: none;<?=$stl;?>">
+    <div class="forgot col-md-12"><img class="imgmdl" src='<?=Url::template("/img/contact.png");?>' title='Login' /><h1>&nbsp;&nbsp;&nbsp;CONTACTA CON NOSOTROS</h1></div>
     <div style="clear: both;"></div>
     <br />
     <form class="l_form ajax" role="form" method="post" name="mainForm" id="mainForm" action="<?=Url::site("contacto/enviar");?>">

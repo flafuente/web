@@ -1,11 +1,16 @@
 <?php defined('_EXE') or die('Restricted access'); ?>
-
+<?php
+$stl = "";
+if (Registry::getUser()->id) {
+    $stl = "margin-top: -40px; left: 45px;";
+}
+?>
 <a class='rsep search' href='#'>
     <img src='<?=Url::template("/img/lupa.png");?>' title='Buscar' />
 </a>
-<div class="search_form" style="display: none;">
+<div class="search_form" style="display: none;<?=$stl;?>">
     <div class="forgot col-md-12">
-        <img style="float: left;" src='<?=Url::template("/img/lupa.png");?>' title='Login' />
+        <img class="imgmdl" src='<?=Url::template("/img/lupa.png");?>' title='Login' />
         <h1>&nbsp;&nbsp;&nbsp;BUSCADOR DE PROGRAMAS</h1>
     </div>
     <div style="clear: both;"></div>

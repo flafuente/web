@@ -8,16 +8,7 @@
         <div class='col-md-4 topleft'>
             <div class='col-md-12 pull-left mid'>
                 <!-- Login Module -->
-                <?php
-                /*ahora deberia ser la 19?*/
-				if (!$user->id) {
-                	echo $controller->view("modules.panel.login");
-                }else{
-                	?>
-                	 <img src="<?=$user->getFotoUrl();?>" class="img-circle profpic">
-                	<?php
-                }
-                ?>
+                <?=$controller->view("modules.panel.login");?>
                 <!-- /Login Module -->
                 <!-- Search Module -->
                 <?=$controller->view("modules.panel.search");?>
