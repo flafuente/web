@@ -22,5 +22,3 @@ $router = new Router();
 $router->delegate();
 
 $config = Registry::getConfig();
-echo $config->get("host")."<br>";
-echo $config->get("dir")."<br>";
