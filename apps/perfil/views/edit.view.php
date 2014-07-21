@@ -22,9 +22,10 @@
                             <div class="btnazul">Tómate una foto con tu dispositivo</div>
                         </div>
                         <div class='col-md-3'>
-                            <div class="previsualizacion">
+                            <div class="previsualizacion" id="fotoPreviewHelp">
                                 Aquí previsualizarás la foto que cargues.
                             </div>
+                            <img src="" class="previsualizacion" id="fotoPreview" style="display:none">
                         </div>
                         <div style="clear: both;"></div>
                     </div>
@@ -132,5 +133,15 @@
     $("#sitios").select2({
         tags:[],
         tokenSeparators: [",", " "]
+    });
+    $("#foto").change(function () {
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#fotoPreview').attr('src', e.target.result).show();
+                $("#fotoPreviewHelp").hide();
+            }
+            reader.readAsDataURL(this.files[0]);
+        }
     });
 </script>

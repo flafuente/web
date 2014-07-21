@@ -166,7 +166,7 @@ li.active > a {
 	color: #FFF;
 	font-size: 13px;
 	text-align: center;
-	padding-top: 7px !important;
+	max-width: 110px;
 }
 .form-change-pass{
 	display: none;

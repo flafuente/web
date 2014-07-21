@@ -40,7 +40,10 @@ if (!$user->id) {
             <div style="clear: both;"></div>
         </form>
     <?php } else { ?>
-        <div class="forgot col-md-8"><img src="<?=$user->getFotoUrl();?>" class="imgmdl img-circle profpic" title='<?=$user->nombre;?>' /><h1 class="utitle">&nbsp;&nbsp;&nbsp;<span class="uname"><?=$user->nombre;?></span> - <a href="" class="proflink">Mi Perfil</a></h1></div>
+        <div class="forgot col-md-8">
+            <img src="<?=$user->getFotoUrl();?>" class="imgmdl img-circle profpic" title='<?=$user->nombre;?>' />
+            <h1 class="utitle">&nbsp;&nbsp;&nbsp;<span class="uname"><?=$user->nombre;?></span> - <a href="<?=Url::site("perfil")?>" class="proflink">Mi Perfil</a></h1>
+            </div>
         <div style="clear: both;"></div>
         <div class="profinfo">
             <ul>
