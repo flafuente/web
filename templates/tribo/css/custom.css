@@ -202,9 +202,8 @@ div.form-change-pass .form-group {
 	text-transform: normal;
 }
 .submenu li:hover, .submenu li:hover a{
-	background-color: #e40d7e !important;
+	/*background-color: #e40d7e !important;*/
 	color: #FFF !important;
-
 }
 .triangle{
 	width: 0;
