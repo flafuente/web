@@ -187,19 +187,24 @@ Toolbar::render();
                         </label>
                         <div class="col-sm-10">
                             <textarea id="biografia" name="biografia" class="form-control"><?=Helper::sanitize($user->biografia);?></textarea>
-                            <br>
-                            <input type="text" id="intereses" name="intereses" class="form-control" value="<?=Helper::sanitize($user->intereses);?>">
                         </div>
                     </div>
-                    <!-- Formación y empleo -->
+                    <!-- Teléfono -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
-                            Formación y empleo
+                            Teléfono
                         </label>
                         <div class="col-sm-10">
-                            <input type="text" id="trabajo" name="trabajo" class="form-control" value="<?=Helper::sanitize($user->trabajo);?>">
-                            <br>
-                            <input type="text" id="estudios" name="estudios" class="form-control" value="<?=Helper::sanitize($user->estudios);?>">
+                            <input type="text" id="telefono" name="telefono" class="form-control" value="<?=Helper::sanitize($user->telefono);?>">
+                        </div>
+                    </div>
+                    <!-- Sitios -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            Sitios
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" id="sitios" name="sitios" class="form-control" value="<?=Helper::sanitize($user->sitios);?>">
                         </div>
                     </div>
                 </div>
@@ -222,4 +227,9 @@ Toolbar::render();
             $("#fieldCategoria").show();
         }
     }
+    //Sitios
+    $("#sitios").select2({
+        tags:[],
+        tokenSeparators: [",", " "]
+    });
 </script>
