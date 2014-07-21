@@ -61,6 +61,10 @@ class User extends Model
     public $trabajo;
     public $estudios;
     public $permisos;
+
+    public $telefono;
+    public $sitios;
+
     /**
      * Categorías que puede gestionar como validador (JSON)
      * @var string

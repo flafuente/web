@@ -29,11 +29,7 @@
                         <div style="clear: both;"></div>
                     </div>
 
-
-                    <?php
-                    echo HTML::showInput(Url::template("img/haztetriber/user.png"), "Usuario", "username", Helper::sanitize($user->username), "Introduce aquí tu usuario");
-                    //echo HTML::showInput(Url::template("img/haztetriber/passw.png"), "Contraseña", "password", "", "Introduce tu password", "password");
-                    ?>
+                    <?php HTML::showInput(Url::template("img/haztetriber/user.png"), "Usuario", "username", Helper::sanitize($user->username), "Introduce aquí tu usuario"); ?>
                     <!-- Password -->
                     <div class="form-group">
                         <label for="password" class="col-sm-3 control-label l-left" style="margin-top: 10px;">
@@ -43,28 +39,29 @@
                             <a class="btn btn-primary" href="#" id="seepasswd">Cambiar contraseña</a>
                             <div class="form-change-pass">
                                 <?php
-                                echo HTML::showInput("", "Contraseña antigua", "password_old", "", "", "password", true, 5);
+                                echo HTML::showInput("", "Contraseña antigua", "passwordCurrent", "", "", "password", true, 5);
                                 echo HTML::showInput("", "Tu nueva contraseña", "password", "", "", "password", true, 5);
-                                echo HTML::showInput("", "Confirma la contraseña", "password_new", "", "", "password", true, 5);
+                                echo HTML::showInput("", "Confirma la contraseña", "password2", "", "", "password", true, 5);
                                 ?>
                                 <div class="col-sm-offset-5 col-sm-7">
-                                    <?=HTML::formButton("btn btn-primary col-md-5", null, "Aplicar");?>
+                                    <?=HTML::formButton("btn btn-primary col-md-5", null, "Aplicar", array(
+                                        "data-app" => "perfil",
+                                        "data-action" => "save"
+                                    ));?>
                                     <div class="col-sm-2"></div>
-                                    <?=HTML::formButton("btn btn-grey col-md-5", null, "Cancelar", Array("style" => "color: #FFF; background-color: #9b9b9b;"));?>
+                                    <a href="#" class="btn btn-grey col-md-5" style="color: #FFF; background-color: #9b9b9b">
+                                        Cancelar
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <?php
                     echo HTML::showInput(Url::template("img/haztetriber/loc.png"), "Localización", "ubicacion", Helper::sanitize($user->ubicacion), "Pon la ciudad en la que resides actualmente...");
-                    /*Hay que añadirlo en la base de datos*/
-                    echo HTML::showInput(Url::template("img/haztetriber/url.png"), "Tus sitios", "sitios", Helper::sanitize($user->sitios), "Enlaza a tu Youtube, Vimeo, web personal...");
+                    echo HTML::showInput(Url::template("img/haztetriber/url.png"), "Tus sitios", "sitios", Helper::sanitize($user->sitios), "Enlaza a tu Youtube, Vimeo, web personal...", array("id" => "sitios"));
                     echo HTML::showInput(Url::template("img/haztetriber/bio.png"), "Biografía", "biografia", Helper::sanitize($user->biografia), "Escribe un resumen de tu trayectoria profesional...", "textarea");
                     echo HTML::showInput(Url::template("img/haztetriber/bio.png"), "Intereses", "intereses", Helper::sanitize($user->intereses));
-                    /*Hay que añadirlo en la base de datos*/
                     echo HTML::showInput(Url::template("img/haztetriber/telefono.png"), "Teléfono", "telefono", Helper::sanitize($user->telefono), "Por si te tenemos que contactar rapidamente");
-                    
-
 
                     /*He comentado esto, que no viene en el diseño!*/
                     ?>
@@ -84,7 +81,7 @@
                     </div>
                     -->
 
-                    <!-- Cumpleaños 
+                    <!-- Cumpleaños
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
                             Cumpleaños
@@ -94,7 +91,6 @@
                         </div>
                     </div>
                     -->
-
 
                     <!-- Formación y empleo
                     <div class="form-group">
@@ -124,10 +120,17 @@
                             <?=HTML::formButton("btn btn-grey col-md-5", null, "Configuracion", Array("style" => "color: #FFF; background-color: #9b9b9b;"));?>
                         </div>
                     </div>
-                    
+
                 </div>
             </form>
 
         </div>
     </div>
 </div>
+
+<script>
+    $("#sitios").select2({
+        tags:[],
+        tokenSeparators: [",", " "]
+    });
+</script>
