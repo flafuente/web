@@ -7,7 +7,7 @@
 $stl = "";
 if (!$user->id) {
     ?><img src='<?=Url::template("/img/user.png");?>' title='Login' /><?php
-}else{
+} else {
     ?><img src="<?=$user->getFotoUrl();?>" class="img-circle profpic"><?php
     $stl = "margin-top: -40px; width: 345px; height: 175px; padding: 0px;";
 }
@@ -46,17 +46,37 @@ if (!$user->id) {
             <ul>
                 <li>Mis Videos
                     <ul>
-                        <li style="list-style-image: url('<?=Url::template("/img/dot.png");?>');">Videos pendientes (<span style="color: #c42422;"><?=rand(1, 10);?></span>)</li>
+                        <li style="list-style-image: url('<?=Url::template("/img/dot.png");?>');">
+                            <a href="<?=Url::site("videos")?>">
+                                Videos pendientes
+                            </a>
+                            <?php $user = Registry::getUser();?>
+                            <?php $videosPendientes = count(Video::select(array(
+                                "userId" => $user->id,
+                                "estadoId" => 0
+                            ))); ?>
+                            (<span style="color: #c42422;"><?=$videosPendientes;?></span>)
+                        </li>
                     </ul>
                 </li>
-            <li>Configuración</li>
+            <li>
+                <a href="<?=Url::site("perfil")?>">
+                    Configuración
+                </a>
+            </li>
         </div>
         <div class="profbottom">
             <div class="col-md-6">
-                <button data-link="#" class="btn-tribo-blue btn ladda-button" data-style="slide-left"><i class="fa fa-long-arrow-up"></i>&nbsp;&nbsp;Subir Video</button>
+                <a class="btn-tribo-blue btn ladda-button" data-style="slide-left" href="<?=Url::site("videos/nuevo");?>">
+                    <i class="fa fa-long-arrow-up"></i>
+                    &nbsp;&nbsp;Subir Video
+                </a>
             </div>
             <div class="col-md-6" style="text-align: right;">
-                <button data-link="#closeses" class="btn-tribo-purple btn ladda-button" data-style="slide-right"><i class="fa fa-long-arrow-left"></i>&nbsp;&nbsp;Salir</button>
+                <a data-link="#closeses" class="btn-tribo-purple btn ladda-button" data-style="slide-right" href="<?=Url::site("videos/nuevo");?>">
+                    <i class="fa fa-long-arrow-left"></i>
+                    &nbsp;&nbsp;Salir
+                </a>
             </div>
         </div>
     <?php } ?>
