@@ -13,5 +13,8 @@
 <br /><br />
 
 <!-- Registro -->
-<?=$controller->view("modules.registro");?>
+<?php $user = Registry::getUser(); ?>
+<?php if (!$user->id) { ?>
+    <?=$controller->view("modules.registro");?>
+<?php } ?>
 <!-- /Registro -->
