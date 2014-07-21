@@ -9,6 +9,7 @@
             <div class='col-md-12 pull-left mid'>
                 <!-- Login Module -->
                 <?
+                /*ahora deberia ser la 19?*/
 				if (!$user->id) {
                 	echo $controller->view("modules.panel.login");
                 }else{
