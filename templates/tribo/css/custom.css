@@ -137,6 +137,16 @@ li.active > a {
 	padding: 10px;
 }
 
+/*Error Messages*/
+.form-group.has-danger input {
+	border: 1px solid red;
+}
+.form-group.has-danger span.help-block {
+	color: #EE3333;
+	background-color: #FCC;
+	padding: 5px;
+}
+
 /*Mi perfil*/
 .profile-picture-sq, .profile-picture-sq > div {
 	background-color: #9b9b9b;
@@ -180,6 +190,10 @@ div.form-change-pass label {
 }
 div.form-change-pass .form-group {
 	margin: 0px;
+	padding: 0px;
+}
+
+.square-info .select2-search-choice > div{
 	padding: 0px;
 }
 

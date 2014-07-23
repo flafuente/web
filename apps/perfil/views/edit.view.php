@@ -50,7 +50,7 @@
                                         "data-action" => "save"
                                     ));?>
                                     <div class="col-sm-2"></div>
-                                    <a href="#" class="btn btn-grey col-md-5" style="color: #FFF; background-color: #9b9b9b">
+                                    <a href="#" class="aclose btn btn-grey col-md-5" style="color: #FFF; background-color: #9b9b9b">
                                         Cancelar
                                     </a>
                                 </div>

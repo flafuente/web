@@ -25,5 +25,9 @@
         //$('.login_form').add('.mask').fadeOut();
         $('.login_form').add('.contact_form').add('.search_form').add('.mask').add('.form-change-pass').fadeOut();
     });
+    $(document).on("click",".aclose",function () {
+        //$('.login_form').add('.mask').fadeOut();
+        $('.login_form').add('.contact_form').add('.search_form').add('.mask').add('.form-change-pass').fadeOut();
+    });
 
 </script>
