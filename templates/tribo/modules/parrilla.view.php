@@ -8,10 +8,12 @@ $eventos = Evento::select(array(
     'orderDir' => 'ASC',
 ), 3);
 ?>
-
 <?php if (count($eventos)) { ?>
     <div class='col-md-12' style='padding-left: 0px; padding-right: 0px;'>
         <div class="parrilla">
+            <?php if(Registry::getUrl()->app == "tvdirecto") { ?>
+            <div class="right_arrow"></div>
+            <?php } ?>
             <div class="parrilla-cabecera">
                 <h1>AHORA<br />EN TRIBO</h1>
                 <h2>Ver la Parrilla&nbsp;&nbsp;<div class="circulo">+</div></h2>

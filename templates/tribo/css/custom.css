@@ -226,6 +226,17 @@ div.parrilla-cabecera {
 	background-color: #17B5E9;
 	padding: 0px 5px 1px 10px;
 }
+div.right_arrow{
+	background-color: transparent;
+	width: 0px;
+	height: 85px;
+	border: 43px solid transparent;
+	border-left: 19px solid #17B5E9;
+	position: absolute;
+	top: 20px;
+	right: -62px;
+	z-index: 99;
+}
 div.parrilla-cabecera h1 {
 	color: #FFF;
 	font-size: 17px;
