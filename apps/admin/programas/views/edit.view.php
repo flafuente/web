@@ -101,7 +101,7 @@ Toolbar::render();
                     <!-- Color -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
-                            Color
+                            Color (Parrilla interna)
                         </label>
                         <div class="col-sm-8">
                             <input type="text" id="color" name="color" class="form-control color-picker" value="<?=Helper::sanitize($programa->color);?>">

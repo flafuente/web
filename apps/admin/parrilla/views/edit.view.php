@@ -76,13 +76,14 @@
             eventResize: function (event, delta, revertFunc) {
                 /* LLAMADA a Update */
                 /* Se hace la llamada al update actualizando solo el EndDate*/
+				console.log(event);
                 $.ajax({
                     type: "POST",
                     url: "<?=Url::site('admin/parrilla/save/');?>",
                     data: {
                         id: event._id,
-                        fechaInicio: event.start,
-                        fechaFin: event.end
+                        fechaInicio: event.start.format("YYYY-MM-DD HH:mm:ss"),
+                        fechaFin: event.end.format("YYYY-MM-DD HH:mm:ss")
                     },
                     dataType: "json"
                 });
@@ -97,16 +98,18 @@
                     url: "<?=Url::site('admin/parrilla/save/');?>",
                     data: {
                         id: event._id,
-                        fechaInicio: event.start,
-                        fechaFin: event.end
+                        fechaInicio: event.start.format("YYYY-MM-DD HH:mm:ss"),
+                        fechaFin: event.end.format("YYYY-MM-DD HH:mm:ss")
                     },
                     dataType: "json"
                 });
             },
             drop: function (date) { // this function is called when something is dropped
                 var idinsert = 0;
-                var startinsert = date*1;
-                var endinsert = (date + (unit*$('#size-overlay').val()));
+                var startinsert = date.format("YYYY-MM-DD HH:mm:ss");
+                var endinsert =  $.fullCalendar.moment.parseZone(date + (unit*$('#size-overlay').val()));
+				var originalEventObject = $(this).data('eventObject');// retrieve the dropped element's stored Event Object
+				endinsert=endinsert.format("YYYY-MM-DD HH:mm:ss");
                 /* LLAMADA a Update */
                 /* Se hace la llamada al insert y devuelve el id del registro de bdd a la variable idinsert*/
                 $.ajax({
@@ -114,29 +117,29 @@
                     url: "<?=Url::site('admin/parrilla/save/');?>",
                     data: {
                         capituloId: $("#event-cap").val(),
-                        fechaInicio: $('#calendar').fullCalendar.formatDate(startinsert, "YYYY-MM-dd HH:mm:ss"),
-                        fechaFin: "lel"
+                        fechaInicio: startinsert,
+                        fechaFin: endinsert
                     },
                     dataType: "json"
                 }).done(function (json) {
-                    idinsert = json["evento"].id
+                    idinsert = json["data"]["evento"].id;
+					// we need to copy it, so that multiple events don't have a reference to the same object
+					var copiedEventObject = $.extend({}, originalEventObject);
+
+					// assign it the date that was reported
+					copiedEventObject.id = idinsert;
+					copiedEventObject.start = startinsert;
+					copiedEventObject.end    = endinsert;
+					copiedEventObject.allDay = false;
+					copiedEventObject.backgroundColor = "#" + $('#event-color').val();
+					$('#calendar').fullCalendar('renderEvent', copiedEventObject);
+					$('#size-overlay').val("1");
+					$('#event-color').val("6BA5C1");
+					
+					
                 });
 
-                // retrieve the dropped element's stored Event Object
-                var originalEventObject = $(this).data('eventObject');
 
-                // we need to copy it, so that multiple events don't have a reference to the same object
-                var copiedEventObject = $.extend({}, originalEventObject);
-
-                // assign it the date that was reported
-                copiedEventObject._id = idinsert;
-                copiedEventObject.start = startinsert;
-                copiedEventObject.end    = endinsert; // put your desired end time here
-                copiedEventObject.allDay = false;
-                copiedEventObject.backgroundColor = "#" + $('#event-color').val();
-                $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
-                $('#size-overlay').val("1");
-                $('#event-color').val("6BA5C1");
             },
             /* LLAMADA a Cargar todos los eventos de la semana situada, haremos que recargue en el pasar de semana los nuevos eventos*/
             events: [
@@ -257,14 +260,6 @@
                 <?php } ?>
             <?php } ?>
 
-            <div class='external-event' event-color='ffd700' size-overlay='1'>Toros</div>
-            <div class='external-event' event-color='a52a2a' size-overlay='2'>Amateur</div>
-            <div class='external-event' event-color='ee82ee' size-overlay='3'>Pubises</div>
-            <div class='external-event' event-color='00bfff'>Coches</div>
-            <p>
-                <input type='checkbox' id='drop-remove' />
-                <label for='drop-remove'>remove after drop</label>
-            </p>
         </div>
 
         <div id='calendar'></div>
