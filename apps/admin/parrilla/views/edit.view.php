@@ -49,27 +49,40 @@
             },
             defaultDate: '2014-06-12',
             defaultView: 'agendaWeek',
-            selectable: true,
+            selectable: false,
             allDaySlot: false,
             firstDay: 1,
             slotDuration: '00:12:00',
             selectHelper: true,
-            select: function (start, end) {
-                var title = prompt('Event Title:');
-                var eventData;
-                if (title) {
-                    eventData = {
-                        title: title,
-                        start: start,
-                        end: end
-                    };
-                    $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+            eventClick: function(event){
+               if (confirm('Proceder a eliminar el registro?')) {
+                    /* LLAMADA a Delete */
+                    /* ID del evento que deberia ser igual al id de bdd esta en event._id*/
+                    alert("tete - llamada al delete " + event._id);
+
+                    $('#calendar').fullCalendar('removeEvents',event._id);
                 }
-                $('#calendar').fullCalendar('unselect');
+            },
+            eventResize: function(event, delta, revertFunc) {
+                /* LLAMADA a Update */
+                /* Se hace la llamada al update actualizando solo el EndDate*/
+                alert("tete - llamada al update " + event._id + event.end);
             },
             editable: true,
             droppable: true, // this allows things to be dropped onto the calendar !!!
+            eventDragStop: function (event) {
+                /* LLAMADA a Insert */
+                /* Se hace la llamada al update actualizando solo el startDate y endDate*/
+                alert("tete - llamada al insert " + event._id + event.start + event.end);
+            },
             drop: function (date) { // this function is called when something is dropped
+                var idinsert = 0;
+                var startinsert = date;
+                var endinsert = (date + (unit*$('#size-overlay').val()));
+                /* LLAMADA a Update */
+                /* Se hace la llamada al insert y devuelve el id del registro de bdd a la variable idinsert*/
+                alert("tete - llamada al insert " + idinsert + startinsert + endinsert);
+
 
                 // retrieve the dropped element's stored Event Object
                 var originalEventObject = $(this).data('eventObject');
@@ -78,30 +91,31 @@
                 var copiedEventObject = $.extend({}, originalEventObject);
 
                 // assign it the date that was reported
-                copiedEventObject.start = date;
-                copiedEventObject.end    = (date + (unit*$('#size-overlay').val())); // put your desired end time here
+                copiedEventObject._id = idinsert;
+                copiedEventObject.start = startinsert;
+                copiedEventObject.end    = endinsert; // put your desired end time here
                 copiedEventObject.allDay = false;
                 copiedEventObject.backgroundColor = "#" + $('#event-color').val();
-                //copiedEventObject.backgroundColor = $('#event-color').val();
-                // render the event on the calendar
-                // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
                 $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
                 $('#size-overlay').val("1");
                 $('#event-color').val("6BA5C1");
-
             },
+            /* LLAMADA a Cargar todos los eventos de la semana situada, haremos que recargue en el pasar de semana los nuevos eventos*/
             events: [
                 {
+                    id: '1',
                     title: 'Meeting',
                     start: '2014-06-12T10:00:00',
                     end: '2014-06-12T10:24:00'
                 },
                 {
+                    id: '2',
                     title: 'Lunch',
                     start: '2014-06-12T10:24:00',
                     end: '2014-06-12T10:36:00'
                 },
                 {
+                    id: '3',
                     title: 'Birthday Party',
                     start: '2014-06-13T07:00:00',
                     end: '2014-06-13T07:36:00'

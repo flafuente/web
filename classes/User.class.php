@@ -427,7 +427,11 @@ class User extends Model
         if ($rows) {
             $user = new User($rows[0]);
             //Set Cookie
-            $user->token = bin2hex(openssl_random_pseudo_bytes(16));
+            if(is_callable('openssl_random_pseudo_bytes')){
+                $user->token = bin2hex(openssl_random_pseudo_bytes(16));
+            }else{
+                $user->token = uniqid('', true);  
+            }
             $config = Registry::getConfig();
             setcookie($config->get("cookie"), $user->token, time() + $expiration, $config->get("dir"), $config->get("host"), false, true);
             //Update lastVisitDate
@@ -533,7 +537,13 @@ class User extends Model
      */
     public function sendRecovery()
     {
-        $this->recoveryHash = bin2hex(openssl_random_pseudo_bytes(16));
+        
+        if(is_callable('openssl_random_pseudo_bytes')){
+            $this->recoveryHash = bin2hex(openssl_random_pseudo_bytes(16));
+        }else{
+            $this->recoveryHash = uniqid('', true);  
+        }
+
         $this->update();
         $mailer = Registry::getMailer();
         $mailer->addAddress($this->email);
