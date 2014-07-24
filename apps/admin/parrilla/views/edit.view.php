@@ -34,7 +34,9 @@
                     if ($(this).attr('event-color')!="" && $(this).attr('event-color')) {
                         $('#event-color').val($(this).attr('event-color'));
                     }
-
+                    if ($(this).attr('event-cap')!="" && $(this).attr('event-cap')) {
+                        $('#event-cap').val($(this).attr('event-cap'));
+                    }
                 },
                 revertDuration: 0  //  original position after the drag
             });
@@ -54,35 +56,71 @@
             firstDay: 1,
             slotDuration: '00:12:00',
             selectHelper: true,
-            eventClick: function(event){
+            eventClick: function (event) {
                if (confirm('Proceder a eliminar el registro?')) {
                     /* LLAMADA a Delete */
                     /* ID del evento que deberia ser igual al id de bdd esta en event._id*/
-                    alert("tete - llamada al delete " + event._id);
-
-                    $('#calendar').fullCalendar('removeEvents',event._id);
+                    //alert("tete - llamada al delete " + event._id);
+                    $.ajax({
+                        type: "POST",
+                        url: "<?=Url::site('admin/parrilla/delete/');?>",
+                        data: {
+                            id: event._id,
+                        },
+                        dataType: "json"
+                    }).done(function (json) {
+                        $('#calendar').fullCalendar('removeEvents',event._id);
+                    });
                 }
             },
-            eventResize: function(event, delta, revertFunc) {
+            eventResize: function (event, delta, revertFunc) {
                 /* LLAMADA a Update */
                 /* Se hace la llamada al update actualizando solo el EndDate*/
-                alert("tete - llamada al update " + event._id + event.end);
+                $.ajax({
+                    type: "POST",
+                    url: "<?=Url::site('admin/parrilla/save/');?>",
+                    data: {
+                        id: event._id,
+                        fechaInicio: event.start,
+                        fechaFin: event.end
+                    },
+                    dataType: "json"
+                });
             },
             editable: true,
             droppable: true, // this allows things to be dropped onto the calendar !!!
             eventDragStop: function (event) {
                 /* LLAMADA a Insert */
                 /* Se hace la llamada al update actualizando solo el startDate y endDate*/
-                alert("tete - llamada al insert " + event._id + event.start + event.end);
+                $.ajax({
+                    type: "POST",
+                    url: "<?=Url::site('admin/parrilla/save/');?>",
+                    data: {
+                        id: event._id,
+                        fechaInicio: event.start,
+                        fechaFin: event.end
+                    },
+                    dataType: "json"
+                });
             },
             drop: function (date) { // this function is called when something is dropped
                 var idinsert = 0;
-                var startinsert = date;
+                var startinsert = date*1;
                 var endinsert = (date + (unit*$('#size-overlay').val()));
                 /* LLAMADA a Update */
                 /* Se hace la llamada al insert y devuelve el id del registro de bdd a la variable idinsert*/
-                alert("tete - llamada al insert " + idinsert + startinsert + endinsert);
-
+                $.ajax({
+                    type: "POST",
+                    url: "<?=Url::site('admin/parrilla/save/');?>",
+                    data: {
+                        capituloId: $("#event-cap").val(),
+                        fechaInicio: $('#calendar').fullCalendar.formatDate(startinsert, "YYYY-MM-dd HH:mm:ss"),
+                        fechaFin: "lel"
+                    },
+                    dataType: "json"
+                }).done(function (json) {
+                    idinsert = json["evento"].id
+                });
 
                 // retrieve the dropped element's stored Event Object
                 var originalEventObject = $(this).data('eventObject');
@@ -102,24 +140,20 @@
             },
             /* LLAMADA a Cargar todos los eventos de la semana situada, haremos que recargue en el pasar de semana los nuevos eventos*/
             events: [
-                {
-                    id: '1',
-                    title: 'Meeting',
-                    start: '2014-06-12T10:00:00',
-                    end: '2014-06-12T10:24:00'
-                },
-                {
-                    id: '2',
-                    title: 'Lunch',
-                    start: '2014-06-12T10:24:00',
-                    end: '2014-06-12T10:36:00'
-                },
-                {
-                    id: '3',
-                    title: 'Birthday Party',
-                    start: '2014-06-13T07:00:00',
-                    end: '2014-06-13T07:36:00'
-                }
+                <?php if (count($eventos)) { ?>
+                    <?php foreach ($eventos as $i=>$evento) { ?>
+                        <?php $capitulo = new Capitulo($evento->id); ?>
+                        {
+                            id: '<?=$evento->id;?>',
+                            title: '<?=$capitulo->getFullTitulo();?>',
+                            start: '<?=$evento->fechaInicio;?>',
+                            end: '<?=$evento->fechaFin;?>'
+                        }
+                        <?php if ($i<count($eventos)-1) { ?>
+                            ,
+                        <?php } ?>
+                    <?php } ?>
+                <?php } ?>
             ]
         });
 
@@ -214,7 +248,7 @@
                         <?php $capitulos = Capitulo::select(array("programaId" => $programa->id)); ?>
                         <?php if (count($capitulos)) { ?>
                             <?php foreach ($capitulos as $capitulo) { ?>
-                                <div class='external-event' event-color='ffd700' size-overlay='1'>
+                                <div class='external-event' event-color='ffd700' size-overlay='1' event-cap='<?=$capitulo->id;?>'>
                                     <?=$capitulo->getFullTitulo();?>
                                 </div>
                             <?php } ?>
@@ -238,4 +272,5 @@
         <div style='clear:both'></div>
         <input type='hidden' id='size-overlay' value='1'>
         <input type='hidden' id='event-color' value='6BA5C1'>
+        <input type='hidden' id='event-cap' value=''>
     </div>

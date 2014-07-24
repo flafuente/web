@@ -32,10 +32,12 @@ class parrillaController extends Controller
         if ($evento->id) {
             if ($evento->update($_REQUEST)) {
                 $data["result"] = "ok";
+                $data["evento"] = $evento;
             }
         } else {
             if ($evento->insert($_REQUEST)) {
                 $data["result"] = "ok";
+                $data["evento"] = $evento;
             }
         }
         $this->ajax($data);

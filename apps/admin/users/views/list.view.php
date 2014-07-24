@@ -3,7 +3,7 @@
 <?php
 //Toolbar
 Toolbar::addTitle("Usuarios", "glyphicon-user", "Listar");
-//Delete button
+//New button
 Toolbar::addButton(
     array(
         "title" => "Nuevo",
