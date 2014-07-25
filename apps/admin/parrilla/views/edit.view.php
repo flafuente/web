@@ -190,7 +190,7 @@
 
     #external-events {
         float: left;
-        width: 150px;
+        width: 240px;
         padding: 0 10px;
         border: 1px solid #ccc;
         background: #eee;
@@ -246,7 +246,7 @@
     <div id='wrap'>
 
         <div id='external-events'>
-            <h4>Draggable Events</h4>
+            <h4>Programas</h4>
 
             <?php if ($programas) { ?>
 
@@ -265,7 +265,7 @@
                     </div>
                 <?php } ?>
             <?php } ?>
-
+			<br /><br />
         </div>
 
         <div id='calendar'></div>
