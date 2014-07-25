@@ -19,7 +19,7 @@ class parrillaController extends Controller
         //Programas
         $this->setData("programas", Programa::select());
         //Eventos
-        $this->setData("eventos", Evento::select());
+        $this->setData("eventos", Evento::select(array("fechaInicio" => $_REQUEST["date"], "fechaFin" => date("Y-m-d", strtotime($_REQUEST["date"]." + 7 days")))));
         //Vista
         $html = $this->view("views.edit");
         $this->render($html);
