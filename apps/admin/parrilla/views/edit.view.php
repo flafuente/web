@@ -157,6 +157,20 @@
             ]
         });
 
+        //Prev
+        $( ".fc-button-prev").unbind( "click" );
+        $(document).on('click', '.fc-button-prev', function (e) {
+            window.location.href = "<?=Url::site('admin/parrilla');?>/?date=<?=date('Y-m-d', strtotime($date . ' -7 day'));?>";
+
+            return false;
+        });
+        //Next
+        $( ".fc-button-next").unbind( "click" );
+        $(document).on('click', '.fc-button-next', function (e) {
+            window.location.href = "<?=Url::site('admin/parrilla');?>/?date=<?=date('Y-m-d', strtotime($date . ' +7 day'));?>";
+
+            return false;
+        });
     });
 
 </script>
@@ -227,19 +241,6 @@
     $(document).ready(function () {
         $("#programaId").change();
     });
-    //Next
-    $(document).on('click', '.fc-button-prev', function (e) {
-        window.location.href = "<?=Url::site('admin/parrilla');?>/?date=<?=date('Y-m-d', strtotime($date . ' -7 day'));?>";
-        e.preventDefault();
-
-        return false;
-    });
-    $(document).on('click', '.fc-button-next', function (e) {
-        window.location.href = "<?=Url::site('admin/parrilla');?>/?date=<?=date('Y-m-d', strtotime($date . ' +7 day'));?>";
-        e.preventDefault();
-
-        return false;
-    });
 </script>
 
     <div id='wrap'>
@@ -256,7 +257,7 @@
                         <?php $capitulos = Capitulo::select(array("programaId" => $programa->id)); ?>
                         <?php if (count($capitulos)) { ?>
                             <?php foreach ($capitulos as $capitulo) { ?>
-                                <div class='external-event' event-color='ffd700' size-overlay='1' event-cap='<?=$capitulo->id;?>'>
+                                <div class='external-event' event-color='<?=str_replace("#","",$programa->color);?>' size-overlay='1' event-cap='<?=$capitulo->id;?>'>
                                     <?=$capitulo->getFullTitulo();?>
                                 </div>
                             <?php } ?>
