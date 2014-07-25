@@ -34,7 +34,6 @@
                             <input type="text" class="form-control" id="email" name="email" placeholder="Tu email" value="<?=Helper::sanitize($user->email)?>">
                         </div>
                     </div>
-                    <div style="clear: both;"></div>
                     <div class="profile-picture-sq uppic">
                         <div class='col-md-3' style="text-align: center;">
                             <!-- Foto -->
@@ -51,7 +50,6 @@
                             </div>
                             <img src="" class="previsualizacion" id="fotoPreview" style="display:none">
                         </div>
-                        <div style="clear: both;"></div>
                     </div>
                 </div>
                     <!-- <div style="clear: both;"></div> -->

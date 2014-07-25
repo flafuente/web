@@ -106,7 +106,9 @@ li.active > a {
 	display: none;
 	background-color: #9b9b9b;
 	z-index: 10;
-	margin-top: -197px;
+	top: 89px;
+	position: absolute;
+	max-width: 514px;
 }
 .profpic{
 	width: 40px;
