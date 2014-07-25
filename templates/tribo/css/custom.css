@@ -106,7 +106,7 @@ li.active > a {
 	display: none;
 	background-color: #9b9b9b;
 	z-index: 10;
-	top: 89px;
+	top: 69px;
 	position: absolute;
 	max-width: 514px;
 }
@@ -167,7 +167,7 @@ li.active > a {
 .profile-picture-sq .btnazul{
 	background-color: #19b6ea;
 	margin: 15px 0px 0px 15px;
-	font-size: 12px;
+	font-size: 11px;
 	color: #FFF;
 	padding: 5px 10px 5px 10px !important;
 	box-shadow: 10px 10px 5px #888888;
@@ -392,7 +392,7 @@ div.twitter i.fa.fa-twitter {
 	background-color: #FFFFFF;
 	width: 100%;
 	min-height: 100px;
-	margin-top: 20px;
+	/*margin-top: 20px;*/
 
 }
 .square-info div.grey{
@@ -633,6 +633,7 @@ div.sq_content{
 /*HAZTE TRIBER*/
 .serie_info img{
 	width: 100%;
+	margin-bottom: 20px;
 }
 .haztetriber_title{
 	font-size: 19px;
@@ -642,6 +643,7 @@ div.sq_content{
 .control-label img{
 	width: initial;
 	margin-top: -4px;
+	 margin-bottom: 0px;
 }
 .l-left{
 	text-align: left !important;

@@ -10,7 +10,7 @@ class HTML
     {
     }
 
-    public static function formButton($class = null, $spanClass = null, $display = null, $options = array())
+    public static function formButton($class = null, $spanClass = null, $display = null, $options = array(), $gli = "glyphicon")
     {
         //Link
         $html = "<button";
@@ -29,7 +29,7 @@ class HTML
         $html .= ">";
 
         //Span
-        $html .= "<span class='glyphicon glyphicon-".Helper::sanitize($spanClass)."'></span>";
+        $html .= "<span class='".$gli." ".$gli."-".Helper::sanitize($spanClass)."'></span>";
 
         if (isset($display)) {
             $html .= Helper::sanitize($display);

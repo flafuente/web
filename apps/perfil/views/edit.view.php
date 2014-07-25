@@ -42,6 +42,7 @@
                         </div>
                         <div class='col-md-6' style="min-height: 170px;">
                             <i class="fa fa-long-arrow-right btnazul btnazul-ico" style="top: 45px;"></i>&nbsp;&nbsp;<span class="btnazul" style="top: 45px;">Selecciona una foto de tu dispositivo</span>
+                            <div style="clear: both;"></div>
                             <i class="fa fa-long-arrow-right btnazul btnazul-ico" style="top: 60px;"></i>&nbsp;&nbsp;<span class="btnazul" style="top: 60px;">Tómate una foto con tu dispositivo</span>
                         </div>
                         <div class='col-md-3' style="min-height: 170px;">
@@ -51,7 +52,7 @@
                             <img src="" class="previsualizacion" id="fotoPreview" style="display:none">
                         </div>
                     </div>
-                </div>
+                
                     <!-- <div style="clear: both;"></div> -->
 
                     <?php echo HTML::showInput(Url::template("img/haztetriber/user.png"), "Usuario", "username", Helper::sanitize($user->username), "Introduce aquí tu usuario"); ?>
@@ -133,7 +134,7 @@
                     <!-- Buttons -->
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-9">
-                            <?=HTML::formButton("btn btn-primary col-md-12", "ok", "Guardar cambios", array(
+                            <?=HTML::formButton("btn btn-primary col-md-12", "ok", " Guardar cambios", array(
                                     "data-app" => "perfil",
                                     "data-action" => "save"
                                 )
@@ -142,7 +143,7 @@
                         <div class="col-sm-offset-3 col-sm-9">
                             <?=HTML::formButton("btn btn-default col-md-5", null, "Eliminar cuenta");?>
                             <div class="col-sm-2"></div>
-                            <?=HTML::formButton("btn btn-grey col-md-5", null, "Configuracion", Array("style" => "color: #FFF; background-color: #9b9b9b;"));?>
+                            <?=HTML::formButton("btn btn-grey col-md-5", "cog", '   Configuracion', Array("style" => "color: #FFF; background-color: #9b9b9b;"), "fa");?>
                         </div>
                     </div>
 
