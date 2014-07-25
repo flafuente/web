@@ -102,6 +102,12 @@ li.active > a {
 }
 
 /*Menu Perfil*/
+.uppic{
+	display: none;
+	background-color: #9b9b9b;
+	z-index: 10;
+	margin-top: -197px;
+}
 .profpic{
 	width: 40px;
 	border: 1px solid #ebebeb;
@@ -150,7 +156,11 @@ li.active > a {
 /*Mi perfil*/
 .profile-picture-sq, .profile-picture-sq > div {
 	background-color: #9b9b9b;
-	padding: 1px !important;
+	padding: 0px !important;
+}
+.profile-picture-sq > div > img {
+	max-width: 126px;
+	margin: 1px;
 }
 .profile-picture-sq .btnazul{
 	background-color: #19b6ea;
@@ -160,6 +170,15 @@ li.active > a {
 	padding: 5px 10px 5px 10px !important;
 	box-shadow: 10px 10px 5px #888888;
 	box-shadow: 0px 0px 7px 0px #888888;
+	position: relative;
+}
+.profile-picture-sq .btnazul-ico{
+	box-shadow: none;
+	color: #b9b9b9;
+	background-color: transparent;
+	margin: 0px !important;
+	padding: 0px !important;
+	left: 12px;
 }
 .profile-picture-sq a.file-input-wrapper{
 	border: none;

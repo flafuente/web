@@ -12,16 +12,40 @@
                 <input type="hidden" name="action" id="action" value="save">
                 <div class="row">
                     <div class="profile-picture-sq">
-                        <div class='col-md-3'>
+                        <!-- sin Pulsar -->
+                        <div class='col-md-3' style="text-align: center;">
                             <!-- Foto -->
                             <img src="<?=$user->getFotoUrl();?>">
-                            <input type="file" id="foto" name="foto" accept="image/*" value="Cambiar foto">
+                            <div class="btn btn-grey" id="foto_upl_prof">Cambiar foto</div>
                         </div>
-                        <div class='col-md-6'>
-                            <div class="btnazul" style="margin-top: 30px;">Selecciona una foto de tu dispositivo</div>
-                            <div class="btnazul">Tómate una foto con tu dispositivo</div>
+                    </div>
+                    <div class='col-md-9' style="padding-bottom: 0px; margin-top: -25px;">
+                        <div class="col-sm-12" style="padding-bottom: 0px;">
+                            <label for="nombre" class="control-label" style="margin-top: 10px;">Nombre - Lo utilizaremos como firma de tus videos</label>
                         </div>
-                        <div class='col-md-3'>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Tu nombre" value="<?=Helper::sanitize($user->nombre)?>">
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Tus apellidos" value="<?=Helper::sanitize($user->apellidos)?>">
+                        </div>
+                        <div class="col-sm-12">
+                            <label for="email" class="control-label" style="margin-top: 10px;">Email - Lo utilizaremos para contactar contigo</label>
+                            <input type="text" class="form-control" id="email" name="email" placeholder="Tu email" value="<?=Helper::sanitize($user->email)?>">
+                        </div>
+                    </div>
+                    <div style="clear: both;"></div>
+                    <div class="profile-picture-sq uppic">
+                        <div class='col-md-3' style="text-align: center;">
+                            <!-- Foto -->
+                            <img src="<?=$user->getFotoUrl();?>">
+                            <div class="aclose btn btn-grey" id="foto_upl_prof">Cambiar foto</div>
+                        </div>
+                        <div class='col-md-6' style="min-height: 170px;">
+                            <i class="fa fa-long-arrow-right btnazul btnazul-ico" style="top: 45px;"></i>&nbsp;&nbsp;<span class="btnazul" style="top: 45px;">Selecciona una foto de tu dispositivo</span>
+                            <i class="fa fa-long-arrow-right btnazul btnazul-ico" style="top: 60px;"></i>&nbsp;&nbsp;<span class="btnazul" style="top: 60px;">Tómate una foto con tu dispositivo</span>
+                        </div>
+                        <div class='col-md-3' style="min-height: 170px;">
                             <div class="previsualizacion" id="fotoPreviewHelp">
                                 Aquí previsualizarás la foto que cargues.
                             </div>
@@ -29,6 +53,8 @@
                         </div>
                         <div style="clear: both;"></div>
                     </div>
+                </div>
+                    <!-- <div style="clear: both;"></div> -->
 
                     <?php HTML::showInput(Url::template("img/haztetriber/user.png"), "Usuario", "username", Helper::sanitize($user->username), "Introduce aquí tu usuario"); ?>
                     <!-- Password -->

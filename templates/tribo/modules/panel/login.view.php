@@ -76,7 +76,7 @@ if (!$user->id) {
                 </a>
             </div>
             <div class="col-md-6" style="text-align: right;">
-                <a data-link="#closeses" class="btn-tribo-purple btn ladda-button" data-style="slide-right" href="<?=Url::site("videos/nuevo");?>">
+                <a data-link="#closeses" class="aclose btn-tribo-purple btn ladda-button" data-style="slide-right" href="<?=Url::site("videos/nuevo");?>">
                     <i class="fa fa-long-arrow-left"></i>
                     &nbsp;&nbsp;Salir
                 </a>
