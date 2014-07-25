@@ -21,7 +21,7 @@
                     </div>
                     <div class='col-md-9' style="padding-bottom: 0px; margin-top: -25px;">
                         <div class="col-sm-12" style="padding-bottom: 0px;">
-                            <label for="nombre" class="control-label" style="margin-top: 10px;">Nombre - Lo utilizaremos como firma de tus videos</label>
+                            <label for="nombre" class="control-label" style="margin-top: 10px;">Nombre <span class="yareg">- Lo utilizaremos como firma de tus videos</span></label>
                         </div>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Tu nombre" value="<?=Helper::sanitize($user->nombre)?>">
@@ -30,7 +30,7 @@
                             <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Tus apellidos" value="<?=Helper::sanitize($user->apellidos)?>">
                         </div>
                         <div class="col-sm-12">
-                            <label for="email" class="control-label" style="margin-top: 10px;">Email - Lo utilizaremos para contactar contigo</label>
+                            <label for="email" class="control-label" style="margin-top: 10px;">Email <span class="yareg">- Lo utilizaremos para contactar contigo</span></label>
                             <input type="text" class="form-control" id="email" name="email" placeholder="Tu email" value="<?=Helper::sanitize($user->email)?>">
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                 </div>
                     <!-- <div style="clear: both;"></div> -->
 
-                    <?php HTML::showInput(Url::template("img/haztetriber/user.png"), "Usuario", "username", Helper::sanitize($user->username), "Introduce aquí tu usuario"); ?>
+                    <?php echo HTML::showInput(Url::template("img/haztetriber/user.png"), "Usuario", "username", Helper::sanitize($user->username), "Introduce aquí tu usuario"); ?>
                     <!-- Password -->
                     <div class="form-group">
                         <label for="password" class="col-sm-3 control-label l-left" style="margin-top: 10px;">
