@@ -7,6 +7,12 @@
             },
             theme:"dark"
         });
+        $(".parrilla_big").mCustomScrollbar({
+            scrollButtons:{
+                enable:true
+            },
+            theme:"dark"
+        });
         //$(".profile-picture-sq a.file-input-wrapper span").text($(".profile-picture-sq").parent().val());
     });
     $(document).on("click",".login",function () {

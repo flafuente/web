@@ -630,6 +630,66 @@ div.sq_content{
 	width: 100%;
 }
 
+
+/*PARRILLA*/
+.parrilla_big{
+	width: 90%;
+	margin: auto;
+	max-height: 600px;
+	overflow: auto;
+}
+.parrilla_big .parrilla_elemento{
+	border-bottom: 1px solid #9b9b9b;
+	height: 150px;
+	width: 100%;
+	background-color: #FFF;
+	padding: 10px;
+}
+.parrilla_big .parrilla_elemento img{
+	max-height: 120px;
+}
+.parr_hora {
+	font-size: 26px;
+	text-align: center;
+	margin-top: 45px;
+}
+.parr_info {
+	padding-top: 20px;
+}
+.parr_titulo{
+	color: #17B5E9;
+	font-weight: bold;
+}
+.fechas {
+	width: 90%;
+	margin: auto;
+	height: 54px;
+	overflow: hidden;
+}
+.seldateparr {
+	float: left;
+	text-align: center;
+	background-color: #efecec;
+	border: 1px solid white;
+	padding-top: 6px;
+	color: #333;
+	cursor: pointer;
+	width: 80px;
+	height: 55px;
+}
+span.p_dia {
+	font-weight: bold;
+}
+span.p_mes {
+	font-size: 10px;
+}
+#loading{
+	display: none;
+	width: 50px;
+	margin: auto;
+	background-image: url("../img/loading.gif");
+}
+
 /*HAZTE TRIBER*/
 .serie_info img{
 	width: 100%;
