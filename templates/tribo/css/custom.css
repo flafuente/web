@@ -457,6 +457,10 @@ div.sq_content{
 	padding-left: 0px;
 	padding-right: 0px;
 }
+.nopaddingI{
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}
 .separador{
 	clear: both;
 	border-bottom: 2px solid #CCC;
@@ -689,6 +693,43 @@ span.p_mes {
 	margin: auto;
 	background-image: url("../img/loading.gif");
 }
+
+/*MIS VIDEOS*/
+.square-info .grey a.btn{
+	float: right;
+	margin-top: -5px;
+}
+.mi-video{
+	padding: 0px;
+}
+.mi-video-prev{
+	border-top: 1px solid #c2c2c2;
+	padding: 0px !important;
+	padding-top: 9px !important;
+}
+.misvideos_nr{
+	color: #b71e1e;
+}
+.misvideos_no{
+	color: #ffbbbb;
+}
+.mivid-titulo{
+	text-transform: uppercase;
+}
+.mivid-subtitulo{
+	color: #17B5E9;
+}
+.simple-pagination{
+	text-align: center;
+	width: 100%;
+	font-size: 22px;
+	font-weight: bold;
+	cursor: pointer;
+}
+.simple-pagination .sp-sel{
+	color: #17B5E9;
+}
+
 
 /*HAZTE TRIBER*/
 .serie_info img{
