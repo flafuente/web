@@ -10,4 +10,10 @@ class parrillaController extends Controller {
 		$html = $this->view("views.parrilla");
 		$this->render($html);
 	}
+
+	public function today(){
+		$data = array();
+		$data["html"] = $this->view("views.today");
+		$this->ajax($data);
+	}
 }

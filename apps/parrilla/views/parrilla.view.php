@@ -47,8 +47,12 @@
 <script>
 	$( document ).ready(function() {
         $("#loading").css("display", "initial");
-        $.post("parrillatoday.view.php", { }, function(data){
-            $("#parr_content").html(data);
+        $.ajax({
+            type: "POST",
+        	url: "<?=Url::site('parrilla/today/');?>",
+        	dataType: "json"
+        }).done(function (data) {
+            $("#parr_content").html(data["data"]["html"]);
             $("#loading").css("display", "none");
         });
         return false;
@@ -56,8 +60,13 @@
 	$(document).on("click",".seldateparr",function(){
         fecha=$(this).attr("fecha-parrilla");
         $("#loading").css("display", "initial");
-        $.post("parrillatoday.view.php", { fecha: fecha }, function(data){
-            $("#parr_content").html(data);
+        $.ajax({
+            type: "POST",
+            data: {fecha: fecha},
+        	url: "<?=Url::site('parrilla/today/');?>",
+        	dataType: "json"
+        }).done(function (data) {
+            $("#parr_content").html(data["data"]["html"]);
             $("#loading").css("display", "none");
         });
         return false;
