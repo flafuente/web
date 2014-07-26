@@ -53,13 +53,9 @@ class User extends Model
     public $nombre;
     public $apellidos;
     public $foto;
-    public $sexo;
-    public $fechaNacimiento;
     public $ubicacion;
     public $biografia;
     public $intereses;
-    public $trabajo;
-    public $estudios;
     public $permisos;
 
     public $telefono;

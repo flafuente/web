@@ -167,29 +167,6 @@ Toolbar::render();
                                 <input type="text" id="apellidos" name="apellidos" class="form-control" value="<?=Helper::sanitize($user->apellidos);?>">
                             </div>
                         </div>
-                        <!-- Sexo -->
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">
-                                Sexo
-                            </label>
-                            <div class="col-sm-8">
-                                <?php $s = array();?>
-                                <?php $s[$user->sexo]; ?>
-                                <input type="radio" goup="sexo" name="sexo" id="sexo1" value="1" <?=$s[1]?>>
-                                Femenino
-                                <input type="radio" goup="sexo" name="sexo" id="sexo2" value="2" <?=$s[1]?>>
-                                Masculino
-                            </div>
-                        </div>
-                        <!-- Cumpleaños -->
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">
-                                Cumpleaños
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="date" id="fechaNacimiento" name="fechaNacimiento" class="form-control" value="<?=date("m/d/Y", strtotime($user->fechaNacimiento));?>">
-                            </div>
-                        </div>
                         <!-- Ubicacion -->
                         <div class="form-group">
                             <label class="col-sm-3 control-label">
