@@ -40,14 +40,14 @@ Toolbar::render();
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th><?=Helper::sortableLink("id", "Id");?></th>
-                            <th><?=Helper::sortableLink("statusId", "Estado");?></th>
-                            <th><?=Helper::sortableLink("roleId", "Rol");?></th>
-                            <th><?=Helper::sortableLink("email", "Email");?></th>
-                            <th><?=Helper::sortableLink("nombre", "Nombre");?></th>
-                            <th><?=Helper::sortableLink("apellidos", "Apellidos");?></th>
-                            <th><?=Helper::sortableLink("dateInsert", "Fecha creación");?></th>
-                            <th><?=Helper::sortableLink("dateUpdate", "Fecha actualización");?></th>
+                            <th><?=Html::sortableLink("id", "Id");?></th>
+                            <th><?=Html::sortableLink("statusId", "Estado");?></th>
+                            <th><?=Html::sortableLink("roleId", "Rol");?></th>
+                            <th><?=Html::sortableLink("email", "Email");?></th>
+                            <th><?=Html::sortableLink("nombre", "Nombre");?></th>
+                            <th><?=Html::sortableLink("apellidos", "Apellidos");?></th>
+                            <th><?=Html::sortableLink("dateInsert", "Fecha creación");?></th>
+                            <th><?=Html::sortableLink("dateUpdate", "Fecha actualización");?></th>
                             <th></th>
                         </tr>
                     </thead>

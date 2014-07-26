@@ -170,4 +170,52 @@ class HTML
 
         return $html;
     }
+
+    /**
+     * Make a sortable link for a table in a form
+     *
+     * @param string $sortableField Database Field
+     * @param string $text          Text
+     *
+     * @return string HTML Link
+     */
+    public function sortableLink($sortableField = "", $text = "")
+    {
+        $orderDir = "ASC";
+        if ($_REQUEST['order']==$sortableField) {
+             $cssClass = "sort-by-attributes-alt";
+            if ($_REQUEST['orderDir']=="ASC") {
+                $orderDir = "DESC";
+                $cssClass = "sort-by-attributes";
+            }
+        }
+
+        return
+            "<a href='#' class='sortable' data-order='".Helper::sanitize($sortableField)."' data-orderDir='".Helper::sanitize($orderDir)."'>
+                ".Helper::sanitize($text)."
+                <span class='glyphicon glyphicon-".Helper::sanitize($cssClass)."'></span>
+            </a>";
+    }
+
+    /**
+     * Make a sort inputs.
+     *
+     * @return string HTML form inputs
+     */
+    public function sortInputs()
+    {
+        return "<input type='hidden' name='order' value='".Helper::sanitize($_REQUEST["order"])."'>
+                <input type='hidden' name='orderDir' value='".Helper::sanitize($_REQUEST["orderDir"])."'>";
+    }
+
+    /**
+     * Make a pagination form inputs.
+     *
+     * @return string HTML inputs
+     */
+    public function paginationInputs()
+    {
+        return "<input type='hidden' name='limit' value='".Helper::sanitize($_REQUEST["limit"])."'>
+                <input type='hidden' name='limitStart' value='".Helper::sanitize($_REQUEST["limitStart"])."'>";
+    }
 }

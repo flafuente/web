@@ -34,15 +34,15 @@ Toolbar::render();
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th><?=Helper::sortableLink("id", "Id");?></th>
-                            <th><?=Helper::sortableLink("estadoId", "Estado");?></th>
-                            <th><?=Helper::sortableLink("programaId", "Programa");?></th>
-                            <th><?=Helper::sortableLink("titulo", "Título");?></th>
-                            <th><?=Helper::sortableLink("temporada", "Temporada");?></th>
-                            <th><?=Helper::sortableLink("episodio", "Episodio");?></th>
-                            <th><?=Helper::sortableLink("fechaEmision", "Fecha emisión");?></th>
-                            <th><?=Helper::sortableLink("dateInsert", "Fecha creación");?></th>
-                            <th><?=Helper::sortableLink("dateUpdate", "Fecha actualización");?></th>
+                            <th><?=Html::sortableLink("id", "Id");?></th>
+                            <th><?=Html::sortableLink("estadoId", "Estado");?></th>
+                            <th><?=Html::sortableLink("programaId", "Programa");?></th>
+                            <th><?=Html::sortableLink("titulo", "Título");?></th>
+                            <th><?=Html::sortableLink("temporada", "Temporada");?></th>
+                            <th><?=Html::sortableLink("episodio", "Episodio");?></th>
+                            <th><?=Html::sortableLink("fechaEmision", "Fecha emisión");?></th>
+                            <th><?=Html::sortableLink("dateInsert", "Fecha creación");?></th>
+                            <th><?=Html::sortableLink("dateUpdate", "Fecha actualización");?></th>
                             <th></th>
                         </tr>
                     </thead>

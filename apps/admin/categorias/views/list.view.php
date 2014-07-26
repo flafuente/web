@@ -34,11 +34,11 @@ Toolbar::render();
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th><?=Helper::sortableLink("id", "Id");?></th>
-                            <th><?=Helper::sortableLink("nombre", "Nombre");?></th>
-                            <th><?=Helper::sortableLink("color", "Color");?></th>
-                            <th><?=Helper::sortableLink("dateInsert", "Fecha creación");?></th>
-                            <th><?=Helper::sortableLink("dateUpdate", "Fecha actualización");?></th>
+                            <th><?=Html::sortableLink("id", "Id");?></th>
+                            <th><?=Html::sortableLink("nombre", "Nombre");?></th>
+                            <th><?=Html::sortableLink("color", "Color");?></th>
+                            <th><?=Html::sortableLink("dateInsert", "Fecha creación");?></th>
+                            <th><?=Html::sortableLink("dateUpdate", "Fecha actualización");?></th>
                             <th></th>
                         </tr>
                     </thead>
