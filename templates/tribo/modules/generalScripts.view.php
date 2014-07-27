@@ -1,6 +1,6 @@
 <script>
     //$(window).load(function(){
-    $( document ).ready(function() {
+    $(window).load(function(){
         $(".sqd_description").mCustomScrollbar({
             scrollButtons:{
                 enable:true

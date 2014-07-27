@@ -320,7 +320,12 @@ div.parrilla-contenido span.hora {
 	float: left;
 	font-size: 17px;
 }
+.datesel{
+	color: #FFF !important;
+	background-color: #13b6ea !important;
+}
 
+/*sintonizanos*/
 a.sintonizanos {
 	width: 100%;
 	margin-top: 20px;
@@ -639,8 +644,9 @@ div.sq_content{
 .parrilla_big{
 	width: 90%;
 	margin: auto;
-	max-height: 600px;
-	overflow: auto;
+	max-height: 660px;
+	margin-top: -36px;
+	/*overflow: auto;*/
 }
 .parrilla_big .parrilla_elemento{
 	border-bottom: 1px solid #9b9b9b;
@@ -668,7 +674,17 @@ div.sq_content{
 	width: 90%;
 	margin: auto;
 	height: 54px;
-	overflow: hidden;
+}
+.slick-prev, .slick-next {
+	background-color: #767676 !important;
+	height: 46px !important;
+	top: 11px !important;
+}
+.slick-prev {
+	left: 0px !important;
+}
+.slick-next {
+	right: 0px !important;
 }
 .seldateparr {
 	float: left;

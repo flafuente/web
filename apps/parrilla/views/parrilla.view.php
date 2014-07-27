@@ -3,7 +3,7 @@
     <span>Parrilla Completa</span>
 </div>
 <div class="row">
-	<div class="fechas">
+	<div class="fechas slider center">
 	<?php
 	$dias = Array("1" => "Lunes",
 				  "2" => "Martes",
@@ -28,7 +28,7 @@
 	for($x=0; $x<7; $x++){
 		$diaSuma = $x*(60*60*24);
 		?>
-		<div class="seldateparr" fecha-parrilla="<?=date("Y-m-d", $hoy+$diaSuma);?>">
+		<div class="seldateparr <?php if($x==0) echo "datesel"; ?> " fecha-parrilla="<?=date("Y-m-d", $hoy+$diaSuma);?>">
 			<span class="p_dia"><?=$dias[date("N", $hoy+$diaSuma)]; ?></span>
 			<br />
 			<span class="p_mes"><?=date("d", $hoy+$diaSuma); ?> de <?=$meses[date("n", $hoy+$diaSuma)]; ?></span>
@@ -44,9 +44,42 @@
 	<div id="loading"></div>
 </div>
 
+
+<link rel="stylesheet" type="text/css" href="<?=Url::template("css/slick.css");?>"/>
+<script type="text/javascript" src="<?=Url::template("js/slick.min.js");?>"></script>
 <script>
 	$( document ).ready(function() {
+        $('.center').slick({
+		  arrows: true,
+		  centerMode: true,
+		  centerPadding: '60px',
+		  slidesToShow: 5,
+		  responsive: [
+		    {
+		      breakpoint: 768,
+		      settings: {
+		        arrows: true,
+		        centerMode: true,
+		        centerPadding: '40px',
+		        slidesToShow: 3
+		      }
+		    },
+		    {
+		      breakpoint: 480,
+		      settings: {
+		        arrows: true,
+		        centerMode: true,
+		        centerPadding: '40px',
+		        slidesToShow: 1
+		      }
+		    }
+		  ]
+		});
+
+
         $("#loading").css("display", "initial");
+
+
         $.ajax({
             type: "POST",
         	url: "<?=Url::site('parrilla/today/');?>",
@@ -55,9 +88,14 @@
             $("#parr_content").html(data["data"]["html"]);
             $("#loading").css("display", "none");
         });
+        
         return false;
 	});
 	$(document).on("click",".seldateparr",function(){
+		$(".seldateparr").removeClass("datesel");
+		$(this).addClass("datesel");
+
+
         fecha=$(this).attr("fecha-parrilla");
         $("#loading").css("display", "initial");
         $.ajax({
@@ -69,6 +107,7 @@
             $("#parr_content").html(data["data"]["html"]);
             $("#loading").css("display", "none");
         });
+
         return false;
     });
 
