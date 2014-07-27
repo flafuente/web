@@ -6,23 +6,15 @@
 	<div class='title-line'>
 		<span>LO MÁS VISTO ESTA SEMANA</span>
 	</div>
-	<?php
-	showMasVisto("TITULO", "not01.jpg", "Ciudad", rand(0,99999), "Autor", date("Y-m-d H:i:s"));
-	showMasVisto("TITULO", "not01.jpg", "Ciudad", rand(0,99999), "Autor", date("Y-m-d H:i:s"));
-	showMasVisto("TITULO", "not01.jpg", "Ciudad", rand(0,99999), "Autor", date("Y-m-d H:i:s"));
-	showMasVisto("TITULO", "not01.jpg", "Ciudad", rand(0,99999), "Autor", date("Y-m-d H:i:s"));
-	showMasVisto("TITULO", "not01.jpg", "Ciudad", rand(0,99999), "Autor", date("Y-m-d H:i:s"));
-	?>
-	<div class='col-md-12'>
-		<div class="mv-more">
-
-		</div>
+	<div class="slider center">
+		<?php
+		for($x=0; $x<20; $x++){
+			showMasVisto("TITULO", "not01.jpg", "Ciudad", rand(0,99999), "Autor", date("Y-m-d H:i:s"));
+		}
+		?>
 	</div>
 	<div style="clear: both;"></div>
 </div>
-
-
-
 
 <?php
 function showMasVisto($titulo, $img, $donde, $reproducciones, $autor, $fecha){
@@ -40,3 +32,37 @@ function showMasVisto($titulo, $img, $donde, $reproducciones, $autor, $fecha){
 	</div>
 	<?php
 }
+?>
+<link rel="stylesheet" type="text/css" href="<?=Url::template("css/slick.css");?>"/>
+<script type="text/javascript" src="<?=Url::template("js/slick.min.js");?>"></script>
+<script>
+	$( document ).ready(function() {
+        $('.center').slick({
+		  arrows: true,
+		  centerMode: true,
+		  vertical: true,
+		  centerPadding: '60px',
+		  slidesToShow: 4,
+		  responsive: [
+		    {
+		      breakpoint: 768,
+		      settings: {
+		        arrows: true,
+		        centerMode: true,
+		        centerPadding: '40px',
+		        slidesToShow: 3
+		      }
+		    },
+		    {
+		      breakpoint: 480,
+		      settings: {
+		        arrows: true,
+		        centerMode: true,
+		        centerPadding: '40px',
+		        slidesToShow: 1
+		      }
+		    }
+		  ]
+		});
+	});
+</script>

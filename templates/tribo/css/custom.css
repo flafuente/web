@@ -3,7 +3,7 @@ html{
 	height: 100%;
 }
 body {
-	margin-top: 20px;
+	padding-top: 20px;
 	/* 50px is the height of the navbar - change this if the navbarn height changes */
 	
 	background-color:#f9f6f6;
@@ -578,6 +578,49 @@ div.sq_content{
 }
 
 /*Periodismo Ciudadano*/
+	/*Arrow slider*/
+.lomasvisto .slick-prev:before, .lomasvisto .slick-next:before {
+	font-family: "slick";
+	font-size: 30px;
+	line-height: 1;
+	color: #333;
+	opacity: 0.85;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.lomasvisto button.slick-next {
+	top: initial !important;
+	background-color: #FFF !important;
+	width: 200px;
+	bottom: -50px;
+	background-image: url("../img/arrdown.png");
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 50px !important;
+}
+.lomasvisto button.slick-prev {
+	background-color: #FFF !important;
+	width: 200px;
+	top: -5px !important;
+	background-image: url("../img/arrdown.png");
+	-webkit-transform:rotate(180deg);
+    -moz-transform:rotate(180deg);
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 30px !important;
+}
+.lomasvisto .slick-next:before { display: none !important; }
+.lomasvisto .slick-prev:before { display: none !important; }
+.lomasvisto .slick-slider {
+	margin-bottom: 30px;
+	margin-top: 15px;
+}
+.lomasvisto .col-md-12.slick-slide.slick-active {
+	width: 200px !important;
+}
+.lomasvisto .slick-list.draggable{
+	height: 550px !important;
+}
 .video-info .title-line, .lomasvisto .title-line{
 	background-image: url("../img/titbgw.png");
 }
