@@ -378,6 +378,10 @@ class User extends Model
         if (isset($data["categorias"])) {
             $this->categorias = json_encode($data["categorias"]);
         }
+        //Delete Foto
+        if ($data["deleteFoto"]==1) {
+            $this->deleteFoto();
+        }
     }
 
     public function uploadFoto($resource=null)
@@ -387,9 +391,7 @@ class User extends Model
             $config = Registry::getConfig();
             try {
                 //Eliminamos la antigua
-                if ($this->foto) {
-                    @unlink($this->getFotoPath());
-                }
+                $this->deleteFoto();
                 //Subimos la nueva
                 $bulletProof = new BulletProof;
                 $this->foto = $bulletProof
@@ -401,6 +403,14 @@ class User extends Model
             }
         } else {
             $this->foto = null;
+        }
+    }
+
+    public function deleteFoto()
+    {
+        if ($this->foto) {
+            @unlink($this->getFotoPath());
+            $this->foto = "";
         }
     }
 
