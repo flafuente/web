@@ -162,7 +162,9 @@ class User extends Model
      */
     public function getCategoriasIds()
     {
-        return json_decode($this->categorias);
+        if ($this->categorias) {
+            return json_decode($this->categorias);
+        }
     }
 
     /**
@@ -170,7 +172,9 @@ class User extends Model
      */
     public function getPermisos()
     {
-        return json_decode($this->permisos);
+        if ($this->permisos) {
+            return json_decode($this->permisos);
+        }
     }
 
     /**
@@ -423,10 +427,10 @@ class User extends Model
         if ($rows) {
             $user = new User($rows[0]);
             //Set Cookie
-            if(is_callable('openssl_random_pseudo_bytes')){
+            if (is_callable('openssl_random_pseudo_bytes')) {
                 $user->token = bin2hex(openssl_random_pseudo_bytes(16));
-            }else{
-                $user->token = uniqid('', true);  
+            } else {
+                $user->token = uniqid('', true);
             }
             $config = Registry::getConfig();
             setcookie($config->get("cookie"), $user->token, time() + $expiration, $config->get("dir"), $config->get("host"), false, true);
@@ -533,11 +537,11 @@ class User extends Model
      */
     public function sendRecovery()
     {
-        
-        if(is_callable('openssl_random_pseudo_bytes')){
+
+        if (is_callable('openssl_random_pseudo_bytes')) {
             $this->recoveryHash = bin2hex(openssl_random_pseudo_bytes(16));
-        }else{
-            $this->recoveryHash = uniqid('', true);  
+        } else {
+            $this->recoveryHash = uniqid('', true);
         }
 
         $this->update();

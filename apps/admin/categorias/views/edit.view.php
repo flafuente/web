@@ -89,6 +89,16 @@ Toolbar::render();
                             ?>
                         </div>
                     </div>
+                    <!-- Secciones -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            Secciones
+                        </label>
+                        <div class="col-sm-8">
+                            <?php $seccionesIds = $categoria->getSecciones(); ?>
+                            <?=HTML::select("secciones[]", $categoria->seccionesTipos, $seccionesIds, array("class" => "select2", "multiple" => "true")); ?>
+                        </div>
+                    </div>
                     <!-- Color -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label">

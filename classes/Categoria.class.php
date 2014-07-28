@@ -12,6 +12,11 @@ class Categoria extends Model
      */
     public $id;
     /**
+     * Secciones
+     * @var string
+     */
+    public $secciones;
+    /**
      * Order
      * @var int
      */
@@ -53,11 +58,16 @@ class Categoria extends Model
      */
     public $path = "/files/images/categorias/";
 
+    public $seccionesTipos = array(
+        1 => "Programas",
+        2 => "Notícias",
+    );
+
     /**
      * Variables reservadas (no están en la base de datos)
      * @var array
      */
-    public static $reservedVarsChild = array("path");
+    public static $reservedVarsChild = array("path", "seccionesTipos");
 
     /**
      * Init.
@@ -69,6 +79,16 @@ class Categoria extends Model
         parent::$dbTable = "categorias";
         //Variables reservadas
         parent::$reservedVarsChild = self::$reservedVarsChild;
+    }
+
+    /**
+     * @return array Ids de las secciones a las que pertenece
+     */
+    public function getSecciones()
+    {
+        if ($this->secciones) {
+            return json_decode($this->secciones);
+        }
     }
 
     /**
@@ -167,6 +187,10 @@ class Categoria extends Model
         if ($data["order"]) {
             $this->order();
         }
+        //Secciones
+        if (isset($data["secciones"])) {
+            $this->secciones = json_encode($data["secciones"]);;
+        }
     }
 
     /**
@@ -190,6 +214,10 @@ class Categoria extends Model
         $this->slugify();
         if ($data["order"]) {
             $this->order();
+        }
+        //Secciones
+        if (isset($data["secciones"])) {
+            $this->secciones = json_encode($data["secciones"]);;
         }
     }
 
