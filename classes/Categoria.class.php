@@ -240,6 +240,11 @@ class Categoria extends Model
             //INSECURE!
             $query .= " AND `id` IN (".implode(",", $data["categoriasIds"]).") ";
         }
+        if (isset($data["seccionId"])) {
+            //INSECURE!
+            $query .= " AND `secciones` LIKE :sectid ";
+            $params[":sectid"] = '%["'.$data["seccionId"].'"]%';
+        }
         //Búsqueda
         if ($data["search"]) {
             $query .= " AND `nombre` LIKE :nombre";
