@@ -73,6 +73,11 @@ class User extends Model
      */
     public $token;
     /**
+     * WebServices token
+     * @var string
+     */
+    public $wsToken;
+    /**
      * Insert date
      * @var string
      */
@@ -332,6 +337,8 @@ class User extends Model
         if (isset($data["categorias"])) {
             $this->categorias = json_encode($data["categorias"]);;
         }
+        //WS Token
+        $this->wsToken = md5(uniqid('', true));
     }
 
     public function postInsert($data=array())
@@ -448,7 +455,7 @@ class User extends Model
             $user->lastvisitDate = date("Y-m-d H:i:s");
             $user->update();
 
-            return true;
+            return $user;
         }
     }
 
@@ -597,5 +604,26 @@ class User extends Model
         } else {
             Registry::addMessage("Error al enviar el email. Inténtalo de nuevo más tarde", "error");
         }
+    }
+
+    /**
+     * Webservice model
+     *
+     * @return array
+     */
+    public function getWs($privateData = false)
+    {
+        $data = new stdClass();
+        $data->id = $this->id;
+        $data->nombre = $this->nombre;
+        $data->apellidos = $this->apellidos;
+        $data->username = $this->username;
+        $data->email = $this->email;
+        if ($privateData) {
+            $data->wsToken = $this->wsToken;
+        }
+        $data->lastVisitDate = $this->lastvisitDate;
+
+        return $data;
     }
 }
