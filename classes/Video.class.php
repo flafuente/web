@@ -314,6 +314,11 @@ class Video extends Model
             $params[":titulo"] = "%".$data["search"]."%";
             $params[":descripcion"] = "%".$data["search"]."%";
         }
+        //Usuario
+        if (isset($data["userId"])) {
+            $query .= " AND `userId`=:userId ";
+            $params[":userId"] = $data["userId"];
+        }
         //Estado
         if (isset($data["estadoId"]) && $data["estadoId"]!="-1") {
             $query .= " AND `estadoId`=:estadoId ";
