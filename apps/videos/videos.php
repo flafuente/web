@@ -17,7 +17,16 @@ class videosController extends Controller
         $user = Registry::getUser();
         $data = $_REQUEST;
         $data["userId"] = $user->id;
-        $this->setData("videos", Video::select($data));
+        //Emitidos
+        $data["estadoId"] = 1;
+        $this->setData("videosEmitidos", Video::select($data));
+        //Pendientes
+        $data["estadoId"] = 0;
+        $this->setData("videosPendientes", Video::select($data));
+        //Rechazados
+        $data["estadoId"] = 2;
+        $this->setData("videosRechazados", Video::select($data));
+        //View
         $html = $this->view("views.list");
         $this->render($html);
     }
