@@ -42,6 +42,17 @@
                 </p>
             </div>
         </div>
+        <!-- Texto -->
+        <div class="form-group">
+            <label class="col-sm-2 control-label">
+                Texto embled
+            </label>
+            <div class="col-sm-8">
+                <p class="form-control-static">
+                    <?=Helper::sanitize($video->texto);?>
+                </p>
+            </div>
+        </div>
     </fieldset>
 
     <fieldset>

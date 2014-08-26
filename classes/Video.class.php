@@ -37,6 +37,11 @@ class Video extends Model
      */
     public $descripcion;
     /**
+     * Texto
+     * @var string
+     */
+    public $texto;
+    /**
      * Id del archivo de vídeo asociado
      * @var int
      */

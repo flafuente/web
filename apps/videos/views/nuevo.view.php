@@ -43,6 +43,15 @@
                         <textarea name="descripcion" class="form-control" id="descripcion"></textarea>
                     </div>
                 </div>
+                <!-- Texto -->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">
+                        Texto embled
+                    </label>
+                    <div class="col-sm-8">
+                        <textarea id="texto" name="texto" class="form-control"></textarea>
+                    </div>
+                </div>
                 <?php if (count($tags)) { ?>
                     <!-- Tags -->
                     <div class="form-group">
