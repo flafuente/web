@@ -21,7 +21,7 @@
 	if(is_callable('curl_init')){
 
 		include_once("templates/tribo/twitteroauth/twitteroauth.php"); //Path to twitteroauth library you downloaded in step 3
-		$twitteruser = "pepocivs"; //user name you want to reference
+		$twitteruser = "Tribo_tv"; //user name you want to reference
 		$notweets = 50; //how many tweets you want to retrieve
 		$consumerkey = "M8LPRrfMlVSgbqmiY39d6w"; //Noted keys from step 2
 		$consumersecret = "oV9StQWszT1HhyOSrBk2cZhe5RuUb6MDKXbvzhHVc"; //Noted keys from step 2
