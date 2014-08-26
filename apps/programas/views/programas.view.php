@@ -33,7 +33,14 @@
 </div>
 
 <script>
+    var limit = <?=$limit;?>;
+    var current = limit;
+    var total = <?=$i?>;
     $('.programas').on('click','.ver-todas-web', function () {
         $('.programas a.hidden:lt(<?=$limit?>)').css('visibility','visible').hide().fadeIn().removeClass('hidden');
+        current += limit
+        if (current >= total) {
+            $("div.ver-todas-web").hide();
+        }
     });
 </script>
