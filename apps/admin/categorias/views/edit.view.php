@@ -69,6 +69,16 @@ Toolbar::render();
                             <input type="text" id="nombre" name="nombre" class="form-control" value="<?=Helper::sanitize($categoria->nombre);?>">
                         </div>
                     </div>
+                    <!-- Destacada -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            Destacada
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="hidden" name="destacada" value="0">
+                            <input type="checkbox" class="switch" name="destacada" id="destacada" value="1" <?php if($categoria->destacada) echo "checked";?>>
+                        </div>
+                    </div>
                     <!-- Orden -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label">

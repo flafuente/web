@@ -2,7 +2,7 @@
 //No direct access
 defined('_EXE') or die('Restricted access');
 
-class loginController extends Controller
+class videosController extends Controller
 {
 
     /**

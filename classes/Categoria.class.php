@@ -12,6 +12,11 @@ class Categoria extends Model
      */
     public $id;
     /**
+     * Destacada
+     * @var bool
+     */
+    public $destacada;
+    /**
      * Secciones
      * @var string
      */
@@ -249,6 +254,11 @@ class Categoria extends Model
         if ($data["search"]) {
             $query .= " AND `nombre` LIKE :nombre";
             $params[":nombre"] = "%".$data["search"]."%";
+        }
+        //Destacadas
+        if ($data["destacada"]) {
+            $query .= " AND `destacada` = :destacada";
+            $params[":destacada"] = 1;
         }
         //Total
         $total = count($db->Query($query, $params));
