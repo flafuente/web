@@ -14,6 +14,14 @@
     <!-- Slides Container -->
     <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 960px;            height: 310px; overflow: hidden;">
         <div>
+            <a href="<?=Url::site("periodismociudadano#haztetriber");?>"><img u="image" src="<?=Url::template("/img/home/slide4.jpg");?>" />
+            
+            </a>
+            <!--<div class='title'>
+                <p><span>tribo tv es..</span></p>
+            </div>-->
+        </div>
+		<div>
             <a href="<?=Url::site("periodismociudadano#haztetriber");?>"><img u="image" src="<?=Url::template("/img/home/slide0.jpg");?>" />
             
             </a>
