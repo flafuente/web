@@ -27,6 +27,11 @@ class Programa extends Model
      */
     public $estadoId;
     /**
+     * Destacado
+     * @var bool
+     */
+    public $destacado;
+    /**
      * Banner (filename)
      * @var string
      */
@@ -309,6 +314,10 @@ class Programa extends Model
         if ($data["categoriaId"]) {
             $query .= " AND `categoriaId`=:categoriaId ";
             $params[":categoriaId"] = $data["categoriaId"];
+        }
+        //Destacado
+        if ($data["destacado"]) {
+            $query .= " AND `destacado` = 1 ";
         }
         //Total
         $total = count($db->Query($query, $params));

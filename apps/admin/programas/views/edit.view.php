@@ -98,6 +98,16 @@ Toolbar::render();
                             </div>
                         </div>
                     <?php } ?>
+                    <!-- Destacado -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            Destacado
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="hidden" name="destacado" value="0">
+                            <input type="checkbox" class="switch" name="destacado" id="destacado" value="1" <?php if($categoria->destacado) echo "checked";?>>
+                        </div>
+                    </div>
                     <!-- Color -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label">

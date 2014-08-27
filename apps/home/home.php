@@ -8,8 +8,8 @@ class homeController extends Controller
 
     public function index()
     {
-        $this->setData("categorias", Categoria::select(array("destacada" => true),4));
-        $html = $this->view("views.secciones");
+        $this->setData("programas", Programa::select(array("destacado" => true),4));
+        $html = $this->view("views.programas");
         $this->render($html, "landing");
     }
 }
