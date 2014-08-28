@@ -108,11 +108,14 @@ class User extends Model
     public $secciones = array(
         "todo"          => "Todo",
         "usuarios"      => "Usuarios",
-        "contenidos"    => "Contenidos",
         "videos"        => "Vídeos",
-        "pariilla"      => "Parrilla",
+        "parrilla"      => "Parrilla",
         "programas"     => "Programas",
         "capitulos"     => "Capítulos",
+        "categorias"    => "Categorias",
+        "tags"          => "Tags",
+        "secciones"     => "Secciones",
+        "contactos"     => "Contactos",
     );
 
     /**

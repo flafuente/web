@@ -28,7 +28,12 @@ class adminControllerRouter extends Controller
         } elseif ($user->checkPermisos("cortos")) {
             Url::redirect(Url::site("admin/videos"));
         } else {
-            Url::redirect(Url::site());
+            $permisos = $user->getPermisos();
+            if (is_array($permisos) && !empty($permisos)) {
+                Url::redirect(Url::site("admin/".$permisos[0]));
+            } else {
+                Url::redirect(Url::site());
+            }
         }
     }
 }

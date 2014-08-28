@@ -88,7 +88,7 @@ Toolbar::render();
                                 Accesos
                             </label>
                             <div class="col-sm-8">
-                                <?php $permisos = $user->getCategoriasIds(); ?>
+                                <?php $permisos = $user->getPermisos(); ?>
                                 <?=HTML::select("permisos[]", $user->secciones, $permisos, array("class" => "select2", "multiple" => "true")); ?>
                             </div>
                         </div>
