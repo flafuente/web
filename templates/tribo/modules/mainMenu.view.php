@@ -31,7 +31,7 @@
         <?php } ?>
       </li>
       <li class="<?=$active["periodismociudadano"]["index"];?> withsub">
-        <a href="#">TRIBO NEWS</a>
+        <a href="<?=Url::site("tribonews");?>">TRIBO NEWS</a>
         <?php $categorias = Categoria::select(Array("seccionId" => "2")); ?>
         <?php if (count($categorias)) { ?>
             <ul class="submenu" style="display: none;">
@@ -81,5 +81,5 @@
     <a href="<?=Url::site("sintonizanos");?>" class="btn sintonizanos"><img src="<?=Url::template("img/weirdicon.png")?>" />&nbsp;&nbsp;SINTONÍZANOS</a>
 </div>
 <div class='col-md-12' style='padding-left: 0px; padding-right: 0px;'>
-    <a href="<?=Url::site("periodismociudadano#haztetriber");?>" class="btn sintonizanos betriber">be triber</a>
+    <a href="<?=Url::site("tribonews#haztetriber");?>" class="btn sintonizanos betriber">be triber</a>
 </div>

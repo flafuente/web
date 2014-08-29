@@ -41,8 +41,12 @@
                             <div class="aclose btn btn-grey" id="foto_upl_prof">Cambiar foto</div>
                         </div>
                         <div class='col-md-6' style="min-height: 170px;">
+                            <i class="fa fa-long-arrow-right btnazul btnazul-ico" style="top: 45px;"></i>&nbsp;&nbsp;<input onLoad="return false;" type="file" value="Selecciona una foto de tu dispositivo" class="btnazul" style="top: 45px;" />
+                            <div style="clear: both;"></div>
+                            <!--
                             <i class="fa fa-long-arrow-right btnazul btnazul-ico" style="top: 45px;"></i>&nbsp;&nbsp;<span class="btnazul" style="top: 45px;">Selecciona una foto de tu dispositivo</span>
                             <div style="clear: both;"></div>
+                            -->
                             <i class="fa fa-long-arrow-right btnazul btnazul-ico" style="top: 60px;"></i>&nbsp;&nbsp;<span class="btnazul" style="top: 60px;">Tómate una foto con tu dispositivo</span>
                         </div>
                         <div class='col-md-3' style="min-height: 170px;">
