@@ -53,15 +53,11 @@ class WS
 
     public static function setHeaders()
     {
-        if (!function_exists('getallheaders')) {
-            $headers = '';
-            foreach ($_SERVER as $name => $value) {
-                if (substr($name, 0, 5) == 'HTTP_') {
-                    $headers[strtoupper(substr($name, 5))] = $value;
-                }
+        $headers = '';
+        foreach ($_SERVER as $name => $value) {
+            if (substr($name, 0, 5) == 'HTTP_') {
+                $headers[strtoupper(substr($name, 5))] = $value;
             }
-        } else {
-            $headers = getallheaders();
         }
         self::$headers = $headers;
     }
