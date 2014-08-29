@@ -60,13 +60,15 @@
                         </a>
                     </li>
                 <?php } ?>
-                <?php if ($user->checkPermisos("todo")) { ?>
+                <?php if ($user->checkPermisos("categorias")) { ?>
                     <li class="<?=$active['admin']['categorias']?>">
                         <a href="<?=Url::site("admin/categorias")?>">
                             <span class="glyphicon glyphicon-bookmark"></span>
                             Categorías
                         </a>
                     </li>
+                <?php } ?>
+                <?php if ($user->checkPermisos("tags")) { ?>
                     <li class="<?=$active['admin']['tags']?>">
                         <a href="<?=Url::site("admin/tags")?>">
                             <span class="glyphicon glyphicon-asterisk"></span>
