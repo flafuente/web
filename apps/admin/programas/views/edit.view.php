@@ -105,7 +105,7 @@ Toolbar::render();
                         </label>
                         <div class="col-sm-8">
                             <input type="hidden" name="destacado" value="0">
-                            <input type="checkbox" class="switch" name="destacado" id="destacado" value="1" <?php if($categoria->destacado) echo "checked";?>>
+                            <input type="checkbox" class="switch" name="destacado" id="destacado" value="1" <?php if($programa->destacado) echo "checked";?>>
                         </div>
                     </div>
                     <!-- Color -->
