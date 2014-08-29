@@ -40,6 +40,15 @@ class videosController extends Controller
     }
 
     /**
+     * Categorías list
+     */
+    public function categories()
+    {
+        WS::addData("categorias", Categoria::select());
+        WS::output();
+    }
+
+    /**
      * Upload
      */
     public function upload()
