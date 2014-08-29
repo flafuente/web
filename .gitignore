@@ -1,5 +1,4 @@
-files/videos/*
+files/*
 !files/.htaccess
-files/tmp/*
 vendor/
 composer.lock
