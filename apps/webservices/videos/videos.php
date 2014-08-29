@@ -53,8 +53,35 @@ class videosController extends Controller
      */
     public function upload()
     {
-        $video = new Video();
-        $video->insert($_REQUEST);
+        //Config
+        $config = Registry::getConfig();
+
+        $target = $config->get("path")."/files/videos/";
+        $name = basename($_FILES['file']['name']) ;
+        $extension = pathinfo($name, PATHINFO_EXTENSION);
+        $newname = md5(uniqid()).".".$extension;
+        //Size?
+        if ($uploaded_size > 350000 && false) {
+            //Response
+            WS::setCode(2002);
+        } else {
+            //File type
+            if (!preg_match("/\.(mp4|mpg|flv|mpeg|avi)$/i", $name)) {
+                //Response
+                WS::setCode(2001);
+            } else {
+                //Move uploaded file
+                if (move_uploaded_file($_FILES['file']['tmp_name'], $target.$newname)) {
+                    //Video creation
+                    $_REQUEST["file"] = $newname;
+                    $video = new Video();
+                    if (!$video->insert($_REQUEST)) {
+                        //Response
+                        WS::setCode(1005);
+                    }
+                }
+            }
+        }
         WS::output();
     }
 }

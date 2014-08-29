@@ -23,6 +23,9 @@ class WS
         1003 => "User token incorrecto",
         1004 => "Dispositivo incorrecto",
         1005 => "Error en los campos",
+        //Videos
+        2001 => "Formato de vídeo no soportado",
+        2002 => "El tamaño de vídeo supera el límite",
     );
 
     /**
