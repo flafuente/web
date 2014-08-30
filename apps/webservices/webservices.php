@@ -10,8 +10,5 @@ class webservicesControllerRouter extends Controller
         WS::setHeaders();
     }
 
-    public function index()
-    {
-
-    }
+    public function index() {}
 }

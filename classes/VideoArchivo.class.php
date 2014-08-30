@@ -23,9 +23,14 @@ class VideoArchivo extends Model
     public $userId;
     /**
      * Id del estado
-     * @var string
+     * @var int
      */
     public $estadoId;
+    /**
+     * Id del estado de conversión
+     * @var int
+     */
+    public $estadoConversionId;
     /**
      * Comentario
      * @var string
@@ -76,6 +81,16 @@ class VideoArchivo extends Model
         2 => "Rechazado",
     );
     /**
+     * Tipos de estado de conversión
+     * @var array
+     */
+    public $estadosConversion = array(
+        0 => "Pendiente",
+        1 => "En curso",
+        2 => "Finalizada",
+        3 => "Error",
+    );
+    /**
      * Ruta de los archivos de vídeo
      * @var string
      */
@@ -85,7 +100,7 @@ class VideoArchivo extends Model
      * Variables reservadas (no están en la base de datos)
      * @var array
      */
-    public static $reservedVarsChild = array("path", "estados", "estadosCss");
+    public static $reservedVarsChild = array("path", "estados", "estadosCss", "estadosConversion");
 
     /**
      * Init.
@@ -236,9 +251,15 @@ class VideoArchivo extends Model
         //Params
         $params = array();
         //Where
+        //VideoId
         if ($data["videoId"]) {
             $query .= " AND videoId=:videoId ";
             $params[":videoId"] = $data["videoId"];
+        }
+        //EstadoConversionId
+        if (isset($data["estadoConversionId"])) {
+            $query .= " AND estadoConversionId=:estadoConversionId ";
+            $params[":estadoConversionId"] = $data["estadoConversionId"];
         }
         //Total
         $total = count($db->Query($query, $params));
@@ -274,5 +295,20 @@ class VideoArchivo extends Model
     {
         //Eliminamos el archivo
         @unlink($this->getPath());
+    }
+
+    public function getWsApi()
+    {
+        $data = new stdclass();
+        $data->id = $this->id;
+        $data->videoId = $this->videoId;
+        $data->estadoConversionId = $this->estadoConversionId;
+        $data->file = $this->file;
+        $data->size = $this->size;
+        $data->type = $this->type;
+        $video = new Video($this->videoId);
+        $data->text = $video->text;
+
+        return $data;
     }
 }

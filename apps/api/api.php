@@ -2,10 +2,13 @@
 //No direct access
 defined('_EXE') or die('Restricted access');
 
-class apiController extends Controller
+class apiControllerRouter extends Controller
 {
-    public function init() {}
+    public function init()
+    {
+        //Headers
+        WS::setHeaders();
+    }
 
     public function index() {}
-
 }

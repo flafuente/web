@@ -424,6 +424,12 @@ class User extends Model
         }
     }
 
+    public function auth()
+    {
+        $config = Registry::getConfig();
+        setcookie($config->get("cookie"), $this->token, time() + $expiration, $config->get("dir"), $config->get("host"), false, true);
+    }
+
     /**
      * Login
      *
@@ -452,8 +458,7 @@ class User extends Model
             } else {
                 $user->token = uniqid('', true);
             }
-            $config = Registry::getConfig();
-            setcookie($config->get("cookie"), $user->token, time() + $expiration, $config->get("dir"), $config->get("host"), false, true);
+            $user->auth();
             //Update lastVisitDate
             $user->lastvisitDate = date("Y-m-d H:i:s");
             $user->update();

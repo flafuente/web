@@ -37,6 +37,9 @@ class WS
     {
         if (self::$user == NULL || !self::$user->id) {
             self::$user = @current(User::getBy("wsToken", self::$headers["USER_TOKEN"]));
+            //Force login (FIX)
+            $config = Registry::getConfig();
+            $_COOKIE[$config->get("cookie")] = self::$user->token;
         }
 
         return self::$user;
