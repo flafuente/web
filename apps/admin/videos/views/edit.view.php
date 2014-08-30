@@ -266,6 +266,8 @@ Toolbar::render();
     <?php } ?>
 <?php } ?>
 
+<?=$controller->view("js.fileupload", "videos"); ?>
+
 <script>
     //Save Archivo
     $(document).on('click', 'button.saveArchivo', function (e) {
@@ -281,35 +283,5 @@ Toolbar::render();
         }).done(function (msg) {
             document.location.href = "<?=Url::site('admin/videos/edit/'.$video->id);?>";
         });
-    });
-    //Document Ready
-    $(function () {
-        //File Upload
-        $('#fileupload').fileupload({
-            maxChunkSize: 10000000,
-            url: "<?=Url::site('api/uploadVideo');?>",
-            formData: "",
-            dataType: 'json',
-            done: function (e, data) {
-                $.each(data.result.files, function (index, file) {
-                    if (!file.error) {
-                        $('<p/>').text(file.name).appendTo('#files');
-                        $("#filename").val(file.name);
-                    } else {
-                        $("#filename").val("");
-                        alert(file.error);
-                    }
-                });
-            },
-            progressall: function (e, data) {
-                var progress = parseInt(data.loaded / data.total * 100, 10);
-                $('#progress .progress-bar').css(
-                    'width',
-                    progress + '%'
-                );
-            }
-        })/*.on('fileuploadsubmit', function (e, data) {
-           data.formData = data.context.find(':input').serializeArray();
-        });*/
     });
 </script>

@@ -88,4 +88,25 @@ class videosController extends Controller
         }
         $this->ajax();
     }
+
+    /**
+     * Subida de archivo de video por ajax (jQuery Upload)
+     */
+    public function upload()
+    {
+        set_time_limit(0);
+        //Clear error messages
+        Registry::getMessages();
+        //Config
+        $config = Registry::getConfig();
+        //Upload Handler
+        new UploadHandler(
+            array(
+                'upload_dir' => $config->get("path")."/files/videos/",
+                'upload_url' => Url::site("files/videos")."/",
+                "maxNumberOfFiles" => 1,
+                "accept_file_types" => "/\.(mp4|mpg|flv|mpeg|avi)$/i",
+            )
+        );
+    }
 }

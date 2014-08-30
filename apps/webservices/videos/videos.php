@@ -50,13 +50,16 @@ class videosController extends Controller
 
     /**
      * Upload
+     * Subida de archivos de vídeo incluida.
+     * @todo Hacer el código más limpio.
      */
     public function upload()
     {
         //Config
         $config = Registry::getConfig();
-
-        $target = $config->get("path")."/files/videos/";
+        set_time_limit(0);
+        $videoArchivoNull = new VideoArchivo();
+        $target = $config->get("path").$videoArchivoNull->path;
         $name = basename($_FILES['file']['name']) ;
         $extension = pathinfo($name, PATHINFO_EXTENSION);
         $newname = md5(uniqid()).".".$extension;
