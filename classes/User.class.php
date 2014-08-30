@@ -424,7 +424,7 @@ class User extends Model
         }
     }
 
-    public function auth()
+    public function auth($expiration = 7200)
     {
         $config = Registry::getConfig();
         setcookie($config->get("cookie"), $this->token, time() + $expiration, $config->get("dir"), $config->get("host"), false, true);
@@ -439,7 +439,7 @@ class User extends Model
      *
      * @return bool
      */
-    public static function login($login, $password, $expiration=7200)
+    public static function login($login, $password, $expiration = 7200)
     {
         $config = Registry::getConfig();
         $db = Registry::getDb();
@@ -458,7 +458,7 @@ class User extends Model
             } else {
                 $user->token = uniqid('', true);
             }
-            $user->auth();
+            $user->auth($expiration);
             //Update lastVisitDate
             $user->lastvisitDate = date("Y-m-d H:i:s");
             $user->update();
