@@ -42,6 +42,11 @@ class VideoArchivo extends Model
      */
     public $file;
     /**
+     * Converted file url
+     * @var string
+     */
+    public $url;
+    /**
      * Tamaño del archivo
      * @var int
      */
@@ -131,6 +136,11 @@ class VideoArchivo extends Model
      */
     public function getUrl()
     {
+        //Video convertido?
+        if ($this->estadoConversionId == 2) {
+            return $this->url;
+        }
+
         return Url::site($this->path."/".$this->file);
     }
 
@@ -294,6 +304,11 @@ class VideoArchivo extends Model
     public function postDelete()
     {
         //Eliminamos el archivo
+        $this->deleteFile();
+    }
+
+    public function deleteFile()
+    {
         @unlink($this->getPath());
     }
 
@@ -307,7 +322,7 @@ class VideoArchivo extends Model
         $data->size = $this->size;
         $data->type = $this->type;
         $video = new Video($this->videoId);
-        $data->text = $video->text;
+        $data->texto = $video->texto;
 
         return $data;
     }
