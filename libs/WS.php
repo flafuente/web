@@ -23,6 +23,7 @@ class WS
         1003 => "User token incorrecto",
         1004 => "Dispositivo incorrecto",
         1005 => "Error en los campos",
+        1006 => "Permisos incorrectos",
         //Videos
         2001 => "Formato de vídeo no soportado",
         2002 => "El tamaño de vídeo supera el límite",
@@ -57,6 +58,12 @@ class WS
     public static function setHeaders()
     {
         $headers = '';
+
+        //Fix puto pepo de los cojones
+        foreach ($_REQUEST as $name => $value) {
+            $headers[strtoupper(str_replace("-", "_", $name))] = $value;
+        }
+
         foreach ($_SERVER as $name => $value) {
             if (substr($name, 0, 5) == 'HTTP_') {
                 $headers[strtoupper(substr($name, 5))] = $value;
