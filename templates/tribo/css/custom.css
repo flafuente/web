@@ -167,7 +167,7 @@ a.file-input-wrapper.btn.btn-default.btnazul {
 	max-width: 126px;
 	margin: 1px;
 }
-.profile-picture-sq .btnazul{
+.profile-picture-sq a.btnazul{
 	background-color: #19b6ea;
 	margin: 15px 0px 0px 15px;
 	font-size: 11px;
