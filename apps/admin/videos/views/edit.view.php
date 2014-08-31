@@ -161,57 +161,94 @@ Toolbar::render();
         </div>
         <?php if ($video->id) { ?>
             <div class="col-md-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Archivos
+                <?php if ($video->estadoCdnId) { ?>
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                CDN
+                                <?php if ($video->estadoCdnId == 1) { ?>
+                                    <span class="label label-default">
+                                        Subida en curso
+                                    </span>
+                                <?php } elseif ($video->estadoCdnId == 2) { ?>
+                                    <span class="label label-primary">
+                                        Conversión en curso
+                                    </span>
+                                <?php } elseif ($video->estadoConversionId == 4) { ?>
+                                    <span class="label label-danger">
+                                        Error de conversión
+                                    </span>
+                                <?php } else { ?>
+                                    <span class="label label-success">
+                                        Finalizado
+                                    </span>
+                                <?php } ?>
+                            </div>
+                            <div class="panel-body">
+                                <?php if ($video->estadoCdnId == 3) { ?>
+                                    <div id="wistia_<?=$video->cdnId;?>" class="wistia_embed" style="width:450px;height:253px;"> </div>
+                                    <script charset="ISO-8859-1" src="//fast.wistia.com/assets/external/E-v1.js"></script>
+                                    <script>
+                                        wistiaEmbed = Wistia.embed("<?=$video->cdnId;?>");
+                                    </script>
+                                <?php } ?>
+                            </div>
+                        </div>
                     </div>
-                    <div class="panel-body">
-                        <?php if (is_array($videosArchivos)) { ?>
-                            <table class="table table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Estado</th>
-                                        <th>Archivo</th>
-                                        <th>Tamaño</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($videosArchivos as $videoArchivo) { ?>
+                <?php } ?>
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Archivos
+                        </div>
+                        <div class="panel-body">
+                            <?php if (is_array($videosArchivos)) { ?>
+                                <table class="table table-condensed">
+                                    <thead>
                                         <tr>
-                                            <td><?=$videoArchivo->id;?></td>
-                                            <td>
-                                                <span class="label label-<?=$videoArchivo->getEstadoCssString();?>">
-                                                    <?=$videoArchivo->getEstadoString();?>
-                                                </span>
-                                            </td>
-                                            <td><?=Helper::sanitize($videoArchivo->file);?></td>
-                                            <td><?=$videoArchivo->getSizeString();?></td>
-                                            <td>
-                                                <?php if ($videoArchivo->estadoConversionId == 0) { ?>
-                                                    <span class="label label-default">
-                                                        Pendiente de conversión
-                                                    </span>
-                                                <?php } elseif ($videoArchivo->estadoConversionId == 1) { ?>
-                                                    <span class="label label-primary">
-                                                        Conversión en curso
-                                                    </span>
-                                                <?php } elseif ($videoArchivo->estadoConversionId == 3) { ?>
-                                                    <span class="label label-primary">
-                                                        Error de conversión
-                                                    </span>
-                                                <?php } else { ?>
-                                                    <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#archivo<?=$videoArchivo->id;?>">
-                                                        <span class="glyphicon glyphicon-play"></span>
-                                                    </button>
-                                                <?php } ?>
-                                            </td>
+                                            <th>#</th>
+                                            <th>Estado</th>
+                                            <th>Archivo</th>
+                                            <th>Tamaño</th>
+                                            <th></th>
                                         </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
-                        <?php } ?>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($videosArchivos as $videoArchivo) { ?>
+                                            <tr>
+                                                <td><?=$videoArchivo->id;?></td>
+                                                <td>
+                                                    <span class="label label-<?=$videoArchivo->getEstadoCssString();?>">
+                                                        <?=$videoArchivo->getEstadoString();?>
+                                                    </span>
+                                                </td>
+                                                <td><?=Helper::sanitize($videoArchivo->file);?></td>
+                                                <td><?=$videoArchivo->getSizeString();?></td>
+                                                <td>
+                                                    <?php if ($videoArchivo->estadoConversionId == 0) { ?>
+                                                        <span class="label label-default">
+                                                            Pendiente de conversión
+                                                        </span>
+                                                    <?php } elseif ($videoArchivo->estadoConversionId == 1) { ?>
+                                                        <span class="label label-primary">
+                                                            Conversión en curso
+                                                        </span>
+                                                    <?php } elseif ($videoArchivo->estadoConversionId == 3) { ?>
+                                                        <span class="label label-danger">
+                                                            Error de conversión
+                                                        </span>
+                                                    <?php } else { ?>
+                                                        <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#archivo<?=$videoArchivo->id;?>">
+                                                            <span class="glyphicon glyphicon-play"></span>
+                                                        </button>
+                                                    <?php } ?>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            <?php } ?>
+                        </div>
                     </div>
                 </div>
             </div>

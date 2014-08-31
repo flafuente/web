@@ -122,7 +122,7 @@
                                         Conversión en curso
                                     </span>
                                 <?php } elseif ($videoArchivo->estadoConversionId == 3) { ?>
-                                    <span class="label label-primary">
+                                    <span class="label label-danger">
                                         Error de conversión
                                     </span>
                                 <?php } else { ?>

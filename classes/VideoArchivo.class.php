@@ -326,8 +326,14 @@ class VideoArchivo extends Model
         $data->size = $this->size;
         $data->type = $this->type;
         $data->url = $this->url;
+        //Video
         $video = new Video($this->videoId);
         $data->texto = $video->texto;
+        $data->titulo = $video->titulo;
+        $data->descripcion = $video->descripcion;
+        //Categoría
+        $categoria = new Categoria($video->categoriaId);
+        $data->categoria = $categoria->nombre;
 
         return $data;
     }

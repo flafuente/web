@@ -67,8 +67,8 @@ class videosController extends Controller
             foreach ($videosArchivos as $videoArchivo) {
                 //Marcamos el video como "subida en curso"
                 $video = new Video($videoArchivo->videoId);
-                //$video->estadoCdnId = 1;
-                //$video->update();
+                $video->estadoCdnId = 1;
+                $video->update();
                 //Enviamos el archivo de vídeo
                 $result[] = $videoArchivo->getWsApi();
             }
@@ -100,6 +100,11 @@ class videosController extends Controller
     public function updateVideo()
     {
         $video = new Video($_REQUEST["id"]);
+        //Si el video tiene listo el CDN, actualizamos a publicado
+        if ($_REQUEST["estadoCdnId"] == 3 && $video->estadoId == 0) {
+            $_REQUEST["estadoId"] = 1;
+        }
+        //Actualizamos el vídeo
         if (!$video->update($_REQUEST)) {
             //Response
             WS::setCode(1005);
@@ -110,6 +115,7 @@ class videosController extends Controller
     public function updateVideoArchivo()
     {
         $videoArchivo = new VideoArchivo($_REQUEST["id"]);
+        //Actualizamos el archivo de vídeo
         if (!$videoArchivo->update($_REQUEST)) {
             //Response
             WS::setCode(1005);
