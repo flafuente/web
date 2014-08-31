@@ -49,6 +49,15 @@ class videosController extends Controller
     }
 
     /**
+     * Secciones list
+     */
+    public function secctions()
+    {
+        WS::addData("secctions", Seccion::select());
+        WS::output();
+    }
+
+    /**
      * Upload
      * Subida de archivos de vídeo incluida.
      * @todo Hacer el código más limpio.
