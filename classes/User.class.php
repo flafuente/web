@@ -426,6 +426,7 @@ class User extends Model
 
     public function auth($expiration = 7200)
     {
+        $this->setToken();
         $config = Registry::getConfig();
         setcookie($config->get("cookie"), $this->token, time() + $expiration, $config->get("dir"), $config->get("host"), false, true);
     }
@@ -441,7 +442,6 @@ class User extends Model
      */
     public static function login($login, $password, $expiration = 7200)
     {
-        $config = Registry::getConfig();
         $db = Registry::getDb();
         $rows = $db->query("SELECT * FROM `users` WHERE (username=:username OR email=:email) AND password=:password AND statusId=1",
             array(
@@ -453,11 +453,6 @@ class User extends Model
         if ($rows) {
             $user = new User($rows[0]);
             //Set Cookie
-            if (is_callable('openssl_random_pseudo_bytes')) {
-                $user->token = bin2hex(openssl_random_pseudo_bytes(16));
-            } else {
-                $user->token = uniqid('', true);
-            }
             $user->auth($expiration);
             //Update lastVisitDate
             $user->lastvisitDate = date("Y-m-d H:i:s");
@@ -465,6 +460,19 @@ class User extends Model
 
             return $user;
         }
+    }
+
+    private function setToken()
+    {
+        if (!$this->token) {
+            if (is_callable('openssl_random_pseudo_bytes')) {
+                $this->token = bin2hex(openssl_random_pseudo_bytes(16));
+            } else {
+                $this->token = md5(uniqid('', true));
+            }
+        }
+
+        return $this->token;
     }
 
     /**
