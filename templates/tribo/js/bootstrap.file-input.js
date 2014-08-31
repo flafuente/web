@@ -111,6 +111,14 @@ $.fn.bootstrapFileInput = function() {
         // Print the fileName aside (right after the the button)
         $(this).parent().after('<span class="file-input-name">'+fileName+'</span>');
       }
+
+
+      if($(this).attr("class") == "btnazul viddis" || $(this).attr("class") == "btnazul vidord"){
+        $(this).parent().next('.file-input-name').remove();
+        $("#videoprevhelp").text(fileName);
+        $("#buttonUpload").fadeIn();
+      }
+      
     });
 
   });
