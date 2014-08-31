@@ -102,6 +102,9 @@ li.active > a {
 }
 
 /*Menu Perfil*/
+a.file-input-wrapper.btn.btn-default.btnazul {
+	box-shadow: none;
+}
 .uppic{
 	display: none;
 	background-color: #9b9b9b;

@@ -41,13 +41,9 @@
                             <div class="aclose btn btn-grey" id="foto_upl_prof">Cambiar foto</div>
                         </div>
                         <div class='col-md-6' style="min-height: 170px;">
-                            <i class="fa fa-long-arrow-right btnazul btnazul-ico" style="top: 45px;"></i>&nbsp;&nbsp;<input onLoad="return false;" type="file" value="Selecciona una foto de tu dispositivo" class="btnazul" style="top: 45px;" />
+                            <i class="fa fa-long-arrow-right btnazul btnazul-ico" style="top: 45px; color: #FFFFFF;"></i>&nbsp;&nbsp;<input id="fotdis" type="file" value="Selecciona una foto de tu dispositivo" class="btnazul fotdis" style="top: 45px;" />
                             <div style="clear: both;"></div>
-                            <!--
-                            <i class="fa fa-long-arrow-right btnazul btnazul-ico" style="top: 45px;"></i>&nbsp;&nbsp;<span class="btnazul" style="top: 45px;">Selecciona una foto de tu dispositivo</span>
-                            <div style="clear: both;"></div>
-                            -->
-                            <i class="fa fa-long-arrow-right btnazul btnazul-ico" style="top: 60px;"></i>&nbsp;&nbsp;<span class="btnazul" style="top: 60px;">Tómate una foto con tu dispositivo</span>
+                            <i class="fa fa-long-arrow-right btnazul btnazul-ico" style="top: 45px; color: #FFFFFF;"></i>&nbsp;&nbsp;<input id="fotord" type="file" value="Tómate una foto con tu dispositivo" class="btnazul fotord" style="top: 45px;" />
                         </div>
                         <div class='col-md-3' style="min-height: 170px;">
                             <div class="previsualizacion" id="fotoPreviewHelp">
