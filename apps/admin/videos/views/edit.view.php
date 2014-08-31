@@ -189,9 +189,23 @@ Toolbar::render();
                                             <td><?=Helper::sanitize($videoArchivo->file);?></td>
                                             <td><?=$videoArchivo->getSizeString();?></td>
                                             <td>
-                                                <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#archivo<?=$videoArchivo->id;?>">
-                                                    <span class="glyphicon glyphicon-play"></span>
-                                                </button>
+                                                <?php if ($videoArchivo->estadoConversionId == 0) { ?>
+                                                    <span class="label label-default">
+                                                        Pendiente de conversión
+                                                    </span>
+                                                <?php } elseif ($videoArchivo->estadoConversionId == 1) { ?>
+                                                    <span class="label label-primary">
+                                                        Conversión en curso
+                                                    </span>
+                                                <?php } elseif ($videoArchivo->estadoConversionId == 3) { ?>
+                                                    <span class="label label-primary">
+                                                        Error de conversión
+                                                    </span>
+                                                <?php } else { ?>
+                                                    <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#archivo<?=$videoArchivo->id;?>">
+                                                        <span class="glyphicon glyphicon-play"></span>
+                                                    </button>
+                                                <?php } ?>
                                             </td>
                                         </tr>
                                     <?php } ?>
