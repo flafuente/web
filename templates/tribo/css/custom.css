@@ -102,6 +102,9 @@ li.active > a {
 }
 
 /*Menu Perfil*/
+a.file-input-wrapper.btn.btn-default.btnazul {
+	box-shadow: none;
+}
 .uppic{
 	display: none;
 	background-color: #9b9b9b;
@@ -164,7 +167,7 @@ li.active > a {
 	max-width: 126px;
 	margin: 1px;
 }
-.profile-picture-sq .btnazul{
+.profile-picture-sq a.btnazul{
 	background-color: #19b6ea;
 	margin: 15px 0px 0px 15px;
 	font-size: 11px;
@@ -754,6 +757,51 @@ span.p_mes {
 }
 
 /*MIS VIDEOS*/
+
+.aclose{
+	cursor: pointer;
+}
+/*Botones input chetados*/
+a.file-input-wrapper.btn.btn-default.btnazul {
+	background-color: transparent;
+	border: none;
+}
+.file-input-wrapper.btnazul span,  .file-input-wrapper.btnazul {
+	background-color: #19b6ea;
+	color: #FFFFFF;
+	padding: 5px;
+}
+#buttonUpload{
+	display: none;
+}
+.formupload div{
+	font-weight: bold;
+	color: #FFFFFF;
+}
+.formupload div input, .formupload div textarea, .formupload div select{
+	font-weight: normal;
+	border: 2px solid #a6a6a6;
+	background-color: white;
+	width: 100%;
+	color: #333333;
+
+}
+.greysquare, .secondgrey{
+	background-color: #adacac;
+	clear: both;
+	float: left;
+	margin-top: -5px;
+	width: 100%;
+	z-index: 20;
+	display: none;
+	max-width: 568px;
+	position: absolute;
+}
+.secondgrey{
+	background-color: #b9b9b9;
+	top: 179px;
+}
+
 .square-info .grey a.btn{
 	float: right;
 	margin-top: -5px;

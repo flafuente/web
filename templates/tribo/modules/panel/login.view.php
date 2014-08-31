@@ -70,7 +70,7 @@ if (!$user->id) {
         </div>
         <div class="profbottom">
             <div class="col-md-6">
-                <a class="btn-tribo-blue btn ladda-button" data-style="slide-left" href="<?=Url::site("videos/nuevo");?>">
+                <a class="btn-tribo-blue btn ladda-button" data-style="slide-left" href="<?=Url::site("videos?uplvid");?>">
                     <i class="fa fa-long-arrow-up"></i>
                     &nbsp;&nbsp;Subir Video
                 </a>

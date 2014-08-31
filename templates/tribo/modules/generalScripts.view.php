@@ -13,7 +13,12 @@
             },
             theme:"dark"
         });
-        //$(".profile-picture-sq a.file-input-wrapper span").text($(".profile-picture-sq").parent().val());
+       // $(".file-input-wrapper span").text($(".file-input-wrapper input").val());
+        $(".viddis span").text($("#viddis").attr("value"));
+        $(".vidord span").text($("#vidord").attr("value"));
+        $(".fotdis span").text($("#fotdis").attr("value"));
+        $(".fotord span").text($("#fotord").attr("value"));
+        //alert($("#inputtext").attr("value"));
     });
     $(document).on("click",".login",function () {
         $('.login_form').add('.mask').fadeIn();
@@ -30,13 +35,16 @@
     $(document).on("click","#foto_upl_prof",function () {
         $('.uppic').add('.mask').fadeIn();
     });
+    $(document).on("click","#btn_subir_video",function () {
+        $('.greysquare').add('.mask').fadeIn();
+    });
     $(document).on("click",".mask",function () {
         //$('.login_form').add('.mask').fadeOut();
-        $('.login_form').add('.contact_form').add('.search_form').add('.mask').add('.form-change-pass').add('.uppic').fadeOut();
+        $('.login_form').add('.contact_form').add('.search_form').add('.mask').add('.form-change-pass').add('.uppic').add('.greysquare').add('.secondgrey').fadeOut();
     });
     $(document).on("click",".aclose",function () {
         //$('.login_form').add('.mask').fadeOut();
-        $('.login_form').add('.contact_form').add('.search_form').add('.mask').add('.form-change-pass').add('.uppic').fadeOut();
+        $('.login_form').add('.contact_form').add('.search_form').add('.mask').add('.form-change-pass').add('.uppic').add('.greysquare').add('.secondgrey').fadeOut();
     });
 
 </script>
