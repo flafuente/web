@@ -20,9 +20,11 @@
             <div class="greysquare">
                 <div class="col-md-8">
                     <i class="fa fa-long-arrow-right btnazul btnazul-ico" style="top: 45px; color: #FFFFFF;"></i>&nbsp;&nbsp;<input id="viddis" type="file" value="Selecciona un video de tu dispositivo" class="btnazul viddis" style="top: 45px;" />
+                    <!--
                     <br /><br />
                     <i class="fa fa-long-arrow-right btnazul btnazul-ico" style="top: 45px; color: #FFFFFF;"></i>&nbsp;&nbsp;<input id="vidord" type="file" value="Segunda opción si la hubiera" class="btnazul vidord" style="top: 45px;" />
-                    <br />
+                    -->
+                    <br /><br />
                     <div style="text-align: right; color: #FFFFFF; width: 100%;" class="aclose">Cancelar</div>
                 </div>
                 <div class="col-md-4 nopaddingI" style="padding-top: 0px !important;">
@@ -42,7 +44,7 @@
             <script>
                 $(document).on("click","#buttonUpload",function () {
                     $('.secondgrey').fadeIn();
-                    $("#videoprevhelp").text("Tu video de ha procesado correctamente");
+                    $("#videoprevhelp").text('Tu video de ha procesado correctamente');
                     $("#buttonUpload").fadeOut();
                     return false;
                 });
