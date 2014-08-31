@@ -486,6 +486,8 @@ class User extends Model
         //Destroy Cookies
         unset($_COOKIE[$config->get("cookie")]);
         setcookie($config->get("cookie"), null, -1, $config->get("dir"), $config->get("host"), false, true);
+        $this->token = "";
+        $this->update();
 
         return true;
     }

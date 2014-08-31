@@ -42,9 +42,10 @@ class videosController extends Controller
         if (count($videosArchivos)) {
             $result = array();
             foreach ($videosArchivos as $videoArchivo) {
-                //Marcamos como "conversión en curso"
+                //Marcamos el archivo de vídeo como "conversión en curso"
                 $videoArchivo->estadoConversionId = 1;
                 $videoArchivo->update();
+                //Enviamos el archivo de vídeo
                 $result[] = $videoArchivo->getWsApi();
             }
             WS::addData("videosArchivos", $result);
@@ -52,13 +53,67 @@ class videosController extends Controller
         WS::output();
     }
 
-    public function update()
+    /**
+     * Videos to be uploaded at wistia
+     */
+    public function toUpload()
+    {
+        //Videos con estadoCdnId a 0 y con archivos de video publicados
+        $videosArchivos = VideoArchivo::select(array(
+            "pendienteWistia" => true,
+        ), 1);
+        if (count($videosArchivos)) {
+            $result = array();
+            foreach ($videosArchivos as $videoArchivo) {
+                //Marcamos el video como "subida en curso"
+                $video = new Video($videoArchivo->videoId);
+                //$video->estadoCdnId = 1;
+                //$video->update();
+                //Enviamos el archivo de vídeo
+                $result[] = $videoArchivo->getWsApi();
+            }
+            WS::addData("videosArchivos", $result);
+        }
+        WS::output();
+    }
+
+    /**
+     * Uploading videos (to Wistia)
+     */
+    public function uploading()
+    {
+        //Videos con estadoCdnId a en conversion
+        $videos = Video::select(array(
+            "estadoCdnId" => 2,
+        ), 1);
+        if (count($videos)) {
+            $result = array();
+            foreach ($videos as $video) {
+                //Enviamos el archivo de vídeo
+                $result[] = $video->getWsApi();
+            }
+            WS::addData("videos", $result);
+        }
+        WS::output();
+    }
+
+    public function updateVideo()
+    {
+        $video = new Video($_REQUEST["id"]);
+        if (!$video->update($_REQUEST)) {
+            //Response
+            WS::setCode(1005);
+        }
+        WS::output();
+    }
+
+    public function updateVideoArchivo()
     {
         $videoArchivo = new VideoArchivo($_REQUEST["id"]);
         if (!$videoArchivo->update($_REQUEST)) {
             //Response
             WS::setCode(1005);
-            //TODO: Borrar el vídeo original del servidor
+            //Borrar el vídeo original del servidor
             $videoArchivo->deleteFile();
         }
         WS::output();

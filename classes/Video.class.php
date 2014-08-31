@@ -22,6 +22,21 @@ class Video extends Model
      */
     public $estadoId;
     /**
+     * Id del estado de la subida al CDN
+     * @var int
+     */
+    public $estadoCdnId;
+    /**
+     * Id del CDN
+     * @var string
+     */
+    public $cdnId;
+    /**
+     * Thumbnail (screen del vídeo)
+     * @var string
+     */
+    public $thumbnail;
+    /**
      * Id de la categoría
      * @var int
      */
@@ -80,10 +95,21 @@ class Video extends Model
         1 => "Publicado",
     );
     /**
+     * Tipos de estado de CDN
+     * @var array
+     */
+    public $estadosCdn = array(
+        0 => "Pendiente",
+        1 => "Subiendo",
+        2 => "En conversión",
+        3 => "Finalizada",
+        4 => "Error",
+    );
+    /**
      * Variables reservadas (no están en la base de datos)
      * @var array
      */
-    public static $reservedVarsChild = array("estados", "estadosCss");
+    public static $reservedVarsChild = array("estados", "estadosCss", "estadosCdn");
 
     /**
      * Init.
@@ -329,6 +355,11 @@ class Video extends Model
             $query .= " AND `estadoId`=:estadoId ";
             $params[":estadoId"] = $data["estadoId"];
         }
+        //Estado CDN
+        if (isset($data["estadoCdnId"]) && $data["estadoCdnId"]!="-1") {
+            $query .= " AND `estadoCdnId`=:estadoCdnId ";
+            $params[":estadoCdnId"] = $data["estadoCdnId"];
+        }
         //Categoría
         if ($data["categoriaId"]) {
             $query .= " AND `categoriaId`=:categoriaId ";
@@ -387,5 +418,16 @@ class Video extends Model
                 $archivo->delete();
             }
         }
+    }
+
+    public function getWsApi()
+    {
+        $data = new stdclass();
+        $data->id = $this->id;
+        $data->estadoCdnId = $this->estadoCdnId;
+        $data->cdnId = $this->cdnId;
+        $data->thumbnail = $this->thumbnail;
+
+        return $data;
     }
 }

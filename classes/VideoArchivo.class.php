@@ -271,6 +271,10 @@ class VideoArchivo extends Model
             $query .= " AND estadoConversionId=:estadoConversionId ";
             $params[":estadoConversionId"] = $data["estadoConversionId"];
         }
+        //pendienteWistia
+        if ($data["pendienteWistia"]) {
+            $query .= " AND `id` IN (SELECT `videoArchivoId` FROM `videos` WHERE `estadoCdnId` = 0) ";
+        }
         //Total
         $total = count($db->Query($query, $params));
         if ($total) {
@@ -321,6 +325,7 @@ class VideoArchivo extends Model
         $data->file = $this->file;
         $data->size = $this->size;
         $data->type = $this->type;
+        $data->url = $this->url;
         $video = new Video($this->videoId);
         $data->texto = $video->texto;
 
