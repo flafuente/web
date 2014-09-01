@@ -69,6 +69,15 @@ Toolbar::render();
                             <input type="text" id="nombre" name="nombre" class="form-control" value="<?=Helper::sanitize($categoria->nombre);?>">
                         </div>
                     </div>
+                    <!-- Tipo -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            Tipo
+                        </label>
+                        <div class="col-sm-8">
+                            <?=HTML::select("tipoId", $categoria->tipos, $categoria->tipoId, array("class" => "select2")); ?>
+                        </div>
+                    </div>
                     <!-- Destacada -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label">

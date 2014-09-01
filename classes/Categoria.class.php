@@ -12,6 +12,11 @@ class Categoria extends Model
      */
     public $id;
     /**
+     * Tipo
+     * @var int
+     */
+    public $tipoId;
+    /**
      * Destacada
      * @var bool
      */
@@ -68,11 +73,16 @@ class Categoria extends Model
         2 => "Notícias",
     );
 
+    public $tipos = array(
+        1 => "Normal",
+        2 => "Periodismo ciutadano",
+    );
+
     /**
      * Variables reservadas (no están en la base de datos)
      * @var array
      */
-    public static $reservedVarsChild = array("path", "seccionesTipos");
+    public static $reservedVarsChild = array("path", "seccionesTipos", "tipos");
 
     /**
      * Init.
@@ -259,6 +269,11 @@ class Categoria extends Model
         if ($data["destacada"]) {
             $query .= " AND `destacada` = :destacada";
             $params[":destacada"] = 1;
+        }
+        //TipoId
+        if ($data["tipoId"]) {
+            $query .= " AND `tipoId` = :tipoId";
+            $params[":tipoId"] = $data["tipoId"];
         }
         //Total
         $total = count($db->Query($query, $params));
