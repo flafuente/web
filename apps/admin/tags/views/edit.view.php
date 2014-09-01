@@ -28,11 +28,9 @@ if ($tag->id) {
 Toolbar::addButton(
     array(
         "title" => "Cancelar",
-        "app" => "tags",
-        "action" => "index",
+        "link" => Url::site("admin/tags"),
         "class" => "primary",
         "spanClass" => "chevron-left",
-        "noAjax" => true,
     )
 );
 //Save button

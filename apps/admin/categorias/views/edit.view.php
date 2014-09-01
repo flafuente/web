@@ -28,11 +28,9 @@ if ($categoria->id) {
 Toolbar::addButton(
     array(
         "title" => "Cancelar",
-        "app" => "categorias",
-        "action" => "index",
+        "link" => Url::site("admin/categorias"),
         "class" => "primary",
         "spanClass" => "chevron-left",
-        "noAjax" => true,
     )
 );
 //Save button

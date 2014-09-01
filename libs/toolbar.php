@@ -32,7 +32,7 @@ class Toolbar
     }
 
     public static function render()
-    {   
+    {
         $title = self::$title;
         $buttons = self::$buttons;
         ?>
@@ -57,6 +57,7 @@ class Toolbar
                                 "data-confirmation" => $button['confirmation'],
                                 "data-ajax" => $button['ajax'],
                                 "data-noAjax" => $button['noAjax'],
+                                "data-link" => $button['link'],
                                 "data-data-modal" => $button['modal'],
                             )
                         );?>

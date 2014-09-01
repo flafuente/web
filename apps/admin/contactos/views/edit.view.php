@@ -28,11 +28,9 @@ if ($contacto->id) {
 Toolbar::addButton(
     array(
         "title" => "Cancelar",
-        "app" => "contactos",
-        "action" => "index",
+        "link" => Url::site("admin/contactos"),
         "class" => "primary",
         "spanClass" => "chevron-left",
-        "noAjax" => true,
     )
 );
 //Save button

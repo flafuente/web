@@ -28,11 +28,9 @@ if ($capitulo->id) {
 Toolbar::addButton(
     array(
         "title" => "Cancelar",
-        "app" => "capitulos",
-        "action" => "index",
+        "link" => Url::site("admin/capitulos"),
         "class" => "primary",
         "spanClass" => "chevron-left",
-        "noAjax" => true,
     )
 );
 //Save button

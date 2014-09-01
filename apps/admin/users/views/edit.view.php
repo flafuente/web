@@ -30,11 +30,9 @@ if ($user->id) {
 Toolbar::addButton(
     array(
         "title" => "Cancelar",
-        "app" => "users",
-        "action" => "index",
+        "link" => Url::site("admin/users"),
         "class" => "primary",
         "spanClass" => "chevron-left",
-        "noAjax" => true,
     )
 );
 //Save button

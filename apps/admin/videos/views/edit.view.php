@@ -28,11 +28,9 @@ if ($video->id) {
 Toolbar::addButton(
     array(
         "title" => "Cancelar",
-        "app" => "videos",
-        "action" => "index",
+        "link" => Url::site("admin/videos"),
         "class" => "primary",
         "spanClass" => "chevron-left",
-        "noAjax" => true,
     )
 );
 //Save button

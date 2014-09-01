@@ -28,11 +28,9 @@ if ($programa->id) {
 Toolbar::addButton(
     array(
         "title" => "Cancelar",
-        "app" => "programas",
-        "action" => "index",
+        "link" => Url::site("admin/programas"),
         "class" => "primary",
         "spanClass" => "chevron-left",
-        "noAjax" => true,
     )
 );
 //Save button

@@ -28,11 +28,9 @@ if ($seccion->id) {
 Toolbar::addButton(
     array(
         "title" => "Cancelar",
-        "app" => "secciones",
-        "action" => "index",
+        "link" => Url::site("admin/secciones"),
         "class" => "primary",
         "spanClass" => "chevron-left",
-        "noAjax" => true,
     )
 );
 //Save button
