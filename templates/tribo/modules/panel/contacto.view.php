@@ -21,11 +21,11 @@ if (Registry::getUser()->id) {
         <div class="col-md-12">
             <input class="form-control" type="text" name="email" placeholder="Email">
         </div>
-        <?php $secciones = Seccion::select(); ?>
-        <?php if (count($secciones)) { ?>
+        <?php $categorias = Categoria::select(array("tipoId" => 2)); ?>
+        <?php if (count($categorias)) { ?>
             <!-- Sección -->
             <div class="col-md-12">
-                <?=HTML::select("seccionId", $secciones, null, null, null, array("display" => "nombre")); ?>
+                <?=HTML::select("categoriaId", $categorias, null, null, null, array("display" => "nombre")); ?>
             </div>
         <?php } ?>
         <!-- Mensaje -->
