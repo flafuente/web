@@ -2,11 +2,7 @@
 
 <div class='col-md-12 serie_info'>
     <div class="col-md-12 video">
-		<div id="wistia_188kbnzoh2" class="wistia_embed" style="width:558px;height:314px;"> </div>
-		<script charset="ISO-8859-1" src="//fast.wistia.com/assets/external/E-v1.js"></script>
-		<script>
-		wistiaEmbed = Wistia.embed("188kbnzoh2");
-		</script>
+        <?php HTML::wistiaPlayer("188kbnzoh2", "558", "314"); ?>
     </div>
     <div style="clear: both;"></div>
     <br />
@@ -16,12 +12,12 @@
     <br />
     <div class="haztetriber_description">
         Sabemos que te gusta Internet, te gusta ver y hacer vídeos, fotos y además subirlas, porque disfrutas de las redes sociales, y sobre todo, porque te lo pasas bien.
-		<br /><br />
+        <br /><br />
         Queremos aumentar la familia, ser cada día más y mejores, contar contigo, con los mejores creadores de contenidos, fanáticos de internet, como nosotros.
         <br /><br />
         Bloggers, nativos digitales y profesionales, o simplemente tú que estas sentado frente al ordenador con mil ideas por exponer al mundo, capaz de ver más allá del ahora, capaces de generar tendencia y viralidad con sus búsquedas.
-		<br /><br />
-		Queremos verte en pantalla grande, ¿te atreves?. ¡Únete a nuestra cadena de personas!
+        <br /><br />
+        Queremos verte en pantalla grande, ¿te atreves?. ¡Únete a nuestra cadena de personas!
     </div>
     <div style="clear: both;"></div>
     <br /><br />
