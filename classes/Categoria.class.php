@@ -37,6 +37,11 @@ class Categoria extends Model
      */
     public $nombre;
     /**
+     * Hashtag
+     * @var string
+     */
+    public $hashtag;
+    /**
      * Color
      * @var string
      */
@@ -75,7 +80,7 @@ class Categoria extends Model
 
     public $tipos = array(
         1 => "Normal",
-        2 => "Periodismo ciutadano",
+        2 => "Periodismo",
     );
 
     /**
