@@ -2,6 +2,11 @@
 
 <div class='col-md-12 serie_info'>
     <div class="col-md-12 video">
+		<div id="wistia_188kbnzoh2" class="wistia_embed" style="width:558px;height:314px;"> </div>
+		<script charset="ISO-8859-1" src="//fast.wistia.com/assets/external/E-v1.js"></script>
+		<script>
+		wistiaEmbed = Wistia.embed("188kbnzoh2");
+		</script>
     </div>
     <div style="clear: both;"></div>
     <br />
@@ -10,11 +15,13 @@
     </div>
     <br />
     <div class="haztetriber_description">
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+        Sabemos que te gusta Internet, te gusta ver y hacer vídeos, fotos y además subirlas, porque disfrutas de las redes sociales, y sobre todo, porque te lo pasas bien.
+		<br /><br />
+        Queremos aumentar la familia, ser cada día más y mejores, contar contigo, con los mejores creadores de contenidos, fanáticos de internet, como nosotros.
         <br /><br />
-        Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.
-        <br /><br />
-        Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.
+        Bloggers, nativos digitales y profesionales, o simplemente tú que estas sentado frente al ordenador con mil ideas por exponer al mundo, capaz de ver más allá del ahora, capaces de generar tendencia y viralidad con sus búsquedas.
+		<br /><br />
+		Queremos verte en pantalla grande, ¿te atreves?. ¡Únete a nuestra cadena de personas!
     </div>
     <div style="clear: both;"></div>
     <br /><br />
@@ -80,8 +87,8 @@
             </form>
         </fieldset>
     </div>
-    <div class="col-sm-12 l-right">
+    <!--<div class="col-sm-12 l-right">
         <span class="yareg">O si ya eres colaborador, accede con tu cuenta:</span>
         <button class="btn btn-tribo-grey ladda-button" data-style="slide-left">Accede</button>
-    </div>
+    </div>-->
 </div>

@@ -6,6 +6,13 @@
             <span>HAZTE TRIBER</span>
         </div>
         <div class="col-md-12 video">
+		
+			<div id="wistia_sy58tqt7xz" class="wistia_embed" style="width:558px;height:314px;"> </div>
+			<script charset="ISO-8859-1" src="//fast.wistia.com/assets/external/E-v1.js"></script>
+			<script>
+			wistiaEmbed = Wistia.embed("sy58tqt7xz");
+			</script>
+		
         </div>
         <div style="clear: both;"></div>
         <br />
@@ -14,11 +21,17 @@
         </div>
         <br />
         <div class="haztetriber_description">
-            Bueno… Triber ya eres, porque te gusta internet, porque te gusta ver y hacer vídeos, fotos y además subirlas, porque disfrutas de las redes sociales, y sobre todo, porque te lo pasas bien.
+            Los informativos de Tribo son diferentes, singulares y con mucha personalidad.
             <br /><br />
-            Pues ya está, vente a Tribo porque buscamos gente  que nos envíe sus videos, cace noticias al vuelo, que controle las redes sociales y que le encante el mundo on line.
+            Tanto es así, que estarán hechos por contenidos grabados, producidos y enviados por los propios Tribers.
             <br /><br />
-            Queremos sumar los mejores buscadores de contenidos, supporters del on line que sean fánaticos de internet. Bloggers, nativos digitales y profesionales, capaces de ver más allá del mainstreim, detectores de filones y capaces de generar tendencia y viralidad con sus búsquedas.
+            Los Tribers no son sólo periodistas, son testigos de la realidad. Se trata de ciudadanos con inquietudes, capaces de enviarnos sus videos desde el lugar de la noticia.
+			<br /><br />
+			La realidad y la inmediatez en estado puro. Será la red de Tribers, los que nutran libremente con sus piezas, los contenidos informativos de la cadena. Sin consignas, ni sesgos.
+			<br /><br />
+			Todo esto en un informativo con secciones libres, sin tiempos fijos, ni temas prefijados, y siempre dejando un buen sabor de boca al espectador con una noticia positiva.
+			<br /><br />
+			<b>BE TRIBER</b>
         </div>
         <div style="clear: both;"></div>
         <br /><br />
