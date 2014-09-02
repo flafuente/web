@@ -55,6 +55,8 @@
         <script src="<?=Url::template("js/jquery.fileupload.js");?>" type="text/javascript"></script>
         <!-- Bootstrap Color-Picker Plugin -->
         <script src="<?=Url::template("js/bootstrap-colorpicker.min.js");?>" type="text/javascript"></script>
+        <!-- Wistia -->
+        <script charset="ISO-8859-1" src="//fast.wistia.com/assets/external/E-v1.js"></script>
         <!-- Video JS -->
         <link href="<?=Url::template("assets/video-js/video-js.css");?>" rel="stylesheet">
         <script src="<?=Url::template("assets/video-js/video.js");?>"></script>

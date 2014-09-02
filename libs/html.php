@@ -6,6 +6,16 @@
 class HTML
 {
 
+    public static function wistiaPlayer($hash, $width = 450, $height = 253)
+    {
+        ?>
+            <div id="wistia_<?=$hash;?>" class="wistia_embed" style="width:<?=$width?>px;height:<?=$height?>px;"</div>
+            <script>
+                wistiaEmbed = Wistia.embed("<?=$hash;?>");
+            </script>
+        <?php
+    }
+
     public function relativeDate()
     {
     }
@@ -124,7 +134,8 @@ class HTML
 
         return $html;
     }
-    function showInput($img, $label, $name, $valor = "", $placeholder = "", $type = "text", $showlabel = true, $s_label = 3){
+    function showInput($img, $label, $name, $valor = "", $placeholder = "", $type = "text", $showlabel = true, $s_label = 3)
+    {
         $s_field = (12-$s_label);
         $html = "";
         if($img != "") $img = '<img src="'.$img.'" />&nbsp;&nbsp;';
@@ -132,21 +143,22 @@ class HTML
         $html = '
         <!-- '.$name.' -->
         <div class="form-group">';
-        if($showlabel){
+        if ($showlabel) {
             $html .= '
             <label for="'.$name.'" class="col-sm-'.$s_label.' control-label l-left" style="margin-top: 10px;">
                 '.$img.$label.'
             </label>';
         }
         $html .= '<div class="col-sm-'.$s_field.'">';
-                if($type == "textarea"){
+                if ($type == "textarea") {
                     $html .= '<textarea id="'.$name.'" name="'.$name.'" class="form-control" placeholder="'.$placeholder.'">'.$valor.'</textarea>';
-                }else{
+                } else {
                     $html .= '<input type="'.$type.'" class="form-control" id="'.$name.'" name="'.$name.'" placeholder="'.$placeholder.'"  value="'.$valor.'"/>';
                 }
         $html .= '
             </div>
         </div>';
+
         return $html;
     }
     function showRate($value, $max, $min = 0, $bullets = 5)

@@ -56,6 +56,8 @@
         <script src="<?=Url::template("js/jquery.iframe-transport.js");?>" type="text/javascript"></script>
         <!-- The basic File Upload plugin -->
         <script src="<?=Url::template("js/jquery.fileupload.js");?>" type="text/javascript"></script>
+        <!-- Wistia -->
+        <script charset="ISO-8859-1" src="//fast.wistia.com/assets/external/E-v1.js"></script>
         <!-- Framework JS -->
         <script src="<?=Url::template("js/init.js");?>" type="text/javascript"></script>
         <!-- Framework JS -->
