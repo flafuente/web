@@ -8,7 +8,7 @@ class colaboradoresController extends Controller
 
     public function index()
     {
-        $this->setData("categorias", Categoria::select(array("tipoId" => 2)));
+        $this->setData("categorias", Categoria::select(array("tipoId" => 1)));
         $html = $this->view("views.colaboradores");
         $this->render($html);
     }
