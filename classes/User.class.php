@@ -479,7 +479,7 @@ class User extends Model
      *
      * @return bool
      */
-    public static function logout()
+    public function logout()
     {
         $config = Registry::getConfig();
         //Destroy Cookies
