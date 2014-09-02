@@ -32,6 +32,7 @@ class categoriasController extends Controller
     {
         $url = Registry::getUrl();
         $this->setData("categoria", new Categoria($url->vars[0]));
+        $this->setData("contactos", Contacto::select());
         $this->setData("categorias", Categoria::select());
         $html = $this->view("views.edit");
         $this->render($html);

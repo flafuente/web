@@ -134,6 +134,18 @@ Toolbar::render();
                             <input type="text" id="color" name="color" class="form-control color-picker" value="<?=Helper::sanitize($categoria->color);?>">
                         </div>
                     </div>
+                    <?php if (count($contactos)) { ?>
+                        <!-- Contactos -->
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">
+                                Contactos
+                            </label>
+                            <div class="col-sm-8">
+                                <?php $contactosIds = ContactoCategoria::getFieldBy("contactoId", "categoriaId", $categoria->id); ?>
+                                <?=HTML::select("contactos[]", $contactos, $contactosIds, array("class" => "select2", "multiple" => true), null, array("display" => "nombre")); ?>
+                            </div>
+                        </div>
+                    <?php } ?>
                     <!-- Thumbnail -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label">

@@ -114,7 +114,6 @@ class User extends Model
         "capitulos"     => "Capítulos",
         "categorias"    => "Categorias",
         "tags"          => "Tags",
-        "secciones"     => "Secciones",
         "contactos"     => "Contactos",
     );
 
