@@ -544,6 +544,24 @@ div.sq_content{
 .bullet-blue{
 	background-color: #17B5E9 !important;
 }
+/*Historico de noticias*/
+.filtro_news .titfil{
+	padding-right: 0px;
+	font-weight: bold;
+}
+.filtro_news .filter{
+	background-color: #9b9b9b;
+	padding: 3px;
+	color: #FFFFFF;
+}
+.filtro_news select, .filtro_news input{
+	width: 50%;
+	color: #333;
+	max-height: 24px;
+}
+div#s2id_autogen1 {
+	width: 50%;
+}
 
 /*Programas*/
 .title-line{

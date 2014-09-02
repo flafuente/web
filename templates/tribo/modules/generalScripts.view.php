@@ -46,5 +46,8 @@
         //$('.login_form').add('.mask').fadeOut();
         $('.login_form').add('.contact_form').add('.search_form').add('.mask').add('.form-change-pass').add('.uppic').add('.greysquare').add('.secondgrey').fadeOut();
     });
+    $(function() {
+         $( "#datepicker" ).datepicker();
+    });
 
 </script>

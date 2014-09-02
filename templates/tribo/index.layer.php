@@ -58,6 +58,9 @@
         <script src="<?=Url::template("js/jquery.fileupload.js");?>" type="text/javascript"></script>
         <!-- Framework JS -->
         <script src="<?=Url::template("js/init.js");?>" type="text/javascript"></script>
+        <!-- Framework JS -->
+        <link href="<?=Url::template("css/jquery-ui.css");?>" rel="stylesheet">
+        <script src="<?=Url::template("js/jquery-ui.js");?>" type="text/javascript"></script>
         <!--/javascript-->
         <link rel="shortcut icon" href="<?=Url::template("img/favicon.png")?>">
     </head>

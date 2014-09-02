@@ -12,7 +12,7 @@ seeProgram("not01.jpg", "PROTESTAS REPUBLICANAS", "periodismociudadano/protestas
 
 ?>
 <div class="col-md-offset-6 col-md-6 ver-todas-web">
-    Ver histórico de noticias&nbsp;&nbsp;<div class="circulo-azul">+</div>
+    <a href="<?=Url::site("historiconoticias");?>">Ver histórico de noticias&nbsp;&nbsp;<div class="circulo-azul">+</div></a>
 </div>
 
 <div style="clear: both;"></div>
