@@ -114,7 +114,6 @@ class User extends Model
         "capitulos"     => "Capítulos",
         "categorias"    => "Categorias",
         "tags"          => "Tags",
-        "secciones"     => "Secciones",
         "contactos"     => "Contactos",
     );
 
@@ -480,7 +479,7 @@ class User extends Model
      *
      * @return bool
      */
-    public static function logout()
+    public function logout()
     {
         $config = Registry::getConfig();
         //Destroy Cookies

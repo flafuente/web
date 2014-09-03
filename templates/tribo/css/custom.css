@@ -973,8 +973,9 @@ label {
 
 /*VIDEO*/
 .video{
-	min-height: 350px;
-	background-color: #333;
+	/*min-height: 350px;
+	background-color: #333;*/
+	padding:0px;
 }
 .video-info{
 	background-color: #FFF;

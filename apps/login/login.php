@@ -96,8 +96,10 @@ class loginController extends Controller
 
     public function doLogout()
     {
-        $user = new User();
-        $user->logout();
+        $user = Registry::getUser();
+        if ($user->id) {
+            $user->logout();
+        }
         Url::redirect(Url::site());
     }
 

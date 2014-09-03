@@ -37,6 +37,11 @@ class Categoria extends Model
      */
     public $nombre;
     /**
+     * Hashtag
+     * @var string
+     */
+    public $hashtag;
+    /**
      * Color
      * @var string
      */
@@ -75,7 +80,7 @@ class Categoria extends Model
 
     public $tipos = array(
         1 => "Normal",
-        2 => "Periodismo ciutadano",
+        2 => "Periodismo",
     );
 
     /**
@@ -234,6 +239,93 @@ class Categoria extends Model
         if (isset($data["secciones"])) {
             $this->secciones = json_encode($data["secciones"]);;
         }
+    }
+
+    /**
+     * Acciones posteriores a la creación.
+     * @return void
+     */
+    public function postInsert($data = array())
+    {
+        //Añadimos/quitamos los contactos
+        $this->syncContactos($data["contactos"]);
+
+        //Añadimos/quitamos los contactos
+        $this->syncContactos($data["contactos"]);
+    }
+
+    public function postUpdate($data = array())
+    {
+        //Añadimos/quitamos los contactos
+        $this->syncContactos($data["contactos"]);
+    }
+
+    /**
+     * Añade y quita las tags al vídeo
+     * @param  array $tagsIds Id's de las Tags a añadir
+     * @return void
+     */
+    public function syncContactos($contactosIds = array())
+    {
+        $actualContactosIds = ContactoCategoria::getFieldBy("contactoId", "categoriaId", $this->id);
+        //Quitar
+        if (count($actualContactosIds)) {
+            foreach ($actualContactosIds as $contactoId) {
+                if ($contactoId) {
+                    //Si el contacto no ha sido pasado por parámetro...
+                    if (!@in_array($contactoId, $contactosIds)) {
+                        ContactoCategoria::deleteContacto($this->id, $contactoId);
+                    }
+                }
+            }
+        }
+        //Añadir
+        if (count($contactosIds)) {
+            foreach ($contactosIds as $contactoId) {
+                if ($contactoId) {
+                    //Si el contacto no está actualmente...
+                    if (!@in_array($contactoId, $actualContactosIds)) {
+                        $contactoCategoria = new ContactoCategoria();
+                        $contactoCategoria->categoriaId = $this->id;
+                        $contactoCategoria->contactoId = $contactoId;
+                        $contactoCategoria->insert();
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Envía un email a todos los contactos asociados.
+     * @param  array $data Form data.
+     * @return bool
+     */
+    public function sendEmail($data)
+    {
+        $contactosIds = ContactoCategoria::getFieldBy("contactoId", "categoriaId", $this->id);
+        if (count($contactosIds)) {
+            foreach ($contactosIds as $contactoId) {
+                $contacto = new Contacto($contactoId);
+                if ($contacto->id) {
+                    //Preparamos el email
+                    $mailer = Registry::getMailer();
+                    $mailer->addAddress($contacto->email);
+                    $mailer->Subject = utf8_decode("Nuevo mensaje de contacto");
+                    $mailer->msgHTML(
+                        Template::renderEmail(
+                            "contactoSecciones",
+                            array(
+                                "data" => $data,
+                                "seccion" => $this
+                            ), "admin"
+                        )
+                    );
+                    $mailer->send();
+                }
+            }
+        }
+
+        return true;
     }
 
     /**

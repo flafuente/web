@@ -184,11 +184,7 @@ Toolbar::render();
                             </div>
                             <div class="panel-body">
                                 <?php if ($video->estadoCdnId == 3) { ?>
-                                    <div id="wistia_<?=$video->cdnId;?>" class="wistia_embed" style="width:450px;height:253px;"> </div>
-                                    <script charset="ISO-8859-1" src="//fast.wistia.com/assets/external/E-v1.js"></script>
-                                    <script>
-                                        wistiaEmbed = Wistia.embed("<?=$video->cdnId;?>");
-                                    </script>
+                                    <?=HTML::wistiaPlayer($video->cdnId);?>
                                 <?php } ?>
                             </div>
                         </div>
