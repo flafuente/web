@@ -19,8 +19,11 @@ class programasController extends Controller
         $data = array("estadoId"=>1);
         //Categoría?
         if ($url->vars[0]) {
-            $categoria = current(Categoria::getBy("slug", $url->vars[0]));
+            $categoria = @current(Categoria::getBy("slug", $url->vars[0]));
             if ($categoria->id) {
+                //Categoria (Twitter hashtag)
+                $categoria->setConfigHashtag();
+                //Categoria Id
                 $data["categoriaId"] = $categoria->id;
             } else {
                 Url::redirect(Url::site("programas"), "Programa no encontrado", "danger");
@@ -37,8 +40,11 @@ class programasController extends Controller
     public function ver()
     {
         $url = Registry::getUrl();
-        $programa = current(Programa::getBy("slug", $url->vars[0]));
+        $programa = @current(Programa::getBy("slug", $url->vars[0]));
         if ($programa->id) {
+            //Categoria (Twitter hashtag)
+            $categoria = new Categoria($programa->categoriaId);
+            $categoria->setConfigHashtag();
             //Programa
             $this->setData("programa", $programa);
             //Capítulos

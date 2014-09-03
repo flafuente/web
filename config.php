@@ -29,6 +29,12 @@ $_config['dbUser'] = "tribotv_nano";
 $_config['dbPass'] = "LaTaronjaEsdeAlborayatet3";
 $_config['dbName'] = "tribotv_dev";
 
+//Twitter
+$_config['twitter_key'] = "M8LPRrfMlVSgbqmiY39d6w";
+$_config['twitter_secret'] = "oV9StQWszT1HhyOSrBk2cZhe5RuUb6MDKXbvzhHVc";
+$_config['twitter_token'] = "552317085-teYYibh7nL1veabhF3BsMzbhLqxZn9BnvnXjbn1M";
+$_config['twitter_token_secret'] = "Ch0OmXMy3Jk2RAVsqnSYHyjpYBmTEOw4BWAZGHk";
+
 //User Roles
 define("USER_ROLE_REGULAR", 	1);
 define("USER_ROLE_TRIBBER", 	2);

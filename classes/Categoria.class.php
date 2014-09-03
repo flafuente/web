@@ -111,6 +111,14 @@ class Categoria extends Model
         }
     }
 
+    public function setConfigHashtag()
+    {
+        if ($this->hashtag) {
+            $config = Registry::getConfig();
+            $config->set("twitterHashtag", $this->hashtag);
+        }
+    }
+
     /**
      * Devuelve la URL del Thumbnail.
      * @return string
