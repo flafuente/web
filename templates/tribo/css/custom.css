@@ -553,6 +553,7 @@ div.sq_content{
 	background-color: #9b9b9b;
 	padding: 3px;
 	color: #FFFFFF;
+	min-height: 32px;
 }
 .filtro_news select, .filtro_news input{
 	width: 50%;
