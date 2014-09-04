@@ -9,7 +9,7 @@ class HTML
     public static function wistiaPlayer($hash, $width = 450, $height = 253)
     {
         ?>
-            <div id="wistia_<?=$hash;?>" class="wistia_embed" style="width:<?=$width?>px;height:<?=$height?>px;"</div>
+            <div id="wistia_<?=$hash;?>" class="wistia_embed" style="width:<?=$width?>px;height:<?=$height?>px;"></div>
             <script>
                 wistiaEmbed = Wistia.embed("<?=$hash;?>");
             </script>
