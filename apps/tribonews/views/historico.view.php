@@ -36,7 +36,7 @@
 <!-- Videos -->
 <?php foreach ($videos as $video) { ?>
     <?php $controller->setData("video", $video); ?>
-    <?=$controller->view("modules.videoMini");?>
+    <?=$controller->view("modules.video-mini");?>
 <?php } ?>
 
 <div style="clear: both;"></div>
