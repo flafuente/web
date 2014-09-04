@@ -2,6 +2,6 @@
 
 <div class='col-md-12 serie_info'>
     <div class="col-md-12 video">
-        <?php HTML::wistiaPlayer($video->cdnId); ?>
+        <?php HTML::wistiaPlayer($video->cdnId, 558, 314); ?>
     </div>
 </div>
