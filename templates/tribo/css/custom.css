@@ -806,7 +806,7 @@ a.file-input-wrapper.btn.btn-default.btnazul {
 	color: #333333;
 
 }
-.greysquare, .secondgrey{
+.greysquare, .secondgrey, .editgrey{
 	background-color: #adacac;
 	clear: both;
 	float: left;
@@ -817,7 +817,7 @@ a.file-input-wrapper.btn.btn-default.btnazul {
 	max-width: 568px;
 	position: absolute;
 }
-.secondgrey{
+.secondgrey, .editgrey{
 	background-color: #b9b9b9;
 	top: 179px;
 }

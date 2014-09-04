@@ -46,6 +46,15 @@
                     $('.secondgrey').fadeIn();
                     $("#videoprevhelp").text('Tu video de ha procesado correctamente');
                     $("#buttonUpload").fadeOut();
+
+                    return false;
+                });
+                $(document).on("click",".editclick",function () {
+                    /*Add content*/
+                    idvid=$(this).attr("id");
+                    $.post("modal.view.php", { idvid: idvid }, function(data){
+                        $("#modaledit").html(data);
+                    });
                     return false;
                 });
                 <?php 
@@ -91,6 +100,11 @@
                 </div>
             </div>
         </form>
+        <div class="editgrey">
+            <div class="col-md-12" id="modaledit">
+                
+            </div>
+        </div>
         <?php if (count($videosEmitidos)) { ?>
             <div class="canalesd nopaddingI">
                 <?php foreach ($videosEmitidos as $video) { ?>

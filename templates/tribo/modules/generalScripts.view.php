@@ -38,13 +38,16 @@
     $(document).on("click","#btn_subir_video",function () {
         $('.greysquare').add('.mask').fadeIn();
     });
+    $(document).on("click",".editclick",function () {
+        $('.editgrey').add('.mask').fadeIn();
+    });
     $(document).on("click",".mask",function () {
         //$('.login_form').add('.mask').fadeOut();
-        $('.login_form').add('.contact_form').add('.search_form').add('.mask').add('.form-change-pass').add('.uppic').add('.greysquare').add('.secondgrey').fadeOut();
+        $('.login_form').add('.contact_form').add('.search_form').add('.mask').add('.form-change-pass').add('.uppic').add('.greysquare').add('.secondgrey').add('.editgrey').fadeOut();
     });
     $(document).on("click",".aclose",function () {
         //$('.login_form').add('.mask').fadeOut();
-        $('.login_form').add('.contact_form').add('.search_form').add('.mask').add('.form-change-pass').add('.uppic').add('.greysquare').add('.secondgrey').fadeOut();
+        $('.login_form').add('.contact_form').add('.search_form').add('.mask').add('.form-change-pass').add('.uppic').add('.greysquare').add('.secondgrey').add('.editgrey').fadeOut();
     });
     $(function() {
          $( "#datepicker" ).datepicker();

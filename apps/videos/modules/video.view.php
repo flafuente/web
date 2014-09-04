@@ -16,9 +16,9 @@
         <span class="mv-fecha">
             <?=date("d/m/Y", strtotime($video->dateInsert));?> a las <?=date("H:i", strtotime($video->dateInsert));?>
         </span>
-        <a class="btn-tribo-grey btn ladda-button" href="<?=Url::site("videos/ver/".$video->id);?>" style="float: right;">
+        <span class="btn-tribo-grey btn ladda-button editclick" id="<? $video->id; ?>" style="float: right;">
             Editar
-        </a>
+        </span>
     </div>
 </div>
 <div style="clear: both;"></div>
