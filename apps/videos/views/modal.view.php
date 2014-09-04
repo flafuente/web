@@ -6,9 +6,9 @@ print_r($_POST);
     Miniarura
 </div>
 <div class="col-md-6 nopaddingI">
-<i class="fa fa-long-arrow-right btnazul btnazul-ico" style="top: 45px; color: #FFFFFF;"></i>&nbsp;&nbsp;<input id="viddis" type="file" value="Selecciona un video de tu dispositivo" class="btnazul viddis" style="top: 45px;" />
+<i class="fa fa-long-arrow-right btnazul btnazul-ico" style="top: 45px; color: #FFFFFF;"></i>&nbsp;&nbsp;<input id="viddis" type="file" value="Editar el Video" class="btnazul viddis" style="top: 45px;" />
 <br /><br />
-<i class="fa fa-long-arrow-right btnazul btnazul-ico" style="top: 45px; color: #FFFFFF;"></i>&nbsp;&nbsp;<input id="vidord" type="file" value="Segunda opción si la hubiera" class="btnazul vidord" style="top: 45px;" />
+<i class="fa fa-long-arrow-right btnazul btnazul-ico" style="top: 45px; color: #FFFFFF;"></i>&nbsp;&nbsp;<input id="vidord" type="file" value="Cambiar la miniatura del Video" class="btnazul vidord" style="top: 45px;" />
 </div>
 <div class="col-md-3 nopaddingI">Nombre</div>
 <div class="col-md-9 nopaddingI"><input type="text" value="" name="titulo" /></div>
