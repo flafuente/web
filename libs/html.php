@@ -19,7 +19,7 @@ class HTML
     public function relativeDate($date)
     {
         //type cast, current time, difference in timestamps
-        $timestamp      = (int) $timestamp;
+        $timestamp      = (int) strtotime($date);
         $current_time   = time();
         $diff           = $current_time - $timestamp;
 
