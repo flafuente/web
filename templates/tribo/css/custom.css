@@ -157,6 +157,73 @@ a.file-input-wrapper.btn.btn-default.btnazul {
 	background-color: #FCC;
 	padding: 5px;
 }
+/*Mi perfil Publico*/
+.triber_info{
+	background-color: #f0efef;
+	float: left;
+}
+.masinfo_triber{
+	background-color: #e6e3e3;
+	border-top: dashed 1px #333;
+	display: none;
+}
+.triber_infowhite{
+	background-color: #FFFFFF;
+	float: left;
+}
+.triber_infowhite h1{
+	text-transform: uppercase;
+	color: #13b6ea;
+	font-size: 16px;
+	font-weight: bold;
+}
+.triber_infowhite h1 span a{
+	color: #CCC;
+	text-transform: none;
+	margin-left: 20px;
+}
+.triber_name{
+	font-size: 19px;
+	font-weight: bold;
+	color: #464343;
+}
+.triber_blue{
+	color: #13b6ea;
+}
+.triber_small{
+	font-size: 10px;
+	color: #9b9b9b;
+	cursor: pointer;
+}
+.similar_triber img{
+	width: 100px;
+	height: 100px;
+}
+.oversimilar{
+	width: 100px;
+	height: 100px;
+	background-image: url("../img/bgsimilar.png");
+	display: none;
+	position: absolute;
+	top: 0px;
+	left: 15px;
+	word-wrap: break-word
+}
+.similar_name, .similar_city, .similar_news{
+	text-align: center;
+	color: #FFF;
+}
+.similar_name{
+	font-size: 16px;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+.similar_city{
+	margin-top: 5px;
+}
+.similar_news{
+	color: #13b6ea;
+}
 
 /*Mi perfil*/
 .profile-picture-sq, .profile-picture-sq > div {
@@ -465,6 +532,10 @@ div.sq_content{
 .nopadding{
 	padding-left: 0px;
 	padding-right: 0px;
+}
+.nopaddingT{
+	padding-top: 0px !important;
+	padding-bottom: 0px !importantº;
 }
 .nopaddingI{
 	padding-left: 0px !important;

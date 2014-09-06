@@ -41,13 +41,16 @@
     $(document).on("click",".editclick",function () {
         $('.editgrey').add('.mask').fadeIn();
     });
+    $(document).on("click","#triber_masinfo",function () {
+        $('.masinfo_triber').add('.mask').fadeIn();
+    });
     $(document).on("click",".mask",function () {
         //$('.login_form').add('.mask').fadeOut();
-        $('.login_form').add('.contact_form').add('.search_form').add('.mask').add('.form-change-pass').add('.uppic').add('.greysquare').add('.secondgrey').add('.editgrey').fadeOut();
+        $('.login_form').add('.contact_form').add('.search_form').add('.mask').add('.form-change-pass').add('.uppic').add('.greysquare').add('.secondgrey').add('.editgrey').add('.masinfo_triber').fadeOut();
     });
     $(document).on("click",".aclose",function () {
         //$('.login_form').add('.mask').fadeOut();
-        $('.login_form').add('.contact_form').add('.search_form').add('.mask').add('.form-change-pass').add('.uppic').add('.greysquare').add('.secondgrey').add('.editgrey').fadeOut();
+        $('.login_form').add('.contact_form').add('.search_form').add('.mask').add('.form-change-pass').add('.uppic').add('.greysquare').add('.secondgrey').add('.editgrey').add('.masinfo_triber').fadeOut();
     });
     $(function() {
          $( "#datepicker" ).datepicker();
