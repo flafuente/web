@@ -12,20 +12,18 @@
         <?php if (count($categorias)) { ?>
             <ul class="submenu" style="display: none;">
                 <div class="triangle"></div>
-                <?php foreach ($categorias as $categoria) { ?>
-                    <li class="col-md-6"
-                    <?php if ($categoria->color) { ?>
-                      onMouseOver="this.style.backgroundColor='<?=$categoria->color;?>'"
-                      onMouseOut="this.style.backgroundColor='white'"
-                    <?php } else { ?>
-                      onMouseOver="this.style.backgroundColor='#e40d7e'"
-                      onMouseOut="this.style.backgroundColor='white'"
-                    <?php } ?>
-                    >
+                <?php $x=0; foreach ($categorias as $categoria) { $x = $x+1; ?>
+                    <li class="col-md-6" style="padding: 0px; margin: 0px;">
                         <a href="<?=Url::site("programas/seccion/".$categoria->slug);?>">
-                            <?=Helper::sanitize($categoria->nombre);?>
+                            <?php //echo Helper::sanitize($categoria->nombre); ?>
+                            <div id="prg_<?= $x; ?>" class="imgmenu"></div>
                         </a>
                     </li>
+                    <style>
+                        #prg_<?= $x; ?>{
+                          background-image: url("<?=Url::template("img/home/".$categoria->menuImage);?>");
+                        }
+                    </style>
                 <?php } ?>
             </ul>
         <?php } ?>

@@ -57,6 +57,11 @@ class Categoria extends Model
      */
     public $slug;
     /**
+     * menuImage
+     * @var string
+     */
+    public $menuImage;
+    /**
      * Fecha de creación
      * @var string
      */

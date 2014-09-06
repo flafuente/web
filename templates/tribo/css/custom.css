@@ -290,6 +290,16 @@ div.form-change-pass .form-group {
 }
 
 /*Menu Dropdown*/
+.imgmenu{
+	height: 40px;
+	width: 150px;
+	background-position: 0px;
+}
+.imgmenu:hover{
+	height: 40px;
+	width: 150px;
+	background-position: 140px;
+}
 .submenu{
 	position: absolute;
 	background-color: #FFF;
