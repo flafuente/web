@@ -20,6 +20,9 @@ class tribonewsController extends Controller
         //Categorías
         $this->setData("categorias", Categoria::select(array("tipoId" => 2)));
 
+        //Comunidades
+        $this->setData("comunidades", Comunidad::select());
+
         //Vídeos
         $data = $_REQUEST;
         $data["estadoId"] = 1;

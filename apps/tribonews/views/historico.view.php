@@ -17,12 +17,7 @@
         <div class="col-md-3">
             <div class="filter">
                 Zona
-                <select name="fil_zona" class="select2 change-submit">
-                    <option value="1">Zona 01</option>
-                    <option value="2">Zona 02</option>
-                    <option value="3">Zona 03</option>
-                    <option value="4">Zona 04</option>
-                </select>
+                <?=HTML::select("comunidadId", $comunidades, $_REQUEST["comunidadId"], array("class" => "change-submit"), array("display" => "Selecciona una comunidad"), array("display" => "nombre")); ?>
             </div>
         </div>
         <div class="col-md-4">
@@ -36,9 +31,11 @@
 <div style="clear: both;"></div>
 
 <!-- Videos -->
-<?php foreach ($videos as $video) { ?>
-    <?php $controller->setData("video", $video); ?>
-    <?=$controller->view("modules.video-mini");?>
+<?php if (count($videos)) { ?>
+    <?php foreach ($videos as $video) { ?>
+        <?php $controller->setData("video", $video); ?>
+        <?=$controller->view("modules.video-mini");?>
+    <?php } ?>
 <?php } ?>
 
 <div style="clear: both;"></div>

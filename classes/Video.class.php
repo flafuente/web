@@ -425,6 +425,11 @@ class Video extends Model
             $query .= " AND `categoriaId` IN (SELECT id FROM categorias WHERE tipoId=:tipoCategoriaId) ";
             $params[":tipoCategoriaId"] = $data["tipoCategoriaId"];
         }
+        //Comunidad
+        if ($data["comunidadId"]) {
+            $query .= " AND `comunidadId`=:comunidadId ";
+            $params[":comunidadId"] = $data["comunidadId"];
+        }
         //Total
         $total = count($db->Query($query, $params));
         if ($total) {
