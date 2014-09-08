@@ -124,7 +124,11 @@ function checkFormField(formElement, fieldName, fieldValue){
 
 //change-submit
 $(document).on('change', '.change-submit', function(e){
-	$('#mainForm').submit();
+	$form = $(this).closest("form");
+	if(!$form.length){
+		$form = $("#mainForm");
+	}
+	$form.submit();
 });
 
 //Toolbar
