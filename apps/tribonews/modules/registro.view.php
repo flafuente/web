@@ -2,18 +2,15 @@
 
 <div class='col-md-12'>
     <div class='video-info' style="padding: 5px;">
+
         <div id="haztetriber" class='title-line'>
             <span>HAZTE TRIBER</span>
         </div>
+
         <div class="col-md-12 video">
-		
-			<div id="wistia_sy58tqt7xz" class="wistia_embed" style="width:558px;height:314px;"> </div>
-			<script charset="ISO-8859-1" src="//fast.wistia.com/assets/external/E-v1.js"></script>
-			<script>
-			wistiaEmbed = Wistia.embed("sy58tqt7xz");
-			</script>
-		
+            <?=HTML::wistiaPlayer("sy58tqt7xz", "558", "314");?>
         </div>
+
         <div style="clear: both;"></div>
         <br />
         <div class="haztetriber_title">
@@ -26,12 +23,12 @@
             Tanto es así, que estarán hechos por contenidos grabados, producidos y enviados por los propios Tribers.
             <br /><br />
             Los Tribers no son sólo periodistas, son testigos de la realidad. Se trata de ciudadanos con inquietudes, capaces de enviarnos sus videos desde el lugar de la noticia.
-			<br /><br />
-			La realidad y la inmediatez en estado puro. Será la red de Tribers, los que nutran libremente con sus piezas, los contenidos informativos de la cadena. Sin consignas, ni sesgos.
-			<br /><br />
-			Todo esto en un informativo con secciones libres, sin tiempos fijos, ni temas prefijados, y siempre dejando un buen sabor de boca al espectador con una noticia positiva.
-			<br /><br />
-			<b>BE TRIBER</b>
+            <br /><br />
+            La realidad y la inmediatez en estado puro. Será la red de Tribers, los que nutran libremente con sus piezas, los contenidos informativos de la cadena. Sin consignas, ni sesgos.
+            <br /><br />
+            Todo esto en un informativo con secciones libres, sin tiempos fijos, ni temas prefijados, y siempre dejando un buen sabor de boca al espectador con una noticia positiva.
+            <br /><br />
+            <b>BE TRIBER</b>
         </div>
         <div style="clear: both;"></div>
         <br /><br />
