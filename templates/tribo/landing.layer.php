@@ -6,6 +6,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <title>Tribo.tv</title>
+        <link rel="shortcut icon" href="<?=Url::template("img/favicon.png");?>" type="image/png" />
         <!--css-->
         <!-- Bootstrap -->
         <link href="<?=Url::template("css/bootstrap.min.css");?>" media="screen" rel="stylesheet" type="text/css" />
