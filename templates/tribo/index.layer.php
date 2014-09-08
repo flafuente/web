@@ -47,6 +47,8 @@
         <!-- Video JS -->
         <link href="<?=Url::template("assets/video-js/video-js.css");?>" rel="stylesheet">
         <script src="<?=Url::template("assets/video-js/video.js");?>"></script>
+        <!-- JQuery Placepicker -->
+        <script src="<?=Url::template("js/jquery.placepicker.js");?>" type="text/javascript"></script>
         <!-- Select2 Plugin -->
         <script src="<?=Url::template("js/select2.min.js");?>" type="text/javascript"></script>
         <script src="<?=Url::template("js/select2_locale_es.js");?>" type="text/javascript"></script>

@@ -1,5 +1,7 @@
 <?php defined('_EXE') or die('Restricted access'); ?>
 
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+
 <div class='col-md-12 serie_info'>
 
     <!-- Videos emitidos -->
@@ -68,25 +70,21 @@
                 }
                 ?>
             </script>
+            <!-- Subir video -->
             <div class="secondgrey">
                 <div class="col-md-12 formupload">
                     <div class="col-md-3 nopaddingI">Nombre</div>
                     <div class="col-md-9 nopaddingI"><input type="text" value="" name="titulo" /></div>
                     <div style="clear: both;"></div>
                     <div class="col-md-3 nopaddingI">Ubicación</div>
-                    <div class="col-md-9 nopaddingI"><input type="text" value="" name="ubicacion" /></div>
+                    <div class="col-md-9 nopaddingI"><input type="text" value="" id="ubicacion" name="ubicacion" /></div>
                     <div style="clear: both;"></div>
-                    <div class="col-md-3 nopaddingI">Sección</div>
-                    <div class="col-md-9 nopaddingI">
-                        <select name="seccion">
-                            <option value="1">Seccion 01</option>
-                            <option value="2">Seccion 02</option>
-                            <option value="3">Seccion 03</option>
-                            <option value="4">Seccion 04</option>
-                            <option value="5">Seccion 05</option>
-                            <option value="6">Seccion 06</option>
-                        </select>
-                    </div>
+                    <?php if (count($categorias)) { ?>
+                        <div class="col-md-3 nopaddingI">Sección</div>
+                        <div class="col-md-9 nopaddingI">
+                            <?=HTML::select("categoriaId", $categorias, null, null, null, array("display" => "nombre")); ?>
+                        </div>
+                    <?php } ?>
                     <div style="clear: both;"></div>
                     <div class="col-md-3 nopaddingI">Descripción</div>
                     <div class="col-md-9 nopaddingI"><textarea type="text" name="descripcion"></textarea></div>
@@ -159,3 +157,8 @@
        <div style="clear: both;"></div>
     </div>
 </div>
+
+<!-- Google Autocomplete -->
+<script>
+    $("#ubicacion").placepicker();
+</script>
