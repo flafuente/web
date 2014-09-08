@@ -119,6 +119,8 @@ class videosController extends Controller
         if (!$videoArchivo->update($_REQUEST)) {
             //Response
             WS::setCode(1005);
+            //Borrar el vídeo original del servidor
+            $videoArchivo->deleteFile();
         }
         WS::output();
     }
