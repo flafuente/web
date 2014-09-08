@@ -16,7 +16,11 @@ if (!$user->id) {
 <div class="login_form" style="display: none;<?=$stl;?>">
     <?php if (!$user->id) { ?>
         <div class="forgot col-md-8"><img class="imgmdl" src='<?=Url::template("/img/user.png");?>' title='Login' /><h1>&nbsp;&nbsp;&nbsp;ZONA TRIBER</h1></div>
-        <div class="forgot col-md-4"><button type="submit" class="btn btn-tribo-grey ladda-button">Registrate</button></div>
+        <div class="forgot col-md-4">
+            <a href="<?=Url::site("registro");?>" class="btn btn-tribo-grey ladda-button">
+                Registrate
+            </a>
+        </div>
         <div style="clear: both;"></div>
         <br />
         <form class="l_form ajax" role="form" method="post" action="<?=Url::site("login/doLogin")?>">
