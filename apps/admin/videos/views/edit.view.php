@@ -1,5 +1,7 @@
 <?php defined('_EXE') or die('Restricted access'); ?>
 
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+
 <?php
 //Toolbar
 if ($video->id) {
@@ -102,6 +104,15 @@ Toolbar::render();
                         </label>
                         <div class="col-sm-8">
                             <input type="text" id="titulo" name="titulo" class="form-control" value="<?=Helper::sanitize($video->titulo);?>">
+                        </div>
+                    </div>
+                    <!-- Ubicación -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            Ubicación
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" id="localizacion" name="localizacion" class="form-control" value="<?=Helper::sanitize($video->localizacion);?>">
                         </div>
                     </div>
                     <!-- Descripción -->
@@ -329,4 +340,9 @@ Toolbar::render();
             document.location.href = "<?=Url::site('admin/videos/edit/'.$video->id);?>";
         });
     });
+</script>
+
+<!-- Google Autocomplete -->
+<script>
+    $("#localizacion").placepicker();
 </script>

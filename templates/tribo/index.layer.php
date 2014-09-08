@@ -44,9 +44,6 @@
         <script src="<?=Url::template("js/jssor.core.js");?>" type="text/javascript"></script>
         <script src="<?=Url::template("js/jssor.utils.js");?>" type="text/javascript"></script>
         <script src="<?=Url::template("js/jssor.slider.js");?>" type="text/javascript"></script>
-        <!-- Video JS -->
-        <link href="<?=Url::template("assets/video-js/video-js.css");?>" rel="stylesheet">
-        <script src="<?=Url::template("assets/video-js/video.js");?>"></script>
         <!-- JQuery Placepicker -->
         <script src="<?=Url::template("js/jquery.placepicker.js");?>" type="text/javascript"></script>
         <!-- Select2 Plugin -->

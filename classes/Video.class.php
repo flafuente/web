@@ -57,6 +57,26 @@ class Video extends Model
      */
     public $texto;
     /**
+     * ComunidadId
+     * @var string
+     */
+    public $comunidadId;
+    /**
+     * Localización
+     * @var string
+     */
+    public $localizacion;
+    /**
+     * long
+     * @var string
+     */
+    public $long;
+    /**
+     * lat
+     * @var string
+     */
+    public $lat;
+    /**
      * Id del archivo de vídeo asociado
      * @var int
      */
@@ -168,7 +188,7 @@ class Video extends Model
         return $this->estadosCss[$this->estadoId];
     }
 
-    public function validate($data=array())
+    public function validate()
     {
         //Titulo
         if (!$this->titulo) {
@@ -193,7 +213,7 @@ class Video extends Model
      * Validación de creación.
      * @return array Errores
      */
-    public function validateInsert($data=array())
+    public function validateInsert($data = array())
     {
         $this->validate();
 
@@ -206,6 +226,39 @@ class Video extends Model
     }
 
     /**
+     * Setea las coordenadas y la comunidad mediante una dirección
+     */
+    private function setLocalizacion()
+    {
+        if ($this->localizacion) {
+
+            // replace all the white space with "+" sign to match with google search pattern
+            $address = str_replace(" ", "+", $this->localizacion);
+            $url = "http://maps.google.es/maps/api/geocode/json?sensor=false&address=$address";
+            $response = file_get_contents($url);
+            //generate array object from the response from the web
+            $json = json_decode($response, TRUE);
+
+            //Coordenadas
+            $this->lat = $json['results'][0]['geometry']['location']['lat'];
+            $this->long = $json['results'][0]['geometry']['location']['lng'];
+
+            //Comunidad
+            $components = $json['results'][0]['address_components'];
+            if (count($components)) {
+                foreach ($components as $component) {
+                    if ($component["types"][0] == "administrative_area_level_1") {
+                        $comunidad = @current(Comunidad::getBy("nombre", $component["long_name"]));
+                        if ($comunidad->id) {
+                            $this->comunidadId = $comunidad->id;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
      * Acciones previas a la creación.
      * @return void
      */
@@ -214,6 +267,7 @@ class Video extends Model
         $user = Registry::getUser();
         $this->userId = $user->id;
         $this->dateInsert = date("Y-m-d H:i:s");
+        $this->setLocalizacion();
     }
 
     /**
@@ -286,6 +340,7 @@ class Video extends Model
     public function preUpdate()
     {
         $this->dateUpdate = date("Y-m-d H:i:s");
+        $this->setLocalizacion();
     }
 
     /**

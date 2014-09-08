@@ -43,6 +43,8 @@
         <!-- Bootstrap Ladda Plugin -->
         <script src="<?=Url::template("js/spin.min.js");?>" type="text/javascript"></script>
         <script src="<?=Url::template("js/ladda.min.js");?>" type="text/javascript"></script>
+        <!-- JQuery Placepicker -->
+        <script src="<?=Url::template("js/jquery.placepicker.js");?>" type="text/javascript"></script>
         <!-- Select2 Plugin -->
         <script src="<?=Url::template("js/select2.min.js");?>" type="text/javascript"></script>
         <script src="<?=Url::template("js/select2_locale_es.js");?>" type="text/javascript"></script>

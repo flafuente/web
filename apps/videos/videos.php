@@ -28,6 +28,8 @@ class videosController extends Controller
         $this->setData("videosRechazados", Video::select($data));
         //Categorías
         $this->setData("categorias", Categoria::select(array("tipoId" => 2)));
+        //Tags
+        $this->setData("tags", Tag::select());
         //View
         $html = $this->view("views.list");
         $this->render($html);

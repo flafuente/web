@@ -6,7 +6,6 @@
 
     <!-- Videos emitidos -->
     <div class="square-info">
-
         <div class="grey">
             MIS VIDEOS EMITIDOS (
                 <span class="misvideos_n">
@@ -18,7 +17,10 @@
                 &nbsp;&nbsp;Subir Video
             </a>
         </div>
-        <form method="POST"> <!-- Modificar y poner el multiopart y que apunte donde toque -->
+
+        <form method="post" name="mainForm" id="mainForm" action="<?=Url::site();?>" class="form-horizontal ajax" role="form">
+            <input type="hidden" name="app" id="app" value="">
+            <input type="hidden" name="action" id="action" value="">
             <div class="greysquare">
                 <div class="col-md-8">
                     <i class="fa fa-long-arrow-right btnazul btnazul-ico" style="top: 45px; color: #FFFFFF;"></i>&nbsp;&nbsp;<input id="viddis" type="file" value="Selecciona un video de tu dispositivo" class="btnazul viddis" style="top: 45px;" />
@@ -42,7 +44,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Al pulsar el boton submit se carga el Video.... cuando todo OK se muestra esto -->
+
             <script>
                 $(document).on("click","#buttonUpload",function () {
                     $('.secondgrey').fadeIn();
@@ -70,28 +72,67 @@
                 }
                 ?>
             </script>
+
             <!-- Subir video -->
             <div class="secondgrey">
                 <div class="col-md-12 formupload">
-                    <div class="col-md-3 nopaddingI">Nombre</div>
-                    <div class="col-md-9 nopaddingI"><input type="text" value="" name="titulo" /></div>
+
+                    <!-- Título -->
+                    <div class="col-md-3 nopaddingI">
+                        Nombre
+                    </div>
+                    <div class="col-md-9 nopaddingI">
+                        <input type="text" value="" name="titulo" />
+                    </div>
                     <div style="clear: both;"></div>
-                    <div class="col-md-3 nopaddingI">Ubicación</div>
-                    <div class="col-md-9 nopaddingI"><input type="text" value="" id="ubicacion" name="ubicacion" /></div>
+
+                    <!-- Ubicación -->
+                    <div class="col-md-3 nopaddingI">
+                        Ubicación
+                    </div>
+                    <div class="col-md-9 nopaddingI">
+                        <input type="text" value="" id="ubicacion" name="localizacion" />
+                    </div>
                     <div style="clear: both;"></div>
+
+                    <!-- Categorías -->
                     <?php if (count($categorias)) { ?>
                         <div class="col-md-3 nopaddingI">Sección</div>
                         <div class="col-md-9 nopaddingI">
                             <?=HTML::select("categoriaId", $categorias, null, null, null, array("display" => "nombre")); ?>
                         </div>
+                        <div style="clear: both;"></div>
                     <?php } ?>
+
+                    <!-- Descripción -->
+                    <div class="col-md-3 nopaddingI">
+                        Descripción
+                    </div>
+                    <div class="col-md-9 nopaddingI">
+                        <textarea type="text" name="descripcion"></textarea>
+                    </div>
                     <div style="clear: both;"></div>
-                    <div class="col-md-3 nopaddingI">Descripción</div>
-                    <div class="col-md-9 nopaddingI"><textarea type="text" name="descripcion"></textarea></div>
+
+                    <!-- Texto -->
+                    <div class="col-md-3 nopaddingI">
+                        Texto
+                    </div>
+                    <div class="col-md-9 nopaddingI">
+                        <input type="text" value="" name="texto" />
+                    </div>
                     <div style="clear: both;"></div>
-                    <div class="col-md-3 nopaddingI">Tags</div>
-                    <div class="col-md-9 nopaddingI"><input type="text" value="" name="tags" /></div>
-                    <div style="clear: both;"></div>
+
+                    <!-- Tags -->
+                    <?php if (count($tags)) { ?>
+                        <div class="col-md-3 nopaddingI">
+                            Tags
+                        </div>
+                        <div class="col-md-9 nopaddingI">
+                            <?=HTML::select("tags[]", $tags, null, array("class" => "select2", "multiple" => "true"), null, array("display" => "nombre")); ?>
+                        </div>
+                        <div style="clear: both;"></div>
+                    <?php } ?>
+
                     <div class="col-md-3 nopaddingI">Adjuntos</div>
                     <div class="col-md-9 nopaddingI"><input type="text" value="" name="adjuntos" /></div>
                     <div style="clear: both;"></div>
