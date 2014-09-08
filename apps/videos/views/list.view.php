@@ -4,7 +4,7 @@
 
     <!-- Videos emitidos -->
     <div class="square-info">
-        
+
         <div class="grey">
             MIS VIDEOS EMITIDOS (
                 <span class="misvideos_n">
@@ -51,16 +51,17 @@
                 });
                 $(document).on("click",".editclick",function () {
                     /*Add content*/
-                    idvid=$(this).attr("id");
-                    $.post("modal.view.php", { idvid: idvid }, function(data){
-                        $("#modaledit").html(data);
+                    id = $(this).attr("data-video-id");
+                    $.getJSON("<?=Url::site('videos/edit');?>/" + id, function (data) {
+                        $("#modaledit").html(data.data.html);
                     });
+
                     return false;
                 });
-                <?php 
-                if(isset($_GET["uplvid"])){
+                <?php
+                if (isset($_GET["uplvid"])) {
                     ?>
-                    $(window).load(function(){
+                    $(window).load(function () {
                         $('.greysquare').add('.mask').fadeIn();
                     });
                     <?php
@@ -102,7 +103,7 @@
         </form>
         <div class="editgrey">
             <div class="col-md-12" id="modaledit">
-                
+
             </div>
         </div>
         <?php if (count($videosEmitidos)) { ?>

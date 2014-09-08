@@ -1,6 +1,4 @@
-<?php 
-print_r($_POST);
-?>
+<?php defined('_EXE') or die('Restricted access'); ?>
 
 <div class="col-md-6 nopaddingI">
     Miniarura
@@ -29,7 +27,7 @@ print_r($_POST);
 </div>
 <div style="clear: both;"></div>
 <div class="col-md-3 nopaddingI">Descripción</div>
-<div class="col-md-9 nopaddingI"><textarea type="text" name="descripcion"></textarea></div>
+<div class="col-md-9 nopaddingI"><textarea type="text" name="descripcion"><?=Helper::sanitize($video->descripcion);?></textarea></div>
 <div style="clear: both;"></div>
 <div class="col-md-3 nopaddingI">Tags</div>
 <div class="col-md-9 nopaddingI"><input type="text" value="" name="tags" /></div>

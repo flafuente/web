@@ -50,6 +50,18 @@ class videosController extends Controller
         $this->render($html);
     }
 
+    public function edit()
+    {
+        $url = Registry::getUrl();
+
+        $video = new Video($url->vars[0]);
+        if ($video->id) {
+            $this->setData("video", $video);
+            $data["html"] = $this->view("views.modal");
+        }
+        $this->ajax($data);
+    }
+
     public function ver()
     {
         $url = Registry::getUrl();
