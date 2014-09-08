@@ -21,8 +21,9 @@
                 };
                 map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);
 
-                <?= markerMaps("triber1", "38.09690980000001", "-3.6369803000000047", "<b>Triber01</b><br/>Rio Tamesi<br/> Linares"); ?>
-                <?= markerMaps("triber2", "41.90429719999999", "-1.7222534999999652", "<b>Triber02</b><br/>Tarazona<br/> Zaragoza"); ?>
+                <?php foreach ($videos as $video) { ?>
+                    <?= markerMaps("video".$video->id, $video->lat, $video->long, "<b>".Helper::sanitize($video->titulo)."</b>"); ?>
+                <?php } ?>
 
             }
             google.maps.event.addDomListener(window, 'load', init_map);

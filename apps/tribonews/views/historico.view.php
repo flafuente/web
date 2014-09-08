@@ -23,7 +23,7 @@
         <div class="col-md-4">
             <div class="filter">
                 Fecha
-                <input type="text" name="fil_fecha" id="datepicker" class="change-submit" value="<?=Helper::sanitize($_REQUEST["fil_fecha"])?>"/>
+                <input type="text" name="fecha" id="datepicker" class="change-submit" value="<?=Helper::sanitize($_REQUEST["fecha"])?>"/>
             </div>
         </div>
     </form>
@@ -36,6 +36,10 @@
         <?php $controller->setData("video", $video); ?>
         <?=$controller->view("modules.video-mini");?>
     <?php } ?>
+<?php } else { ?>
+    <blockquote>
+        No se han encontrado notícias
+    </blockquote>
 <?php } ?>
 
 <div style="clear: both;"></div>

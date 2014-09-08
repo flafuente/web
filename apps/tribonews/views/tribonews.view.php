@@ -25,14 +25,14 @@
 <br /><br />
 
 <!-- Mapa -->
-<?=$controller->view("modules.mapa");?>
-<!-- /Mapa -->
-
-<br /><br />
+<?php if (count($videos)) { ?>
+    <?php $controller->setData("videos", $videos); ?>
+    <?=$controller->view("modules.mapa");?>
+    <br /><br />
+<?php } ?>
 
 <!-- Registro -->
 <?php $user = Registry::getUser(); ?>
 <?php if (!$user->id) { ?>
     <?=$controller->view("modules.registro");?>
 <?php } ?>
-<!-- /Registro -->

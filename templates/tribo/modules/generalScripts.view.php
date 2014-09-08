@@ -1,6 +1,6 @@
 <script>
-    //$(window).load(function(){
-    $(window).load(function(){
+    //$(window).load(function () {
+    $(window).load(function () {
         $(".sqd_description").mCustomScrollbar({
             scrollButtons:{
                 enable:true
@@ -52,8 +52,8 @@
         //$('.login_form').add('.mask').fadeOut();
         $('.login_form').add('.contact_form').add('.search_form').add('.mask').add('.form-change-pass').add('.uppic').add('.greysquare').add('.secondgrey').add('.editgrey').add('.masinfo_triber').fadeOut();
     });
-    $(function() {
-         $( "#datepicker" ).datepicker();
+    $(function () {
+        $( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
     });
 
 </script>

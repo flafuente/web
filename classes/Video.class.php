@@ -430,6 +430,11 @@ class Video extends Model
             $query .= " AND `comunidadId`=:comunidadId ";
             $params[":comunidadId"] = $data["comunidadId"];
         }
+        //Fecha
+        if ($data["fecha"]) {
+            $query .= " AND `dateInsert`>=:fecha ";
+            $params[":fecha"] = date("Y-m-d H:i:s", strtotime($data["fecha"]));
+        }
         //Total
         $total = count($db->Query($query, $params));
         if ($total) {
