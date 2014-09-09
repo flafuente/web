@@ -19,16 +19,23 @@
         </div>
 
         <form method="post" name="mainForm" id="mainForm" action="<?=Url::site();?>" class="form-horizontal ajax" role="form">
-            <input type="hidden" name="app" id="app" value="">
-            <input type="hidden" name="action" id="action" value="">
+            <input type="hidden" name="app" id="app" value="videos">
+            <input type="hidden" name="action" id="action" value="save">
+
+            <!-- Busca video -->
             <div class="greysquare">
                 <div class="col-md-8">
-                    <i class="fa fa-long-arrow-right btnazul btnazul-ico" style="top: 45px; color: #FFFFFF;"></i>&nbsp;&nbsp;<input id="viddis" type="file" value="Selecciona un video de tu dispositivo" class="btnazul viddis" style="top: 45px;" />
-                    <!--
+                    <i class="fa fa-long-arrow-right btnazul btnazul-ico" style="top: 45px; color: #FFFFFF;"></i>
+                    &nbsp;&nbsp;
+                    <input type="hidden" name="file" id="filename" value="">
+                    <input id="fileupload" name="files[]" accept="video/*" type="file" value="Selecciona un video de tu dispositivo" class="btnazul viddis" style="top: 45px;" />
                     <br /><br />
-                    <i class="fa fa-long-arrow-right btnazul btnazul-ico" style="top: 45px; color: #FFFFFF;"></i>&nbsp;&nbsp;<input id="vidord" type="file" value="Segunda opción si la hubiera" class="btnazul vidord" style="top: 45px;" />
-                    -->
-                    <br /><br />
+                    <!-- The global progress bar -->
+                    <div id="progress" class="progress" style="display:none">
+                        <div class="progress-bar progress-bar-success"></div>
+                    </div>
+                    <!-- The container for the uploaded files -->
+                    <div id="files" class="files"></div>
                     <div style="text-align: right; color: #FFFFFF; width: 100%;" class="aclose">Cancelar</div>
                 </div>
                 <div class="col-md-4 nopaddingI" style="padding-top: 0px !important;">
@@ -44,34 +51,6 @@
                     </div>
                 </div>
             </div>
-
-            <script>
-                $(document).on("click","#buttonUpload",function () {
-                    $('.secondgrey').fadeIn();
-                    $("#videoprevhelp").text('Tu video de ha procesado correctamente');
-                    $("#buttonUpload").fadeOut();
-
-                    return false;
-                });
-                $(document).on("click",".editclick",function () {
-                    /*Add content*/
-                    id = $(this).attr("data-video-id");
-                    $.getJSON("<?=Url::site('videos/edit');?>/" + id, function (data) {
-                        $("#modaledit").html(data.data.html);
-                    });
-
-                    return false;
-                });
-                <?php
-                if (isset($_GET["uplvid"])) {
-                    ?>
-                    $(window).load(function () {
-                        $('.greysquare').add('.mask').fadeIn();
-                    });
-                    <?php
-                }
-                ?>
-            </script>
 
             <!-- Subir video -->
             <div class="secondgrey">
@@ -202,4 +181,57 @@
 <!-- Google Autocomplete -->
 <script>
     $("#ubicacion").placepicker();
+</script>
+
+<script>
+
+    $(function () {
+        //File Upload
+        $('#fileupload').fileupload({
+            maxChunkSize: 10000000,
+            url: "<?=Url::site('videos/upload');?>",
+            formData: "",
+            dataType: 'json',
+            done: function (e, data) {
+                $.each(data.result.files, function (index, file) {
+                    if (!file.error) {
+                        $('<p/>').text(file.name).appendTo('#files');
+                        $("#filename").val(file.name);
+                        $('.secondgrey').fadeIn();
+                        $("#videoprevhelp").text('Tu video de ha procesado correctamente');
+                        $("#buttonUpload").fadeOut();
+                    } else {
+                        $("#filename").val("");
+                        alert(file.error);
+                    }
+                });
+            },
+            progressall: function (e, data) {
+                var progress = parseInt(data.loaded / data.total * 100, 10);
+                $('#progress .progress-bar').css(
+                    'width',
+                    progress + '%'
+                );
+            }
+        })
+    });
+
+    $(document).on("click",".editclick",function () {
+        /*Add content*/
+        id = $(this).attr("data-video-id");
+        $.getJSON("<?=Url::site('videos/edit');?>/" + id, function (data) {
+            $("#modaledit").html(data.data.html);
+        });
+
+        return false;
+    });
+    <?php
+    if (isset($_GET["uplvid"])) {
+        ?>
+        $(window).load(function () {
+            $('.greysquare').add('.mask').fadeIn();
+        });
+        <?php
+    }
+    ?>
 </script>
