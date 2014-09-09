@@ -879,13 +879,15 @@ a.file-input-wrapper.btn.btn-default.btnazul {
 	font-weight: bold;
 	color: #FFFFFF;
 }
-.formupload div input, .formupload div textarea, .formupload div select{
+.formupload div input, .formupload div textarea, .formupload div select, .formupload div .select2{
 	font-weight: normal;
 	border: 2px solid #a6a6a6;
 	background-color: white;
 	width: 100%;
 	color: #333333;
-
+}
+.formupload div .select2{
+	width: 100%!important;
 }
 .greysquare, .secondgrey, .editgrey{
 	background-color: #adacac;
