@@ -14,22 +14,52 @@ class videosController extends Controller
 
     public function index()
     {
+        $this->listar();
+    }
+
+    public function pendientes()
+    {
+        $this->listar();
+    }
+
+    public function rechazados()
+    {
+        $this->listar(2);
+    }
+
+    public function emitidos()
+    {
+        $this->listar(1);
+    }
+
+    public function listar($estadoId = 0)
+    {
         $user = Registry::getUser();
-        $data = $_REQUEST;
-        $data["userId"] = $user->id;
-        //Emitidos
-        $data["estadoId"] = 1;
-        $this->setData("videosEmitidos", Video::select($data));
-        //Pendientes
-        $data["estadoId"] = 0;
-        $this->setData("videosPendientes", Video::select($data));
-        //Rechazados
-        $data["estadoId"] = 2;
-        $this->setData("videosRechazados", Video::select($data));
+
+        //Vídeos
+        $this->setData("videos", Video::select(array("estadoId" => $estadoId, "userId" => $user->id)));
+
         //Categorías
         $this->setData("categorias", Categoria::select(array("tipoId" => 2)));
+
         //Tags
         $this->setData("tags", Tag::select());
+
+        //Title
+        switch ($estadoId) {
+            default:
+            case 0:
+                $title = "Pendientes";
+            break;
+            case 1:
+                $title = "Emitidos";
+            break;
+            case 2:
+                $title = "Rechazados";
+            break;
+        }
+        $this->setData("title", $title);
+
         //View
         $html = $this->view("views.list");
         $this->render($html);
@@ -37,13 +67,18 @@ class videosController extends Controller
 
     public function nuevo()
     {
+        //Vídeo
         $this->setData("video", new Video());
+
+        //Categorías
         $this->setData("categorias", Categoria::select(
             array(
                 "order" => "nombre",
                 "orderDir" => "ASC"
             )
         ));
+
+        //Tags
         $this->setData("tags", Tag::select(
             array(
                 "order" => "nombre",
@@ -61,7 +96,7 @@ class videosController extends Controller
         $video = new Video($url->vars[0]);
         if ($video->id) {
             $this->setData("video", $video);
-            $data["html"] = $this->view("views.modal");
+            $data["html"] = $this->view("modules.modal");
         }
         $this->ajax($data);
     }

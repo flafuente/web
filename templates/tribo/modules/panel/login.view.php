@@ -46,23 +46,54 @@ if (!$user->id) {
     <?php } else { ?>
         <div class="forgot col-md-8">
             <img src="<?=$user->getFotoUrl();?>" class="imgmdl img-circle profpic" title='<?=$user->nombre;?>' />
-            <h1 class="utitle">&nbsp;&nbsp;&nbsp;<span class="uname"><?=$user->nombre;?></span> - <a href="<?=Url::site("perfil")?>" class="proflink">Mi Perfil</a></h1>
-            </div>
+            <h1 class="utitle">
+                &nbsp;&nbsp;&nbsp;
+                <span class="uname">
+                    <?=$user->nombre;?>
+                </span>
+                 -
+                <a href="<?=Url::site("perfil")?>" class="proflink">
+                    Mi Perfil
+                </a>
+            </h1>
+        </div>
         <div style="clear: both;"></div>
         <div class="profinfo">
             <ul>
                 <li>Mis Videos
                     <ul>
+                        <!-- Vídeos pendientes -->
                         <li style="list-style-image: url('<?=Url::template("/img/dot.png");?>');">
-                            <a href="<?=Url::site("videos")?>">
+                            <a href="<?=Url::site("videos/pendientes")?>">
                                 Videos pendientes
                             </a>
-                            <?php $user = Registry::getUser();?>
-                            <?php $videosPendientes = count(Video::select(array(
+                            <?php $videos = count(Video::select(array(
                                 "userId" => $user->id,
                                 "estadoId" => 0
                             ))); ?>
-                            (<span style="color: #c42422;"><?=$videosPendientes;?></span>)
+                            (<span style="color: #c42422;"><?=$videos;?></span>)
+                        </li>
+                        <!-- Vídeos emitidos -->
+                        <li style="list-style-image: url('<?=Url::template("/img/dot.png");?>');">
+                            <a href="<?=Url::site("videos/emitidos")?>">
+                                Videos emitidos
+                            </a>
+                            <?php $videos = count(Video::select(array(
+                                "userId" => $user->id,
+                                "estadoId" => 1
+                            ))); ?>
+                            (<span style="color: #c42422;"><?=$videos;?></span>)
+                        </li>
+                        <!-- Vídeos rechazados -->
+                        <li style="list-style-image: url('<?=Url::template("/img/dot.png");?>');">
+                            <a href="<?=Url::site("videos/rechazados")?>">
+                                Videos rechazados
+                            </a>
+                            <?php $videos = count(Video::select(array(
+                                "userId" => $user->id,
+                                "estadoId" => 3
+                            ))); ?>
+                            (<span style="color: #c42422;"><?=$videos;?></span>)
                         </li>
                     </ul>
                 </li>
