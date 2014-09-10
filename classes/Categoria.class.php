@@ -312,30 +312,46 @@ class Categoria extends Model
      */
     public function sendEmail($data)
     {
-        $contactosIds = ContactoCategoria::getFieldBy("contactoId", "categoriaId", $this->id);
-        if (count($contactosIds)) {
-            foreach ($contactosIds as $contactoId) {
-                $contacto = new Contacto($contactoId);
-                if ($contacto->id) {
-                    //Preparamos el email
-                    $mailer = Registry::getMailer();
-                    $mailer->addAddress($contacto->email);
-                    $mailer->Subject = utf8_decode("Nuevo mensaje de contacto");
-                    $mailer->msgHTML(
-                        Template::renderEmail(
-                            "contactoSecciones",
-                            array(
-                                "data" => $data,
-                                "seccion" => $this
-                            ), "admin"
-                        )
-                    );
-                    $mailer->send();
-                }
-            }
+        //Validaciones
+        //Nombre
+        if (!$data["nombre"]) {
+            Registry::addMessage("Debes introducir tu nombre", "error", "nombre");
+        }
+        //Email
+        if (!$data["email"]) {
+            Registry::addMessage("Debes introducir tu email", "error", "email");
+        }
+        //Mensaje
+        if (!$data["mensaje"]) {
+            Registry::addMessage("Debes introducir un mensaje", "error", "mensaje");
         }
 
-        return true;
+        if (!Registry::getMessages(true)) {
+            $contactosIds = ContactoCategoria::getFieldBy("contactoId", "categoriaId", $this->id);
+            if (count($contactosIds)) {
+                foreach ($contactosIds as $contactoId) {
+                    $contacto = new Contacto($contactoId);
+                    if ($contacto->id) {
+                        //Preparamos el email
+                        $mailer = Registry::getMailer();
+                        $mailer->addAddress($contacto->email);
+                        $mailer->Subject = utf8_decode("Nuevo mensaje de contacto");
+                        $mailer->msgHTML(
+                            Template::renderEmail(
+                                "contactoSecciones",
+                                array(
+                                    "data" => $data,
+                                    "seccion" => $this
+                                ), "admin"
+                            )
+                        );
+                        $mailer->send();
+                    }
+                }
+            }
+
+            return true;
+        }
     }
 
     /**
