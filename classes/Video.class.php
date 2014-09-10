@@ -153,6 +153,15 @@ class Video extends Model
         return ($this->id && $userId==$this->userId);
     }
 
+    public function getThumbnailUrl()
+    {
+        if ($this->thumbnail) {
+            return $this->thumbnail;
+        } else {
+            return Url::template("img/nophotovideo.png");
+        }
+    }
+
     /**
      * Añade una visita al vídeo.
      * @return bool

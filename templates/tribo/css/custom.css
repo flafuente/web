@@ -1246,3 +1246,15 @@ font-size:15px;
 .nav.tabs li a{
     padding:10px 5px;
 }
+
+/* Paginación */
+.pagination a {
+	border: 0px!important;
+}
+.pagination a:hover{
+	cursor: pointer;
+	background-color: transparent!important;
+}
+.pagination li.active > a{
+	color: #9b9b9b!important;
+}

@@ -1,3 +1,5 @@
+<?php defined('_EXE') or die('Restricted access'); ?>
+
 <!-- Browse video -->
 <div class="greysquare">
     <div class="col-md-8">
@@ -142,4 +144,12 @@
             }
         })
     });
+
+    /* Upload video hotlink */
+    <?php if (isset($_GET["uplvid"])) { ?>
+        $(window).load(function () {
+            $('.greysquare').add('.mask').fadeIn();
+        });
+    <?php } ?>
+
 </script>

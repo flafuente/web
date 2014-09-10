@@ -3,13 +3,12 @@
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
 
 <div class='col-md-12 serie_info'>
-
     <!-- Título -->
     <div class="square-info">
         <div class="grey">
             MIS VIDEOS <?=strtoupper($title);?> (
                 <span>
-                    <?=count($videos);?>
+                    <?=$pag["total"];?>
                 </span>
             )
             <a class="btn-tribo-blue btn ladda-button" id="btn_subir_video" data-style="slide-right">
@@ -42,15 +41,24 @@
                     <?=$controller->view("modules.video");?>
                 <?php } ?>
             </div>
+
+            <!-- Paginación -->
+            <form method="POST">
+                <?php $controller->setData("pag", $pag); ?>
+                <?=$controller->view("modules.pagination");?>
+            </form>
+
         <?php } ?>
 
        <div style="clear: both;"></div>
     </div>
+
 </div>
 
 <script>
 
-    $(document).on("click",".editclick",function () {
+    /* Editar vídeo */
+    $(document).on("click", ".editclick", function () {
         id = $(this).attr("data-video-id");
         $.getJSON("<?=Url::site('videos/edit');?>/" + id, function (data) {
             $("#modaledit").html(data.data.html);
@@ -58,11 +66,5 @@
 
         return false;
     });
-
-    <?php if (isset($_GET["uplvid"])) { ?>
-        $(window).load(function () {
-            $('.greysquare').add('.mask').fadeIn();
-        });
-    <?php } ?>
 
 </script>

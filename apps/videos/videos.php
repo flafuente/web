@@ -36,8 +36,15 @@ class videosController extends Controller
     {
         $user = Registry::getUser();
 
+        //Pagination
+        $pag = array();
+        $pag['total'] = 0;
+        $pag['limit'] = 3;
+        $pag['limitStart'] = $_REQUEST['limitStart'];
+
         //Vídeos
-        $this->setData("videos", Video::select(array("estadoId" => $estadoId, "userId" => $user->id)));
+        $this->setData("videos", Video::select(array("estadoId" => $estadoId, "userId" => $user->id), $pag['limit'], $pag['limitStart'], $pag['total']));
+        $this->setData("pag", $pag);
 
         //Categorías
         $this->setData("categorias", Categoria::select(array("tipoId" => 2)));
