@@ -134,6 +134,8 @@ class loginController extends Controller
         $_REQUEST['statusId'] = 1;
         //Force un-verified account
         $_REQUEST['verified'] = 0;
+        //Force nophoto
+        $_REQUEST['foto'] = "nophoto0".rand(1, rand(1, 4)).".png";
         //Force role
         $_REQUEST['roleId'] = USER_ROLE_REGULAR;
         if ($user->insert($_REQUEST)) {
