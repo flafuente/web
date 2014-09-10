@@ -30,12 +30,6 @@
             </div>-->
         </div>
         <div>
-            <img u="image" src="<?=Url::template("/img/home/slide1.jpg");?>" />
-            <!--<div class='title'>
-                <p><span>Sólo las personas saben lo que les gusta a las personas</span></p>
-            </div>-->
-        </div>
-        <div>
             <a href="<?=Url::site("periodismociudadano#haztetriber");?>">
             <img u="image" src="<?=Url::template("/img/home/slide2.jpg");?>" />
             </a>
