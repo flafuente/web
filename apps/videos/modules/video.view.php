@@ -43,9 +43,11 @@
             <?=date("d/m/Y", strtotime($video->dateInsert));?> a las <?=date("H:i", strtotime($video->dateInsert));?>
         </span>
 
-        <span class="btn-tribo-grey btn ladda-button editclick" data-video-id="<?=$video->id;?>" style="float: right;">
-            Editar
-        </span>
+        <?php if ($video->estadoId != 1) { ?>
+            <span class="btn-tribo-grey btn ladda-button editclick" data-video-id="<?=$video->id;?>" style="float: right;">
+                Editar
+            </span>
+        <?php } ?>
 
     </div>
 </div>
