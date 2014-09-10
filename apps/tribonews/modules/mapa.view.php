@@ -20,7 +20,7 @@
                 {
                     var myOptions = {
                         zoom:5,
-                        center:new google.maps.LatLng(38.09690980000001,-3.6369803000000047),
+                        center: new google.maps.LatLng(38.09690980000001,-3.6369803000000047),
                         mapTypeId: google.maps.MapTypeId.ROADMAP,
                         styles: [{"featureType":"water","elementType":"geometry","stylers":[{"color":"#193341"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#2c5a71"}]},{"featureType":"road","elementType":"geometry","stylers":[{"color":"#29768a"},{"lightness":-37}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#406d80"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#406d80"}]},{"elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#3e606f"},{"weight":2},{"gamma":0.84}]},{"elementType":"labels.text.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"administrative","elementType":"geometry","stylers":[{"weight":0.6},{"color":"#1a3541"}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#2c5a71"}]}]
 
@@ -29,7 +29,7 @@
 
                     <?php foreach ($videos as $video) { ?>
                         marker = new google.maps.Marker({map: map, position: new google.maps.LatLng('<?=$video->lat?>', '<?=$video->long?>')});
-                        infowindowmarker = new google.maps.InfoWindow({content:"<b><?=Helper::sanitize($video->titulo);?></b>"});
+                        infowindowmarker = new google.maps.InfoWindow({content:"<a href='<?=Url::site("tribonews/video/".$video->id);?>'><?=Helper::sanitize($video->titulo);?></a>"});
                         google.maps.event.addListener(marker, "click", function () {
                             infowindowmarker.open(map, marker);
                         });
