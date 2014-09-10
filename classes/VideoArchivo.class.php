@@ -334,6 +334,10 @@ class VideoArchivo extends Model
         //Categoría
         $categoria = new Categoria($video->categoriaId);
         $data->categoria = $categoria->nombre;
+        //TriboNews?
+        if ($cateogria->tipoId == 2) {
+            $data->categoria = "7yapvmaukr";
+        }
 
         return $data;
     }
