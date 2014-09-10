@@ -249,9 +249,7 @@ class Categoria extends Model
             $this->order();
         }
         //Secciones
-        if (isset($data["secciones"])) {
-            $this->secciones = json_encode($data["secciones"]);;
-        }
+        $this->secciones = json_encode($data["secciones"]);
     }
 
     /**
@@ -260,9 +258,6 @@ class Categoria extends Model
      */
     public function postInsert($data = array())
     {
-        //Añadimos/quitamos los contactos
-        $this->syncContactos($data["contactos"]);
-
         //Añadimos/quitamos los contactos
         $this->syncContactos($data["contactos"]);
     }
@@ -307,6 +302,8 @@ class Categoria extends Model
             }
         }
     }
+
+
 
     /**
      * Envía un email a todos los contactos asociados.
