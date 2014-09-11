@@ -99,7 +99,7 @@ if (!$user->id) {
                 </li>
             <li>
                 <a href="<?=Url::site("perfil")?>">
-                    Configuración
+                    Mi perfil
                 </a>
             </li>
         </div>
