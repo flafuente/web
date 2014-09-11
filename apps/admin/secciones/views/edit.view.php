@@ -106,15 +106,6 @@ Toolbar::render();
                             <input type="text" id="hashtag" name="hashtag" class="form-control" value="<?=Helper::sanitize($seccion->hashtag);?>" placeholder="#">
                         </div>
                     </div>
-                    <!-- Color -->
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">
-                            Color
-                        </label>
-                        <div class="col-sm-8">
-                            <input type="text" id="color" name="color" class="form-control color-picker" value="<?=Helper::sanitize($seccion->color);?>">
-                        </div>
-                    </div>
                     <!-- Thumbnail -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
