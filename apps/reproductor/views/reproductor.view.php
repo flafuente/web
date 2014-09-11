@@ -1,18 +1,13 @@
 <?php defined('_EXE') or die('Restricted access'); ?>
 
 <div class='col-md-12 serie_info'>
+
+    <!-- Player -->
     <div class="col-md-12 video">
-        <script type="text/javascript" src="<?=Url::template("assets/eenet/jwplayer.js");?>"></script>
-        <div id="player_wrapper" style="position: relative; height: 350px;">
-            <object type="application/x-shockwave-flash" data="<?=Url::template("assets/eenet/player.swf");?>" width="100%" height="100%" bgcolor="#333" id="player" name="player" tabindex="0">
-                <param name="allowfullscreen" value="true">
-                <param name="allowscriptaccess" value="always">
-                <param name="seamlesstabbing" value="true">
-                <param name="wmode" value="opaque">
-                <param name="flashvars" value="netstreambasepath=http%3A%2F%2Fwww.eenet.ee%2FEENet%2Fkalakotkas2.html&amp;id=player&amp;streamer=rtmp%3A%2F%2F193.40.133.138%2Flive&amp;file=kalakotkas2&amp;autostart=true&amp;stretch=uniform&amp;rtmp.tunneling=false&amp;controlbar.position=over">
-              </object>
-        </div>
+        <?php HTML::wistiaPlayer($capitulo->cdnId, 569, 300); ?>
     </div>
+
+    <!-- Info -->
     <div class="video-info">
         <div class="col-md-12 vd-ruta">
             <a href="<?=Url::site('programas/ver/'.$programa->slug);?>">
@@ -62,7 +57,9 @@
         <strong>|</strong>
         <a href="<?=Url::site("episodios/n_programa/all");?>">todos los capitulos</a>
     </div>
+
     <div class="col-md-6 ver-todas-web" style="margin-top: 30px;">
         Ver todas las Webseries&nbsp;&nbsp;<div class="circulo-azul">+</div>
     </div>
+
 </div>
