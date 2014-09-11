@@ -106,6 +106,15 @@ Toolbar::render();
                             <input type="text" id="hashtag" name="hashtag" class="form-control" value="<?=Helper::sanitize($categoria->hashtag);?>" placeholder="#">
                         </div>
                     </div>
+                    <!-- Wistia Project Id -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            Wistia project hash
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" id="wistiaHash" name="wistiaHash" class="form-control" value="<?=Helper::sanitize($categoria->wistiaHash);?>">
+                        </div>
+                    </div>
                     <?php if (count($contactos)) { ?>
                         <!-- Contactos -->
                         <div class="form-group">

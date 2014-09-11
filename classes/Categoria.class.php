@@ -32,6 +32,11 @@ class Categoria extends Model
      */
     public $hashtag;
     /**
+     * Wistia Project Hash
+     * @var string
+     */
+    public $wistiaHash;
+    /**
      * Thumbnail (filename)
      * @var string
      */
