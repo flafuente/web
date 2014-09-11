@@ -27,7 +27,7 @@ class reproductorController extends Controller
             $this->setData("programa", new Programa($capitulo->programaId));
 
             //Capítulos
-            $this->setData("capitulos", Capitulo::select(array("programaId" => $capitulo->programaId)));
+            $this->setData("capitulos", Capitulo::select(array("programaId" => $capitulo->programaId, "estadoId" => 1)));
 
             //View
             $html = $this->view("views.reproductor");
