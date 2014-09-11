@@ -8,8 +8,6 @@ class reproductorController extends Controller
 
     public function index()
     {
-        //$html = $this->view("views.reproductor");
-        //$this->render($html);
         Url::redirect(Url::site(), "Capítulo incorrecto", "warning");
     }
 
@@ -18,15 +16,20 @@ class reproductorController extends Controller
         $url = Registry::getUrl();
         $capitulo = new Capitulo($url->vars[0]);
         if ($capitulo->id) {
+
             //Capitulo
             $this->setData("capitulo", $capitulo);
+
             //Programa
             $this->setData("programa", new Programa($capitulo->programaId));
+
             //Capítulos
-            $this->setData("capitulos", Capitulo::select(array("programaId"=>$capitulo->programaId)));
+            $this->setData("capitulos", Capitulo::select(array("programaId" => $capitulo->programaId)));
+
             //View
             $html = $this->view("views.reproductor");
             $this->render($html);
+
         } else {
             Url::redirect(Url::site(), "Capítulo incorrecto", "warning");
         }

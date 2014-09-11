@@ -53,13 +53,20 @@
     } ?>
 
     <div class='col-md-6 epi_button'>
-        <a href="<?=Url::site("programas/ver/".$programa->slug);?>">site programa</a>
-        <strong>|</strong>
-        <a href="<?=Url::site("episodios/n_programa/all");?>">todos los capitulos</a>
+        <a href="<?=Url::site("programas/ver/".$programa->slug);?>">
+            site programa
+            <strong>|</strong>
+            todos los capitulos
+        </a>
     </div>
 
-    <div class="col-md-6 ver-todas-web" style="margin-top: 30px;">
-        Ver todas las Webseries&nbsp;&nbsp;<div class="circulo-azul">+</div>
-    </div>
+    <?php $seccion = new Seccion($programa->seccionId); ?>
+    <?php if ($seccion->id) { ?>
+        <div class="col-md-6 ver-todas-web" style="margin-top: 30px;">
+            <a href="<?=Url::site("programas/seccion/".$seccion->slug);?>">
+                Ver todas las Webseries&nbsp;&nbsp;<div class="circulo-azul">+</div>
+            </a>
+        </div>
+    <?php } ?>
 
 </div>
