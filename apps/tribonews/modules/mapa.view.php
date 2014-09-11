@@ -6,7 +6,7 @@
         <div class='video-info' style="padding: 5px;">
 
             <div class='title-line'>
-                <span>LOCALIZACIÓN TRIBERS</span>
+                <span>LOCALIZACIÓN</span>
             </div>
 
             <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>

@@ -23,11 +23,17 @@ class tribonewsController extends Controller
         //Comunidades
         $this->setData("comunidades", Comunidad::select());
 
+        //Pagination
+        $pag = array();
+        $pag['total'] = 0;
+        $pag['limit'] = 5;
+        $pag['limitStart'] = $_REQUEST['limitStart'];
+
         //Vídeos
         $data = $_REQUEST;
         $data["estadoId"] = 1;
-        $data["tipoCategoriaId"] = 2;
-        $this->setData("videos", Video::select($data));
+        $this->setData("videos", Video::select($data, $pag['limit'], $pag['limitStart'], $pag['total']));
+        $this->setData("pag", $pag);
 
         $html = $this->view("views.historico");
         $this->render($html);
