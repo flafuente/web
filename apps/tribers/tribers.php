@@ -12,7 +12,7 @@ class tribersController extends Controller
     {
         $url = Registry::getUrl();
 
-        $user = new User($url->vars[0]);
+        $user = @current(User::getBy("username", $url->vars[0]));
         if ($user->id) {
             $this->setData("triber", $user);
             $html = $this->view("views.triber");
