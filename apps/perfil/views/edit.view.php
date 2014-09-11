@@ -42,9 +42,13 @@
                         </div>
                         <div class='col-md-6' style="min-height: 170px;">
                             <div style="margin-top: 20px; padding: 0px !important; margin-left: 10px;">
-                            <i class="fa fa-long-arrow-right btnazul btnazul-ico" style="top: 45px; color: #FFFFFF;"></i>&nbsp;&nbsp;<input id="fotdis" type="file" value="Selecciona una foto de tu dispositivo" class="btnazul fotdis" style="top: 45px;" />
+                            <i class="fa fa-long-arrow-right btnazul btnazul-ico" style="top: 45px; color: #FFFFFF;"></i>
+                                &nbsp;&nbsp;
+                                <input id="fotdis" name="foto" type="file" value="Selecciona una foto de tu dispositivo" class="btnazul fotdis foto" style="top: 45px;" />
                             <div style="clear: both;"></div>
-                            <i class="fa fa-long-arrow-right btnazul btnazul-ico" style="top: 45px; color: #FFFFFF;"></i>&nbsp;&nbsp;<input id="fotord" type="file" value="Tómate una foto con tu dispositivo" class="btnazul fotord" style="top: 45px;" />
+                            <?php /* <i class="fa fa-long-arrow-right btnazul btnazul-ico" style="top: 45px; color: #FFFFFF;"></i>
+                                &nbsp;&nbsp;
+                                <input name="" type="file" value="Tómate una foto con tu dispositivo" class="btnazul fotord foto" style="top: 45px;" /> */ ?>
                             </div>
                         </div>
                         <div class='col-md-3' style="min-height: 170px;">
@@ -54,7 +58,7 @@
                             <img src="" class="previsualizacion" id="fotoPreview" style="display:none">
                         </div>
                     </div>
-                
+
                     <!-- <div style="clear: both;"></div> -->
 
                     <?php echo HTML::showInput(Url::template("img/haztetriber/user.png"), "Usuario", "username", Helper::sanitize($user->username), "Introduce aquí tu usuario"); ?>
@@ -161,7 +165,7 @@
         tags:[],
         tokenSeparators: [",", " "]
     });
-    $("#foto").change(function () {
+    $(".foto").change(function () {
         if (this.files && this.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {
