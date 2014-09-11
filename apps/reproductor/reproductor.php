@@ -17,6 +17,9 @@ class reproductorController extends Controller
         $capitulo = new Capitulo($url->vars[0]);
         if ($capitulo->id) {
 
+            //Añadimos la visita
+            $capitulo->addVisita();
+
             //Capitulo
             $this->setData("capitulo", $capitulo);
 

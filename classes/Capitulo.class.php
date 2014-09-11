@@ -62,6 +62,16 @@ class Capitulo extends Model
      */
     public $duracion;
     /**
+     * Nº total de visitas recibidas
+     * @var int
+     */
+    public $visitas;
+    /**
+     * Nº total de likes recibidos
+     * @var int
+     */
+    public $likes;
+    /**
      * Fecha de emisión (Y-d-m)
      * @var string
      */
@@ -132,6 +142,54 @@ class Capitulo extends Model
         }
 
         return $return;
+    }
+
+    /**
+     * Añade una visita al capítulo.
+     * @return bool
+     */
+    public function addVisita()
+    {
+        //Creamos la visita
+        $visita = new CapituloVisita();
+        $visita->capituloId = $this->id;
+        $visita->insert();
+        //Actualizamos el total
+        $this->visitas = CapituloVisita::getTotalVisitasByCapituloId($this->id);
+
+        return $this->update();
+    }
+
+    /**
+     * Añade un like al capítulo.
+     * @return bool
+     */
+    public function like()
+    {
+        $user = Registry::getUser();
+        //Creamos el like
+        $like = new CapituloLike();
+        $like->capituloId = $this->id;
+        $like->userId = $user->id;
+        $like->insert();
+        //Actualizamos el total
+        $this->likes = CapituloLike::getTotalLikesByCapituloId($this->id);
+
+        return $this->update();
+    }
+
+    /**
+     * Quita un like al capítulo.
+     * @return bool
+     */
+    public function unlike()
+    {
+        //Eliminamos el like
+        CapituloLike::unlike($this->id);
+        //Actualizamos el total
+        $this->likes = CapituloLike::getTotalLikesByCapituloId($this->id);
+
+        return $this->update();
     }
 
     /**

@@ -169,10 +169,9 @@ class Video extends Model
     public function addVisita()
     {
         //Creamos la visita
-        $videoVisita = new VideoVisita();
-        $videoVisita->videoId = $this->id;
-        $videoVisita->videoId = $this->id;
-        $videoVisita->insert();
+        $visita = new VideoVisita();
+        $visita->videoId = $this->id;
+        $visita->insert();
         //Actualizamos el total
         $this->visitas = VideoVisita::getTotalVisitasByVideoId($this->id);
 

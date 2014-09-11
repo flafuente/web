@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="sq_num">568 <i class="fa fa-heart-o"></i>
+            <div class="sq_num"><?=$capitulo->likes;?> <i class="fa fa-heart-o"></i>
             </div>
         </div>
         <div class="col-md-12">
