@@ -234,16 +234,23 @@ class Capitulo extends Model
     }
 
     /**
+     * Comprueba si el capítulo está marcado con Like
+     * @return boolean
+     */
+    public function isLiked()
+    {
+        return CapituloLike::isLiked($this->id);
+    }
+
+    /**
      * Añade un like al capítulo.
      * @return bool
      */
     public function like()
     {
-        $user = Registry::getUser();
         //Creamos el like
         $like = new CapituloLike();
         $like->capituloId = $this->id;
-        $like->userId = $user->id;
         $like->insert();
         //Actualizamos el total
         $this->likes = CapituloLike::getTotalLikesByCapituloId($this->id);

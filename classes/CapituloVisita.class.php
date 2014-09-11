@@ -54,13 +54,12 @@ class CapituloVisita extends Model
      * @param  integer $capituloId Id del capítulo
      * @return int
      */
-    public function getTotalVisitasByCapituloId($capituloId = null)
+    public static function getTotalVisitasByCapituloId($capituloId = null)
     {
         if ($capituloId) {
             $db = Registry::getDb();
-            $params = array();
             $query = "SELECT count(DISTINCT `ip`) as `total` FROM `capitulos_visitas` WHERE `capituloId`=:capituloId";
-            $params[":capituloId"] = $capituloId;
+            $params = array(":capituloId" => $capituloId);
             $rows = $db->query($query, $params);
             if (count($rows)) {
                 return $rows[0]["total"];

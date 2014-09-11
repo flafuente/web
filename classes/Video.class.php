@@ -179,6 +179,45 @@ class Video extends Model
     }
 
     /**
+     * Comprueba si el vídeo está marcado con Like
+     * @return boolean
+     */
+    public function isLiked()
+    {
+        return VideoLike::isLiked($this->id);
+    }
+
+    /**
+     * Añade un like al vídeo.
+     * @return bool
+     */
+    public function like()
+    {
+        //Creamos el like
+        $like = new VideoLike();
+        $like->videoId = $this->id;
+        $like->insert();
+        //Actualizamos el total
+        $this->likes = VideoLike::getTotalLikesByVideoId($this->id);
+
+        return $this->update();
+    }
+
+    /**
+     * Quita un like al vídeo.
+     * @return bool
+     */
+    public function unlike()
+    {
+        //Eliminamos el like
+        VideoLike::unlike($this->id);
+        //Actualizamos el total
+        $this->likes = VideoLike::getTotalLikesByVideoId($this->id);
+
+        return $this->update();
+    }
+
+    /**
      * Devuelve el estado actual del capítulo.
      * @return string Estado
      */

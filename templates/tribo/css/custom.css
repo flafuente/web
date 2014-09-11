@@ -1256,3 +1256,9 @@ font-size:15px;
 .pagination li.active > a{
 	color: #9b9b9b!important;
 }
+
+/* Like buttons */
+.like{
+	cursor: pointer;
+	color: #17B5E9;
+}

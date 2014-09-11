@@ -1,10 +1,10 @@
 <?php
 /**
- * Modelo CapituloLike
+ * Modelo VideoLike
  *
  * @package Tribo\Modelos
  */
-class CapituloLike extends Model
+class VideoLike extends Model
 {
     /**
      * Id
@@ -12,10 +12,10 @@ class CapituloLike extends Model
      */
     public $id;
     /**
-     * Id del capítulo
+     * Id del vídeo
      * @var int
      */
-    public $capituloId;
+    public $videoId;
     /**
      * Ip del visitante
      * @var int
@@ -34,7 +34,7 @@ class CapituloLike extends Model
     public function init()
     {
         //Tabla usada en la DB
-        parent::$dbTable = "capitulos_likes";
+        parent::$dbTable = "videos_likes";
         //Variables reservadas
         parent::$reservedVarsChild = self::$reservedVarsChild;
     }
@@ -50,18 +50,18 @@ class CapituloLike extends Model
     }
 
     /**
-     * Comprueba si un capítulo está marcado con Like con la IP actual
-     * @param  int     $capituloId
+     * Comprueba si un vídeo está marcado con Like con la IP actual
+     * @param  int     $videoId
      * @return boolean
      */
-    public static function isLiked($capituloId = null)
+    public static function isLiked($videoId = null)
     {
-        if ($capituloId) {
+        if ($videoId) {
             $ip = $_SERVER["REMOTE_ADDR"];
             $db = Registry::getDb();
-            $query = "SELECT * FROM `capitulos_likes` WHERE `capituloId` = :capituloId AND `ip` = :ip";
+            $query = "SELECT * FROM `videos_likes` WHERE `videoId` = :videoId AND `ip` = :ip";
             $params = array(
-                ":capituloId" => $capituloId,
+                ":videoId" => $videoId,
                 ":ip" => $ip,
             );
 
@@ -73,14 +73,14 @@ class CapituloLike extends Model
         return false;
     }
 
-    public static function unlike($capituloId = null)
+    public static function unlike($videoId = null)
     {
-        if ($capituloId) {
+        if ($videoId) {
             $ip = $_SERVER["REMOTE_ADDR"];
             $db = Registry::getDb();
-            $query = "DELETE FROM `capitulos_likes` WHERE `capituloId` = :capituloId AND `ip` = :ip";
+            $query = "DELETE FROM `videos_likes` WHERE `videoId` = :videoId AND `ip` = :ip";
             $params = array(
-                ":capituloId" => $capituloId,
+                ":videoId" => $videoId,
                 ":ip" => $ip,
             );
 
@@ -89,16 +89,16 @@ class CapituloLike extends Model
     }
 
     /**
-     * Devuelve el número total de las Likes recibidos de un capítulo.
-     * @param  integer $capituloId Id del capítulo
+     * Devuelve el número total de las Likes recibidos de un vídeo.
+     * @param  integer $videoId Id del capítulo
      * @return int
      */
-    public static function getTotalLikesByCapituloId($capituloId = null)
+    public static function getTotalLikesByCapituloId($videoId = null)
     {
-        if ($capituloId) {
+        if ($videoId) {
             $db = Registry::getDb();
-            $query = "SELECT count(DISTINCT `ip`) as `total` FROM `capitulos_likes` WHERE `capituloId`=:capituloId";
-            $params = array(":capituloId" => $capituloId);
+            $query = "SELECT count(DISTINCT `ip`) as `total` FROM `videos_likes` WHERE `videoId`=:videoId";
+            $params = array(":videoId" => $videoId);
             $rows = $db->query($query, $params);
             if (count($rows)) {
                 return $rows[0]["total"];

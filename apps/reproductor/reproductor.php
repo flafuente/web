@@ -34,4 +34,26 @@ class reproductorController extends Controller
             Url::redirect(Url::site(), "Capítulo incorrecto", "warning");
         }
     }
+
+    public function like()
+    {
+        $url = Registry::getUrl();
+
+        $capitulo = new Capitulo($url->vars[0]);
+        if ($capitulo->id) {
+            $capitulo->like();
+        }
+        $this->ajax();
+    }
+
+    public function unlike()
+    {
+        $url = Registry::getUrl();
+
+        $capitulo = new Capitulo($url->vars[0]);
+        if ($capitulo->id) {
+            $capitulo->unlike();
+        }
+        $this->ajax();
+    }
 }

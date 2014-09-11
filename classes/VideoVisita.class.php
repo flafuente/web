@@ -54,13 +54,12 @@ class VideoVisita extends Model
      * @param  integer $videoId Id del vídeo
      * @return int
      */
-    public function getTotalVisitasByVideoId($videoId=0)
+    public static function getTotalVisitasByVideoId($videoId=0)
     {
         if ($videoId) {
             $db = Registry::getDb();
-            $params = array();
             $query = "SELECT count(DISTINCT `ip`) as `total` FROM `videos_visitas` WHERE `videoId`=:videoId";
-            $params[":videoId"] = $videoId;
+            $params = array(":videoId" => $videoId);
             $rows = $db->query($query, $params);
             if (count($rows)) {
                 return $rows[0]["total"];
