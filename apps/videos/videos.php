@@ -168,4 +168,26 @@ class videosController extends Controller
             )
         );
     }
+
+    public function like()
+    {
+        $url = Registry::getUrl();
+
+        $video = new Video($url->vars[0]);
+        if ($video->id) {
+            $video->like();
+        }
+        $this->ajax();
+    }
+
+    public function unlike()
+    {
+        $url = Registry::getUrl();
+
+        $video = new Video($url->vars[0]);
+        if ($video->id) {
+            $video->unlike();
+        }
+        $this->ajax();
+    }
 }
