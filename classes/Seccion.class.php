@@ -1,13 +1,13 @@
 <?php
 /**
- * Modelo Categoría
+ * Modelo Sección
  *
  * @package Tribo\Modelos
  */
-class Categoria extends Model
+class Seccion extends Model
 {
     /**
-     * Id de la categoría
+     * Id de la sección
      * @var int
      */
     public $id;
@@ -32,6 +32,11 @@ class Categoria extends Model
      */
     public $hashtag;
     /**
+     * Color
+     * @var string
+     */
+    public $color;
+    /**
      * Thumbnail (filename)
      * @var string
      */
@@ -41,6 +46,11 @@ class Categoria extends Model
      * @var string
      */
     public $slug;
+    /**
+     * Imágen para el menú
+     * @var string
+     */
+    public $menuImage;
     /**
      * Fecha de creación
      * @var string
@@ -56,7 +66,7 @@ class Categoria extends Model
      * Ruta de las imágenes
      * @var string
      */
-    public $path = "/files/images/categorias/";
+    public $path = "/files/images/secciones/";
 
     /**
      * Variables reservadas (no están en la base de datos)
@@ -71,7 +81,7 @@ class Categoria extends Model
     public function init()
     {
         //Tabla usada en la DB
-        parent::$dbTable = "categorias";
+        parent::$dbTable = "secciones";
         //Variables reservadas
         parent::$reservedVarsChild = self::$reservedVarsChild;
     }
@@ -91,6 +101,11 @@ class Categoria extends Model
     public function getThumbnailUrl()
     {
         return Url::site($this->path.$this->thumbnail);
+    }
+
+    public function getMenuImage()
+    {
+        return Url::template("img/home/".$this->menuImage);
     }
 
     public function validate()
@@ -141,25 +156,25 @@ class Categoria extends Model
 
     public function order()
     {
-        //leemos las categorías
-        $categorias = Categoria::select();
+        //leemos las secciones
+        $secciones = Seccion::select();
         $pos = 0;
-        if (count($categorias)) {
+        if (count($secciones)) {
             //Primero
             if ($this->order==-1) {
                 $this->order = 1;
                 $pos++;
             }
-            //Recorremos las categorías
-            foreach ($categorias as $categoria) {
+            //Recorremos las secciones
+            foreach ($secciones as $seccion) {
                 $pos++;
                 //Si hemos indicado ir aquí...
                 if ($this->order==$pos) {
                     $pos++;
                 }
-                //Movemos la categoría de posición
-                $categoria->order = $pos;
-                $categoria->update();
+                //Movemos la sección de posición
+                $seccion->order = $pos;
+                $seccion->update();
             }
             //Último
             if ($this->order==-2) {
@@ -207,106 +222,6 @@ class Categoria extends Model
     }
 
     /**
-     * Acciones posteriores a la creación.
-     * @return void
-     */
-    public function postInsert($data = array())
-    {
-        //Añadimos/quitamos los contactos
-        $this->syncContactos($data["contactos"]);
-    }
-
-    public function postUpdate($data = array())
-    {
-        //Añadimos/quitamos los contactos
-        $this->syncContactos($data["contactos"]);
-    }
-
-    /**
-     * Añade y quita las tags al vídeo
-     * @param  array $tagsIds Id's de las Tags a añadir
-     * @return void
-     */
-    public function syncContactos($contactosIds = array())
-    {
-        $actualContactosIds = ContactoCategoria::getFieldBy("contactoId", "categoriaId", $this->id);
-        //Quitar
-        if (count($actualContactosIds)) {
-            foreach ($actualContactosIds as $contactoId) {
-                if ($contactoId) {
-                    //Si el contacto no ha sido pasado por parámetro...
-                    if (!@in_array($contactoId, $contactosIds)) {
-                        ContactoCategoria::deleteContacto($this->id, $contactoId);
-                    }
-                }
-            }
-        }
-        //Añadir
-        if (count($contactosIds)) {
-            foreach ($contactosIds as $contactoId) {
-                if ($contactoId) {
-                    //Si el contacto no está actualmente...
-                    if (!@in_array($contactoId, $actualContactosIds)) {
-                        $contactoCategoria = new ContactoCategoria();
-                        $contactoCategoria->categoriaId = $this->id;
-                        $contactoCategoria->contactoId = $contactoId;
-                        $contactoCategoria->insert();
-                    }
-                }
-            }
-        }
-    }
-
-    /**
-     * Envía un email a todos los contactos asociados.
-     * @param  array $data Form data.
-     * @return bool
-     */
-    public function sendEmail($data)
-    {
-        //Validaciones
-        //Nombre
-        if (!$data["nombre"]) {
-            Registry::addMessage("Debes introducir tu nombre", "error", "nombre");
-        }
-        //Email
-        if (!$data["email"]) {
-            Registry::addMessage("Debes introducir tu email", "error", "email");
-        }
-        //Mensaje
-        if (!$data["mensaje"]) {
-            Registry::addMessage("Debes introducir un mensaje", "error", "mensaje");
-        }
-
-        if (!Registry::getMessages(true)) {
-            $contactosIds = ContactoCategoria::getFieldBy("contactoId", "categoriaId", $this->id);
-            if (count($contactosIds)) {
-                foreach ($contactosIds as $contactoId) {
-                    $contacto = new Contacto($contactoId);
-                    if ($contacto->id) {
-                        //Preparamos el email
-                        $mailer = Registry::getMailer();
-                        $mailer->addAddress($contacto->email);
-                        $mailer->Subject = utf8_decode("Nuevo mensaje de contacto");
-                        $mailer->msgHTML(
-                            Template::renderEmail(
-                                "contactoSecciones",
-                                array(
-                                    "data" => $data,
-                                    "seccion" => $this
-                                ), "admin"
-                            )
-                        );
-                        $mailer->send();
-                    }
-                }
-            }
-
-            return true;
-        }
-    }
-
-    /**
      * Obtiene registros de la base de datos.
      * @param  array   $data       Condicionales / ordenación
      * @param  integer $limit      Límite de resultados (Paginación)
@@ -318,13 +233,8 @@ class Categoria extends Model
     {
         $db = Registry::getDb();
         //Query
-        $query = "SELECT * FROM `categorias` WHERE 1=1 ";
+        $query = "SELECT * FROM `secciones` WHERE 1=1 ";
         $params = array();
-        //Where
-        if (isset($data["categoriasIds"])) {
-            //INSECURE!
-            $query .= " AND `id` IN (".implode(",", $data["categoriasIds"]).") ";
-        }
         //Búsqueda
         if ($data["search"]) {
             $query .= " AND `nombre` LIKE :nombre";
@@ -355,7 +265,7 @@ class Categoria extends Model
             $rows = $db->Query($query, $params);
             if (count($rows)) {
                 foreach ($rows as $row) {
-                    $results[] = new Categoria($row);
+                    $results[] = new Seccion($row);
                 }
 
                 return $results;

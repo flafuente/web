@@ -2,7 +2,7 @@
 //No direct access
 defined('_EXE') or die('Restricted access');
 
-class programasController extends Controller
+class seccionesController extends Controller
 {
     public function init()
     {
@@ -20,9 +20,8 @@ class programasController extends Controller
         $pag['total'] = 0;
         $pag['limit'] = $_REQUEST['limit'] ? $_REQUEST['limit'] : $config->get("defaultLimit");
         $pag['limitStart'] = $_REQUEST['limitStart'];
-        $this->setData("results", Programa::select($_REQUEST, $pag['limit'], $pag['limitStart'], $pag['total']));
+        $this->setData("results", Seccion::select($_REQUEST, $pag['limit'], $pag['limitStart'], $pag['total']));
         $this->setData("pag", $pag);
-        $this->setData("secciones", Seccion::select());
         $html = $this->view("views.list");
         $this->render($html);
     }
@@ -30,7 +29,7 @@ class programasController extends Controller
     public function edit()
     {
         $url = Registry::getUrl();
-        $this->setData("programa", new Programa($url->vars[0]));
+        $this->setData("seccion", new Seccion($url->vars[0]));
         $this->setData("secciones", Seccion::select());
         $html = $this->view("views.edit");
         $this->render($html);
@@ -38,16 +37,16 @@ class programasController extends Controller
 
     public function save()
     {
-        $programa = new Programa($_REQUEST['id']);
-        if ($programa->id) {
-            $res = $programa->update($_REQUEST);
+        $seccion = new Seccion($_REQUEST['id']);
+        if ($seccion->id) {
+            $res = $seccion->update($_REQUEST);
             if ($res) {
-                Registry::addMessage("Programa actualizado satisfactoriamente", "success", "", Url::site("admin/programas"));
+                Registry::addMessage("Sección actualizada satisfactoriamente", "success", "", Url::site("admin/secciones"));
             }
         } else {
-            $res = $programa->insert($_REQUEST);
+            $res = $seccion->insert($_REQUEST);
             if ($res) {
-                Registry::addMessage("Programa creado satisfactoriamente", "success", "", Url::site("admin/programas"));
+                Registry::addMessage("Sección creada satisfactoriamente", "success", "", Url::site("admin/secciones"));
             }
         }
         $this->ajax();
@@ -57,12 +56,12 @@ class programasController extends Controller
     {
         $url = Registry::getUrl();
         $id = $_REQUEST["id"] ? $_REQUEST["id"] : $url->vars[0];
-        $programa = new Programa($id);
-        if ($programa->id) {
-            if ($programa->delete()) {
-                Registry::addMessage("Programa eliminado satisfactoriamente", "success");
+        $seccion = new Seccion($id);
+        if ($seccion->id) {
+            if ($seccion->delete()) {
+                Registry::addMessage("Sección eliminada satisfactoriamente", "success");
             }
         }
-        Url::redirect(Url::site("admin/programas"));
+        Url::redirect(Url::site("admin/secciones"));
     }
 }

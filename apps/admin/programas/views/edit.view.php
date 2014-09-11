@@ -85,14 +85,14 @@ Toolbar::render();
                             <input type="checkbox" class="switch" name="estadoId" id="estadoId" value="1" <?php if($programa->estadoId) echo "checked";?>>
                         </div>
                     </div>
-                    <?php if (count($categorias)) { ?>
-                        <!-- Categoría -->
+                    <?php if (count($secciones)) { ?>
+                        <!-- Sección -->
                         <div class="form-group">
                             <label class="col-sm-2 control-label">
-                                Categoría
+                                Sección
                             </label>
                             <div class="col-sm-8">
-                                <?=HTML::select("categoriaId", $categorias, $programa->categoriaId, null, null, array("display" => "nombre")); ?>
+                                <?=HTML::select("seccionId", $secciones, $programa->seccionId, null, null, array("display" => "nombre")); ?>
                             </div>
                         </div>
                     <?php } ?>

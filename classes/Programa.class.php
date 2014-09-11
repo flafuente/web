@@ -12,10 +12,10 @@ class Programa extends Model
      */
     public $id;
     /**
-     * Id de la categoría
+     * Id de la sección
      * @var int
      */
-    public $categoriaId;
+    public $seccionId;
     /**
      * Id del usuario creador
      * @var int
@@ -126,7 +126,7 @@ class Programa extends Model
     {
         $config = Registry::getConfig();
 
-        return Url::site($this->path.$this->banner);
+        return Url::site($config->get("path").$this->path.$this->banner);
     }
 
     /**
@@ -310,10 +310,10 @@ class Programa extends Model
             $query .= " AND `estadoId`=:estadoId ";
             $params[":estadoId"] = $data["estadoId"];
         }
-        //Categoría
-        if ($data["categoriaId"]) {
-            $query .= " AND `categoriaId`=:categoriaId ";
-            $params[":categoriaId"] = $data["categoriaId"];
+        //Sección
+        if ($data["seccionId"]) {
+            $query .= " AND `seccionId`=:seccionId ";
+            $params[":seccionId"] = $data["seccionId"];
         }
         //Destacado
         if ($data["destacado"]) {

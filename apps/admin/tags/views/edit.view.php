@@ -9,7 +9,7 @@ if ($tag->id) {
     $subtitle = "Nuevo tag";
     $title = "Crear";
 }
-Toolbar::addTitle("Tags", "glyphicon-asterisk", $subtitle);
+Toolbar::addTitle("Tags", "glyphicon-tag", $subtitle);
 if ($tag->id) {
     //Delete button
     Toolbar::addButton(

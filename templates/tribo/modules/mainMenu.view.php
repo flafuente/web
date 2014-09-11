@@ -8,20 +8,19 @@
 
       <li class="<?=$active["programas"]["index"];?> withsub">
         <a href="#">PROGRAMAS</a>
-        <?php $categorias = Categoria::select(Array("seccionId" => "1")); ?>
-        <?php if (count($categorias)) { ?>
+        <?php $secciones = Seccion::select(array("destacada" => true)); ?>
+        <?php if (count($secciones)) { ?>
             <ul class="submenu" style="display: none;">
                 <div class="triangle"></div>
-                <?php $x=0; foreach ($categorias as $categoria) { $x = $x+1; ?>
+                <?php $x=0; foreach ($secciones as $seccion) { $x = $x+1; ?>
                     <li class="col-md-6" style="padding: 0px; margin: 0px;">
-                        <a href="<?=Url::site("programas/seccion/".$categoria->slug);?>">
-                            <?php //echo Helper::sanitize($categoria->nombre); ?>
+                        <a href="<?=Url::site("programas/seccion/".$seccion->slug);?>">
                             <div id="prg_<?= $x; ?>" class="imgmenu"></div>
                         </a>
                     </li>
                     <style>
                         #prg_<?= $x; ?>{
-                          background-image: url("<?=Url::template("img/home/".$categoria->menuImage);?>");
+                          background-image: url("<?=$seccion->getMenuImage();?>");
                         }
                     </style>
                 <?php } ?>
@@ -30,7 +29,7 @@
       </li>
       <li class="<?=$active["periodismociudadano"]["index"];?> withsub">
         <a href="<?=Url::site("tribonews");?>">TRIBO NEWS</a>
-        <?php $categorias = Categoria::select(Array("seccionId" => "2")); ?>
+        <?php $categorias = Categoria::select(array("destacada" => true)); ?>
         <?php if (count($categorias)) { ?>
             <ul class="submenu" style="display: none;">
                 <div class="triangle"></div>

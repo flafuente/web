@@ -20,6 +20,14 @@
             <ul class="nav navbar-nav">
                 <?php $url = Registry::getUrl(); ?>
                 <?php $active[$url->app][$url->action] = "active"; ?>
+               <?php if ($user->checkPermisos("secciones")) { ?>
+                    <li class="<?=$active['admin']['secciones']?>">
+                        <a href="<?=Url::site("admin/secciones")?>">
+                            <span class="glyphicon glyphicon-star"></span>
+                            Secciones
+                        </a>
+                    </li>
+                <?php } ?>
                 <?php if ($user->checkPermisos("programas")) { ?>
                     <li class="<?=$active['admin']['programas']?>">
                         <a href="<?=Url::site("admin/programas")?>">
@@ -71,7 +79,7 @@
                 <?php if ($user->checkPermisos("tags")) { ?>
                     <li class="<?=$active['admin']['tags']?>">
                         <a href="<?=Url::site("admin/tags")?>">
-                            <span class="glyphicon glyphicon-asterisk"></span>
+                            <span class="glyphicon glyphicon-tag"></span>
                             Tags
                         </a>
                     </li>

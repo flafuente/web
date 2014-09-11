@@ -61,12 +61,12 @@
                         <input type="text" class="form-control" id="url" name="url" placeholder="Url" />
                     </div>
                 </div>
-                <?php if (count($categorias)) { ?>
+                <?php if (count($secciones)) { ?>
                     <!-- Sección -->
                     <div class="form-group">
                         <label for="email" class="col-sm-offset-1 col-sm-3 control-label l-left"><img src="<?=Url::template("img/haztetriber/seccion.png");?>" />&nbsp;&nbsp;Sección</label>
                         <div class="col-sm-8">
-                            <?=HTML::select("categoriaId", $categorias, null, null, null, array("display" => "nombre")); ?>
+                            <?=HTML::select("seccionId", $secciones, null, null, null, array("display" => "nombre")); ?>
                         </div>
                     </div>
                 <?php } ?>

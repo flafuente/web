@@ -44,7 +44,7 @@ class videosController extends Controller
      */
     public function categories()
     {
-        WS::addData("categorias", Categoria::select(array("tipoId" => 1)));
+        WS::addData("categorias", Categoria::select());
         WS::output();
     }
 
@@ -53,7 +53,7 @@ class videosController extends Controller
      */
     public function secctions()
     {
-        WS::addData("secctions", Categoria::select(array("tipoId" => 2)));
+        WS::addData("secctions", Seccion::select());
         WS::output();
     }
 

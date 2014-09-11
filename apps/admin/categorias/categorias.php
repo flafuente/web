@@ -20,8 +20,6 @@ class categoriasController extends Controller
         $pag['total'] = 0;
         $pag['limit'] = $_REQUEST['limit'] ? $_REQUEST['limit'] : $config->get("defaultLimit");
         $pag['limitStart'] = $_REQUEST['limitStart'];
-        //TipoId
-        $_REQUEST["tipoId"] = isset($_REQUEST["tipoId"]) ? $_REQUEST["tipoId"] : 1;
         $this->setData("results", Categoria::select($_REQUEST, $pag['limit'], $pag['limitStart'], $pag['total']));
         $this->setData("pag", $pag);
         $html = $this->view("views.list");

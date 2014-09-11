@@ -110,6 +110,7 @@ class User extends Model
         "usuarios"      => "Usuarios",
         "videos"        => "Vídeos",
         "parrilla"      => "Parrilla",
+        "secciones"    => "secciones",
         "programas"     => "Programas",
         "capitulos"     => "Capítulos",
         "categorias"    => "Categorias",

@@ -28,10 +28,10 @@ Toolbar::render();
             <div class="col-sm-3 col-xs-6 filter">
                 <?=HTML::search();?>
             </div>
-            <?php if (count($categorias)) { ?>
+            <?php if (count($secciones)) { ?>
                 <!-- Categoría -->
                 <div class="col-sm-3 col-xs-6 col-md-2 filter">
-                    <?=HTML::select("categoriaId", $categorias, $_REQUEST["categoriaId"], array("class" => "change-submit"), array("display" => "- Categoría -"), array("display" => "nombre")); ?>
+                    <?=HTML::select("seccionId", $secciones, $_REQUEST["seccionId"], array("class" => "change-submit"), array("display" => "- Secciones -"), array("display" => "nombre")); ?>
                 </div>
             <?php } ?>
             <!-- Estado -->
@@ -48,7 +48,7 @@ Toolbar::render();
                         <tr>
                             <th><?=Html::sortableLink("id", "Id");?></th>
                             <th><?=Html::sortableLink("estadoId", "Estado");?></th>
-                            <th><?=Html::sortableLink("categoriaId", "Categoría");?></th>
+                            <th><?=Html::sortableLink("seccionId", "Sección");?></th>
                             <th><?=Html::sortableLink("titulo", "Título");?></th>
                             <th><?=Html::sortableLink("dateInsert", "Fecha creación");?></th>
                             <th><?=Html::sortableLink("dateUpdate", "Fecha actualización");?></th>
@@ -57,7 +57,7 @@ Toolbar::render();
                     </thead>
                     <tbody>
                         <?php foreach ($results as $programa) { ?>
-                            <?php $categoria = new Categoria($programa->categoriaId); ?>
+                            <?php $seccion = new Seccion($programa->seccionId); ?>
                             <tr>
                                 <td><?=$programa->id;?></td>
                                 <td>
@@ -66,8 +66,8 @@ Toolbar::render();
                                     </span>
                                 </td>
                                 <td>
-                                    <?php if ($categoria->id) { ?>
-                                        <?=Helper::sanitize($categoria->nombre);?>
+                                    <?php if ($seccion->id) { ?>
+                                        <?=Helper::sanitize($seccion->nombre);?>
                                     <?php } else { ?>
                                         -
                                     <?php } ?>

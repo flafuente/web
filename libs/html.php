@@ -179,7 +179,7 @@ class HTML
             $html .= "<option value='".Helper::sanitize($firstOption["id"])."'>".Helper::sanitize($firstOption["display"])."</option>\n";
         }
         //Options
-        foreach ($list as $value => $display) {
+        foreach ((array) $list as $value => $display) {
             $html .= "<option value='".Helper::sanitize($value)."' ".$selectedArray[$value].">".Helper::sanitize($display)."</option>\n";
         }
 

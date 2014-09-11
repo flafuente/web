@@ -21,20 +21,19 @@ class videosController extends Controller
         $pag['total'] = 0;
         $pag['limit'] = $_REQUEST['limit'] ? $_REQUEST['limit'] : $config->get("defaultLimit");
         $pag['limitStart'] = $_REQUEST['limitStart'];
+        $this->setData("results", Video::select($_REQUEST, $pag['limit'], $pag['limitStart'], $pag['total']));
+        $this->setData("pag", $pag);
+
         //Limitamos las categorías de los validadores
-        $selectVideos = array(
+        $selectCategorias = array(
             "order" => "nombre",
             "orderDir" => "ASC"
         );
-        if ($user->roleId==USER_ROLE_VALIDADOR) {
-            $categoriasIds = $user->getCategoriasIds();
-            if (is_array($categoriasIds) && count($categoriasIds)) {
-                $selectVideos["categoriasIds"] = $categoriasIds;
-            }
+        if ($user->roleId == USER_ROLE_VALIDADOR) {
+            $selectCategorias["categoriasIds"] = $user->getCategoriasIds();
         }
-        $this->setData("results", Video::select($selectVideos, $pag['limit'], $pag['limitStart'], $pag['total']));
-        $this->setData("pag", $pag);
-        $this->setData("categorias", Categoria::select());
+        $this->setData("categorias", Categoria::select($selectCategorias));
+
         $html = $this->view("views.list");
         $this->render($html);
     }
@@ -45,21 +44,23 @@ class videosController extends Controller
         $url = Registry::getUrl();
         $video = new Video($url->vars[0]);
         $this->setData("video", $video);
+
+        //Archivos de vídeo
         if ($video->id) {
             $this->setData("videosArchivos", VideoArchivo::getBy("videoId", $video->id));
         }
+
         //Limitamos las categorías de los validadores
         $selectCategorias = array(
             "order" => "nombre",
             "orderDir" => "ASC"
         );
-        if ($user->roleId==3) {
-            $categoriasIds = $user->getCategoriasIds();
-            if (is_array($categoriasIds) && count($categoriasIds)) {
-                $selectCategorias["categoriasIds"] = $categoriasIds;
-            }
+        if ($user->roleId == USER_ROLE_VALIDADOR) {
+            $selectCategorias["categoriasIds"] = $user->getCategoriasIds();
         }
         $this->setData("categorias", Categoria::select($selectCategorias));
+
+        //Tags
         $this->setData("tags", Tag::select(
             array(
                 "order" => "nombre",

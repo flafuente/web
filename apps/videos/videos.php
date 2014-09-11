@@ -47,7 +47,7 @@ class videosController extends Controller
         $this->setData("pag", $pag);
 
         //Categorías
-        $this->setData("categorias", Categoria::select(array("tipoId" => 2)));
+        $this->setData("categorias", Categoria::select());
 
         //Tags
         $this->setData("tags", Tag::select());
