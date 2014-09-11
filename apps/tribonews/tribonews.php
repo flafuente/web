@@ -9,7 +9,7 @@ class tribonewsController extends Controller
     public function index()
     {
         //Vídeos
-        $this->setData("videos", Video::select(array("estadoId" => "1", "tipoCategoriaId" => 2)));
+        $this->setData("videos", Video::select(array("estadoId" => "1")));
 
         $html = $this->view("views.tribonews");
         $this->render($html);

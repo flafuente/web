@@ -428,11 +428,6 @@ class Video extends Model
             $query .= " AND `categoriaId`=:categoriaId ";
             $params[":categoriaId"] = $data["categoriaId"];
         }
-        //Tipo Categoría
-        if ($data["tipoCategoriaId"]) {
-            $query .= " AND `categoriaId` IN (SELECT id FROM categorias WHERE tipoId=:tipoCategoriaId) ";
-            $params[":tipoCategoriaId"] = $data["tipoCategoriaId"];
-        }
         //Comunidad
         if ($data["comunidadId"]) {
             $query .= " AND `comunidadId`=:comunidadId ";
