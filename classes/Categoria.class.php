@@ -12,10 +12,10 @@ class Categoria extends Model
      */
     public $id;
     /**
-     * Destacada
+     * Visible
      * @var bool
      */
-    public $destacada;
+    public $visible;
     /**
      * Order
      * @var int
@@ -37,11 +37,6 @@ class Categoria extends Model
      */
     public $wistiaHash;
     /**
-     * Thumbnail (filename)
-     * @var string
-     */
-    public $thumbnail;
-    /**
      * Slug
      * @var string
      */
@@ -56,18 +51,6 @@ class Categoria extends Model
      * @var string
      */
     public $dateUpdate;
-
-    /**
-     * Ruta de las imágenes
-     * @var string
-     */
-    public $path = "/files/images/categorias/";
-
-    /**
-     * Variables reservadas (no están en la base de datos)
-     * @var array
-     */
-    public static $reservedVarsChild = array("path");
 
     /**
      * Init.
@@ -89,37 +72,13 @@ class Categoria extends Model
         }
     }
 
-    /**
-     * Devuelve la URL del Thumbnail.
-     * @return string
-     */
-    public function getThumbnailUrl()
-    {
-        return Url::site($this->path.$this->thumbnail);
-    }
-
     public function validate()
     {
-        $config = Registry::getConfig();
         //nombre
         if (!$this->nombre) {
             Registry::addMessage("Debes introducir un nombre", "error", "nombre");
         } elseif (Categoria::getBy("nombre", $this->nombre, $this->id)) {
             Registry::addMessage("Ya existe una categoría con este nombre", "error", "nombre");
-        }
-        //Thumbnail Upload
-        if (isset($_FILES["thumbnail"])) {
-            try {
-                $bulletProof = new BulletProof;
-                $this->thumbnail = $bulletProof
-                    ->uploadDir($config->get("path").$this->path)
-                    ->shrink(array("height"=>144, "width"=>240))
-                    ->upload($_FILES['thumbnail']);
-            } catch (ImageUploaderException $e) {
-                Registry::addMessage("Error al subir la imagen: ".$e->getMessage(), "error");
-            }
-        } else {
-            $this->thumbnail = null;
         }
     }
 
@@ -335,10 +294,10 @@ class Categoria extends Model
             $query .= " AND `nombre` LIKE :nombre";
             $params[":nombre"] = "%".$data["search"]."%";
         }
-        //Destacadas
-        if ($data["destacada"]) {
-            $query .= " AND `destacada` = :destacada";
-            $params[":destacada"] = 1;
+        //Visibles
+        if ($data["visible"]) {
+            $query .= " AND `visible` = :visible";
+            $params[":visible"] = 1;
         }
         //Total
         $total = count($db->Query($query, $params));

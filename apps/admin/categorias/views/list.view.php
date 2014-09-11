@@ -36,7 +36,6 @@ Toolbar::render();
                         <tr>
                             <th><?=Html::sortableLink("id", "Id");?></th>
                             <th><?=Html::sortableLink("nombre", "Nombre");?></th>
-                            <th><?=Html::sortableLink("color", "Color");?></th>
                             <th><?=Html::sortableLink("dateInsert", "Fecha creación");?></th>
                             <th><?=Html::sortableLink("dateUpdate", "Fecha actualización");?></th>
                             <th></th>
@@ -50,9 +49,6 @@ Toolbar::render();
                                     <a href="<?=Url::site("admin/categorias/edit/".$categoria->id);?>">
                                         <?=Helper::sanitize($categoria->nombre);?>
                                     </a>
-                                </td>
-                                <td style="background-color: <?=Helper::sanitize($categoria->color);?>">
-                                    <?=Helper::sanitize($categoria->color);?>
                                 </td>
                                 <td><?=Helper::humanDate($categoria->dateInsert);?></td>
                                 <td><?=Helper::humanDate($categoria->dateUpdate);?></td>

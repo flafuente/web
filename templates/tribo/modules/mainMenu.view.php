@@ -8,7 +8,7 @@
 
       <li class="<?=$active["programas"]["index"];?> withsub">
         <a href="#">PROGRAMAS</a>
-        <?php $secciones = Seccion::select(array("destacada" => true)); ?>
+        <?php $secciones = Seccion::select(array("visible" => true)); ?>
         <?php if (count($secciones)) { ?>
             <ul class="submenu" style="display: none;">
                 <div class="triangle"></div>
@@ -29,27 +29,6 @@
       </li>
       <li class="<?=$active["periodismociudadano"]["index"];?> withsub">
         <a href="<?=Url::site("tribonews");?>">TRIBO NEWS</a>
-        <?php $categorias = Categoria::select(array("destacada" => true)); ?>
-        <?php if (count($categorias)) { ?>
-            <ul class="submenu" style="display: none;">
-                <div class="triangle"></div>
-                <?php foreach ($categorias as $categoria) { ?>
-                    <li class="col-md-6"
-                    <?php if ($categoria->color) { ?>
-                      onMouseOver="this.style.backgroundColor='<?=$categoria->color;?>'"
-                      onMouseOut="this.style.backgroundColor='white'"
-                    <?php } else { ?>
-                      onMouseOver="this.style.backgroundColor='#e40d7e'"
-                      onMouseOut="this.style.backgroundColor='white'"
-                    <?php } ?>
-                    >
-                        <a href="<?=Url::site("programas/seccion/".$categoria->slug);?>">
-                            <?=Helper::sanitize($categoria->nombre);?>
-                        </a>
-                    </li>
-                <?php } ?>
-            </ul>
-        <?php } ?>
       </li>
       <li class="<?=$active["tvdirecto"]["index"];?>">
         <a href="<?=Url::site("tvdirecto");?>">TV EN DIRECTO</a>

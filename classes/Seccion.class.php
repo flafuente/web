@@ -12,10 +12,10 @@ class Seccion extends Model
      */
     public $id;
     /**
-     * Destacada
+     * Visible
      * @var bool
      */
-    public $destacada;
+    public $visible;
     /**
      * Order
      * @var int
@@ -240,10 +240,10 @@ class Seccion extends Model
             $query .= " AND `nombre` LIKE :nombre";
             $params[":nombre"] = "%".$data["search"]."%";
         }
-        //Destacadas
-        if ($data["destacada"]) {
-            $query .= " AND `destacada` = :destacada";
-            $params[":destacada"] = 1;
+        //Visibles
+        if ($data["visible"]) {
+            $query .= " AND `visible` = :visible";
+            $params[":visible"] = 1;
         }
         //Total
         $total = count($db->Query($query, $params));

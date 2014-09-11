@@ -67,14 +67,14 @@ Toolbar::render();
                             <input type="text" id="nombre" name="nombre" class="form-control" value="<?=Helper::sanitize($seccion->nombre);?>">
                         </div>
                     </div>
-                    <!-- Destacada -->
+                    <!-- Visible -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
-                            Destacada
+                            Visible
                         </label>
                         <div class="col-sm-8">
-                            <input type="hidden" name="destacada" value="0">
-                            <input type="checkbox" class="switch" name="destacada" id="destacada" value="1" <?php if($seccion->destacada) echo "checked";?>>
+                            <input type="hidden" name="visible" value="0">
+                            <input type="checkbox" class="switch" name="visible" id="visible" value="1" <?php if($seccion->visible) echo "checked";?>>
                         </div>
                     </div>
                     <!-- Orden -->
