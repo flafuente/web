@@ -225,7 +225,7 @@ class HTML
 
         return $html;
     }
-    function showRate($value, $max, $min = 0, $bullets = 5)
+    function showRate($value, $max = 100, $min = 0, $bullets = 5)
     {
         $html = "";
         if ($min > 0) {
@@ -233,8 +233,11 @@ class HTML
             $max = $max - $min;
             $value = $value - $min;
         }
-        $porcentaje = $value * 100 / $max;
-        $cuenta = 0;
+        if ($value) {
+            $porcentaje = $value * 100 / $max;
+        } else {
+            $porcentaje = 0;
+        }
         $value_bullet = 100 / $bullets;
         for ($x=1; $x<=$bullets; $x++) {
             if ($porcentaje < ($value_bullet * $x)) {
