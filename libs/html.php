@@ -6,10 +6,20 @@
 class HTML
 {
 
-    public static function wistiaPlayer($hash, $width = 450, $height = 253)
+    public static function wistiaPlayer($hash, $width = null, $height = null)
     {
+        if (!$width) {
+            $style = "width:100%;";
+        } else {
+            $style = "width:".$width."px;";
+        }
+        if ($height) {
+            $style .= "height:".$height."px;";
+        } else {
+            $style = "min-height:300px;";
+        }
         ?>
-            <div id="wistia_<?=$hash;?>" class="wistia_embed" style="width:<?=$width?>px;height:<?=$height?>px;"></div>
+            <div id="wistia_<?=$hash;?>" class="wistia_embed" style="<?=$style?>"></div>
             <script>
                 wistiaEmbed = Wistia.embed("<?=$hash;?>");
             </script>

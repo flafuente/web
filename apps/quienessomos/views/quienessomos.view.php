@@ -3,7 +3,7 @@
 <div class='col-md-12 serie_info'>
 
     <div class="col-md-12 video">
-        <?=HTML::wistiaPlayer("2uu6gseu6n", "558", "314");?>
+        <?=HTML::wistiaPlayer("2uu6gseu6n", null, 320);?>
     </div>
 
     <div class="video-info">
