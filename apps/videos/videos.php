@@ -47,7 +47,7 @@ class videosController extends Controller
         $this->setData("pag", $pag);
 
         //Categorías
-        $this->setData("categorias", Categoria::select());
+        $this->setData("categorias", Categoria::select(array("visible" => true)));
 
         //Tags
         $this->setData("tags", Tag::select());
@@ -81,7 +81,8 @@ class videosController extends Controller
         $this->setData("categorias", Categoria::select(
             array(
                 "order" => "nombre",
-                "orderDir" => "ASC"
+                "orderDir" => "ASC",
+                "visible" => true,
             )
         ));
 

@@ -21,7 +21,7 @@ if (Registry::getUser()->id) {
         <div class="col-md-12">
             <input class="form-control" type="text" name="email" placeholder="Email">
         </div>
-        <?php $categorias = Categoria::select(); ?>
+        <?php $categorias = Categoria::select(array("visible" => true)); ?>
         <?php if (count($categorias)) { ?>
             <!-- Sección -->
             <div class="col-md-12">

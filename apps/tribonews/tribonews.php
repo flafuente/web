@@ -18,7 +18,7 @@ class tribonewsController extends Controller
     public function historico()
     {
         //Categorías
-        $this->setData("categorias", Categoria::select());
+        $this->setData("categorias", Categoria::select(array("visible" => true)));
 
         //Comunidades
         $this->setData("comunidades", Comunidad::select());
