@@ -16,7 +16,13 @@ class programasController extends Controller
     public function seccion()
     {
         $url = Registry::getUrl();
-        $data = array("estadoId"=>1);
+
+        //Redirección news -> tribonews
+        if ($url->vars[0] == "news") {
+            Url::redirect(Url::site("tribonews"));
+        }
+
+        $data = array("estadoId" => 1);
         //Categoría?
         if ($url->vars[0]) {
             $categoria = @current(Categoria::getBy("slug", $url->vars[0]));
