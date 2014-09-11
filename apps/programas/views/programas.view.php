@@ -3,7 +3,7 @@
 <?php $limit = 4; ?>
 
 <div class='title-line'>
-    <span><?=$categoria->nombre; ?></span>
+    <span><?=$seccion->nombre; ?></span>
 </div>
 
 <div class="programas">

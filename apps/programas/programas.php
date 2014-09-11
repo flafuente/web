@@ -23,21 +23,21 @@ class programasController extends Controller
         }
 
         $data = array("estadoId" => 1);
-        //Categoría?
+        //Sección?
         if ($url->vars[0]) {
-            $categoria = @current(Categoria::getBy("slug", $url->vars[0]));
-            if ($categoria->id) {
+            $seccion = @current(Seccion::getBy("slug", $url->vars[0]));
+            if ($seccion->id) {
                 //Categoria (Twitter hashtag)
-                $categoria->setConfigHashtag();
+                $seccion->setConfigHashtag();
                 //Categoria Id
-                $data["categoriaId"] = $categoria->id;
+                $data["seccionId"] = $seccion->id;
             } else {
-                Url::redirect(Url::site("programas"), "Programa no encontrado", "danger");
+                Url::redirect(Url::site("programas"), "Sección no encontrada", "danger");
             }
         } else {
-            Url::redirect(Url::site("programas"), "Programa no encontrado", "danger");
+            Url::redirect(Url::site("programas"), "Sección no encontrada", "danger");
         }
-        $this->setData("categoria",$categoria);
+        $this->setData("seccion",$seccion);
         $this->setData("programas", Programa::select($data));
         $html = $this->view("views.programas");
         $this->render($html);
@@ -48,9 +48,9 @@ class programasController extends Controller
         $url = Registry::getUrl();
         $programa = @current(Programa::getBy("slug", $url->vars[0]));
         if ($programa->id) {
-            //Categoria (Twitter hashtag)
-            $categoria = new Categoria($programa->categoriaId);
-            $categoria->setConfigHashtag();
+            //Sección (Twitter hashtag)
+            $seccion = new Seccion($programa->seccionId);
+            $seccion->setConfigHashtag();
             //Programa
             $this->setData("programa", $programa);
             //Capítulos
