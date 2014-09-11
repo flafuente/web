@@ -26,13 +26,6 @@
             <?=$controller->view("modules.subir");?>
         </form>
 
-        <!-- Editar vídeo -->
-        <div class="editgrey">
-            <div class="col-md-12" id="modaledit">
-
-            </div>
-        </div>
-
         <!-- Vídeos -->
         <?php if (count($videos)) { ?>
             <div class="canalesd nopaddingI">
@@ -54,17 +47,3 @@
     </div>
 
 </div>
-
-<script>
-
-    /* Editar vídeo */
-    $(document).on("click", ".editclick", function () {
-        id = $(this).attr("data-video-id");
-        $.getJSON("<?=Url::site('videos/edit');?>/" + id, function (data) {
-            $("#modaledit").html(data.data.html);
-        });
-
-        return false;
-    });
-
-</script>
