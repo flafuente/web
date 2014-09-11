@@ -46,6 +46,9 @@ Toolbar::render();
                             <tr>
                                 <td><?=$categoria->id;?></a></td>
                                 <td>
+                                    <?php if ($categoria->visible) { ?>
+                                        <span class="glyphicon glyphicon-eye-open" title="Visible" alt="Visible"></span>
+                                    <?php } ?>
                                     <a href="<?=Url::site("admin/categorias/edit/".$categoria->id);?>">
                                         <?=Helper::sanitize($categoria->nombre);?>
                                     </a>

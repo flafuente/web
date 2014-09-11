@@ -48,6 +48,9 @@ Toolbar::render();
                             <tr>
                                 <td><?=$seccion->id;?></a></td>
                                 <td>
+                                    <?php if ($categoria->visible) { ?>
+                                        <span class="glyphicon glyphicon-eye-open" title="Visible" alt="Visible"></span>
+                                    <?php } ?>
                                     <a href="<?=Url::site("admin/secciones/edit/".$seccion->id);?>">
                                         <?=Helper::sanitize($seccion->nombre);?>
                                     </a>
