@@ -7,7 +7,6 @@
 <script src="<?=Url::template("js/scroll/jquery.mCustomScrollbar.concat.min.js")?>"></script>
 
 <?php
-$hashtag = "#TriboTv";
 $twitteruser = "Tribo_tv";
 $notweets = 50;
 $connection = new TwitterOAuth(

@@ -27,9 +27,9 @@ class programasController extends Controller
         if ($url->vars[0]) {
             $seccion = @current(Seccion::getBy("slug", $url->vars[0]));
             if ($seccion->id) {
-                //Categoria (Twitter hashtag)
+                //Sección (Twitter hashtag)
                 $seccion->setConfigHashtag();
-                //Categoria Id
+                //Sección Id
                 $data["seccionId"] = $seccion->id;
             } else {
                 Url::redirect(Url::site("programas"), "Sección no encontrada", "danger");
