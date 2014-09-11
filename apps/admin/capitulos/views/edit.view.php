@@ -96,17 +96,15 @@ Toolbar::render();
                             </div>
                         </div>
                     <?php } ?>
-                    <?php if (count($videos)) { ?>
-                        <!-- Vídeo -->
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">
-                                Vídeo
-                            </label>
-                            <div class="col-sm-8">
-                                <?=HTML::select("videoId", $videos, $capitulo->videoId, null, array("display" => "Ninguno"), array("display" => "titulo")); ?>
-                            </div>
+                    <!-- CDN Id -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            CDN Id
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" id="cdnId" name="cdnId" class="form-control" value="<?=Helper::sanitize($capitulo->cdnId);?>">
                         </div>
-                    <?php } ?>
+                    </div>
                     <!-- Título -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
@@ -141,15 +139,6 @@ Toolbar::render();
                         </label>
                         <div class="col-sm-8">
                             <textarea id="descripcion" name="descripcion" class="form-control"><?=Helper::sanitize($capitulo->descripcion);?></textarea>
-                        </div>
-                    </div>
-                    <!-- Url -->
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">
-                            URL
-                        </label>
-                        <div class="col-sm-8">
-                            <input type="text" id="url" name="url" class="form-control" value="<?=Helper::sanitize($capitulo->url);?>">
                         </div>
                     </div>
                     <!-- Duración -->

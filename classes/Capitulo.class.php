@@ -12,11 +12,6 @@ class Capitulo extends Model
      */
     public $id;
     /**
-     * URL del archivo media
-     * @var string
-     */
-    public $url;
-    /**
      * Id del usuario creador
      * @var int
      */
@@ -27,17 +22,17 @@ class Capitulo extends Model
      */
     public $programaId;
     /**
-     * Id del vídeo relacionado
-     * @var int
-     */
-    public $videoId;
-    /**
      * Id del estado del capítulo
      * @var int
      */
     public $estadoId;
     /**
-     * Thumbnail (filename)
+     * Id del CDN
+     * @var string
+     */
+    public $cdnId;
+    /**
+     * Thumbnail (url)
      * @var string
      */
     public $thumbnail;
@@ -176,7 +171,11 @@ class Capitulo extends Model
      */
     public function getThumbnailUrl()
     {
-        return Url::site($this->path.$this->thumbnail);
+        if ($this->thumbnail) {
+            return Url::site($this->path.$this->thumbnail);
+        } else {
+            return Url::template("img/nophotovideo.png");
+        }
     }
 
     /**

@@ -31,7 +31,6 @@ class capitulosController extends Controller
         $url = Registry::getUrl();
         $this->setData("capitulo", new Capitulo($url->vars[0]));
         $this->setData("programas", Programa::select());
-        $this->setData("videos", Video::select(array("estadoId" => "1")));
         $html = $this->view("views.edit");
         $this->render($html);
     }
