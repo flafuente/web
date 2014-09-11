@@ -43,14 +43,18 @@
         <div style="clear: both;"></div>
     </div>
 
+    <!-- Capítulos -->
     <?php
-    //Listado de capítulos
-    if (count($capitulos)) {
-        foreach ($capitulos as $capitulo) {
-            $controller->setData("capitulo", $capitulo);
-            echo $controller->view("modules.capitulo-mini", "programas");
-        }
-    } ?>
+    //Anterior
+    $controller->setData("capitulo", $capitulo->getPrevious());
+    echo $controller->view("modules.capitulo-mini", "programas");
+    ?>
+
+    <?php
+    //Siguiente
+    $controller->setData("capitulo", $capitulo->getNext());
+    echo $controller->view("modules.capitulo-mini", "programas");
+    ?>
 
     <div class='col-md-6 epi_button'>
         <a href="<?=Url::site("programas/ver/".$programa->slug);?>">

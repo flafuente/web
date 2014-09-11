@@ -144,6 +144,79 @@ class Capitulo extends Model
         return $return;
     }
 
+    public function getNext()
+    {
+        //Existe alguno más en esta temporada?
+        $capitulo = self::getCapituloByTemporadaEpisodio($this->temporada, ($this->episodio + 1));
+        if ($capitulo->id) {
+            return $capitulo;
+        } else {
+            //Existe alguno más en la temporada anterior?
+            $capitulo = self::getLastCapituloByTemporada(($this->temporada - 1));
+            if ($capitulo->id) {
+                return $capitulo;
+            }
+        }
+    }
+
+    public function getPrevious()
+    {
+        //Existe el anterior de esta temporada?
+        $capitulo = self::getCapituloByTemporadaEpisodio($this->temporada, ($this->episodio - 1));
+        if ($capitulo->id) {
+            return $capitulo;
+        } else {
+            //Existe alguno en la temporada siguiente?
+            $capitulo = self::getFirstCapituloByTemporada(($this->temporada + 1));
+            if ($capitulo->id) {
+                return $capitulo;
+            }
+        }
+    }
+
+    private static function getLastCapituloByTemporada($temporada)
+    {
+        $db = Registry::getDb();
+        //Query
+        $query = "SELECT * FROM `capitulos` WHERE temporada = :temporada ORDER BY episodio DESC LIMIT 1";
+        $params = array(
+            "temporada" => $temporada
+        );
+        $rows = $db->query($query, $params);
+        if (count($rows)) {
+            return new Capitulo($rows[0]);
+        }
+    }
+
+    private static function getFirstCapituloByTemporada($temporada)
+    {
+        $db = Registry::getDb();
+        //Query
+        $query = "SELECT * FROM `capitulos` WHERE temporada = :temporada ORDER BY episodio ASC LIMIT 1";
+        $params = array(
+            "temporada" => $temporada
+        );
+        $rows = $db->query($query, $params);
+        if (count($rows)) {
+            return new Capitulo($rows[0]);
+        }
+    }
+
+    private static function getCapituloByTemporadaEpisodio($temporada, $episodio)
+    {
+        $db = Registry::getDb();
+        //Query
+        $query = "SELECT * FROM `capitulos` WHERE temporada = :temporada AND episodio = :episodio LIMIT 1";
+        $params = array(
+            "temporada" => $temporada,
+            "episodio" => $episodio,
+        );
+        $rows = $db->query($query, $params);
+        if (count($rows)) {
+            return new Capitulo($rows[0]);
+        }
+    }
+
     /**
      * Añade una visita al capítulo.
      * @return bool
