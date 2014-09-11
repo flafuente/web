@@ -191,7 +191,9 @@ class Seccion extends Model
     public function preInsert($data = array())
     {
         $this->dateInsert = date("Y-m-d H:i:s");
-        $this->slugify();
+        if (!$this->slug) {
+            $this->slugify();
+        }
         if ($data["order"]) {
             $this->order();
         }
@@ -215,7 +217,9 @@ class Seccion extends Model
     public function preUpdate($data = array())
     {
         $this->dateUpdate = date("Y-m-d H:i:s");
-        $this->slugify();
+        if (!$this->slug) {
+            $this->slugify();
+        }
         if ($data["order"]) {
             $this->order();
         }

@@ -106,6 +106,15 @@ Toolbar::render();
                             <input type="text" id="hashtag" name="hashtag" class="form-control" value="<?=Helper::sanitize($categoria->hashtag);?>" placeholder="#">
                         </div>
                     </div>
+                    <!-- Slug -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            Slug
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" id="slug" name="slug" class="form-control" value="<?=Helper::sanitize($categoria->slug);?>">
+                        </div>
+                    </div>
                     <!-- Wistia Project Id -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
