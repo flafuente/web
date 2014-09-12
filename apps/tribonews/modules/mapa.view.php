@@ -18,6 +18,7 @@
             <script type="text/javascript">
                 function init_map()
                 {
+                    //Map
                     var myOptions = {
                         zoom:5,
                         center: new google.maps.LatLng(38.09690980000001,-3.6369803000000047),
@@ -25,16 +26,33 @@
                         styles: [{"featureType":"water","elementType":"geometry","stylers":[{"color":"#193341"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#2c5a71"}]},{"featureType":"road","elementType":"geometry","stylers":[{"color":"#29768a"},{"lightness":-37}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#406d80"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#406d80"}]},{"elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#3e606f"},{"weight":2},{"gamma":0.84}]},{"elementType":"labels.text.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"administrative","elementType":"geometry","stylers":[{"weight":0.6},{"color":"#1a3541"}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#2c5a71"}]}]
 
                     };
-                    map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);
+                    var map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);
 
-                    <?php foreach ($videos as $video) { ?>
-                        marker = new google.maps.Marker({map: map, position: new google.maps.LatLng('<?=$video->lat?>', '<?=$video->long?>')});
-                        infowindowmarker = new google.maps.InfoWindow({content:"<a href='<?=Url::site("tribonews/video/".$video->id);?>'><?=Helper::sanitize($video->titulo);?></a>"});
-                        google.maps.event.addListener(marker, "click", function () {
-                            infowindowmarker.open(map, marker);
+                    //Zoom limit
+                    google.maps.event.addListener(map, 'zoom_changed', function () {
+                        zoomChangeBoundsListener = google.maps.event.addListener(map, 'bounds_changed', function (event) {
+                            if (this.getZoom() > 15)
+                                this.setZoom(15);
+                            google.maps.event.removeListener(zoomChangeBoundsListener);
                         });
-                        infowindowmarker.open(map, marker);
+                    });
+
+                    //Markers
+                    var latlngbounds = new google.maps.LatLngBounds();
+                    <?php foreach ($videos as $video) { ?>
+                        <?php if ($video->lat && $video->long) { ?>
+                            marker = new google.maps.Marker({map: map, position: new google.maps.LatLng('<?=$video->lat?>', '<?=$video->long?>')});
+                            infowindowmarker = new google.maps.InfoWindow({content:"<a href='<?=Url::site("tribonews/video/".$video->id);?>'><?=Helper::sanitize($video->titulo);?></a>"});
+                            google.maps.event.addListener(marker, "click", function () {
+                                infowindowmarker.open(map, marker);
+                            });
+                            infowindowmarker.open(map, marker);
+                            latlngbounds.extend(new google.maps.LatLng('<?=$video->lat?>', '<?=$video->long?>'));
+                            map.setCenter(latlngbounds.getCenter());
+                        <?php } ?>
                     <?php } ?>
+
+                    //map.fitBounds(latlngbounds);
 
                 }
                 google.maps.event.addDomListener(window, 'load', init_map);
