@@ -24,16 +24,19 @@ $_config['mailFromAdress'] = "noreply@tribo.tv";
 $_config['mailFromName'] = "TriboTV";
 
 //Database
-$_config['dbHost'] = "dev.tribo.tv";
-$_config['dbUser'] = "tribotv_nano";
-$_config['dbPass'] = "LaTaronjaEsdeAlborayatet3";
-$_config['dbName'] = "tribotv_dev";
+$_config['dbHost'] = "localhost";
+$_config['dbUser'] = "root";
+$_config['dbPass'] = "";
+$_config['dbName'] = "tribotv";
 
 //Twitter
 $_config['twitter_key'] = "M8LPRrfMlVSgbqmiY39d6w";
 $_config['twitter_secret'] = "oV9StQWszT1HhyOSrBk2cZhe5RuUb6MDKXbvzhHVc";
 $_config['twitter_token'] = "552317085-teYYibh7nL1veabhF3BsMzbhLqxZn9BnvnXjbn1M";
 $_config['twitter_token_secret'] = "Ch0OmXMy3Jk2RAVsqnSYHyjpYBmTEOw4BWAZGHk";
+
+//Wistia
+$_config['wistia_token'] = "e921f9a1f568bbf86b656d7d802cb0225e5e3568";
 
 //User Roles
 define("USER_ROLE_REGULAR", 	1);

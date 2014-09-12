@@ -32,6 +32,11 @@ class Capitulo extends Model
      */
     public $cdnId;
     /**
+     * Thumbnail del CDN
+     * @var string
+     */
+    public $cdnThumbnail;
+    /**
      * Thumbnail (url)
      * @var string
      */
@@ -316,8 +321,13 @@ class Capitulo extends Model
      */
     public function getThumbnailUrl()
     {
+        //Thumbnail
         if ($this->thumbnail) {
             return Url::site($this->path.$this->thumbnail);
+        //CND Thumbnail
+        } elseif ($this->cdnThumbnail) {
+            return $this->cdnThumbnail;
+        //No-image
         } else {
             return Url::template("img/nophotovideo.png", "tribo");
         }
@@ -400,6 +410,11 @@ class Capitulo extends Model
         $user = Registry::getUser();
         $this->userId = $user->id;
         $this->dateInsert = date("Y-m-d H:i:s");
+
+        //Leemos el thumbnail del CDN
+        if ($this->cdnId && !$this->cdnThumbnail) {
+            $this->cdnThumbnail = $this->getWistiaThumbnail();
+        }
     }
 
     /**
@@ -418,6 +433,31 @@ class Capitulo extends Model
     public function preUpdate()
     {
         $this->dateUpdate = date("Y-m-d H:i:s");
+
+        //Leemos el thumbnail del CDN
+        if ($this->cdnId && !$this->cdnThumbnail) {
+            $this->cdnThumbnail = $this->getWistiaThumbnail();
+        }
+    }
+
+    /**
+     * Lee el thumbnail de wistia.
+     * @return bool
+     */
+    private function getWistiaThumbnail()
+    {
+        Wistia::init();
+        if ($this->cdnId) {
+            $json = Wistia::status($this->cdnId);
+            if (is_object($json)) {
+
+                // Better thumbnail
+                $json->thumbnail->url = str_replace("image_crop_resized=100x60", "image_crop_resized=640x360", $json->thumbnail->url);
+                $json->thumbnail->url = preg_replace("#image_crop_resized=.*&#", 'image_crop_resized=640x360', $json->thumbnail->url);
+
+                return $json->thumbnail->url;
+            }
+        }
     }
 
     /**
