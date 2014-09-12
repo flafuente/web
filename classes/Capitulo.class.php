@@ -370,7 +370,7 @@ class Capitulo extends Model
      * Validación para creación/edición del capítulo.
      * @return array Array de errores
      */
-    private function validate()
+    private function validate($data = array())
     {
         $config = Registry::getConfig();
         //Programa
@@ -380,6 +380,10 @@ class Capitulo extends Model
         //Titulo
         if (!$this->titulo) {
             Registry::addMessage("Debes introducir un titulo", "error", "titulo");
+        }
+        //Publicado sin CND?
+        if ($data["estadoId"] == 1 && !$this->cdnId) {
+            Registry::addMessage("No puedes publicar un episodio sin CDN", "error", "cdnId");
         }
         //Temporada y episodio existente
         $capitulo = self::getCapituloByTemporadaEpisodio($this->programaId, $this->temporada, $this->episodio, $this->id);
@@ -411,9 +415,9 @@ class Capitulo extends Model
      * Validación de creación.
      * @return array Errores
      */
-    public function validateInsert()
+    public function validateInsert($data = array())
     {
-        return $this->validate();
+        return $this->validate($data);
     }
 
     /**
@@ -436,9 +440,9 @@ class Capitulo extends Model
      * Validación de modificación.
      * @return array Errores
      */
-    public function validateUpdate()
+    public function validateUpdate($data = array())
     {
-        return $this->validate();
+        return $this->validate($data);
     }
 
     /**
