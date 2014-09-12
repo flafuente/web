@@ -20,7 +20,16 @@ class Wistia
         return $json;
     }
 
-    private static function curl($url, $post = array())
+    public static function delete($hash)
+    {
+        $url = "https://api.wistia.com/v1/medias/".$hash.".json?api_password=".self::$password;
+        $result = self::curl($url, null, true);
+        $json = json_decode($result);
+
+        return $json;
+    }
+
+    private static function curl($url, $post = array(), $delete = false)
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -28,6 +37,9 @@ class Wistia
         if (!empty($post)) {
             curl_setopt($ch,CURLOPT_POST, 1);
             curl_setopt($ch,CURLOPT_POSTFIELDS, $post);
+        }
+        if ($delete) {
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
         }
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         $result = curl_exec($ch);

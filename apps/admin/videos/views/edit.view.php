@@ -275,7 +275,6 @@ Toolbar::render();
                             <center>
                                 <video id="video<?=$videoArchivo->id;?>" class="video-js vjs-default-skin"
                                   controls preload="auto" width="640" height="264">
-                                    <!--<source src="<?=$videoArchivo->getUrl();?>" type='<?=$videoArchivo->type;?>'/>-->
                                     <source src="<?=$videoArchivo->getUrl();?>" type='video/mp4'/>
                                 </video>
                             </center>

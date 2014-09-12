@@ -183,6 +183,7 @@ class VideoArchivo extends Model
         $video = new Video($this->videoId);
         $video->videoArchivoId = $this->id;
         $video->update();
+
         //Elimina los otros archivos de vídeo.
         $archivosInvalidos = VideoArchivo::getBy("videoId", $this->videoId);
         if (is_array($archivosInvalidos) && count($archivosInvalidos)) {
@@ -191,6 +192,36 @@ class VideoArchivo extends Model
                     $archivoInvalido->delete();
                 }
             }
+        }
+    }
+
+    /**
+     * Despublicar archivo de vídeo.
+     * Elimina el VideoArchivoId del vídeo asociado.
+     * Elimina el archivo del CDN.
+     * Despublica el video.
+     * @return void
+     */
+    public function despublicar()
+    {
+        $video = new Video($this->videoId);
+
+        //Si el video está asociado a este archivo de vídeo...
+        if ($video->videoArchivoId == $this->id) {
+            //Lo desasociamos
+            $video->videoArchivoId = 0;
+
+            //Lo despublicamos
+            $video->estadoId = 0;
+
+            //Si tiene CDN...
+            if ($video->cdnId) {
+                //Lo eliminamos
+                Wistia::init();
+                Wistia::delete($video->cdnId);
+            }
+
+            return $video->update();
         }
     }
 
@@ -240,8 +271,11 @@ class VideoArchivo extends Model
     public function postUpdate()
     {
         //Publicado?
-        if ($this->estadoId==1) {
+        if ($this->estadoId == 1) {
             $this->publicar();
+        //Rechazado?
+        } elseif ($this->estadoId == 2) {
+            $this->despublicar();
         }
     }
 
