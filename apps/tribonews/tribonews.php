@@ -44,9 +44,14 @@ class tribonewsController extends Controller
         $url = Registry::getUrl();
         $video = new Video($url->vars[0]);
         if ($video->id) {
+
+            //Añadimos una visita
+            $video->addVisita();
+
             $this->setData("video", $video);
             $html = $this->view("views.video");
             $this->render($html);
+
         } else {
             Url::redirect(Url::site("tribonews"));
         }
