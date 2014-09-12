@@ -89,8 +89,8 @@ class CapituloLike extends Model
     }
 
     /**
-     * Devuelve el número total de las Likes recibidos de un capítulo.
-     * @param  integer $capituloId Id del capítulo
+     * Devuelve el número total de los likes recibidos de un capítulo.
+     * @param  int $capituloId
      * @return int
      */
     public static function getTotalLikesByCapituloId($capituloId = null)
@@ -99,6 +99,24 @@ class CapituloLike extends Model
             $db = Registry::getDb();
             $query = "SELECT count(DISTINCT `ip`) as `total` FROM `capitulos_likes` WHERE `capituloId`=:capituloId";
             $params = array(":capituloId" => $capituloId);
+            $rows = $db->query($query, $params);
+            if (count($rows)) {
+                return $rows[0]["total"];
+            }
+        }
+    }
+
+    /**
+     * Devuelve el número total de los likes recibidas de los capítulos de un programa.
+     * @param  int $programaId
+     * @return int
+     */
+    public static function getTotalLikesByProgramaId($programaId = null)
+    {
+        if ($programaId) {
+            $db = Registry::getDb();
+            $query = "SELECT count(DISTINCT `ip`) as `total` FROM `capitulos_likes` WHERE `capituloId` IN (SELECT `id`FROM `capitulos` WHERE `programaId` = :programaId)";
+            $params = array(":programaId" => $programaId);
             $rows = $db->query($query, $params);
             if (count($rows)) {
                 return $rows[0]["total"];

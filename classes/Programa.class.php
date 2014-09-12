@@ -67,6 +67,16 @@ class Programa extends Model
      */
     public $descripcion;
     /**
+     * Nº total de visitas recibidas (en sus capítulos)
+     * @var int
+     */
+    public $visitas;
+    /**
+     * Nº total de likes recibidos (en sus capítulos)
+     * @var int
+     */
+    public $likes;
+    /**
      * Fecha de creación
      * @var string
      */
@@ -138,6 +148,20 @@ class Programa extends Model
         $config = Registry::getConfig();
 
         return $config->get("path").$this->path.$this->thumbnail;
+    }
+
+    public function updateVisitas()
+    {
+        $this->visitas = CapituloVisita::getTotalVisitasByProgramaId($this->id);
+
+        return $this->update();
+    }
+
+    public function updateLikes()
+    {
+        $this->likes = CapituloLike::getTotalLikesByProgramaId($this->id);
+
+        return $this->update();
     }
 
     /**

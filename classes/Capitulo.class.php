@@ -239,10 +239,15 @@ class Capitulo extends Model
         $visita = new CapituloVisita();
         $visita->capituloId = $this->id;
         $visita->insert();
+
         //Actualizamos el total
         $this->visitas = CapituloVisita::getTotalVisitasByCapituloId($this->id);
+        $this->update();
 
-        return $this->update();
+        //Actualizamos el total del programa
+        $programa = new Programa($this->programaId);
+
+        return $programa->updateVisitas();
     }
 
     /**
@@ -264,10 +269,15 @@ class Capitulo extends Model
         $like = new CapituloLike();
         $like->capituloId = $this->id;
         $like->insert();
-        //Actualizamos el total
-        $this->likes = CapituloLike::getTotalLikesByCapituloId($this->id);
 
-        return $this->update();
+        //Actualizamos el total del capitulo
+        $this->likes = CapituloLike::getTotalLikesByCapituloId($this->id);
+        $this->update();
+
+        //Actualizamos el total del programa
+        $programa = new Programa($this->programaId);
+
+        return $programa->updateLikes();
     }
 
     /**
@@ -278,10 +288,15 @@ class Capitulo extends Model
     {
         //Eliminamos el like
         CapituloLike::unlike($this->id);
+
         //Actualizamos el total
         $this->likes = CapituloLike::getTotalLikesByCapituloId($this->id);
+        $this->update();
 
-        return $this->update();
+        //Actualizamos el total del programa
+        $programa = new Programa($this->programaId);
+
+        return $programa->updateLikes();
     }
 
     /**

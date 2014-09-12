@@ -51,7 +51,7 @@ class CapituloVisita extends Model
 
     /**
      * Devuelve el número total de las Visitas recibidas de un capítulo.
-     * @param  integer $capituloId Id del capítulo
+     * @param  int $capituloId
      * @return int
      */
     public static function getTotalVisitasByCapituloId($capituloId = null)
@@ -60,6 +60,24 @@ class CapituloVisita extends Model
             $db = Registry::getDb();
             $query = "SELECT count(DISTINCT `ip`) as `total` FROM `capitulos_visitas` WHERE `capituloId`=:capituloId";
             $params = array(":capituloId" => $capituloId);
+            $rows = $db->query($query, $params);
+            if (count($rows)) {
+                return $rows[0]["total"];
+            }
+        }
+    }
+
+    /**
+     * Devuelve el número total de las Visitas recibidas de los capítulos de un programa.
+     * @param  int $programaId
+     * @return int
+     */
+    public static function getTotalVisitasByProgramaId($programaId = null)
+    {
+        if ($programaId) {
+            $db = Registry::getDb();
+            $query = "SELECT count(DISTINCT `ip`) as `total` FROM `capitulos_visitas` WHERE `capituloId` IN (SELECT `id`FROM `capitulos` WHERE `programaId` = :programaId)";
+            $params = array(":programaId" => $programaId);
             $rows = $db->query($query, $params);
             if (count($rows)) {
                 return $rows[0]["total"];
