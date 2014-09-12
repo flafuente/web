@@ -147,12 +147,12 @@ class Capitulo extends Model
     public function getNext()
     {
         //Existe alguno más en esta temporada?
-        $capitulo = self::getCapituloByTemporadaEpisodio($this->temporada, ($this->episodio + 1));
+        $capitulo = self::getCapituloByTemporadaEpisodio($this->programaId, $this->temporada, ($this->episodio + 1));
         if ($capitulo->id) {
             return $capitulo;
         } else {
             //Existe alguno más en la temporada anterior?
-            $capitulo = self::getLastCapituloByTemporada(($this->temporada - 1));
+            $capitulo = self::getLastCapituloByTemporada($this->programaId, ($this->temporada - 1));
             if ($capitulo->id) {
                 return $capitulo;
             }
@@ -162,25 +162,26 @@ class Capitulo extends Model
     public function getPrevious()
     {
         //Existe el anterior de esta temporada?
-        $capitulo = self::getCapituloByTemporadaEpisodio($this->temporada, ($this->episodio - 1));
+        $capitulo = self::getCapituloByTemporadaEpisodio($this->programaId, $this->temporada, ($this->episodio - 1));
         if ($capitulo->id) {
             return $capitulo;
         } else {
             //Existe alguno en la temporada siguiente?
-            $capitulo = self::getFirstCapituloByTemporada(($this->temporada + 1));
+            $capitulo = self::getFirstCapituloByTemporada($this->programaId, ($this->temporada + 1));
             if ($capitulo->id) {
                 return $capitulo;
             }
         }
     }
 
-    private static function getLastCapituloByTemporada($temporada)
+    private static function getLastCapituloByTemporada($programaId, $temporada)
     {
         $db = Registry::getDb();
         //Query
-        $query = "SELECT * FROM `capitulos` WHERE temporada = :temporada ORDER BY episodio DESC LIMIT 1";
+        $query = "SELECT * FROM `capitulos` WHERE temporada = :temporada AND programaId = :programaId ORDER BY episodio DESC LIMIT 1";
         $params = array(
-            "temporada" => $temporada
+            ":temporada" => $temporada,
+            ":programaId" => $programaId
         );
         $rows = $db->query($query, $params);
         if (count($rows)) {
@@ -188,13 +189,14 @@ class Capitulo extends Model
         }
     }
 
-    private static function getFirstCapituloByTemporada($temporada)
+    private static function getFirstCapituloByTemporada($programaId, $temporada)
     {
         $db = Registry::getDb();
         //Query
-        $query = "SELECT * FROM `capitulos` WHERE temporada = :temporada ORDER BY episodio ASC LIMIT 1";
+        $query = "SELECT * FROM `capitulos` WHERE temporada = :temporada AND programaId = :programaId ORDER BY episodio ASC LIMIT 1";
         $params = array(
-            "temporada" => $temporada
+            ":temporada" => $temporada,
+            ":programaId" => $programaId
         );
         $rows = $db->query($query, $params);
         if (count($rows)) {
@@ -202,14 +204,15 @@ class Capitulo extends Model
         }
     }
 
-    private static function getCapituloByTemporadaEpisodio($temporada, $episodio)
+    private static function getCapituloByTemporadaEpisodio($programaId, $temporada, $episodio)
     {
         $db = Registry::getDb();
         //Query
-        $query = "SELECT * FROM `capitulos` WHERE temporada = :temporada AND episodio = :episodio LIMIT 1";
+        $query = "SELECT * FROM `capitulos` WHERE temporada = :temporada AND episodio = :episodio AND programaId = :programaId LIMIT 1";
         $params = array(
-            "temporada" => $temporada,
-            "episodio" => $episodio,
+            ":temporada" => $temporada,
+            ":episodio" => $episodio,
+            ":programaId" => $programaId
         );
         $rows = $db->query($query, $params);
         if (count($rows)) {
