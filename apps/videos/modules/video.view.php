@@ -44,9 +44,9 @@
         </span>
 
         <?php if ($video->estadoId != 1) { ?>
-            <span class="btn-tribo-grey btn ladda-button editclick" data-video-id="<?=$video->id;?>" style="float: right;">
+            <a href="<?=$url?>" class="btn-tribo-grey btn ladda-button" style="float: right;">
                 Editar
-            </span>
+            </a>
         <?php } ?>
 
     </div>

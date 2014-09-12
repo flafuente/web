@@ -97,27 +97,19 @@ class videosController extends Controller
         $this->render($html);
     }
 
-    public function edit()
-    {
-        $url = Registry::getUrl();
-
-        $video = new Video($url->vars[0]);
-        if ($video->id) {
-            $this->setData("video", $video);
-            $data["html"] = $this->view("modules.modal");
-        }
-        $this->ajax($data);
-    }
-
     public function ver()
     {
         $url = Registry::getUrl();
         $video = new Video($url->vars[0]);
         if ($video->checkPermission()) {
-            $this->setData("videosArchivos", VideoArchivo::getBy("videoId", $video->id));
-            $this->setData("video", $video);
-            $html = $this->view("views.ver");
-            $this->render($html);
+            if ($video->estadoId != 1) {
+                $this->setData("videosArchivos", VideoArchivo::getBy("videoId", $video->id));
+                $this->setData("video", $video);
+                $html = $this->view("views.ver");
+                $this->render($html);
+            } else {
+                Url::redirect(Url::site("videos/emitidos"), "No puedes editar un vídeo ya publicado", "error");
+            }
         } else {
             Url::redirect(Url::site(), "Video incorrecto", "error");
         }
@@ -132,14 +124,18 @@ class videosController extends Controller
             }
         } else {
             if ($video->checkPermission()) {
-                $user = Registry::getUser();
-                //Add Video
-                $videoArchivo = new VideoArchivo();
-                $videoArchivo->userId = $user->id;
-                $videoArchivo->videoId = $video->id;
-                $videoArchivo->file = $_REQUEST["file"];
-                if ($videoArchivo->insert()) {
-                    Registry::addMessage("Archivo de vídeo subido satisfactoriamente", "success", "", Url::site("videos/ver/".$video->id));
+                if ($video->estadoId != 1) {
+                    $user = Registry::getUser();
+                    //Add Video
+                    $videoArchivo = new VideoArchivo();
+                    $videoArchivo->userId = $user->id;
+                    $videoArchivo->videoId = $video->id;
+                    $videoArchivo->file = $_REQUEST["file"];
+                    if ($videoArchivo->insert()) {
+                        Registry::addMessage("Archivo de vídeo subido satisfactoriamente", "success", "", Url::site("videos/ver/".$video->id));
+                    }
+                } else {
+                    Registry::addMessage("No puedes editar un vídeo ya publicado", "error");
                 }
             } else {
                 Registry::addMessage("Video incorrecto", "error");

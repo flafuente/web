@@ -6,6 +6,11 @@
 <?php if ($messages) { ?>
     <?php foreach ($messages as $message) { ?>
         <?php if ($message->message) { ?>
+            <?php
+                if ($message->type == "error") {
+                    $message->type = "danger";
+                }
+            ?>
             <div class="alert alert-<?=$message->type?>">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <?=$message->message?>
