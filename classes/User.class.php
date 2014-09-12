@@ -242,7 +242,7 @@ class User extends Model
         if ($this->foto) {
             return Url::site($this->fotosPath.$this->foto);
         } else {
-            return Url::template("img/tu_haces/en_corto/user_icon.png");
+            return Url::template("img/tu_haces/en_corto/user_icon.png", "tribo");
         }
     }
 
@@ -389,7 +389,7 @@ class User extends Model
             $this->categorias = json_encode($data["categorias"]);
         }
         //Delete Foto
-        if ($data["deleteFoto"]==1) {
+        if ($data["deleteFoto"] == 1) {
             $this->deleteFoto();
         }
     }
@@ -418,10 +418,8 @@ class User extends Model
 
     public function deleteFoto()
     {
-        if ($this->foto) {
-            @unlink($this->getFotoPath());
-            $this->foto = "";
-        }
+        @unlink($this->getFotoPath());
+        $this->foto = "";
     }
 
     public function auth($expiration = 7200)

@@ -158,7 +158,7 @@ class Video extends Model
         if ($this->thumbnail) {
             return $this->thumbnail;
         } else {
-            return Url::template("img/nophotovideo.png");
+            return Url::template("img/nophotovideo.png", "tribo");
         }
     }
 

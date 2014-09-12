@@ -145,7 +145,9 @@ Toolbar::render();
                             </label>
                             <div class="col-sm-3">
                                 <img src="<?=$user->getFotoUrl();?>" width="100%">
-                                <input type="checkbox" value="1" name="deleteFoto"> Eliminar
+                                <?php if ($user->foto) { ?>
+                                    <input type="checkbox" value="1" name="deleteFoto"> Eliminar
+                                <?php } ?>
                             </div>
                         </div>
                         <!-- Nombre -->

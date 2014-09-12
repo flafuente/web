@@ -105,7 +105,7 @@ class Seccion extends Model
 
     public function getMenuImage()
     {
-        return Url::template("img/home/".$this->menuImage);
+        return Url::template("img/home/".$this->menuImage, "tribo");
     }
 
     public function validate()

@@ -312,7 +312,7 @@ class Capitulo extends Model
         if ($this->thumbnail) {
             return Url::site($this->path.$this->thumbnail);
         } else {
-            return Url::template("img/nophotovideo.png");
+            return Url::template("img/nophotovideo.png", "tribo");
         }
     }
 
