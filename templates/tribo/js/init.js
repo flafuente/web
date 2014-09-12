@@ -17,9 +17,6 @@ $(document).on('submit', '.ajax', function(e){
 					for(var x=0;x<messages.length;x++) {
 						//Field message
 						if(messages[x].field){
-							if(messages[x].type=="danger"){
-								messages[x].type = "error";
-							}
 							field = form.find("select[name=" + messages[x].field + "], input[name=" + messages[x].field + "], textarea[name=" + messages[x].field + "], checkbox[name=" + messages[x].field + "]");
 							if(field.length){
 								field.parent().parent().addClass("has-" + messages[x].type);
