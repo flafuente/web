@@ -204,11 +204,15 @@ class Capitulo extends Model
         }
     }
 
-    private static function getCapituloByTemporadaEpisodio($programaId, $temporada, $episodio)
+    private static function getCapituloByTemporadaEpisodio($programaId, $temporada, $episodio, $ignoreId = null)
     {
         $db = Registry::getDb();
         //Query
-        $query = "SELECT * FROM `capitulos` WHERE temporada = :temporada AND episodio = :episodio AND programaId = :programaId LIMIT 1";
+        $query = "SELECT * FROM `capitulos` WHERE temporada = :temporada AND episodio = :episodio AND programaId = :programaId ";
+        if ($ignoreId) {
+            $query .= " AND id != ".(int) $ignoreId;
+        }
+        $query .= " LIMIT 1";
         $params = array(
             ":temporada" => $temporada,
             ":episodio" => $episodio,
@@ -351,6 +355,11 @@ class Capitulo extends Model
         //Titulo
         if (!$this->titulo) {
             Registry::addMessage("Debes introducir un titulo", "error", "titulo");
+        }
+        //Temporada y episodio existente
+        $capitulo = self::getCapituloByTemporadaEpisodio($this->programaId, $this->temporada, $this->episodio, $this->id);
+        if ($capitulo->id) {
+            Registry::addMessage("Ya existe un capítulo con esta temporada y nº de episodio: ".$capitulo->getFullTitulo(), "error", "temporada");
         }
         //Thumbnail Upload
         if (isset($_FILES["thumbnail"])) {
