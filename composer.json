@@ -8,7 +8,8 @@
 	"require": {
 		"light-framework/core": "dev-master",
 		"faisalman/simple-excel-php": "dev-master",
-		"cocur/slugify": "@stable"
+		"cocur/slugify": "@stable",
+		"robmorgan/phinx": "*"
 	},
 	"minimum-stability": "dev"
 }

@@ -472,7 +472,6 @@ class Capitulo extends Model
 
                 // Better thumbnail
                 $json->thumbnail->url = str_replace("image_crop_resized=100x60", "image_crop_resized=640x360", $json->thumbnail->url);
-                $json->thumbnail->url = preg_replace("#image_crop_resized=.*&#", 'image_crop_resized=640x360', $json->thumbnail->url);
 
                 return $json->thumbnail->url;
             }
