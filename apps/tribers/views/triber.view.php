@@ -13,8 +13,8 @@
                 <h1 class="triber_name">
                     <?=Helper::sanitize($triber->nombre);?>
                 </h1>
-                <span class="triber_blue">MADRID</span> - Triber especializado en <span class="triber_blue">sociedad</span><br />
-                <span class="triber_small">Triber desde 01/01/1970</span><br /><br />
+                <span class="triber_blue"><?=Helper::sanitize($triber->ubicacion);?></span> - Triber especializado en <span class="triber_blue"><?=Helper::sanitize($triber->categorias);?></span><br />
+                <span class="triber_small">Triber desde <?=date("d/m/Y", strtotime(Helper::sanitize($triber->dateInsert)));?></span><br /><br />
                 <span class="btn btn-tribo-grey" id="triber_masinfo">Datos de contacto</span>
             </div>
             <div class="clear: both;"></div>
@@ -22,20 +22,19 @@
         <div class="clear: both;"></div>
         <div class="masinfo_triber col-md-12">
             <div class="col-md-6">
-                <img src="<?=Url::template("img/perfilpublico/email.png");?>" /> Email: <span class="triber_blue">email@mail.com</span>
+                <img src="<?=Url::template("img/perfilpublico/email.png");?>" /> Email: <span class="triber_blue"><?=Helper::sanitize($triber->email);?></span>
             </div>
             <div class="col-md-6">
-                <img src="<?=Url::template("img/perfilpublico/telefono.png");?>" /> Telefono: +34 655 48 75 84
+                <img src="<?=Url::template("img/perfilpublico/telefono.png");?>" /> Telefono: <?=Helper::sanitize($triber->telefono);?>
             </div>
         </div>
         <div class="triber_infowhite col-md-12">
             <h1><img src="<?=Url::template("img/perfilpublico/biografia.png");?>" /> Biografia</h1>
             <span>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
-                <br /><br />
-                In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.
+               <?=Helper::sanitize($triber->biografia);?>
             </span><br />
             <h1><img src="<?=Url::template("img/perfilpublico/sitiosweb.png");?>" /> Sus sitios web:
+                <?=Helper::sanitize($triber->sitios);?>
                 <span><a href="#">Vimeo</a></span>
                 <span><a href="#">Youtube</a></span>
                 <span><a href="#">Web personal</a></span>
