@@ -15,6 +15,8 @@ class TwitterHelper
         if (isset($data["retweeted_status"]["user"]["name"]) && strlen($data["retweeted_status"]["user"]["name"])>2) {
             $nombre = $data["retweeted_status"]["user"]["name"];
             $foto = $data["retweeted_status"]["user"]["profile_image_url"];
+
+            return false;
         }
 
         if (isset($data["retweeted_status"]["user"]["screen_name"]) && strlen($data["retweeted_status"]["user"]["screen_name"])>2) {
