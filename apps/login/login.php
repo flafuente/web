@@ -81,10 +81,10 @@ class loginController extends Controller
             $expiration = 60*60*24*7*4*3;
         }
         $res = $user->login($_REQUEST['login'], $_REQUEST['password'], $expiration);
-        if ($res==true) {
+        if ($res == true) {
             $user = Registry::getUser();
-            if ($user->roleId<2) {
-                Registry::addMessage("", "", "", Url::site());
+            if ($user->roleId < USER_ROLE_ADMIN) {
+                Registry::addMessage("", "", "", Url::site("?a=true"));
             } else {
                 Registry::addMessage("", "", "", Url::site("admin"));
             }

@@ -9,11 +9,18 @@ if (!$user->id) {
     ?><img src='<?=Url::template("/img/user.png");?>' title='Login' /><?php
 } else {
     ?><img src="<?=$user->getFotoUrl();?>" class="img-circle profpic"><?php
-    $stl = "margin-top: -40px; width: 345px; height: 175px; padding: 0px;";
+    //First login
+    if ($_GET["a"] == true) {
+        $stl .= "display: block;";
+    } else {
+        $stl .= "display: none;";
+    }
+    $stl .= "margin-top: -40px; width: 345px; height: 175px; padding: 0px;";
 }
 ?>
 </a>
-<div class="login_form" style="display: none;<?=$stl;?>">
+
+<div class="login_form" style="<?=$stl;?>">
     <?php if (!$user->id) { ?>
         <div class="forgot col-md-8"><img class="imgmdl" src='<?=Url::template("/img/user.png");?>' title='Login' /><h1>&nbsp;&nbsp;&nbsp;ZONA TRIBER</h1></div>
         <div class="forgot col-md-4">
