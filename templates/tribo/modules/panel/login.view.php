@@ -7,6 +7,7 @@
 $stl = "";
 if (!$user->id) {
     ?><img src='<?=Url::template("/img/user.png");?>' title='Login' /><?php
+    $stl .= "display: none;";
 } else {
     ?><img src="<?=$user->getFotoUrl();?>" class="img-circle profpic"><?php
     //First login
