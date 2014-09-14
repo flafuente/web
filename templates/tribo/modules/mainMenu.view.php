@@ -33,7 +33,7 @@
       <li class="<?=$active["tvdirecto"]["index"];?>">
         <a href="<?=Url::site("tvdirecto");?>">TV EN DIRECTO</a>
       </li>
-      <li class="<?=$active["colaboradores"]["index"];?>"><a href="<?=Url::site("colaboradores");?>">COLABORADORES</a></li>
+      <li class="<?=$active["creadores"]["index"];?>"><a href="<?=Url::site("creadores");?>">CREADORES</a></li>
       <li class="<?=$active["quienessomos"]["index"];?>"><a href="<?=Url::site("quienessomos");?>">QUIÉNES SOMOS</a></li>
     </ul>
 </div>

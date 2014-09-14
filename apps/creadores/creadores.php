@@ -2,7 +2,7 @@
 //No direct access
 defined('_EXE') or die('Restricted access');
 
-class colaboradoresController extends Controller
+class creadoresController extends Controller
 {
     public function init() {}
 
