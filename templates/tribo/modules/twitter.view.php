@@ -15,7 +15,12 @@ $connection = new TwitterOAuth(
     $config->get("twitter_token"),
     $config->get("twitter_token_secret")
 );
-$tweets = $connection->get("https://api.twitter.com/1.1/search/tweets.json?q=".urlencode($hashtag)."&result_type=mixed&count=".$notweets);
+$params = array(
+    "q" => $hashtag,
+    "result_type" => "recent",
+    "count" => $notweets,
+);
+$tweets = $connection->get("https://api.twitter.com/1.1/search/tweets.json", $params);
 $tweets = json_decode( json_encode($tweets), true);
 ?>
 
