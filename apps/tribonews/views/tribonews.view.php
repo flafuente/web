@@ -1,5 +1,9 @@
 <?php defined('_EXE') or die('Restricted access');?>
 
+<?php if ($welcome) { ?>
+    <?=$controller->view("modules.welcome");?>
+<?php } ?>
+
 <div class='title-line'>
     <span>ÚLTIMAS NOTICIAS</span>
 </div>

@@ -326,7 +326,7 @@ class User extends Model
      *
      * @return void
      */
-    public function preInsert($data=array())
+    public function preInsert($data = array())
     {
         //Passwd encryption
         $this->password = User::encrypt($this->password);
@@ -344,10 +344,10 @@ class User extends Model
         $this->wsToken = md5(uniqid('', true));
     }
 
-    public function postInsert($data=array())
+    public function postInsert($data = array())
     {
         //Tribber?
-        if ($this->roleId==USER_ROLE_TRIBBER) {
+        if ($this->roleId == USER_ROLE_TRIBBER) {
             //Mandamos email con los detalles de la cuenta
             $this->sendWelcome($data["password"]);
         }
@@ -441,7 +441,7 @@ class User extends Model
     public static function login($login, $password, $expiration = 7200)
     {
         $db = Registry::getDb();
-        $rows = $db->query("SELECT * FROM `users` WHERE (username=:username OR email=:email) AND password=:password AND statusId=1",
+        $rows = $db->query("SELECT * FROM `users` WHERE (username = :username OR email = :email) AND password = :password AND statusId = 1",
             array(
                 ":email" => $login,
                 ":username" => $login,
@@ -604,7 +604,7 @@ class User extends Model
      *
      * @return bool
      */
-    public function sendWelcome($password="")
+    public function sendWelcome($password = "")
     {
         $mailer = Registry::getMailer();
         $mailer->addAddress($this->email);

@@ -6,13 +6,21 @@ class tribonewsController extends Controller
 {
     public function init() {}
 
-    public function index()
+    public function index($welcome = false)
     {
+        //Welcome
+        $this->setData("welcome", $welcome);
+
         //Vídeos
         $this->setData("videos", Video::select(array("estadoId" => "1")));
 
         $html = $this->view("views.tribonews");
         $this->render($html);
+    }
+
+    public function bienvenido()
+    {
+        $this->index(true);
     }
 
     public function historico()

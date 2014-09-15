@@ -104,23 +104,23 @@ class loginController extends Controller
     }
 
     /**
-     * Registro de Tribber (periodismo ciutadano)
+     * Registro de Triber (periodismo ciutadano)
      */
-    public function registerTribber()
+    public function registerTriber()
     {
+        $config  = Registry::getConfig();
         //Try to register
         $user = new User();
         //Force disable account
-        $_REQUEST['statusId'] = 0;
+        $_REQUEST['statusId'] = $config->get("enableTribers");
         //Force un-verified account
         $_REQUEST['verified'] = 0;
-        //Forzamos la categoría
-        $_REQUEST['categorias'] = array(USER_CATEGORIA_PERIODISMOCIUTADANO);
         //Force role
         $_REQUEST['roleId'] = USER_ROLE_TRIBBER;
         if ($user->insert($_REQUEST)) {
             //Redirect to main page thought Message URL parameter
-            Registry::addMessage("Gracias por registrarte!", "success", "", Url::site());
+            //Registry::addMessage("Gracias por registrarte!", "success", "", Url::site());
+            Registry::addMessage("", "", "", Url::site("tribonews/bienvenido"));
         }
         //Do not render the template, just ajax (Messages)
         $this->ajax();

@@ -38,15 +38,15 @@ $_config['twitter_token_secret'] = "Ch0OmXMy3Jk2RAVsqnSYHyjpYBmTEOw4BWAZGHk";
 //Wistia
 $_config['wistia_token'] = "e921f9a1f568bbf86b656d7d802cb0225e5e3568";
 
+//Tribo
+$_config['enableTribers'] = false; //Auto-activación de la cuenta de tribers
+
 //User Roles
 define("USER_ROLE_REGULAR", 	1);
 define("USER_ROLE_TRIBBER", 	2);
 define("USER_ROLE_COLABORADOR", 3);
 define("USER_ROLE_VALIDADOR", 	4);
 define("USER_ROLE_ADMIN", 		5);
-
-//Categorías
-define("USER_CATEGORIA_PERIODISMOCIUTADANO",	7);
 
 //Urls/Paths
 $_config['path'] = dirname(__FILE__);

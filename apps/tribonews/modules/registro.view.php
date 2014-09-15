@@ -37,7 +37,7 @@
             <fieldset>
                 <form method="post" action="<?=Url::site();?>" class="form-horizontal ajax" name="mainForm" id="mainForm" role="form" autocomplete="off" enctype="multipart/form-data">
                     <input type="hidden" name="app" id="app" value="login">
-                    <input type="hidden" name="action" id="action" value="registerTribber">
+                    <input type="hidden" name="action" id="action" value="registerTriber">
                     <div class="form-group">
                         <label for="user" class="col-sm-offset-1 col-sm-3 control-label l-left"><img src="<?=Url::template("img/haztetriber/user.png");?>" />&nbsp;&nbsp;Usuario</label>
                         <div class="col-sm-8">
@@ -61,7 +61,7 @@
                         <div class="col-sm-offset-1 col-sm-2 l-left">
                             <?=HTML::formButton("btn-tribo-grey", null, "Regístrate", array(
                                     "data-app" => "login",
-                                    "data-action" => "registerTribber"
+                                    "data-action" => "registerTriber"
                                 )
                             );?>
                         </div>
