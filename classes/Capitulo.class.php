@@ -469,11 +469,13 @@ class Capitulo extends Model
         if ($this->cdnId) {
             $json = Wistia::status($this->cdnId);
             if (is_object($json)) {
+                if ($json->thumbnail->url) {
 
-                // Better thumbnail
-                $json->thumbnail->url = str_replace("image_crop_resized=100x60", "image_crop_resized=640x360", $json->thumbnail->url);
+                    // Better thumbnail
+                    $json->thumbnail->url = str_replace("image_crop_resized=100x60", "image_crop_resized=640x360", $json->thumbnail->url);
 
-                return $json->thumbnail->url;
+                    return $json->thumbnail->url;
+                }
             }
         }
     }
