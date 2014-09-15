@@ -81,7 +81,7 @@
             </div>
             <div class='col-md-10 nopadding bor_lef'>
                 <?php $url = Registry::getUrl(); ?>
-                <?php if (!$url->app == "foro") { $md = 9; }else{ $md = 12; } ?>
+                <?php if ($url->app != "foro") { $md = 9; } else { $md = 12; } ?>
                 <div class='col-md-<?=$md;?> nopadding divprincipal'>
                     <!--messages-->
                     <?=$controller->view("modules.messages");?>
@@ -93,10 +93,11 @@
 
                 </div>
 
-
-                <?php if (!$url->app == "foro") { ?>
+                <?php if ($url->app != "foro") { ?>
                     <div class='col-md-3 nopadding'>
-                            <?=$controller->view("modules.twitter"); ?>
+                        <!--Twitter-->
+                        <?=$controller->view("modules.twitter"); ?>
+                        <!--/Twitter-->
                         <?php if ($url->app == "periodismociudadano") { ?>
                             <?=$controller->view("views.lomasvisto"); ?>
                         <?php } ?>
