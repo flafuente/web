@@ -64,4 +64,29 @@ class tribonewsController extends Controller
             Url::redirect(Url::site("tribonews"));
         }
     }
+    public function like(){
+        //Accion Like
+        /*
+        $url = Registry::getUrl();
+
+        $capitulo = new Capitulo($url->vars[0]);
+        if ($capitulo->id) {
+            $capitulo->like();
+        }
+        $this->ajax();
+        */
+    }
+
+    public function unlike(){
+        //Accion unlike
+        /*
+        $url = Registry::getUrl();
+
+        $capitulo = new Capitulo($url->vars[0]);
+        if ($capitulo->id) {
+            $capitulo->unlike();
+        }
+        $this->ajax();
+        */
+    }
 }

@@ -527,7 +527,20 @@ div.cadena{
 }
 div.sq_num {
 	float: right;
+	text-align: right;
+	color: #333;
 }
+div.sq_num span{
+	color: #9b9b9b;
+	text-align: right;
+	font-size: 11px;
+}
+div.sq_num span:first-child{
+	color: #333;
+	font-weight: bold;
+	font-size: 14px;
+}
+
 div.sq_title a {
 	color: #464343;
 }
@@ -1130,6 +1143,13 @@ label {
 	font-weight: bold;
 	font-size: 17px;
 }
+.vd-capituloInfo{
+	color: #9b9b9b;
+	font-size: 12px;
+}
+.vd-capituloInfo span{
+	color: #13b6ea;
+}
 .vd-attr{
 	color: #9b9b9b;
 	font-size: 12px;
@@ -1316,4 +1336,16 @@ font-size:15px;
 .like{
 	cursor: pointer;
 	color: #17B5E9;
+}
+
+
+/*RESPONSIVE RULES*/
+@media (min-width: 768px) {
+
+}
+@media (min-width: 992px) {
+
+}
+@media (min-width: 1200px) {
+
 }
