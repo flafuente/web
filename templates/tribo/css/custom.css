@@ -307,7 +307,7 @@ div.form-change-pass .form-group {
 	left: 140px;
 	top: 0px;
 	z-index: 99999;
-	width: 380px;
+	width: 320px;
 	box-shadow: 10px 10px 5px #888888;
 	box-shadow: 0px 0px 7px 0px #888888;
 	padding: 10px;
@@ -1340,12 +1340,37 @@ font-size:15px;
 
 
 /*RESPONSIVE RULES*/
-@media (min-width: 768px) {
-
+@media (max-width: 768px) {
+	.noresp{
+		display: none;
+	}
 }
-@media (min-width: 992px) {
-
+@media (min-width: 768px) and (max-width: 991px) {
+	.tribo4{
+		width: 33.333333333%;
+		float: left;
+	}
+	.tribo12{
+		width: 100%;
+		float: left;
+	}
 }
-@media (min-width: 1200px) {
 
+@media (max-width: 992px) {
+	.square{
+		padding: 31px;
+	}
+	.square img {
+		max-height: initial;
+		max-width: initial;
+	}
+	.container {
+		width: initial;
+	}
+	.clogo{
+		text-align: center;
+	}
+}
+@media (max-width: 1200px) {
+	
 }
