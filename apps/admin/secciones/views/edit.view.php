@@ -2,7 +2,7 @@
 
 <?php
 //Toolbar
-if ($categoria->id) {
+if ($seccion->id) {
     $subtitle = "Editar categoría";
     $title = "Guardar";
 } else {
@@ -10,7 +10,7 @@ if ($categoria->id) {
     $title = "Crear";
 }
 Toolbar::addTitle("Categorías", "glyphicon-star", $subtitle);
-if ($categoria->id) {
+if ($seccion->id) {
     //Delete button
     Toolbar::addButton(
         array(
@@ -129,6 +129,18 @@ Toolbar::render();
                             <?php } ?>
                         </div>
                     </div>
+                    <?php if (count($contactos)) { ?>
+                        <!-- Contactos -->
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">
+                                Contactos
+                            </label>
+                            <div class="col-sm-8">
+                                <?php $contactosIds = ContactoSeccion::getFieldBy("contactoId", "seccionId", $seccion->id); ?>
+                                <?=HTML::select("contactos[]", $contactos, $contactosIds, array("class" => "select2", "multiple" => true), null, array("display" => "nombre")); ?>
+                            </div>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>

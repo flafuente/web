@@ -47,6 +47,9 @@ Toolbar::render();
                             <tr>
                                 <td><?=$contacto->id;?></a></td>
                                 <td>
+                                    <?php if ($contacto->visible) { ?>
+                                        <span class="glyphicon glyphicon-eye-open" title="Visible" alt="Visible"></span>
+                                    <?php } ?>
                                     <a href="<?=Url::site("admin/contactos/edit/".$contacto->id);?>">
                                         <?=Helper::sanitize($contacto->nombre);?>
                                     </a>

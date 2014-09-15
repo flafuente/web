@@ -226,6 +226,77 @@ class Seccion extends Model
     }
 
     /**
+     * Acciones posteriores a la creación.
+     * @return void
+     */
+    public function postInsert($data = array())
+    {
+        //Añadimos/quitamos los contactos
+        $this->syncContactos($data["contactos"]);
+    }
+
+    public function postUpdate($data = array())
+    {
+        //Añadimos/quitamos los contactos
+        $this->syncContactos($data["contactos"]);
+    }
+
+    /**
+     * Añade y quita las tags al vídeo
+     * @param  array $tagsIds Id's de las Tags a añadir
+     * @return void
+     */
+    public function syncContactos($contactosIds = array())
+    {
+        $actualContactosIds = ContactoSeccion::getFieldBy("contactoId", "seccionId", $this->id);
+        //Quitar
+        if (count($actualContactosIds)) {
+            foreach ($actualContactosIds as $contactoId) {
+                if ($contactoId) {
+                    //Si el contacto no ha sido pasado por parámetro...
+                    if (!@in_array($contactoId, $contactosIds)) {
+                        ContactoSeccion::deleteContacto($this->id, $contactoId);
+                    }
+                }
+            }
+        }
+        //Añadir
+        if (count($contactosIds)) {
+            foreach ($contactosIds as $contactoId) {
+                if ($contactoId) {
+                    //Si el contacto no está actualmente...
+                    if (!@in_array($contactoId, $actualContactosIds)) {
+                        $ContactoSeccion = new ContactoSeccion();
+                        $ContactoSeccion->seccionId = $this->id;
+                        $ContactoSeccion->contactoId = $contactoId;
+                        $ContactoSeccion->insert();
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Envía un email a todos los contactos asociados.
+     * @param  array $data Form data.
+     * @return bool
+     */
+    public function sendEmail($data)
+    {
+        if (!Contacto::validateSend($data)) {
+            $contactosIds = ContactoSeccion::getFieldBy("contactoId", "seccionId", $this->id);
+            if (count($contactosIds)) {
+                foreach ($contactosIds as $contactoId) {
+                    $contacto = new Contacto($contactoId);
+                    $contacto->sendEmail($data);
+                }
+            }
+
+            return true;
+        }
+    }
+
+    /**
      * Obtiene registros de la base de datos.
      * @param  array   $data       Condicionales / ordenación
      * @param  integer $limit      Límite de resultados (Paginación)

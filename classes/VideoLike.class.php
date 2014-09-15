@@ -93,7 +93,7 @@ class VideoLike extends Model
      * @param  integer $videoId Id del capítulo
      * @return int
      */
-    public static function getTotalLikesByCapituloId($videoId = null)
+    public static function getTotalLikesByVideoId($videoId = null)
     {
         if ($videoId) {
             $db = Registry::getDb();

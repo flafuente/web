@@ -87,6 +87,11 @@ class Video extends Model
      */
     public $visitas;
     /**
+     * Nº total de likes recibidos
+     * @var int
+     */
+    public $likes;
+    /**
      * Fecha de creación
      * @var string
      */

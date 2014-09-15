@@ -12,6 +12,11 @@ class Contacto extends Model
      */
     public $id;
     /**
+     * Visible
+     * @var int
+     */
+    public $visible;
+    /**
      * Id del usuario creador
      * @var int
      */
@@ -103,6 +108,50 @@ class Contacto extends Model
         $this->dateUpdate = date("Y-m-d H:i:s");
     }
 
+    public function validateSend($data)
+    {
+        //Nombre
+        if (!$data["nombre"]) {
+            Registry::addMessage("Debes introducir tu nombre", "error", "nombre");
+        }
+        //Email
+        if (!$data["email"]) {
+            Registry::addMessage("Debes introducir tu email", "error", "email");
+        } elseif (!filter_var($data["email"], FILTER_VALIDATE_EMAIL)) {
+            Registry::addMessage("Email incorrecto", "error", "email");
+        }
+        //Mensaje
+        if (!$data["mensaje"]) {
+            Registry::addMessage("Debes introducir un mensaje", "error", "mensaje");
+        }
+
+        return Registry::getMessages(true);
+    }
+
+    /**
+     * Envía un email al contacto.
+     * @param  array $data Form data.
+     * @return bool
+     */
+    public function sendEmail($data)
+    {
+        //Preparamos el email
+        $mailer = Registry::getMailer();
+        $mailer->addAddress($this->email);
+        $mailer->Subject = utf8_decode("Nuevo mensaje de contacto");
+        $mailer->msgHTML(
+            Template::renderEmail(
+                "contacto",
+                array(
+                    "data" => $data
+                ), "admin"
+            )
+        );
+        $mailer->send();
+
+        return true;
+    }
+
     /**
      * Obtiene registros de la base de datos.
      * @param  array   $data       Condicionales / ordenación
@@ -122,6 +171,10 @@ class Contacto extends Model
         if ($data["search"]) {
             $query .= " AND `email` LIKE :email";
             $params[":email"] = "%".$data["search"]."%";
+        }
+        //Visible
+        if ($data["visible"]) {
+            $query .= " AND `visible` = 1 ";
         }
         //Total
         $total = count($db->Query($query, $params));

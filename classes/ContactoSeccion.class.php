@@ -1,10 +1,10 @@
 <?php
 /**
- * Modelo ContactoCategoría
+ * Modelo ContactoSeccion
  *
  * @package Tribo\Modelos
  */
-class ContactoCategoria extends Model
+class ContactoSeccion extends Model
 {
     /**
      * Id
@@ -12,10 +12,10 @@ class ContactoCategoria extends Model
      */
     public $id;
     /**
-     * Id de la categoría
+     * Id de la sección
      * @var int
      */
-    public $categoriaId;
+    public $seccionId;
     /**
      * Id del contacto
      * @var int
@@ -34,7 +34,7 @@ class ContactoCategoria extends Model
     public function init()
     {
         //Tabla usada en la DB
-        parent::$dbTable = "contactos_categorias";
+        parent::$dbTable = "contactos_secciones";
         //Variables reservadas
         parent::$reservedVarsChild = self::$reservedVarsChild;
     }
@@ -48,12 +48,12 @@ class ContactoCategoria extends Model
         $this->dateInsert = date("Y-m-d H:i:s");
     }
 
-    public static function deleteContacto($categoriaId, $contactoId)
+    public static function deleteContacto($seccionId, $contactoId)
     {
         $db = Registry::getDb();
-        $query = "DELETE FROM `contactos_categorias` WHERE `categoriaId`=:categoriaId AND `contactoId`=:contactoId";
+        $query = "DELETE FROM `contactos_secciones` WHERE `seccionId`=:seccionId AND `contactoId`=:contactoId";
         $params = array(
-            ":categoriaId" => $categoriaId,
+            ":seccionId" => $seccionId,
             ":contactoId" => $contactoId
         );
         if ($db->query($query, $params)) {
@@ -73,7 +73,7 @@ class ContactoCategoria extends Model
     {
         $db = Registry::getDb();
         //Query
-        $query = "SELECT * FROM `contactos_categorias` WHERE 1=1 ";
+        $query = "SELECT * FROM `contactos_secciones` WHERE 1=1 ";
         //Total
         $total = count($db->Query($query));
         if ($total) {
@@ -92,7 +92,7 @@ class ContactoCategoria extends Model
             $rows = $db->Query($query);
             if (count($rows)) {
                 foreach ($rows as $row) {
-                    $results[] = new ContactoCategoria($row);
+                    $results[] = new ContactoSeccion($row);
                 }
 
                 return $results;

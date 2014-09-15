@@ -124,18 +124,6 @@ Toolbar::render();
                             <input type="text" id="wistiaHash" name="wistiaHash" class="form-control" value="<?=Helper::sanitize($categoria->wistiaHash);?>">
                         </div>
                     </div>
-                    <?php if (count($contactos)) { ?>
-                        <!-- Contactos -->
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">
-                                Contactos
-                            </label>
-                            <div class="col-sm-8">
-                                <?php $contactosIds = ContactoCategoria::getFieldBy("contactoId", "categoriaId", $categoria->id); ?>
-                                <?=HTML::select("contactos[]", $contactos, $contactosIds, array("class" => "select2", "multiple" => true), null, array("display" => "nombre")); ?>
-                            </div>
-                        </div>
-                    <?php } ?>
                 </div>
             </div>
         </div>
