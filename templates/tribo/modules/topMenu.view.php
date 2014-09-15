@@ -5,7 +5,7 @@
 
 <div class="container">
     <div class="row-fluid">
-        <div class='col-md-4 topleft'>
+        <div class='col-md-4 topleft noresp tribo4'>
             <div class='col-md-12 pull-left mid'>
                 <!-- Login Module -->
                 <?=$controller->view("modules.panel.login");?>
@@ -18,13 +18,13 @@
                 <!-- /Contacto Module -->
             </div>
         </div>
-        <div class='col-md-3  col-md-offset-1'>
+        <div class='col-md-3 col-md-offset-1 clogo tribo4'>
             <a href='<?=Url::site("home");?>' class='logo'>
                 <img src='<?=Url::template("/img/logo.png");?>' />
             </a>
         </div>
-        <div class='col-md-4 topright'>
-            <div class='col-md-12 mid pull-right'>
+        <div class='col-md-4 topright noresp tribo4'>
+            <div class='col-md-12 mid pull-right tribo12'>
             <a class='pull-right lsep' target='_BLANK' href='https://twitter.com/Tribo_tv'>
                 <img src='<?=Url::template("/img/twitter.png");?>' title='Twitter' />
             </a>

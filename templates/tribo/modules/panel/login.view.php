@@ -9,7 +9,7 @@ if (!$user->id) {
     ?><img src='<?=Url::template("/img/user.png");?>' title='Login' /><?php
 } else {
     ?><img src="<?=$user->getFotoUrl();?>" class="img-circle profpic"><?php
-    $stl .= "margin-top: -40px; width: 345px; height: 175px; padding: 0px;";
+    $stl .= "margin-top: -40px; width: 345px; height: 195px; padding: 0px;";
 }
 ?>
 </a>
