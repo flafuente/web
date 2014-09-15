@@ -34,11 +34,16 @@
                <?=Helper::sanitize($triber->biografia);?>
             </span><br />
             <h1><img src="<?=Url::template("img/perfilpublico/sitiosweb.png");?>" /> Sus sitios web:
-                <?=Helper::sanitize($triber->sitios);?>
-                <span><a href="#">Vimeo</a></span>
-                <span><a href="#">Youtube</a></span>
-                <span><a href="#">Web personal</a></span>
-                <span><a href="#">Linkedin</a></span>
+                <?php
+                $sts = explode(",", $triber->sitios);
+                for($x=0; $x<count($sts); $x++){
+                    $vari = $sts[$x];
+                    if(!strpos($sts[$x], "http")) $vari = "http://".$sts[$x];
+                    ?>
+                    <span><a href="<?=Helper::sanitize($vari);?>" target="_blank"><?=Helper::sanitize($sts[$x]);?></a></span>
+                    <?php
+                }
+                ?>
             </h1>
 
         </div>
@@ -49,11 +54,11 @@
 <div class='col-md-12 serie_info' style="margin-top: 20px;">
     <div class='video-info' style="padding: 5px;">
         <div class='title-line'>
-            <span>NOTICIAS DE NOMBRE USER</span>
+            <span>NOTICIAS DE <?=Helper::sanitize($triber->nombre);?></span>
         </div>
         <?php
-        for ($x=0; $x<5; $x++) {
-            showTriberNews("Titulo ".$x, "Descripcion", "20:00");
+        foreach($videos as $video) {
+            showTriberNews($video->thumbnail, $video->titulo, $video->descripcion, rand(0,60).":".rand(0,60));
         }
         ?>
     </div>
@@ -62,7 +67,7 @@
 <div class='col-md-12' style="margin-top: 20px;">
     <div class='video-info' style="padding: 5px; float: left; width: 100%;">
         <div class='title-line'>
-            <span>TRIBERS CON PERFIL SIMILAR A NOMBRE USER</span>
+            <span>TRIBERS CON PERFIL SIMILAR A <?=Helper::sanitize($triber->nombre);?></span>
         </div>
         <?php
         for($x=0; $x<4; $x++)
@@ -101,13 +106,13 @@ function showTriberFace($imagen, $nombre, $enlace, $ciudad, $noticias)
     </div>
     <?php
 }
-function showTriberNews($titulo, $descripcion, $duracion)
+function showTriberNews($thum, $titulo, $descripcion, $duracion)
 {
     $likes = rand(0, 1000);
     ?>
     <div class='col-md-6 square' style="border-bottom: 1px solid #CCC;">
         <a href="<?=Url::site("reproductor/capitulo/".$capitulo->id);?>">
-            <img src="http://dev.tribo.tv/files/images/programas/15405e82dbb918_GKOPJHINELMFQ.jpeg" title="<?=Helper::sanitize($titulo); ?>" style="width: 250px; height: 100px;" />
+            <img src="<?=$thum; ?>" title="<?=Helper::sanitize($titulo); ?>" style="width: 250px;" />
         </a>
         <div class="rating">
             <?=HTML::showRate($likes, 1000);?>
