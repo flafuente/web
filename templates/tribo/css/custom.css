@@ -146,6 +146,7 @@ a.file-input-wrapper.btn.btn-default.btnazul {
 	height: 57px;
 	border-top: 1px solid #767676;
 	padding: 10px;
+	margin-top: -2px;
 }
 
 /*Error Messages*/
@@ -285,7 +286,7 @@ div.form-change-pass .form-group {
 	padding: 0px;
 }
 
-.square-info .select2-search-choice > div{
+.square-info .select2-search-choice > div, .square-info-foro .select2-search-choice > div{
 	padding: 0px;
 }
 
@@ -474,21 +475,21 @@ div.twitter i.fa.fa-twitter {
 }
 
 /*Sintonizanos*/
-.square-info{
+.square-info, .square-info-foro{
 	background-color: #FFFFFF;
 	width: 100%;
 	min-height: 100px;
 	/*margin-top: 20px;*/
 
 }
-.square-info div.grey{
+.square-info div.grey, .square-info-foro div.grey{
 	background-color: #9B9B9B;
 	color: #FFFFFF;
 	width: 100%;
 	font-size: 17px;
 	margin-bottom: 5px;
 }
-.square-info div {
+.square-info div, .square-info-foro div {
 	padding: 10px;
 }
 div.cadena{
@@ -560,6 +561,53 @@ div.sq_content{
 	margin-bottom: 30px;
 }
 
+/*FORO*/
+.square-info-foro{
+	min-height: initial !important;
+	margin-top: 10px;
+}
+.foro_tema {
+	border: 1px solid #9b9b9b;
+	margin-top: 4px;
+	background-color: #FFFFFF;
+	padding: 10px;
+}
+.foro_tema_info h1{
+	font-size: 14px;
+	text-transform: initial;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+.foro_tema_info h2{
+	font-size: 12px;
+	color: #9b9b9b;
+	text-transform: initial;
+	margin-top: 0px;
+}
+.foro_tema_infoT h1{
+	font-size: 14px;
+	text-transform: initial;
+	font-weight: bold;
+	color: #9b9b9b;
+	text-align: center;
+	margin-bottom: 5px;
+}
+.foro_tema_infoT h2{
+	font-size: 12px;
+	color: #e40d7e;
+	text-align: center;
+	text-transform: initial;
+	margin-top: 0px;
+}
+.foro_tema_icono{
+	text-align: center;
+}
+.foro_tema_icono img{
+	margin-top: 30%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
 
 /*Episodios*/
 .serie_info{
@@ -655,6 +703,12 @@ div#s2id_autogen1 {
 	background-position: center center;
 	width: 95%;
 	margin: auto;
+}
+.title-line-right{
+	text-align: right;
+}
+.title-line-left{
+	text-align: left;
 }
 .title-line span{
 	background-color: #f9f6f6;
@@ -905,10 +959,11 @@ a.file-input-wrapper.btn.btn-default.btnazul {
 	top: 179px;
 }
 
-.square-info .grey a.btn{
+.square-info .grey a.btn, .square-info-foro .grey a.btn{
 	float: right;
 	margin-top: -5px;
 }
+
 .mi-video{
 	padding: 0px;
 }

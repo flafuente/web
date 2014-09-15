@@ -99,6 +99,11 @@ if (!$user->id) {
                     </ul>
                 </li>
             <li>
+                <a href="<?=Url::site("foro")?>">
+                    Mi foro
+                </a>
+            </li>
+            <li>
                 <a href="<?=Url::site("perfil")?>">
                     Mi perfil
                 </a>

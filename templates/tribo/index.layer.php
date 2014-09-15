@@ -80,8 +80,9 @@
                 <?=$controller->view("modules.mainMenu");?>
             </div>
             <div class='col-md-10 nopadding bor_lef'>
-                <div class='col-md-9 nopadding divprincipal'>
-
+                <?php $url = Registry::getUrl(); ?>
+                <?php if (!$url->app == "foro") { $md = 9; }else{ $md = 12; } ?>
+                <div class='col-md-<?=$md;?> nopadding divprincipal'>
                     <!--messages-->
                     <?=$controller->view("modules.messages");?>
                     <!--/messages-->
@@ -92,14 +93,15 @@
 
                 </div>
 
-                <?php $url = Registry::getUrl(); ?>
 
-                <div class='col-md-3 nopadding'>
-                    <?=$controller->view("modules.twitter"); ?>
-                    <?php if ($url->app == "periodismociudadano") { ?>
-                        <?=$controller->view("views.lomasvisto"); ?>
-                    <?php } ?>
-                </div>
+                <?php if (!$url->app == "foro") { ?>
+                    <div class='col-md-3 nopadding'>
+                            <?=$controller->view("modules.twitter"); ?>
+                        <?php if ($url->app == "periodismociudadano") { ?>
+                            <?=$controller->view("views.lomasvisto"); ?>
+                        <?php } ?>
+                    </div>
+                <?php } ?>
 
                 <?php if ($url->app == "haztetriber") { ?>
                     <div class='col-md-12 nopadding'>
