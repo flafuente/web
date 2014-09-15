@@ -14,10 +14,10 @@ class contactoController extends Controller
     public function enviar()
     {
         //Categoría?
-        if ($_REQUEST["categoriaId"]) {
-            $categoria = new Categoria($_REQUEST["categoriaId"]);
-            if ($categoria->id) {
-                if ($categoria->sendEmail($_REQUEST)) {
+        if ($_REQUEST["seccionId"]) {
+            $seccion = new Seccion($_REQUEST["seccionId"]);
+            if ($seccion->id) {
+                if ($seccion->sendEmail($_REQUEST)) {
                     Registry::addMessage("Email enviado", "success", "", Url::site());
                 }
             } else {

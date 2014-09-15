@@ -30,6 +30,7 @@ class seccionesController extends Controller
     {
         $url = Registry::getUrl();
         $this->setData("seccion", new Seccion($url->vars[0]));
+        $this->setData("contactos", Contacto::select());
         $this->setData("secciones", Seccion::select());
         $html = $this->view("views.edit");
         $this->render($html);

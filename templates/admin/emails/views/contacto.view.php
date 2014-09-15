@@ -19,9 +19,9 @@
     <p><strong>Url: </strong><?=Helper::sanitize($data["url"])?></p>
 <?php } ?>
 
-<?php $categoria = new Categoria($data["categoriaId"]); ?>
-<?php if ($categoria->id) { ?>
-    <p><strong>Categoría: </strong><?=Helper::sanitize($categoria->nombre)?></p>
+<?php $seccion = new Seccion($data["seccionId"]); ?>
+<?php if ($seccion->id) { ?>
+    <p><strong>Sección: </strong><?=Helper::sanitize($seccion->nombre)?></p>
 <?php } ?>
 
 <p><?=Helper::sanitize($data["mensaje"])?></p>
