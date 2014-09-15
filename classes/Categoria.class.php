@@ -232,41 +232,12 @@ class Categoria extends Model
      */
     public function sendEmail($data)
     {
-        //Validaciones
-        //Nombre
-        if (!$data["nombre"]) {
-            Registry::addMessage("Debes introducir tu nombre", "error", "nombre");
-        }
-        //Email
-        if (!$data["email"]) {
-            Registry::addMessage("Debes introducir tu email", "error", "email");
-        }
-        //Mensaje
-        if (!$data["mensaje"]) {
-            Registry::addMessage("Debes introducir un mensaje", "error", "mensaje");
-        }
-
-        if (!Registry::getMessages(true)) {
+        if (!Contacto::validateSend($data)) {
             $contactosIds = ContactoCategoria::getFieldBy("contactoId", "categoriaId", $this->id);
             if (count($contactosIds)) {
                 foreach ($contactosIds as $contactoId) {
                     $contacto = new Contacto($contactoId);
-                    if ($contacto->id) {
-                        //Preparamos el email
-                        $mailer = Registry::getMailer();
-                        $mailer->addAddress($contacto->email);
-                        $mailer->Subject = utf8_decode("Nuevo mensaje de contacto");
-                        $mailer->msgHTML(
-                            Template::renderEmail(
-                                "contactoSecciones",
-                                array(
-                                    "data" => $data,
-                                    "seccion" => $this
-                                ), "admin"
-                            )
-                        );
-                        $mailer->send();
-                    }
+                    $contacto->sendEmail($data);
                 }
             }
 
