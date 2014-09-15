@@ -15,7 +15,8 @@
         <br /><br />
         Queremos aumentar la familia, ser cada día más y mejores, contar contigo, con los mejores creadores de contenidos, fanáticos de internet, como nosotros.
         <br /><br />
-        Bloggers, nativos digitales y profesionales, o simplemente tú que estas sentado frente al ordenador con mil ideas por exponer al mundo, capaz de ver más allá del ahora, capaces de generar tendencia y viralidad con sus búsquedas.
+        Bloggers, nativos digitales y profesionales, o simplemente tú que estas sentado frente al ordenador con mil ideas por exponer al mundo, capaz de ver más allá del ahora, capaces de 
+		generar tendencia y viralidad con sus búsquedas.
         <br /><br />
         Queremos verte en pantalla grande, ¿te atreves?. ¡Únete a nuestra cadena de personas!
     </div>

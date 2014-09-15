@@ -3,51 +3,58 @@
 ?>
 <div class='col-md-12 serie_info'>
     <div class="col-md-12 video">
+	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
     </div>
     <div class="video-info">
-        <div class="col-md-12 vd-ruta">Malviviendo</div>
+        <div class="col-md-12 vd-ruta">Pruebas de emisión</div>
         <div class="col-md-8">
-            <div class="vd-codigo" style="font-size: 14px; letter-spacing: -1px;">CAPITULO 7 | </div><div class="vd-capitulo" style="font-size: 15px;">RESCATE EN LOS BANDERILLEROS</div>
+            <div class="vd-codigo" style="font-size: 14px; letter-spacing: -1px;">CAPITULO 0 | </div><div class="vd-capitulo" style="font-size: 15px;">Prueba</div>
         </div>
         <div class="col-md-4">
-            <div class="sq_num">568 <i class="fa fa-heart-o"></i>
+            <div class="sq_num">0 <i class="fa fa-heart-o"></i>
             </div>
         </div>
         <div class="col-md-12">
-            <div class="vd-temporada">TEMPORADA 3</div>
+            <div class="vd-temporada">TEMPORADA 0</div>
         </div>
         <div class="col-md-12 video-desc">
-            El Negro ha sido atrapado en el barrio de los pijos rivales. Su tropa, con el Kaki al frente, se decide a rescatarle en una de las misiones más arriesgadas que ha tenido que realizar a lo largo de su dilatada carrera.
+            Emisión en pruebas.
             <br /><br />
-            Para calmarse, como siempre, unos buenos melones y algún que otro cigarrillo con aderezo.
+            Pruebas.
             <br />
             <div class='col-md-6 epi_button'>
-                <a href="<?=Url::site("programas/n_programa");?>">site programa</a>
+                <a href="<?=Url::site("/");?>">site programa
                 <strong>|</strong>
-                <a href="<?=Url::site("episodios/n_programa/all");?>">todos los capitulos</a>
+                todos los capitulos</a>
             </div>
             <div class="col-md-6 ver-todas-web" style="margin-top: 30px;">
-                Ver todas las Webseries&nbsp;&nbsp;<div class="circulo-azul">+</div>
+                Ver todas las Webseries&nbsp;&nbsp;<a href="<?=Url::site("/");?>"><div class="circulo-azul">+</div></a>
             </div>
         </div>
         <div style="clear: both;"></div>
     </div>
-    <br /><br />
-    <div class='title-line'>
-        <span>DESPUÉS EN TRIBO</span>
-    </div>
+
 <?php
    //Listado de proximas series
 /*Extraer de BBDD la parrilla y meterlo en el controller, llamarlo e imprimirlo con el module de capitulo-mini*/
     if (count($proximos)) {
+	?>
+	<br /><br />
+    <div class='title-line'>
+        <span>DESPUÉS EN TRIBO</span>
+    </div>
+	<?php
         foreach ($proximos as $proximo) {
             $controller->setData("proximo", $proximo);
             echo $controller->view("modules.capitulo-mini", "programas");
         }
+	?>
+	<div class='col-md-6'></div>
+    <div class="col-md-6 ver-todas-web" style="margin-top: 30px;">
+        Ver parrilla completa&nbsp;&nbsp;<a href="<?=Url::site("parrillas");?>"><div class="circulo-azul">+</div></a>
+    </div>
+	<?php
     }
 ?>
-    <div class='col-md-6'></div>
-    <div class="col-md-6 ver-todas-web" style="margin-top: 30px;">
-        Ver parrilla completa&nbsp;&nbsp;<div class="circulo-azul">+</div>
-    </div>
+
 </div>

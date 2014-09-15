@@ -20,7 +20,7 @@
         <div class="haztetriber_description">
             Los informativos de Tribo son diferentes, singulares y con mucha personalidad.
             <br /><br />
-            Tanto es así, que estarán hechos por contenidos grabados, producidos y enviados por los propios Tribers.
+            Tanto es así, que están hechos por contenidos grabados, producidos y enviados por los propios Tribers.
             <br /><br />
             Los Tribers no son sólo periodistas, son testigos de la realidad. Se trata de ciudadanos con inquietudes, capaces de enviarnos sus videos desde el lugar de la noticia.
             <br /><br />
@@ -67,7 +67,7 @@
                         </div>
                         <div class="col-sm-9 l-right">
                             <span class="yareg">Si ya estás registrado, accede como usuario:</span>
-                            <?=HTML::formLink("btn-tribo-blue", null, Url::site("login"), "Entrar");?>
+                            <?=HTML::formLink("btn-tribo-blue", null, Url::site("?a=true"), "Entrar");?>
                         </div>
                     </div>
                 </form>

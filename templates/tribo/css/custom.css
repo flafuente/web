@@ -475,6 +475,20 @@ div.twitter i.fa.fa-twitter {
 }
 
 /*Sintonizanos*/
+.title-linewh span img{
+	width:121px;
+	margin-bottom: 0;
+}
+.title-linewh{
+	font-size: 17px;
+	text-transform: uppercase;
+	text-align: center;
+	background-image: url("../img/titbgwh.png");
+	background-repeat: repeat-x;
+	background-position: center center;
+	width: 95%;
+	margin: auto;
+}
 .square-info, .square-info-foro{
 	background-color: #FFFFFF;
 	width: 100%;
@@ -501,7 +515,22 @@ div.cadena{
 }
 .canalesd{
 	margin: auto;
-	width: 524px;
+
+}
+.canalesd p.center{
+	text-align:center;
+	margin-left:-7px;
+	margin-right:-7px;
+	color:#9b9b9b;
+}
+.canalesd .blue{
+	color:#13b6ea;
+	font-weight:bolder;
+}
+.canalesd .region{
+	text-transform:uppercase;
+	font-size:12px;
+	color:#9b9b9b;
 }
 
 /*Home*/

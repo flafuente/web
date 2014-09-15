@@ -8,73 +8,29 @@
             ¿DÓNDE PUEDES VER TRIBO?
         </div>
         <div class="canalesd">
-       <?php
-       /*Remplazar por llamada a BBDD*/
-       $canales = Array(
-                        0 => Array(
-                            "id_key" => "canaplus",
-                            "name" => "Canal+",
-                            "url" => "http://canalplus.com",
-                            "imagen" => "canalplus.png"
-                            ),
-                        1 => Array(
-                            "id_key" => "movistar",
-                            "name" => "Movistar TV",
-                            "url" => "http://movistar.com",
-                            "imagen" => "movistartv.png"
-                            ),
-                        2 => Array(
-                            "id_key" => "ono",
-                            "name" => "ONO",
-                            "url" => "http://ono.com",
-                            "imagen" => "ono.png"
-                            ),
-                        3 => Array(
-                            "id_key" => "britel",
-                            "name" => "Britel",
-                            "url" => "http://britel.com",
-                            "imagen" => "britel.png"
-                            ),
-                        4 => Array(
-                            "id_key" => "euskaltel",
-                            "name" => "Euskaltel",
-                            "url" => "http://euskaltel.com",
-                            "imagen" => "euskaltel.png"
-                            ),
-                        5 => Array(
-                            "id_key" => "rtv",
-                            "name" => "R",
-                            "url" => "http://r.com",
-                            "imagen" => "r.png"
-                            ),
-                        6 => Array(
-                            "id_key" => "telecable",
-                            "name" => "Telecable",
-                            "url" => "http://telecable.com",
-                            "imagen" => "telecable.png"
-                            ),
-                        7 => Array(
-                            "id_key" => "tdt",
-                            "name" => "TDT",
-                            "url" => "http://tdt.com",
-                            "imagen" => "tdt.png"
-                            ),
-                        );
-        /*La imagen ha de ser de 336x71.... pero el 336 se divide en dos (168), ver ejemplo*/
-       for($x=0; $x<count($canales); $x++){
-            ?>
-            <style>
-                #<?= $canales[$x]["id_key"]; ?>{
-                    background-image: url("<?=Url::template("img/sintonizanos/".$canales[$x]["imagen"]);?>");
-                }
-                #<?= $canales[$x]["id_key"]; ?>:hover{
-                    background-position: 0px;
-                }
-            </style>
-            <a href="<?= $canales[$x]["url"]; ?>" target="_blank"><div class="cadena" id="<?= $canales[$x]["id_key"]; ?>"></div></a>
-            <?php
-       }
-       ?>
+			<div class='title-linewh'>
+				<span><img src='<?=Url::template("img/sintonizanos/TDT2.png")?>' title='tdt'></span>
+			</div>
+			<p class='center'>Actualmente, Tribo TV mantiene una emisión en pruebas en la Comunidad de Madrid.
+			<br />Puedes sintonizarnos en las siguientes frecuencias:</p>
+			<div class='region col-md-6'>
+				<p><span class='blue'>MADRID</span> - Canal 39 - 618 MHz</p>
+				<p><span class='blue'>ARANJUEZ</span> - Canal 21 - 474 MHz</p>
+				<p><span class='blue'>ALCOBENDAS</span> - Canal 51 - 714 MHz</p>
+				<p><span class='blue'>MOSTOLES</span> - Canal 39 - 618 MHz</p>
+				<p><span class='blue'>SOTO DEL REAL</span> - Canal 35 - 586 MHz</p>
+			</div>
+			<div class='region col-md-6'>
+				<p><span class='blue'>Fuenlabrada</span> - Canal 42 - 642 MHz</p>
+				<p><span class='blue'>COLLADO VILLALBA</span> - Canal 29 - 538 MHz</p>
+				<p><span class='blue'>ALCALA DE HENARES</span> - Canal 46 - 674 MHz</p>
+				<p><span class='blue'>POZUELO</span> - Canal 23 - 490 MHz</p>
+				<p><span class='blue'>SAN MARTIN DE VALDEIGLESIAS</span> - Canal 51 - 714 MHz</p>
+			</div>
+			<div style='clear:both;'></div>
+			<div class='title-linewh'></div>
+			<p class='center blue'>Y próximamente, Tribo TV en más Comunidades Autónomas</p>
+
         </div>
        <div style="clear: both;"></div>
     </div>
