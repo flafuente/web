@@ -460,6 +460,9 @@ class User extends Model
         }
     }
 
+    /**
+     * Set user token
+     */
     private function setToken()
     {
         if (!$this->token) {

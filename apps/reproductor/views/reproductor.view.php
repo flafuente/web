@@ -4,7 +4,7 @@
 
     <!-- Player -->
     <div class="col-md-12 video">
-        <?php HTML::wistiaPlayer($capitulo->cdnId, 569, 300); ?>
+        <?php HTML::wistiaPlayer($capitulo->cdnId); ?>
     </div>
 
     <!-- Info -->

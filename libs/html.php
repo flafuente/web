@@ -6,17 +6,27 @@
 class HTML
 {
 
-    public static function wistiaPlayer($hash, $width = null, $height = null)
+    public static function wistiaPlayer($hash, $width = 570, $height = null)
     {
-        if (!$width) {
-            $style = "width:100%;";
-        } else {
-            $style = "width:".$width."px;";
-        }
+        $style = "width:".$width."px;";
         if ($height) {
             $style .= "height:".$height."px;";
         } else {
-            $style = "min-height:300px;";
+            //Calculamos el height
+            Wistia::init();
+            $json = Wistia::status($hash);
+            if (is_object($json)) {
+                $videoH = $json->assets[0]->height;
+                $videoW = $json->assets[0]->width;
+                $height = (int) ($videoH * $width / $videoW);
+                if ($height && $height > 0) {
+                    $style .= "height:".$height."px;";
+                } else {
+                    $style .= "min-height:300px;";
+                }
+            } else {
+                $style .= "min-height:300px;";
+            }
         }
         ?>
             <div id="wistia_<?=$hash;?>" class="wistia_embed" style="<?=$style?>"></div>
