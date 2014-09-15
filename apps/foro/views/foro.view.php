@@ -1,5 +1,17 @@
 <?php defined('_EXE') or die('Restricted access'); ?>
 
+<?php
+$temaEjemplo = new stdClass();
+$temaEjemplo->icono = Url::template("img/weirdicon.png");
+$temaEjemplo->titulo = "Funcionamiento del foro";
+$temaEjemplo->descripcion = "Normas de utilización del Foro triber";
+$temaEjemplo->thumb = $user->getFotoUrl();
+$temaEjemplo->lastpost = "Ultimo post";
+$temaEjemplo->lastpost_desc = "hace x tiempo por ".$user->username;
+$temaEjemplo->ntemas = rand(5, 500);
+$temaEjemplo->nactua = rand(1, 10);
+?>
+
 <div class='title-line title-line-left'>
     <span>FORO TRIBER</span>
 </div>
@@ -10,12 +22,11 @@
         </div>
     </div>
     <?php
-    showTema(Url::template("img/weirdicon.png"), "Funcionamiento del foro", "Normas de utilización del Foro triber", $user->getFotoUrl(), "Ultimo post", "hace x tiempo por ".$user->username, "240", "2");
-    showTema(Url::template("img/weirdicon.png"), "Funcionamiento del foro", "Normas de utilización del Foro triber", $user->getFotoUrl(), "Ultimo post", "hace x tiempo por ".$user->username, "240", "2");
-    showTema(Url::template("img/weirdicon.png"), "Funcionamiento del foro", "Normas de utilización del Foro triber", $user->getFotoUrl(), "Ultimo post", "hace x tiempo por ".$user->username, "240", "2");
-    showTema(Url::template("img/weirdicon.png"), "Funcionamiento del foro", "Normas de utilización del Foro triber", $user->getFotoUrl(), "Ultimo post", "hace x tiempo por ".$user->username, "240", "2");
-    showTema(Url::template("img/weirdicon.png"), "Funcionamiento del foro", "Normas de utilización del Foro triber", $user->getFotoUrl(), "Ultimo post", "hace x tiempo por ".$user->username, "240", "2");
-    
+    $temas = array($temaEjemplo, $temaEjemplo, $temaEjemplo, $temaEjemplo);
+    foreach($temas as $tema){
+        $controller->setData("tema", $tema);
+        echo $controller->view("modules.tema");
+    }
     ?>
     
 </div>
@@ -27,12 +38,11 @@
         </div>
     </div>
     <?php
-    showTema(Url::template("img/weirdicon.png"), "Funcionamiento del foro", "Normas de utilización del Foro triber", $user->getFotoUrl(), "Ultimo post", "hace x tiempo por ".$user->username, "240", "2");
-    showTema(Url::template("img/weirdicon.png"), "Funcionamiento del foro", "Normas de utilización del Foro triber", $user->getFotoUrl(), "Ultimo post", "hace x tiempo por ".$user->username, "240", "2");
-    showTema(Url::template("img/weirdicon.png"), "Funcionamiento del foro", "Normas de utilización del Foro triber", $user->getFotoUrl(), "Ultimo post", "hace x tiempo por ".$user->username, "240", "2");
-    showTema(Url::template("img/weirdicon.png"), "Funcionamiento del foro", "Normas de utilización del Foro triber", $user->getFotoUrl(), "Ultimo post", "hace x tiempo por ".$user->username, "240", "2");
-    showTema(Url::template("img/weirdicon.png"), "Funcionamiento del foro", "Normas de utilización del Foro triber", $user->getFotoUrl(), "Ultimo post", "hace x tiempo por ".$user->username, "240", "2");
-    
+    foreach($temas as $tema){
+        $controller->setData("tema", $tema);
+        echo $controller->view("modules.tema");
+    }
+
     ?>
     
 </div>
@@ -44,9 +54,10 @@
         </div>
     </div>
     <?php
-    showTema(Url::template("img/weirdicon.png"), "Funcionamiento del foro", "Normas de utilización del Foro triber", $user->getFotoUrl(), "Ultimo post", "hace x tiempo por ".$user->username, "240", "2");
-    showTema(Url::template("img/weirdicon.png"), "Funcionamiento del foro", "Normas de utilización del Foro triber", $user->getFotoUrl(), "Ultimo post", "hace x tiempo por ".$user->username, "240", "2");
-    showTema(Url::template("img/weirdicon.png"), "Funcionamiento del foro", "Normas de utilización del Foro triber", $user->getFotoUrl(), "Ultimo post", "hace x tiempo por ".$user->username, "240", "2");
+    foreach($temas as $tema){
+        $controller->setData("tema", $tema);
+        echo $controller->view("modules.tema");
+    }
     ?>
     
 </div>
@@ -58,42 +69,10 @@
         </div>
     </div>
     <?php
-    showTema(Url::template("img/weirdicon.png"), "Funcionamiento del foro", "Normas de utilización del Foro triber", $user->getFotoUrl(), "Ultimo post", "hace x tiempo por ".$user->username, "240", "2");
+    foreach($temas as $tema){
+        $controller->setData("tema", $tema);
+        echo $controller->view("modules.tema");
+    }
     ?>
     
 </div>
-<div class="clear: both;"></div>
-
-
-<?php
-function showTema($icono, $titulo, $descripcion, $thumb, $lastpost, $lastpost_desc, $ntemas, $nactua){
-    ?>
-    <div class="foro_tema col-md-12 nopaddingI">
-        <div class="col-md-5 nopaddingI foro_tema_titulo">
-            <div class="col-md-3 foro_tema_icono">
-                <img src="<?=$icono; ?>" />
-            </div>
-            <div class="col-md-9 foro_tema_info">
-                <h1><?=$titulo; ?></h1>
-                <h2><?=$descripcion; ?></h2>
-            </div>
-        </div>
-        <div class="col-md-4 nopaddingI foro_tema_quien">
-            <div class="col-md-3 foro_tema_icono">
-                <img src="<?=$thumb; ?>" class="img-circle profpic" />
-            </div>
-            <div class="col-md-9 foro_tema_info">
-                <h1><?=$lastpost; ?></h1>
-                <h2><?=$lastpost_desc; ?></h2>
-            </div>
-        </div>
-        <div class="col-md-3 nopaddingI foro_tema_tinfo">
-            <div class="col-md-12 foro_tema_infoT">
-                <h1><?=$ntemas; ?> temas</h1>
-                <h2><?=$nactua; ?> actualizaciones</h2>
-            </div>
-        </div>
-    </div>
-    <?php
-}
-?>
