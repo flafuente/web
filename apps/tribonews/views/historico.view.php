@@ -8,25 +8,26 @@
         <div class="col-md-2 titfil">
             Filtrar por:
         </div>
-        <div class="col-md-3">
+        <div style="clear: both;"></div>
+        <div class="col-md-4 btn btnfiltro">
             <div class="filter">
-                Categoría
+                Categoría<br />
                 <?=HTML::select("categoriaId", $categorias, $_REQUEST["categoriaId"], array("class" => "change-submit"), array("display" => "Selecciona una categoría"), array("display" => "nombre")); ?>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4 btn btnfiltro">
             <div class="filter">
-                Zona
+                Zona<br />
                 <?=HTML::select("comunidadId", $comunidades, $_REQUEST["comunidadId"], array("class" => "change-submit"), array("display" => "Selecciona una comunidad"), array("display" => "nombre")); ?>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 btn btnfiltro">
             <div class="filter">
-                Fecha
+                Fecha<br />
                 <input type="text" name="fecha" id="datepicker" class="change-submit" value="<?=Helper::sanitize($_REQUEST["fecha"])?>"/>
             </div>
         </div>
-
+        <div style="clear: both;"></div>
         <!-- Videos -->
         <?php if (count($videos)) { ?>
             <?php foreach ($videos as $video) { ?>

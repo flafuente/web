@@ -734,9 +734,11 @@ div.sq_content{
 	min-height: 32px;
 }
 .filtro_news select, .filtro_news input{
-	width: 50%;
+	width: 100%;
 	color: #333;
-	max-height: 24px;
+	/*max-height: 24px;*/
+	padding: 0px;
+	min-height: 34px;
 }
 div#s2id_autogen1 {
 	width: 50%;
@@ -1425,7 +1427,9 @@ font-size:15px;
  .wistia_embed{
  	width: 100% !important;
  }
-
+ .btnfiltro{
+ 	width: 100%;
+ }
  .list-group.panel > .list-group-item {
    border-bottom-right-radius: 4px;
    border-bottom-left-radius: 4px;
