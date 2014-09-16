@@ -13,6 +13,9 @@ body {
 	/*letter-spacing: -1px;*/
 }
 /*TopMenu*/
+ .responsivemenu{
+ 	display: none;
+ }
 .topleft,.topright,.topmid{
 min-height:53px;
 padding:0px;
@@ -1404,7 +1407,7 @@ font-size:15px;
   left: 40px;
  }
  .responsivemenu{
-  display: initial;
+ 	display: initial;
  }
  .normalmenu{
   display: none;
