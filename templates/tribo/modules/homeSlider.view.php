@@ -92,7 +92,9 @@ jQuery(document).ready(function ($) {
             if (!navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|IEMobile)/)) {
                 $(window).bind('resize', ScaleSlider);
             }
-
+			if (navigator.userAgent.match(/(iPhone|iPod|iPad)/)) {
+        $(window).bind("orientationchange", ScaleSlider);
+    }
 
             //if (navigator.userAgent.match(/(iPhone|iPod|iPad)/)) {
             //    $(window).bind("orientationchange", ScaleSlider);
