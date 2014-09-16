@@ -27,8 +27,10 @@ class contactoController extends Controller
             if ($_REQUEST["contactoId"]) {
                 $contacto = new Contacto($_REQUEST["contactoId"]);
                 if ($contacto->id) {
-                    if ($contacto->sendEmail($_REQUEST)) {
-                        Registry::addMessage("Email enviado", "success", "", Url::site());
+                    if (!$contacto->validateSend($_REQUEST)) {
+                        if ($contacto->sendEmail($_REQUEST)) {
+                            Registry::addMessage("Email enviado", "success", "", Url::site());
+                        }
                     }
                 } else {
                     Registry::addMessage("Contacto incorrecto", "error", "contactoId");
