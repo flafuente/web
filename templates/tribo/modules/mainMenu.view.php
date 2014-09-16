@@ -42,15 +42,25 @@
 <!-- RESPONSIVE MENU -->
 <div id="MainMenu" class="responsivemenu">
   <div class="list-group panel">
-    <a href="#demo3" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Menu</a>
+    <a href="#demo3" class="list-group-item list-group-item-success trblue" data-toggle="collapse" data-parent="#MainMenu">Menu</a>
     <div class="collapse" id="demo3">
-      <a href="#SubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubMenu1">S 1 <i class="fa fa-caret-down"></i></a>
-      <div class="collapse list-group-submenu" id="SubMenu1">
-        <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 1 a</a>
-        <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 2 b</a>
-      </div>
-      <a href="javascript:;" class="list-group-item">S 2</a>
-      <a href="javascript:;" class="list-group-item">S 3</a>
+      <a href="#SubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubMenu1">PROGRAMAS<?php if(count($secciones)) echo '<i class="fa fa-caret-down"></i>'; ?></a>
+      <?php if (count($secciones)) { ?>
+            <div class="collapse list-group-submenu" id="SubMenu1">
+                <?php $x=0; foreach ($secciones as $seccion) { $x = $x+1; ?>
+                    <a href="<?=Url::site("programas/seccion/".$seccion->slug);?>" id="prg_<?= $x; ?>" class="list-group-item imgmenu" data-parent="#SubMenu1"></a>
+                    <style>
+                        #prg_<?= $x; ?>{
+                          background-image: url("<?=$seccion->getMenuImage();?>");
+                        }
+                    </style>
+                <?php } ?>
+            </div>
+        <?php } ?>
+      <a href="<?=Url::site("tribonews");?>" class="list-group-item">TRIBO NEWS</a>
+      <a href="<?=Url::site("tvdirecto");?>" class="list-group-item">TV EN DIRECTO</a>
+      <a href="<?=Url::site("creadores");?>" class="list-group-item">CREADORES</a>
+      <a href="<?=Url::site("quienessomos");?>" class="list-group-item">QUIÉNES SOMOS</a>
     </div>
   </div>
 </div>
