@@ -65,7 +65,7 @@ Toolbar::render();
                         </label>
                         <div class="col-sm-8">
                             <input type="hidden" name="visible" value="0">
-                            <input type="checkbox" class="switch" name="visible" id="visible" value="1" <?php if($user->visible) echo "checked";?>>
+                            <input type="checkbox" class="switch" name="visible" id="visible" value="1" <?php if($contacto->visible) echo "checked";?>>
                         </div>
                     </div>
                     <!-- Nombre -->
