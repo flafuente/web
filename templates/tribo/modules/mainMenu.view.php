@@ -1,5 +1,6 @@
 <?php defined('_EXE') or die('Restricted access'); ?>
-<div class='col-md-12' style='padding-left: 0px; padding-right: 0px;'>
+<!-- NORMAL MENU -->
+<div class='col-md-12 normalmenu' style='padding-left: 0px; padding-right: 0px;'>
     <ul class="nav nav-pills nav-stacked">
       <!--  class="active" -->
         <?php $url = Registry::getUrl(); ?>
@@ -37,6 +38,25 @@
       <li class="<?=$active["quienessomos"]["index"];?>"><a href="<?=Url::site("quienessomos");?>">QUIÉNES SOMOS</a></li>
     </ul>
 </div>
+<!-- END NORMAL MENU -->
+<!-- RESPONSIVE MENU -->
+<div id="MainMenu" class="responsivemenu">
+  <div class="list-group panel">
+    <a href="#demo3" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Menu</a>
+      <div class="collapse" id="demo3">
+      <a href="#SubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubMenu1">S 1 <i class="fa fa-caret-down"></i></a>
+      <div class="collapse list-group-submenu" id="SubMenu1">
+      <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 1 a</a>
+      <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 2 b</a>
+      </div>
+      <a href="javascript:;" class="list-group-item">S 2</a>
+      <a href="javascript:;" class="list-group-item">S 3</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- END RESPONSIVE MENU -->
 
 <!-- Scripts Menu -->
 <script>
@@ -47,6 +67,7 @@
         $(this).find('.submenu').css("display", "none");
     });
 </script>
+
 
 <!-- Parrilla Module -->
 <?=$controller->view("modules.parrilla");?>
