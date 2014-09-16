@@ -1422,6 +1422,9 @@ font-size:15px;
  .normalmenu{
   display: none;
  }
+ .wistia_embed{
+ 	width: 100% !important;
+ }
 
  .list-group.panel > .list-group-item {
    border-bottom-right-radius: 4px;
