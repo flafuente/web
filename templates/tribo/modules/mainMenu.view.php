@@ -43,15 +43,14 @@
 <div id="MainMenu" class="responsivemenu">
   <div class="list-group panel">
     <a href="#demo3" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Menu</a>
-      <div class="collapse" id="demo3">
+    <div class="collapse" id="demo3">
       <a href="#SubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubMenu1">S 1 <i class="fa fa-caret-down"></i></a>
       <div class="collapse list-group-submenu" id="SubMenu1">
-      <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 1 a</a>
-      <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 2 b</a>
+        <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 1 a</a>
+        <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 2 b</a>
       </div>
       <a href="javascript:;" class="list-group-item">S 2</a>
       <a href="javascript:;" class="list-group-item">S 3</a>
-      </div>
     </div>
   </div>
 </div>
