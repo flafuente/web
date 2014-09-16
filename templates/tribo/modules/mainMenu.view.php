@@ -9,7 +9,7 @@
 
       <li class="<?=$active["programas"]["index"];?> withsub">
         <a href="#">PROGRAMAS</a>
-        <?php $secciones = Seccion::select(array("visible" => true)); ?>
+        <?php $secciones = Seccion::select(array("visible" => true, "order" => "orden")); ?>
         <?php if (count($secciones)) { ?>
             <ul class="submenu" style="display: none;">
                 <div class="triangle"></div>
@@ -76,7 +76,6 @@
         $(this).find('.submenu').css("display", "none");
     });
 </script>
-
 
 <!-- Parrilla Module -->
 <?=$controller->view("modules.parrilla");?>

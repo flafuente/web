@@ -86,7 +86,7 @@ Toolbar::render();
                             <?php
                                 //Last
                                 $last = new stdClass();
-                                $last->id = "-2";
+                                $last->order = -2;
                                 $last->nombre = "- Último -";
                                 @array_push($categorias, $last);
                                 //Select
