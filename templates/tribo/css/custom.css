@@ -12,6 +12,12 @@ body {
 	color: #464343;
 	/*letter-spacing: -1px;*/
 }
+/*
+label img{
+	width: 14px;
+	height: 17px;
+}
+*/
 /*TopMenu*/
  .responsivemenu{
  	display: none;
@@ -554,6 +560,8 @@ div.cadena{
 	position: absolute;
 	bottom: 30px;
 	right: 30px;
+	width: 13px;
+	height: 7px;
 }
 .square{
 	margin-top: 20px;
@@ -1058,7 +1066,9 @@ a.file-input-wrapper.btn.btn-default.btnazul {
 	text-transform: uppercase;
 }
 .control-label img{
-	width: initial;
+	/*width: initial;*/
+	width: 14px;
+	height: 17px;
 	margin-top: -4px;
 	 margin-bottom: 0px;
 }
