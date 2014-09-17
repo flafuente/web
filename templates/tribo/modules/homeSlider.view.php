@@ -2,8 +2,7 @@
 
 <!-- Jssor Slider Begin -->
 <!-- You can move inline styles (except 'top', 'left', 'width' and 'height') to css file or css block. -->
-<div id="slider1_container" style="position: relative;
-        top: 0px; left: 0px; width: 960px; height: 310px; z-index:99999 ;">
+<div id="slider1_container" style="position: relative;top: 0px; left: 0px; width: 960px; height: 310px; z-index:99999 ;">
     <!-- Loading Screen -->
     <div u="loading" style="position: absolute; top: 0px; left: 0px;">
         <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block; background-color: #000000; top: 0px; left: 0px;width: 100%;height:100%;">
@@ -12,39 +11,17 @@
         </div>
     </div>
     <!-- Slides Container -->
-    <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 960px;            height: 310px; overflow: hidden;">
-        <div>
-            <a href="<?=Url::site("periodismociudadano#haztetriber");?>"><img u="image" src="<?=Url::template("/img/home/slide4.jpg");?>" />
-            
-            </a>
-            <!--<div class='title'>
-                <p><span>tribo tv es..</span></p>
-            </div>-->
-        </div>
-		<div>
-            <a href="<?=Url::site("periodismociudadano#haztetriber");?>"><img u="image" src="<?=Url::template("/img/home/slide0.jpg");?>" />
-            
-            </a>
-            <!--<div class='title'>
-                <p><span>tribo tv es..</span></p>
-            </div>-->
-        </div>
-        <div>
-            <a href="<?=Url::site("periodismociudadano#haztetriber");?>">
-            <img u="image" src="<?=Url::template("/img/home/slide2.jpg");?>" />
-            </a>
-            <!--<div class='title'>
-                <p><span>Sólo las personas saben lo que les gusta a las personas</span></p>
-            </div>-->
-        </div>
-        <div>
-            <a href="<?=Url::site("periodismociudadano#haztetriber");?>">
-            <img u="image" src="<?=Url::template("/img/home/slide3.jpg");?>" />
-            </a>
-            <!--<div class='title'>
-                <p><span>Sólo las personas saben lo que les gusta a las personas</span></p>
-            </div>-->
-        </div>
+    <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 960px;height: 310px; overflow: hidden;">
+        <?php $slides = Slide::select(array("visible" => true)); ?>
+        <?php if (!empty($slides)) { ?>
+            <?php foreach ($slides as $slide) { ?>
+                <div>
+                    <a href="<?=$slide->getUrl();?>">
+                        <img u="image" src="<?=$slide->getImagenUrl();?>"/>
+                    </a>
+                </div>
+            <?php } ?>
+        <?php } ?>
     </div>
     <!-- navigator container -->
     <div u="navigator" class="jssorn03" style="position: absolute; bottom: -15px; left: 48%;">
@@ -63,7 +40,7 @@ jQuery(document).ready(function ($) {
     var options = {
         $DragOrientation: 0, //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
         $FillMode: 2,
-		$AutoPlay: true,
+        $AutoPlay: true,
         $NavigatorOptions: { //[Optional] Options to specify and enable navigator or not
             $Class: $JssorNavigator$, //[Required] Class to create navigator instance
             $ChanceToShow: 2, //[Required] 0 Never, 1 Mouse Over, 2 Always
@@ -79,7 +56,8 @@ jQuery(document).ready(function ($) {
     var jssor_slider1 = new $JssorSlider$("slider1_container", options);
             //responsive code begin
             //you can remove responsive code if you don't want the slider scales while window resizes
-            function ScaleSlider() {
+            function ScaleSlider()
+            {
                 var bodyWidth = document.body.clientWidth;
                 if (bodyWidth)
                     jssor_slider1.$SetScaleWidth(Math.min(bodyWidth, 960));
@@ -92,7 +70,7 @@ jQuery(document).ready(function ($) {
             if (!navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|IEMobile)/)) {
                 $(window).bind('resize', ScaleSlider);
             }
-			if (navigator.userAgent.match(/(iPhone|iPod|iPad)/)) {
+            if (navigator.userAgent.match(/(iPhone|iPod|iPad)/)) {
         $(window).bind("orientationchange", ScaleSlider);
     }
 

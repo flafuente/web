@@ -110,12 +110,13 @@ class User extends Model
         "usuarios"      => "Usuarios",
         "videos"        => "Vídeos",
         "parrilla"      => "Parrilla",
-        "secciones"    => "secciones",
+        "secciones"     => "secciones",
         "programas"     => "Programas",
         "capitulos"     => "Capítulos",
         "categorias"    => "Categorias",
         "tags"          => "Tags",
         "contactos"     => "Contactos",
+        "slideshow"     => "Slideshow",
     );
 
     /**
