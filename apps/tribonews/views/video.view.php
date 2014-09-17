@@ -14,9 +14,9 @@
         <div class="col-md-12 vd-ruta">
             Tribo News -
             <?php $categoria = new Categoria($video->categoriaId); ?>
-            <!--<a href="<?=Url::site($categoria->urlCategoria);?>">-->
+            <a href="<?=Url::site("tribonews/categoria/".$categoria->slug);?>">
                 <?=Helper::sanitize($categoria->nombre);?>
-            <!--</a>-->
+            </a>
         </div>
 
         <!-- Capítulo -->

@@ -18,6 +18,20 @@ class tribonewsController extends Controller
         $this->render($html);
     }
 
+    public function categoria()
+    {
+        $url = Registry::getUrl();
+        $categoria = @current(Categoria::getBy("slug", $url->vars[0]));
+        if ($categoria->id) {
+
+            $_REQUEST["categoriaId"] = $categoria->id;
+            $this->historico();
+
+        } else {
+            Url::redirect(Url::site("tribonews"));
+        }
+    }
+
     public function bienvenido()
     {
         $this->index(true);
