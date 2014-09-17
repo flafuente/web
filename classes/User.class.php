@@ -99,7 +99,7 @@ class User extends Model
      * Ruta de subida de las imágenes
      * @var string
      */
-    public $fotosPath = "/files/images/perfiles";
+    public $fotosPath = "/files/images/perfiles/";
 
     /**
      * Secciones
