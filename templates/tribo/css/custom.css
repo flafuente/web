@@ -1441,3 +1441,9 @@ font-size:15px;
 @media (max-width: 1200px) {
  
 }
+
+
+/* Mensajes */
+.alert{
+	margin: 0px 15px 15px 15px;
+}
