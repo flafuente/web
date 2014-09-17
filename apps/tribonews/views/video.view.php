@@ -68,13 +68,13 @@
     <br /><br />
 
     <!-- Notícias relacionadas -->
-    <?php if (count($relaccionadas)) { ?>
+    <?php if (count($relacionados)) { ?>
         <div class='title-line'>
             <span>NOTICIAS RELACIONADAS</span>
         </div>
-        <?php foreach ($relaccionadas as $relaccionada) { ?>
-            <?php $controller->setData("proximo", $proximo); ?>
-            <?php echo $controller->view("modules.video-mini", "programas"); ?>
+        <?php foreach ($relacionados as $relacionado) { ?>
+            <?php $controller->setData("video", $relacionado); ?>
+            <?php echo $controller->view("modules.video-mini-list"); ?>
         <?php } ?>
     <?php } ?>
     <!-- /Notícias relacionadas -->

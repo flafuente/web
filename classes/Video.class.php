@@ -167,6 +167,20 @@ class Video extends Model
         }
     }
 
+    public function getVideosRelacionados($limit)
+    {
+        return self::select(
+            array(
+                "categoriaId" => $this->categoriaId,
+                "estadoId" => 1,
+                "ignoreId" => $this->id,
+                "order" => "dateInsert",
+                "orderDir" => "DESC"
+            ),
+            $limit
+        );
+    }
+
     /**
      * Añade una visita al vídeo.
      * @return bool
@@ -451,6 +465,11 @@ class Video extends Model
             ) ";
             $params[":titulo"] = "%".$data["search"]."%";
             $params[":descripcion"] = "%".$data["search"]."%";
+        }
+        //Ignorar video
+        if ($data["ignoreId"]) {
+            $query .= " AND `id` != :ignoreId ";
+            $params[":ignoreId"] = $data["ignoreId"];
         }
         //Usuario
         if (isset($data["userId"])) {

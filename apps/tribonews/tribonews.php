@@ -56,6 +56,9 @@ class tribonewsController extends Controller
             //Añadimos una visita
             $video->addVisita();
 
+            //Videos relacionados
+            $this->setData("relacionados", $video->getVideosRelacionados(3));
+
             $this->setData("video", $video);
             $html = $this->view("views.video");
             $this->render($html);
