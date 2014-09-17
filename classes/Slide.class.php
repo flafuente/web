@@ -261,6 +261,9 @@ class Slide extends Model
 
     private function deleteImagen()
     {
-        return @unlink($this->getImagenPath());
+        if ($this->imagen) {
+            return @unlink($this->getImagenPath());
+        }
+        $this->imagen = "";
     }
 }

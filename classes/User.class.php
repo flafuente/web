@@ -99,7 +99,7 @@ class User extends Model
      * Ruta de subida de las imágenes
      * @var string
      */
-    public $fotosPath = "/files/images/";
+    public $fotosPath = "/files/images/perfiles";
 
     /**
      * Secciones
@@ -223,7 +223,7 @@ class User extends Model
      *
      * @return string Role
      */
-    public function getRoleString($roleId=0)
+    public function getRoleString($roleId = 0)
     {
         if (!$roleId) {
             $roleId = $this->roleId;
@@ -264,7 +264,7 @@ class User extends Model
      * @param  string $app Sección
      * @return bool
      */
-    public function checkPermisos($app="")
+    public function checkPermisos($app = "")
     {
         $permisos = $this->getPermisos();
         if (@in_array($app, $permisos) || @in_array("todo", $permisos)) {
@@ -305,7 +305,7 @@ class User extends Model
      *
      * @return array Object Messages
      */
-    public function validateInsert($data=array())
+    public function validateInsert($data = array())
     {
         $this->validate();
         //Password?
@@ -371,7 +371,7 @@ class User extends Model
      *
      * @return void
      */
-    public function preUpdate($data=array())
+    public function preUpdate($data = array())
     {
         //Prevent blank password override
         if ($data['password']) {
@@ -395,7 +395,7 @@ class User extends Model
         }
     }
 
-    public function uploadFoto($resource=null)
+    public function uploadFoto($resource = null)
     {
         //Banner Upload
         if (isset($resource)) {
