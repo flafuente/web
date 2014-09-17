@@ -103,6 +103,24 @@ class Categoria extends Model
         $this->slug =  $slugify->slugify($this->nombre);
     }
 
+    /**
+     * Devuelve la categoría más usada en los vídeos del usuario.
+     * @param  integer $userId
+     * @return object
+     */
+    public function getEspecialidadByUserId($userId)
+    {
+        $db = Registry::getDb();
+        $query = "SELECT `categoriaId`, COUNT(id) as `total` FROM `videos` WHERE `userId` = :userId GROUP BY `categoriaId` ORDER BY `total` LIMIT 1";
+        $params = array(
+            ":userId" => $userId,
+        );
+        $rows = $db->query($query, $params);
+        if (count($rows)) {
+            return new Categoria($rows[0]["categoriaId"]);
+        }
+    }
+
     public function order()
     {
         //leemos las categorías

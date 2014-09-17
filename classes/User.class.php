@@ -193,7 +193,7 @@ class User extends Model
      */
     public function getFullName()
     {
-        return $this->nombre." ".$this->apellidos;
+        return Helper::sanitize($this->nombre." ".$this->apellidos);
     }
 
     /**
