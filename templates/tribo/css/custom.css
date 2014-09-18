@@ -1390,7 +1390,16 @@ font-size:15px;
 /*RESPONSIVE RULES*/
 @media (max-width: 768px) {
  .noresp{
-  display: none;
+  /*display: none;*/
+    text-align: center;
+	margin-top: -35px;
+ }
+ .mid{
+ 	width: 100%;
+ }
+ .search_form, .contact_form, .login_form{
+ 	width: 100%;
+ 	left: 0px;
  }
 }
 @media (min-width: 768px) and (max-width: 991px) {
