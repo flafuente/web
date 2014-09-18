@@ -3,7 +3,7 @@
 ?>
 <div class='col-md-12 serie_info'>
     <div class="col-md-12 video">
-	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <?php HTML::wistiaPlayer("026x634bnv", "558", "314"); ?>
     </div>
     <div class="video-info">
         <div class="col-md-12 vd-ruta">Pruebas de emisión</div>

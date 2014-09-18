@@ -13,11 +13,11 @@
         </div>
 
         <div class="col-md-12 video-desc">
-            Tribo somos un grupo de personas dispuestas a arriesgarnos y saltarnos las reglas televisivas.
+			Tribo somos un grupo de profesionales pioneros en la creación de un nuevo modelo de producción y distribución de contenidos de televisión.
             <br />
             <br />
             Emprendedores, jóvenes, hablamos el mismo idioma que tú, que internet, porque somos gente de la calle, y hemos decidido reunirnos para hacerte la vida más fácil.
-            <br />
+			<br />
             <br />
             Nos encanta navegar por Internet, por eso vamos a seleccionar cuidadosamente todo el contenido de Internet que esté reventando las visitas, los contenidos 
 			<b>MÁS VISTOS</b> y <b>MÁS INFLUYENTES</b>, los mismos contenidos que buscas cada vez que te metes en tu navegador, y te lo ponemos en bandeja en nuestro 
