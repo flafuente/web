@@ -24,9 +24,9 @@ $_config['mailFromAdress'] = "noreply@tribo.tv";
 $_config['mailFromName'] = "TriboTV";
 
 //Database
-$_config['dbHost'] = "dev.tribo.tv";
-$_config['dbUser'] = "tribotv_nano";
-$_config['dbPass'] = "LaTaronjaEsdeAlborayatet3";
+$_config['dbHost'] = "127.0.0.1";
+$_config['dbUser'] = "root";
+$_config['dbPass'] = "";
 $_config['dbName'] = "tribotv_dev";
 
 //Twitter

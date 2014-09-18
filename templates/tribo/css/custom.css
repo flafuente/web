@@ -624,7 +624,7 @@ div.sq_content{
 	margin-top: 10px;
 }
 .foro_tema {
-	border: 1px solid #9b9b9b;
+	border: 1px solid #c8c7c7;
 	margin-top: 4px;
 	background-color: #FFFFFF;
 	padding: 10px;
@@ -665,6 +665,79 @@ div.sq_content{
 	margin-right: auto;
 	text-align: center;
 }
+/*FORO TEMA*/
+.square-info-tema{
+	border: 2px solid  #c8c7c7;
+	min-height: 86px;
+	background-color: #ededed;
+}
+.square-info-tema .ntemas{
+	background-color: #e0e0e0;
+	min-height: 82px;
+	font-weight: bold;
+	text-align: center;
+	padding-top: 20px;
+}
+.square-info-tema .ntemas span, .foro_tema_infoTemas h2 span, .foro_tema_info h2 span{
+	color: #13b6ea;
+}
+.square-info-temas{
+	border: 2px solid  #c8c7c7;
+	min-height: 86px;
+	background-color: #ededed;
+}
+.foro_temas_icono{
+	text-align: center;
+	min-height: 82px;
+	padding-top: 22px;
+}
+.foro_tema_info.temas h1{
+	font-size: 19px;
+}
+.foro_tema_info.temas h2{
+	font-size: 15px;
+}
+
+.profpic.big{
+	width: 70px;
+	height: 70px;
+}
+.profpic.small{
+	width: 35px;
+	height: 35px;
+}
+.usercirle{
+	width: 35px;
+	height: 35px;
+	-webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
+	border-radius: 150px;
+	border: 1px solid #CCC;
+	background-color: #9b9b9b;
+	color: white;
+	font-weight: bold;
+	padding-top: 7px;
+	text-align: center;
+}
+.foro_tema_infoTemas h2{
+	font-size: 12px;
+	color: #6b6b6b;
+	text-align: left;
+	text-transform: initial;
+	margin-top: 0px;
+}
+.bigprofdiv{
+	text-align: center;
+}
+.floated{
+	float: left;
+	margin-right: 5px;
+}
+.foro_tema_infoTemas {
+	padding-top: 7px;
+}
+
+
 
 /*Episodios*/
 .serie_info{
