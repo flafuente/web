@@ -666,10 +666,21 @@ div.sq_content{
 	text-align: center;
 }
 /*FORO TEMA*/
-.square-info-tema{
+.square-info-tema, .new_temaforo{
 	border: 2px solid  #c8c7c7;
 	min-height: 86px;
 	background-color: #ededed;
+}
+.new_temaforo{
+	margin-top: 2px;
+	position: absolute;
+	z-index: 50;
+	max-width: 768px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.new_temaforo label {
+	margin-top: 15px;
 }
 .square-info-tema .ntemas{
 	background-color: #e0e0e0;
@@ -736,7 +747,12 @@ div.sq_content{
 .foro_tema_infoTemas {
 	padding-top: 7px;
 }
-
+.new_temaforo{
+	display: none;
+}
+#open_new_tema{
+	cursor: pointer;
+}
 
 
 /*Episodios*/

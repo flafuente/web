@@ -31,6 +31,9 @@ class foroController extends Controller
         $seccionEjemplo->nactua = rand(1, 10);
         $this->setData("seccion", $seccionEjemplo);
 
+        $foros = Array();
+        $this->setData("foros", $foros);
+
         $html = $this->view("views.tema");
         $this->render($html);
 

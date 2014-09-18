@@ -27,8 +27,27 @@ $temaEjemplo->ntribers = 10;
     	<div class='col-md-3 ntemas'>
     		<?=Helper::sanitize($seccion->ntemas); ?> temas
     		<br />
-    		<span>Abrir nuevo tema</span>
+    		<span id="open_new_tema">Abrir nuevo tema</span>
     	</div>
+    </div>
+    <div class="new_temaforo col-md-12">
+        <div class="col-md-2">
+                <img src="<?=Helper::sanitize($user->getFotoUrl()); ?>" class="img-circle profpic big" />
+        </div>
+        <div class="col-md-10">
+            <form method="POST" action="">
+                <label>Seccion del foro:</label>
+                <?=HTML::select("seccionId", $foros, $_REQUEST["seccionId"], array(), array("display" => "Selecciona un foro"), array()); ?>
+                <div style="clear: both;"></div>
+                <label>Título del tema:</label>
+                <input type="text" class="form-control" id="titulotema" name="titulotema" placeholder="Escribe el titulo del tema" value="" />
+                <div style="clear: both;"></div>
+                <label>Cuerpo de texto:</label>
+                <textarea class="form-control" id="textotema" name="textotema"></textarea>
+                <div style="clear: both;"></div><br />
+                <button class="btn btn-tribo-blue" style="float: right;">Publicar tema</button>
+            </form>
+        </div>
     </div>
     <?php
     $temas = array($temaEjemplo, $temaEjemplo, $temaEjemplo, $temaEjemplo);
