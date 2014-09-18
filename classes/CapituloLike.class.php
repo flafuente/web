@@ -45,7 +45,7 @@ class CapituloLike extends Model
      */
     public function preInsert()
     {
-        $this->ip = $_SERVER["REMOTE_ADDR"];
+        $this->ip = $_SERVER["HTTP_CF_IPCOUNTRY"];
         $this->dateInsert = date("Y-m-d H:i:s");
     }
 
@@ -57,7 +57,7 @@ class CapituloLike extends Model
     public static function isLiked($capituloId = null)
     {
         if ($capituloId) {
-            $ip = $_SERVER["REMOTE_ADDR"];
+            $ip = $_SERVER["HTTP_CF_IPCOUNTRY"];
             $db = Registry::getDb();
             $query = "SELECT * FROM `capitulos_likes` WHERE `capituloId` = :capituloId AND `ip` = :ip";
             $params = array(
@@ -76,7 +76,7 @@ class CapituloLike extends Model
     public static function unlike($capituloId = null)
     {
         if ($capituloId) {
-            $ip = $_SERVER["REMOTE_ADDR"];
+            $ip = $_SERVER["HTTP_CF_IPCOUNTRY"];
             $db = Registry::getDb();
             $query = "DELETE FROM `capitulos_likes` WHERE `capituloId` = :capituloId AND `ip` = :ip";
             $params = array(
