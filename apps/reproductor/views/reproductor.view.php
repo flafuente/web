@@ -47,7 +47,9 @@
         <div class="col-md-12">
             <div class="vd-attr">
                 <?=Helper::sanitize($capitulo->duracion);?> |
-                <?=Helper::sanitize($capitulo->fechaEmision);?> |
+                <?php if ($capitulo->fechaEmision && $capitulo->fechaEmision != "0000-00-00") { ?>
+                    <?=Helper::sanitize($capitulo->fechaEmision);?> |
+                <?php  } ?>
             </div>
             <div class="vd-temporada">
                 TEMPORADA <?=$capitulo->temporada;?>

@@ -434,6 +434,11 @@ class Capitulo extends Model
         if ($this->cdnId && !$this->cdnThumbnail) {
             $this->cdnThumbnail = $this->getWistiaThumbnail();
         }
+
+        //Leemos la duración del CDN
+        if ($this->cdnId && !$this->duracion) {
+            $this->duracion = $this->getWistiaDuration();
+        }
     }
 
     /**
@@ -456,6 +461,28 @@ class Capitulo extends Model
         //Leemos el thumbnail del CDN
         if ($this->cdnId && !$this->cdnThumbnail) {
             $this->cdnThumbnail = $this->getWistiaThumbnail();
+        }
+
+        //Leemos la duración del CDN
+        if ($this->cdnId && !$this->duracion) {
+            $this->duracion = $this->getWistiaDuration();
+        }
+    }
+
+    /**
+     * Lee la duración de wistia.
+     * @return bool
+     */
+    private function getWistiaDuration()
+    {
+        Wistia::init();
+        if ($this->cdnId) {
+            $json = Wistia::status($this->cdnId);
+            if (is_object($json)) {
+                if ($json->duration) {
+                    return gmdate("H:i:s", (int) $json->duration);
+                }
+            }
         }
     }
 

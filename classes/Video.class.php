@@ -57,6 +57,11 @@ class Video extends Model
      */
     public $texto;
     /**
+     * Duración
+     * @var string
+     */
+    public $duracion;
+    /**
      * ComunidadId
      * @var string
      */
