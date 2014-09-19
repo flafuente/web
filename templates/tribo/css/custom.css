@@ -542,7 +542,7 @@ div.cadena{
 .square img {
 	width: 100%;
 	max-width: 269px;
-	max-height: 162px;
+	height: 162px;
 }
 .square img.arrow{
 	width: initial;
