@@ -27,8 +27,7 @@ class foroController extends Controller
         $seccionEjemplo->descripcion = "Normas de utilización del Foro triber";
         $seccionEjemplo->thumb = $user->getFotoUrl();
         $seccionEjemplo->lastpost = "Ultimo post";
-        $seccionEjemplo->tiempo = "2 meses";
-        $seccionEjemplo->creador = $user->username;
+        $seccionEjemplo->lastpost_desc = "hace x tiempo por ".$user->username;
         $seccionEjemplo->ntemas = rand(5, 500);
         $seccionEjemplo->nactua = rand(1, 10);
         $this->setData("seccion", $seccionEjemplo);
@@ -48,7 +47,8 @@ class foroController extends Controller
         $comentarioEjemplo->descripcion = "Normas de utilización del Foro triber";
         $comentarioEjemplo->thumb = $user->getFotoUrl();
         $comentarioEjemplo->lastpost = "Ultimo post";
-        $comentarioEjemplo->lastpost_desc = "hace x tiempo por ".$user->username;
+        $comentarioEjemplo->tiempo = "2 meses";
+        $comentarioEjemplo->creador = $user->username;
         $comentarioEjemplo->ntemas = rand(5, 500);
         $comentarioEjemplo->nactua = rand(1, 10);
         $this->setData("comentario", $comentarioEjemplo);

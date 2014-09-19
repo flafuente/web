@@ -678,7 +678,7 @@ div.sq_content{
 	text-align: center;
 	padding-top: 20px;
 }
-.square-info-tema .ntemas span, .foro_tema_infoTemas h2 span, .foro_tema_info h2 span{
+.square-info-tema .ntemas span, .foro_tema_infoTemas h2 span, .foro_tema_info h2 span, .foro-comentario span{
 	color: #13b6ea;
 }
 .square-info-temas{
@@ -744,7 +744,48 @@ div.sq_content{
 }
 /*FORO COMENTARIO*/
 .square-info-comentario{
+	background-color: #e0e0e0;
+	min-height: 100px;
+}
+.foro-comentario{
+	background-color: #FFF;
+	padding: 20px;
 
+}
+.foro-shadow{
+	box-shadow: 10px 10px 5px #888888;
+	box-shadow: 0px 0px 7px 0px #888888;
+}
+
+.foro-comentariocreador{
+	text-align: center;
+	padding-top: 15px;
+}
+.foro-comentariocreador span.tag{
+	padding: 3px;
+	color: #FFF;
+	background-color: #8a589a;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+
+}
+.foro-comment-container{
+	margin-top: 10px;
+	background-color: #e0e0e0;
+
+}
+
+.left-arrow{
+	border-right: 20px solid #FFF;
+	border-left: 0px solid #e0e0e0;
+	border-top: 20px solid #e0e0e0;
+	border-bottom: 20px solid #e0e0e0;
+	position: relative;
+	top: 27px;
+	z-index: 50;
+	left: 98px;
+	width: 0px;
 }
 
 
