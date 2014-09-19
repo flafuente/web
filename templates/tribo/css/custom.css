@@ -542,7 +542,7 @@ div.cadena{
 .square img {
 	width: 100%;
 	max-width: 269px;
-	height: 162px;
+	max-height: 150px;
 }
 .square img.arrow{
 	width: initial;
@@ -741,6 +741,10 @@ div.sq_content{
 }
 #open_new_tema{
 	cursor: pointer;
+}
+/*FORO COMENTARIO*/
+.square-info-comentario{
+
 }
 
 
