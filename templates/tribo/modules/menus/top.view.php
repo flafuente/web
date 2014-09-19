@@ -25,6 +25,9 @@
         </div>
         <div class='col-md-4 topright noresp tribo4'>
             <div class='col-md-12 mid pull-right tribo12'>
+            <a class='pull-right lsep' target='_BLANK' href='http://instagram.com/tribo_tv'>
+                <img src='<?=Url::template("/img/instagram.png");?>' title='Instagram' />
+            </a>
             <a class='pull-right lsep' target='_BLANK' href='https://twitter.com/Tribo_tv'>
                 <img src='<?=Url::template("/img/twitter.png");?>' title='Twitter' />
             </a>

@@ -14,18 +14,15 @@
 		</div>
 		<div class='col-md-4 topright'>
 			<div class='col-md-12 mid pull-right'>
-			<!--<a class='pull-right lsep' href='#'>
-				<img src='<?=Url::template("/img/youtube.png");?>' title='Youtube' />
-			</a>-->
-			<a class='pull-right lsep' target='_BLANK' href='http://instagram.com/tribo_tv'>
-				<img src='<?=Url::template("/img/instagram.png");?>' title='Instagram' />
-			</a>
-			<!--<a class='pull-right lsep' href='#'>
-				<img src='<?=Url::template("/img/pinterest.png");?>' title='Pinterest' />
-			</a>
-			<a class='pull-right lsep' href='#'>
-				<img src='<?=Url::template("/img/vimeo.png");?>' title='Vimeo' />
-			</a>-->
+            <a class='pull-right lsep' target='_BLANK' href='http://instagram.com/tribo_tv'>
+                <img src='<?=Url::template("/img/instagram.png");?>' title='Instagram' />
+            </a>
+			<a class='pull-right lsep' target='_BLANK' href='https://twitter.com/Tribo_tv'>
+                <img src='<?=Url::template("/img/twitter.png");?>' title='Twitter' />
+            </a>
+            <a class='pull-right lsep' target='_BLANK' href='https://www.facebook.com/pages/Tribo-TV/688832484534082'>
+                <img src='<?=Url::template("/img/facebook.png");?>' title='Facebook' />
+            </a>
 			</div>
 		</div>
 	</div>
