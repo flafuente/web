@@ -91,7 +91,7 @@
     <?php if ($seccion->id) { ?>
         <div class="col-md-6 ver-todas-web" style="margin-top: 30px;">
             <a href="<?=Url::site("programas/seccion/".$seccion->slug);?>">
-                Ver todas las Webseries&nbsp;&nbsp;<div class="circulo-azul">+</div>
+                Ver <?=$seccion->nombre;?>&nbsp;&nbsp;<div class="circulo-azul">+</div>
             </a>
         </div>
     <?php } ?>
