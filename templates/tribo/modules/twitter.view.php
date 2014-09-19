@@ -3,9 +3,6 @@
 <?php $config = Registry::getConfig(); ?>
 <?php $hashtag = $config->get("twitterHashtag") ? $config->get("twitterHashtag") : "#TriboTv"; ?>
 
-<link href="<?=Url::template("js/scroll/jquery.mCustomScrollbar.css")?>" rel="stylesheet" />
-<script src="<?=Url::template("js/scroll/jquery.mCustomScrollbar.concat.min.js")?>"></script>
-
 <?php
 $notweets = 50;
 $connection = new TwitterOAuth(

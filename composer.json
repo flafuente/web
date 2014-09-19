@@ -7,9 +7,10 @@
 	},
 	"require": {
 		"light-framework/core": "v1.0",
-		"faisalman/simple-excel-php": "dev-master",
 		"cocur/slugify": "@stable",
-		"robmorgan/phinx": "*"
+		"robmorgan/phinx": "*",
+		"linkorb/jsmin-php": "1.*",
+        "natxet/CssMin": "3.*"
 	},
 	"minimum-stability": "dev"
 }

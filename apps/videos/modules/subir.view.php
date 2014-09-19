@@ -58,7 +58,7 @@
         <?php if (count($categorias)) { ?>
             <div class="col-md-3 nopaddingI">Sección</div>
             <div class="col-md-9 nopaddingI">
-                <?=HTML::select("categoriaId", $categorias, null, null, null, array("display" => "nombre")); ?>
+                <?=HTML::select("categoriaId", $categorias, null, array("id" => "categoriaId"), null, array("display" => "nombre")); ?>
             </div>
             <div style="clear: both;"></div>
         <?php } ?>

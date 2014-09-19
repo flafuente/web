@@ -1,23 +1,14 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:700,400,400italic,300italic,300);
 html{
 	height: 100%;
 }
 body {
-	padding-top: 20px;
-	/* 50px is the height of the navbar - change this if the navbarn height changes */
-	
+	padding-top: 20px;	
 	background-color:#f9f6f6;
 	font-family: "Open Sans", sans-serif;
 	height: 100%;
 	color: #464343;
-	/*letter-spacing: -1px;*/
 }
-/*
-label img{
-	width: 14px;
-	height: 17px;
-}
-*/
+
 /*TopMenu*/
  .responsivemenu{
  	display: none;
@@ -332,7 +323,6 @@ div.form-change-pass .form-group {
 	text-transform: normal;
 }
 .submenu li:hover, .submenu li:hover a{
-	/*background-color: #e40d7e !important;*/
 	color: #FFF !important;
 }
 .triangle{
@@ -398,7 +388,6 @@ div.parrilla-cabecera h2 .circulo {
 div.parrilla-contenido {
 	min-height: 40px;
 	margin: 25px 10px 0px 10px;
-	/* border-top: black 2px solid; */
 	color: #17B5E9;
 	padding-bottom: 20px;
 	font-weight: bold;
@@ -884,7 +873,6 @@ div#s2id_autogen1 {
 }
 
 /*Periodismo Ciudadano*/
-	/*Arrow slider*/
 .lomasvisto .slick-prev:before, .lomasvisto .slick-next:before {
 	font-family: "slick";
 	font-size: 30px;
@@ -1249,7 +1237,6 @@ label {
 }
 .mask{
 	display: none;
-	/*background: url("../img/mask-pixel.png");*/
 	width: 100%;
 	height: 100%;
 	position: fixed;
@@ -1259,8 +1246,6 @@ label {
 
 /*VIDEO*/
 .video{
-	/*min-height: 350px;
-	background-color: #333;*/
 	padding:0px;
 }
 .video-info{
@@ -1400,15 +1385,7 @@ label {
  .cir_desc{
  	font-size: 9px;
  }
- 
- /* jssor slider navigator skin 03 css */
-/*
-.jssorn03 div           (normal)
-.jssorn03 div:hover     (normal mouseover)
-.jssorn03 .av           (active)
-.jssorn03 .av:hover     (active mouseover)
-.jssorn03 .dn           (mousedown)
-*/
+
 .jssorn03 div,
 .jssorn03 div:hover,
 .jssorn03 .av {
@@ -1434,11 +1411,6 @@ position: absolute; bottom: 0px;  line-height:20px;
 height: 30px;
 width:100%;
 }
-/*#slider1_container  div div a{
-	width:100%;
-	height:100%;
-
-	}*/
 #slider1_container  .title p span{
 background-color:#f8f4f4;
 height: 30px;
@@ -1549,7 +1521,6 @@ font-size:15px;
 @media (max-width: 1200px) {
  
 }
-
 
 /* Mensajes */
 .alert{

@@ -1,12 +1,10 @@
-/* basic scrollbar styling */
-/* vertical scrollbar */
-.mCSB_container{
+.mCSB_container.mCS_no_scrollbar{
+	margin-right:0;
+}
+.mCSB_container {
 	width:auto;
 	margin-right:30px;
 	overflow:hidden;
-}
-.mCSB_container.mCS_no_scrollbar{
-	margin-right:0;
 }
 .mCS_disabled>.mCustomScrollBox>.mCSB_container.mCS_no_scrollbar,
 .mCS_destroyed>.mCustomScrollBox>.mCSB_container.mCS_no_scrollbar{
@@ -162,7 +160,7 @@
 .mCSB_scrollTools .mCSB_buttonDown,
 .mCSB_scrollTools .mCSB_buttonLeft,
 .mCSB_scrollTools .mCSB_buttonRight{
-	background-image:url(mCSB_buttons.png);
+	background-image:url("../img/mCSB_buttons.png");
 	background-repeat:no-repeat;
 	opacity:0.4;
 	filter:"alpha(opacity=40)"; -ms-filter:"alpha(opacity=40)"; /* old ie */

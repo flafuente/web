@@ -2,7 +2,7 @@
 <!-- NORMAL MENU -->
 <div class='col-md-12 normalmenu' style='padding-left: 0px; padding-right: 0px;'>
     <ul class="nav nav-pills nav-stacked">
-      <!--  class="active" -->
+        <!--  class="active" -->
         <?php $url = Registry::getUrl(); ?>
         <?php $active = array(); ?>
         <?php $active[$url->app][$url->action] = "active"; ?>
