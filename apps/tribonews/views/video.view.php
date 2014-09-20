@@ -8,7 +8,7 @@
     </div>
 
     <!-- Info -->
-    <div class="video-info">
+    <div class="video-info" style="min-height: 435px;">
 
         <!-- Breadcrumb -->
         <div class="col-md-12 vd-ruta">
@@ -56,6 +56,16 @@
                 <span>
                     <?=(int) $video->visitas;?> reproducciones
                 </span>
+                <br />
+                <div class="sharesocial">
+                    <?php
+                    $url = $_SERVER["uri"];
+                    $des = "Visto en TriboNews ".Helper::sanitize($video->titulo)." por ".Helper::sanitize($autor->getFullName())." @Tribo_tv";
+                    ?>
+                    <a href="http://www.facebook.com/sharer.php?u=<?= $url; ?>" target="_blank" style="min-width: 15px;" class="btn btn-facebook"><i class="fa fa-facebook"></i></a>
+                    <a href="https://plus.google.com/share?url=<?= $url; ?>" target="_blank" style="min-width: 15px;" class="btn btn-google"><i class="fa fa-google-plus"></i></a>
+                    <a href="http://twitter.com/home?status=<?= $des; ?>" target="_blank" style="min-width: 15px;" class="btn btn-twitter"><i class="fa fa-twitter"></i></a>
+                </div>
             </div>
         </div>
         <!-- Descripción -->

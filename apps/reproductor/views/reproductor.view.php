@@ -41,6 +41,17 @@
                     <i class="fa fa-heart-o like"></i>
                 <?php } ?>
             </div>
+            <div class="clear: both;"></div>
+            <br />
+            <div class="sharesocial">
+                <?php
+                $url = $_SERVER["uri"];
+                $des = "Visto en triboTV ".Helper::sanitize($programa->titulo)." - ".Helper::sanitize($capitulo->titulo)." @Tribo_tv";
+                ?>
+                <a href="http://www.facebook.com/sharer.php?u=<?= $url; ?>" target="_blank" style="min-width: 15px;" class="btn btn-facebook"><i class="fa fa-facebook"></i></a>
+                <a href="https://plus.google.com/share?url=<?= $url; ?>" target="_blank" style="min-width: 15px;" class="btn btn-google"><i class="fa fa-google-plus"></i></a>
+                <a href="http://twitter.com/home?status=<?= $des; ?>" target="_blank" style="min-width: 15px;" class="btn btn-twitter"><i class="fa fa-twitter"></i></a>
+            </div>
         </div>
 
         <!-- Info -->

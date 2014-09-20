@@ -1295,6 +1295,7 @@ label {
 }
 .video-info{
 	background-color: #FFF;
+	min-height: 405px; /*For Share buttons*/
 }
 .vd-ruta, .vd-codigo, .vd-capitulo, .vd-attr, .vd-temporada, .video-desc{
 	float: left;
@@ -1328,6 +1329,41 @@ label {
 }
 .video-desc{
 	margin-top: 10px;
+}
+
+/*SHARE*/
+.sharesocial{
+	margin-top: 14px;
+    position: absolute;
+    right: 10px;
+    text-align: right;
+    width: 100%;
+}
+.btn-facebook, .btn-twitter, .btn-google,
+.btn-facebook a, .btn-twitter a, .btn-google a{
+	width: 50px;
+	color: #FFF;
+}
+.btn-facebook{
+	background-color: #3b5998;
+}
+.btn-twitter{
+	background-color: #1ab2e8;
+}
+.btn-google{
+	background-color: #9b0404;
+}
+.btn-facebook:hover{
+	background-color: #344e86;
+	cursor: pointer;
+}
+.btn-twitter:hover{
+	background-color: #15a1d3;
+	cursor: pointer;
+}
+.btn-google:hover{
+	background-color: #630303;
+	cursor: pointer;
 }
 
 /*Search Top*/
