@@ -52,7 +52,7 @@ Toolbar::render();
     <input type="hidden" name="action" id="action" value="save">
     <input type="hidden" name="id" value="<?=$capitulo->id?>">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="panel panel-default">
                 <!-- Detalles -->
                 <div class="panel-heading">
@@ -159,12 +159,24 @@ Toolbar::render();
                             <input type="date" id="fechaEmision" name="fechaEmision" placeholder="YYYY-mm-dd" class="form-control" value="<?=Helper::sanitize($capitulo->fechaEmision);?>">
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <!-- Thumbnail -->
+                <div class="panel-heading">
+                    Thumbnail
+                </div>
+                <div class="panel-body">
                     <!-- Thumbnail -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">
-                            Thumbnail
-                        </label>
-                        <div class="col-sm-8">
+                        <div class="col-sm-12">
+                            <img src="<?=$capitulo->getThumbnailUrl();?>" width="100%">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
                             <input type="file" class="btn-primary btn" name="thumbnail" accept="image/*">
                             <?php if ($capitulo->thumbnail) { ?>
                                 <a href="<?=$capitulo->getThumbnailUrl();?>" class="btn btn-default" target="_blank">
