@@ -28,6 +28,10 @@ Toolbar::render();
             <div class="col-sm-3 col-xs-6 filter">
                 <?=HTML::search();?>
             </div>
+            <!-- Programa -->
+            <div class="col-sm-3">
+                <?=HTML::select("programaId", $programas, $_REQUEST["programaId"], array("class" => "select2 change-submit", "style" => "width: 100%;"), array("id" => 0, "display" => "- Programa -"), array("display" => "titulo")); ?>
+            </div>
         </div>
         <?php if (count($results)) { ?>
             <div class="table-responsive">

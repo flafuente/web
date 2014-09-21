@@ -22,6 +22,10 @@ class capitulosController extends Controller
         $pag['limitStart'] = $_REQUEST['limitStart'];
         $this->setData("results", Capitulo::select($_REQUEST, $pag['limit'], $pag['limitStart'], $pag['total']));
         $this->setData("pag", $pag);
+
+        //Programas
+        $this->setData("programas", Programa::select(array("order" => "titulo")));
+
         $html = $this->view("views.list");
         $this->render($html);
     }
