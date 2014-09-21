@@ -12,7 +12,7 @@ class tribonewsController extends Controller
         $this->setData("welcome", $welcome);
 
         //Vídeos
-        $this->setData("videos", Video::select(array("estadoId" => "1")));
+        $this->setData("videos", Video::select(array("estadoId" => "1", "order" => "id", "orderDir" => "DESC"), 4));
 
         $html = $this->view("views.tribonews");
         $this->render($html);
