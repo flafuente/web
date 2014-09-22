@@ -20,7 +20,7 @@
         <div class="haztetriber_description">
             Los informativos de Tribo son diferentes, singulares y con mucha personalidad.
             <br /><br />
-            Tanto es así, que están hechos por contenidos grabados, producidos y enviados por los propios Tribers.
+            Contenidos grabados, producidos y enviados por los propios Tribers.
             <br /><br />
             Los Tribers no son sólo periodistas, son testigos de la realidad. Se trata de ciudadanos con inquietudes, capaces de enviarnos sus videos desde el lugar de la noticia.
             <br /><br />

@@ -7,7 +7,7 @@
         <?php $active = array(); ?>
         <?php $active[$url->app][$url->action] = "active"; ?>
 
-      <li class="<?=$active["programas"]["index"];?> withsub">
+      <li class="withsub">
         <a href="#">PROGRAMAS</a>
         <?php $secciones = Seccion::select(array("visible" => true, "order" => "orden")); ?>
         <?php if (count($secciones)) { ?>
@@ -28,14 +28,14 @@
             </ul>
         <?php } ?>
       </li>
-      <li class="<?=$active["periodismociudadano"]["index"];?> withsub">
+      <li class="withsub">
         <a href="<?=Url::site("tribonews");?>">TRIBO NEWS</a>
       </li>
-      <li class="<?=$active["tvdirecto"]["index"];?>">
+      <li>
         <a href="<?=Url::site("tvdirecto");?>">TV EN DIRECTO</a>
       </li>
-      <li class="<?=$active["creadores"]["index"];?>"><a href="<?=Url::site("creadores");?>">CREADORES</a></li>
-      <li class="<?=$active["quienessomos"]["index"];?>"><a href="<?=Url::site("quienessomos");?>">QUIÉNES SOMOS</a></li>
+      <li><a href="<?=Url::site("creadores");?>">CREADORES</a></li>
+      <li><a href="<?=Url::site("quienessomos");?>">QUIÉNES SOMOS</a></li>
     </ul>
 </div>
 <!-- END NORMAL MENU -->

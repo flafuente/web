@@ -28,7 +28,7 @@
                 todos los capitulos</a>
             </div>
             <div class="col-md-6 ver-todas-web" style="margin-top: 30px;">
-                Ver todas las Webseries&nbsp;&nbsp;<a href="<?=Url::site("/");?>"><div class="circulo-azul">+</div></a>
+                Pruebas&nbsp;&nbsp;<a href="<?=Url::site("/");?>"><div class="circulo-azul">+</div></a>
             </div>
         </div>
         <div style="clear: both;"></div>
@@ -38,22 +38,22 @@
    //Listado de proximas series
 /*Extraer de BBDD la parrilla y meterlo en el controller, llamarlo e imprimirlo con el module de capitulo-mini*/
     if (count($proximos)) {
-	?>
-	<br /><br />
+    ?>
+    <br /><br />
     <div class='title-line'>
         <span>DESPUÉS EN TRIBO</span>
     </div>
-	<?php
+    <?php
         foreach ($proximos as $proximo) {
             $controller->setData("proximo", $proximo);
             echo $controller->view("modules.capitulo-mini", "programas");
         }
-	?>
-	<div class='col-md-6'></div>
+    ?>
+    <div class='col-md-6'></div>
     <div class="col-md-6 ver-todas-web" style="margin-top: 30px;">
         Ver parrilla completa&nbsp;&nbsp;<a href="<?=Url::site("parrillas");?>"><div class="circulo-azul">+</div></a>
     </div>
-	<?php
+    <?php
     }
 ?>
 

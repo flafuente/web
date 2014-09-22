@@ -38,10 +38,6 @@
                         <!-- Twitter -->
                         <?=$controller->view("modules.twitter"); ?>
 
-                        <?php if ($url->app == "periodismociudadano") { ?>
-                            <?=$controller->view("views.lomasvisto"); ?>
-                        <?php } ?>
-
                     </div>
                 <?php } ?>
 
