@@ -12,6 +12,11 @@ class Programa extends Model
      */
     public $id;
     /**
+     * Order
+     * @var int
+     */
+    public $order;
+    /**
      * Id de la sección
      * @var int
      */
@@ -276,12 +281,15 @@ class Programa extends Model
      * Acciones previas a la creación.
      * @return void
      */
-    public function preInsert()
+    public function preInsert($data = array())
     {
         $user = Registry::getUser();
         $this->userId = $user->id;
         $this->dateInsert = date("Y-m-d H:i:s");
         $this->slugify();
+        if ($data["order"]) {
+            $this->order();
+        }
     }
 
     /**
@@ -297,10 +305,43 @@ class Programa extends Model
      * Acciones previas a la modificación.
      * @return void
      */
-    public function preUpdate()
+    public function preUpdate($data = array())
     {
         $this->dateUpdate = date("Y-m-d H:i:s");
         $this->slugify();
+        if ($data["order"]) {
+            $this->order();
+        }
+    }
+
+    public function order()
+    {
+        //leemos los programas
+        $programas = self::select(array("seccionId" => $this->seccionId));
+        $pos = 0;
+        if (count($programas)) {
+            //Primero
+            if ($this->order == -1) {
+                $this->order = 1;
+                $pos++;
+            }
+            //Recorremos los programas
+            foreach ($programas as $programa) {
+                $pos++;
+                //Si hemos indicado ir aquí...
+                if ($this->order == $pos) {
+                    $pos++;
+                }
+                //Movemos la sección de posición
+                $programa->order = $pos;
+                $programa->update();
+            }
+            //Último
+            if ($this->order == -2) {
+                $pos++;
+                $this->order = $pos;
+            }
+        }
     }
 
     /**

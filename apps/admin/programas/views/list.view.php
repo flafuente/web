@@ -49,6 +49,7 @@ Toolbar::render();
                             <th><?=Html::sortableLink("id", "Id");?></th>
                             <th><?=Html::sortableLink("estadoId", "Estado");?></th>
                             <th><?=Html::sortableLink("seccionId", "Sección");?></th>
+                            <th><?=Html::sortableLink("order", "Orden");?></th>
                             <th><?=Html::sortableLink("titulo", "Título");?></th>
                             <th><?=Html::sortableLink("dateInsert", "Fecha creación");?></th>
                             <th><?=Html::sortableLink("dateUpdate", "Fecha actualización");?></th>
@@ -72,6 +73,7 @@ Toolbar::render();
                                         -
                                     <?php } ?>
                                 </td>
+                                <td><?=$programa->order;?></td>
                                 <td>
                                     <a href="<?=Url::site("admin/programas/edit/".$programa->id);?>">
                                         <?=Helper::sanitize($programa->titulo);?>

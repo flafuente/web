@@ -30,7 +30,9 @@ class programasController extends Controller
     public function edit()
     {
         $url = Registry::getUrl();
-        $this->setData("programa", new Programa($url->vars[0]));
+        $programa = new Programa($url->vars[0]);
+        $this->setData("programa", $programa);
+        $this->setData("programas", Programa::select(array("seccionId" => $programa->seccionId)));
         $this->setData("secciones", Seccion::select());
         $html = $this->view("views.edit");
         $this->render($html);

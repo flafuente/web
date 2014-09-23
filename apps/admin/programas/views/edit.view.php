@@ -85,6 +85,26 @@ Toolbar::render();
                             <input type="checkbox" class="switch" name="estadoId" id="estadoId" value="1" <?php if($programa->estadoId) echo "checked";?>>
                         </div>
                     </div>
+                    <!-- Orden -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            Orden
+                        </label>
+                        <div class="col-sm-8">
+                            <?php
+                                //Last
+                                $last = new stdClass();
+                                $last->order = -2;
+                                $last->titulo = "- Último -";
+                                @array_push($programas, $last);
+                                //Select
+                                echo HTML::select("order", $programas, $programa->order, null,
+                                    array("id" => "-1", "display" => "- Primero -"),
+                                    array("id" => "order", "display" => "titulo")
+                                );
+                            ?>
+                        </div>
+                    </div>
                     <?php if (count($secciones)) { ?>
                         <!-- Sección -->
                         <div class="form-group">

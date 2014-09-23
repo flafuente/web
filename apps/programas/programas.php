@@ -22,7 +22,7 @@ class programasController extends Controller
             Url::redirect(Url::site("tribonews"));
         }
 
-        $data = array("estadoId" => 1);
+        $data = array("estadoId" => 1, "order" => "order", "orderDir" => "ASC");
         //Sección?
         if ($url->vars[0]) {
             $seccion = @current(Seccion::getBy("slug", $url->vars[0]));
