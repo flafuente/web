@@ -54,7 +54,6 @@ Toolbar::render();
                                 <td><?=Helper::humanDate($articulo->dateUpdate);?></td>
                                 <td>
                                     <?=HTML::formLink("btn-xs btn-primary", "pencil", Url::site("admin/articulos/edit/".$articulo->id)); ?>
-                                    <?/*=HTML::formLink("btn-xs btn-danger", "remove", Url::site("admin/articulos/delete/".$articulo->id), null, null, "¿Deseas eliminar este artículo?"); */?>
                                 </td>
                             </tr>
                         <?php } ?>
