@@ -175,6 +175,21 @@ Toolbar::render();
                             <img src="<?=$capitulo->getThumbnailUrl();?>" width="100%">
                         </div>
                     </div>
+                    <?php if ($capitulo->cdnThumbnail) { ?>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <input type="range" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">
+                                Thumbnail CDN
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="text" id="cdnThumbnail" name="cdnThumbnail" class="form-control" value="<?=Helper::sanitize($capitulo->cdnThumbnail);?>">
+                            </div>
+                        </div>
+                    <?php } ?>
                     <div class="form-group">
                         <div class="col-sm-12">
                             <input type="file" class="btn-primary btn" name="thumbnail" accept="image/*">
