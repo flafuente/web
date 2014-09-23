@@ -13,23 +13,10 @@
 
         <div style="clear: both;"></div>
         <br />
-        <div class="haztetriber_title">
-            ¿QUIERES SER TRIBER Y TRABAJAR CON NOSOTROS?
-        </div>
-        <br />
-        <div class="haztetriber_description">
-            Los informativos de Tribo son diferentes, singulares y con mucha personalidad.
-            <br /><br />
-            Contenidos grabados, producidos y enviados por los propios Tribers.
-            <br /><br />
-            Los Tribers no son sólo periodistas, son testigos de la realidad. Se trata de ciudadanos con inquietudes, capaces de enviarnos sus videos desde el lugar de la noticia.
-            <br /><br />
-            La realidad y la inmediatez en estado puro. Será la red de Tribers, los que nutran libremente con sus piezas, los contenidos informativos de la cadena. Sin consignas, ni sesgos.
-            <br /><br />
-            Todo esto en un informativo con secciones libres, sin tiempos fijos, ni temas prefijados, y siempre dejando un buen sabor de boca al espectador con una noticia positiva.
-            <br /><br />
-            <b>BE TRIBER</b>
-        </div>
+
+        <?php $articulo = new Articulo(1); ?>
+        <?php echo $articulo->texto; ?>
+
         <div style="clear: both;"></div>
         <br /><br />
 

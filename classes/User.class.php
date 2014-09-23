@@ -117,6 +117,7 @@ class User extends Model
         "tags"          => "Tags",
         "contactos"     => "Contactos",
         "slideshow"     => "Slideshow",
+        "articulos"     => "Artículos",
     );
 
     /**

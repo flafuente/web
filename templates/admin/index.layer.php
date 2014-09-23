@@ -20,6 +20,10 @@
         <link href="<?=Url::template("css/select2-bootstrap.css");?>" media="screen" rel="stylesheet" type="text/css" />
         <!-- JQuery File Upload Plugin -->
         <link href="<?=Url::template("css/jquery.fileupload.css");?>" media="screen" rel="stylesheet" type="text/css" />
+        <!-- Font Awesome -->
+        <link href="<?=Url::template("css/font-awesome.min.css");?>" media="screen" rel="stylesheet" type="text/css" />
+        <!-- Summer Note -->
+        <link href="<?=Url::template("css/summernote.css");?>" media="screen" rel="stylesheet" type="text/css" />
         <!-- Custom CSS -->
         <link href="<?=Url::template("css/custom.css");?>" media="screen" rel="stylesheet" type="text/css" />
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -65,6 +69,8 @@
         <script>
             videojs.options.flash.swf = "<?=Url::template('assets/video-js/video-js.swf');?>"
         </script>
+        <!-- Summer Note -->
+        <script src="<?=Url::template("js/summernote.js");?>" type="text/javascript"></script>
         <!-- Global Vars -->
         <script>
             var URL = "<?=Url::site();?>";

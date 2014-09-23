@@ -88,6 +88,14 @@
                     </a>
                 </li>
             <?php } ?>
+            <?php if ($user->checkPermisos("articulos")) { ?>
+                <li class="<?=$active['admin']['articulos']?>">
+                    <a href="<?=Url::site("admin/articulos")?>">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        Artículos
+                    </a>
+                </li>
+            <?php } ?>
         </ul>
         <ul class="nav navbar-nav navbar-right" style="margin-right: 20px">
             <li>
