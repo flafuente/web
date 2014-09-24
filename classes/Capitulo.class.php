@@ -396,7 +396,7 @@ class Capitulo extends Model
                 //Eliminamos la antigua
                 @unlink($this->getThumbnailPath());
                 //Subimos la nueva
-                $bulletProof = new BulletProof;
+                $bulletProof = new BulletProof();
                 $this->thumbnail = $bulletProof
                     ->uploadDir($config->get("path").$this->path)
                     ->shrink(array("height"=>163, "width"=>269))
@@ -436,7 +436,7 @@ class Capitulo extends Model
         }
 
         //Leemos la duración del CDN
-        if ($this->cdnId && !$this->duracion) {
+        if ($this->cdnId && (!$this->duracion || $this->duracion == "00:00:00")) {
             $this->duracion = $this->getWistiaDuration();
         }
     }
@@ -464,7 +464,7 @@ class Capitulo extends Model
         }
 
         //Leemos la duración del CDN
-        if ($this->cdnId && !$this->duracion) {
+        if ($this->cdnId && (!$this->duracion || $this->duracion == "00:00:00")) {
             $this->duracion = $this->getWistiaDuration();
         }
     }

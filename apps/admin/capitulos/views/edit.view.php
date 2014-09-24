@@ -172,13 +172,15 @@ Toolbar::render();
                     <!-- Thumbnail -->
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <img src="<?=$capitulo->getThumbnailUrl();?>" width="100%">
+                            <img src="<?=$capitulo->getThumbnailUrl();?>" id="thumbnailUrl" width="100%">
                         </div>
                     </div>
-                    <?php if ($capitulo->cdnThumbnail) { ?>
+                    <?php if ($capitulo->cdnThumbnail && $capitulo->duracion) { ?>
+                        <?php $a = explode(":", $capitulo->duracion); ?>
+                        <?php $segundos = (+$a[0]) * 60 * 60 + (+$a[1]) * 60 + (+$a[2]); ?>
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <input type="range" />
+                                <input type="range" id="range" min="0" max="<?=$segundos;?>" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -205,3 +207,20 @@ Toolbar::render();
         </div>
     </div>
 </form>
+
+<script>
+    $(document).on('change', '#range', function (e) {
+        second = $(this).val();
+        url = $("#cdnThumbnail").val();
+        if (url) {
+            param = "video_still_time=" + second;
+            if (url.indexOf("video_still_time") > -1) {
+                url = url.replace(/(video_still_time=).*?(&)/,'$1' + param + '$2');
+            } else {
+                url += "&" + param;
+            }
+            $("#thumbnailUrl").attr("src", url);
+            $("#cdnThumbnail").val(url);
+        }
+    });
+</script>
