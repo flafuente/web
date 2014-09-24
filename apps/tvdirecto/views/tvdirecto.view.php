@@ -3,7 +3,22 @@
 ?>
 <div class='col-md-12 serie_info'>
     <div class="col-md-12 video">
-        <?php HTML::wistiaPlayer("026x634bnv", "558", "314"); ?>
+        <?php if ($_REQUEST["testpage"] == 1) { ?>
+            <script id="overon_main_script" type="text/javascript" src="http://overonocc.cdn.customers.overon.es/player/environment.js"></script>
+            <div id='video_player'></div>
+            <script>
+                $(document).ready(function () {
+                    OVERON_Player.init({
+                        width: 570,
+                        height: 410,
+                        container: 'video_player',
+                        stream: 'http://overon-apple-live.adaptive.level3.net/apple/overon/channel06/index.m3u8'
+                    });
+                });
+            </script>
+        <?php } else { ?>
+            <?php HTML::wistiaPlayer("026x634bnv", "558", "314"); ?>
+        <?php } ?>
     </div>
     <div class="video-info">
         <div class="col-md-12 vd-ruta">Pruebas de emisión</div>
