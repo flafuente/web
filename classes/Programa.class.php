@@ -226,7 +226,7 @@ class Programa extends Model
                 //Eliminamos la antigua
                 @unlink($this->getBannerPath());
                 //Subimos la nueva
-                $bulletProof = new BulletProof;
+                $bulletProof = new BulletProof();
                 $this->banner = $bulletProof
                     ->uploadDir($config->get("path").$this->path)
                     ->shrink(array("height"=>150, "width"=>510))
@@ -243,7 +243,7 @@ class Programa extends Model
                 //Eliminamos la antigua
                 @unlink($this->getThumbnailPath());
                 //Subimos la nueva
-                $bulletProof = new BulletProof;
+                $bulletProof = new BulletProof();
                 $this->thumbnail = $bulletProof
                     ->uploadDir($config->get("path").$this->path)
                     ->shrink(array("height"=>162, "width"=>269))
@@ -419,10 +419,10 @@ class Programa extends Model
         $config = Registry::getConfig();
         //Borramos los archivos
         if ($this->banner) {
-            @unlink($config->get("path").$this->path.$this->banner);
+            //@unlink($config->get("path").$this->path.$this->banner);
         }
         if ($this->thumbnail) {
-            @unlink($config->get("path").$this->path.$this->thumbnail);
+            //@unlink($config->get("path").$this->path.$this->thumbnail);
         }
     }
 }
