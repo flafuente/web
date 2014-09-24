@@ -275,7 +275,7 @@ class Video extends Model
             }
         }
         //Publicado?
-        if ($this->estadoId==1 && !$this->videoArchivoId) {
+        if ($this->estadoId == 1 && (!$this->videoArchivoId && !$this->cdnId)) {
             Registry::addMessage("No puedes publicar un vídeo si no contiene archivos verificados", "error");
         }
     }
@@ -289,7 +289,7 @@ class Video extends Model
         $this->validate();
 
         //Archivo?
-        if (!$data["file"]) {
+        if (!$data["file"] && !$this->cdnId) {
             Registry::addMessage("Debes subir un archivo", "error");
         }
 
@@ -308,7 +308,7 @@ class Video extends Model
             $url = "http://maps.google.es/maps/api/geocode/json?sensor=false&address=$address";
             $response = file_get_contents($url);
             //generate array object from the response from the web
-            $json = json_decode($response, TRUE);
+            $json = json_decode($response, true);
 
             //Coordenadas
             $this->lat = $json['results'][0]['geometry']['location']['lat'];
@@ -339,6 +339,30 @@ class Video extends Model
         $this->userId = $user->id;
         $this->dateInsert = date("Y-m-d H:i:s");
         $this->setLocalizacion();
+        //Video creado desde /admin
+        if ($this->cdnId) {
+            //Marcamos el vídeo como convertido
+            $this->estadoCdnId = 3;
+            //Leemos la duración
+            $this->duracion = $this->getWistiaDuration();
+        }
+    }
+
+    /**
+     * Lee la duración de wistia.
+     * @return bool
+     */
+    private function getWistiaDuration()
+    {
+        Wistia::init();
+        if ($this->cdnId) {
+            $json = Wistia::status($this->cdnId);
+            if (is_object($json)) {
+                if ($json->duration) {
+                    return gmdate("H:i:s", (int) $json->duration);
+                }
+            }
+        }
     }
 
     /**

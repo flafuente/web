@@ -145,6 +145,15 @@ Toolbar::render();
                             </div>
                         </div>
                     <?php } ?>
+                    <!-- CDN Id -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            CDN Id
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" id="cdnId" name="cdnId" class="form-control" value="<?=Helper::sanitize($video->cdnId);?>">
+                        </div>
+                    </div>
                     <!-- Archivo -->
                     <?php if (!$video->id) { ?>
                         <div class="form-group">
