@@ -224,7 +224,7 @@ class Programa extends Model
         if (isset($_FILES["banner"])) {
             try {
                 //Eliminamos la antigua
-                @unlink($this->getBannerPath());
+                //@unlink($this->getBannerPath());
                 //Subimos la nueva
                 $bulletProof = new BulletProof();
                 $this->banner = $bulletProof
@@ -241,7 +241,7 @@ class Programa extends Model
         if (isset($_FILES["thumbnail"])) {
             try {
                 //Eliminamos la antigua
-                @unlink($this->getThumbnailPath());
+                //@unlink($this->getThumbnailPath());
                 //Subimos la nueva
                 $bulletProof = new BulletProof();
                 $this->thumbnail = $bulletProof
