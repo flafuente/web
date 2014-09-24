@@ -48,7 +48,7 @@ class tribonewsController extends Controller
         //Pagination
         $pag = array();
         $pag['total'] = 0;
-        $pag['limit'] = 5;
+        $pag['limit'] = 6;
         $pag['limitStart'] = $_REQUEST['limitStart'];
 
         //Vídeos
