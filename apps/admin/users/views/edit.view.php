@@ -51,7 +51,7 @@ Toolbar::render();
 <form method="post" name="mainForm" id="mainForm" action="<?=Url::site();?>" class="form-horizontal ajax" role="form" autocomplete="off">
     <input type="hidden" name="router" id="router" value="admin">
     <input type="hidden" name="app" id="app" value="users">
-    <input type="hidden" name="action" id="action" value="usersSave">
+    <input type="hidden" name="action" id="action" value="save">
     <input type="hidden" name="id" value="<?=$user->id?>">
     <div class="row">
         <div class="col-md-12">
