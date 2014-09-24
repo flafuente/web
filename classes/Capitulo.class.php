@@ -566,7 +566,7 @@ class Capitulo extends Model
     {
         $config = Registry::getConfig();
         if ($this->thumbnail) {
-            @unlink($config->get("path").$this->path.$this->thumbnail);
+            //@unlink($config->get("path").$this->path.$this->thumbnail);
         }
     }
 }

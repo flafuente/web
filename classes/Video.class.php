@@ -32,7 +32,7 @@ class Video extends Model
      */
     public $cdnId;
     /**
-     * Thumbnail (screen del vídeo)
+     * Thumbnail (URL de Wistia)
      * @var string
      */
     public $thumbnail;
