@@ -27,8 +27,15 @@
 
             <!-- Likes -->
             <div class="sq_num">
-                <?php echo $video->likes; ?>
-                <i class="fa fa-heart-o"></i>
+                <span id="likesVideo<?=$video->id;?>">
+                    <?=$video->likes;?>
+                </span>
+                <?php if ($video->isLiked()) { ?>
+                    <?php $class = "fa-heart"; ?>
+                <?php } else { ?>
+                    <?php $class = "fa-heart-o"; ?>
+                <?php } ?>
+                <i id="likeVideo<?=$video->id;?>" class="fa <?=$class;?> like like-video" data-videoId="<?=$video->id;?>"></i>
             </div>
 
         </div>

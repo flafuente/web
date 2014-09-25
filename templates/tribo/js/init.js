@@ -98,3 +98,39 @@ $(document).ready(function(){
 	//Input files
 	$('input[type=file]').bootstrapFileInput();
 });
+
+//Likes capitulos
+$(document).on('click', '.like-capitulo', function (e) {
+    var capituloId = $(this).attr("data-capituloId");
+    if ($(this).hasClass("fa-heart-o")) {
+        url = "/reproductor/like/";
+        $(this).removeClass("fa-heart-o");
+	    $(this).addClass("fa-heart");
+    } else {
+        url = "/reproductor/unlike/";
+        $(this).addClass("fa-heart-o");
+	    $(this).removeClass("fa-heart");
+    }
+    $.getJSON(SITE_URL + url + capituloId).done(function (data) {
+    	console.log("Updating #likesCapitulo" + capituloId + ": " + data.data.total);
+        $("#likesCapitulo" + capituloId).html(data.data.total);
+    });
+});
+
+//Likes videos
+$(document).on('click', '.like-video', function (e) {
+    var videoId = $(this).attr("data-videoId");
+    if ($(this).hasClass("fa-heart-o")) {
+        url = "/tribonews/like/";
+        $(this).removeClass("fa-heart-o");
+	    $(this).addClass("fa-heart");
+    } else {
+        url = "/tribonews/unlike/";
+        $(this).addClass("fa-heart-o");
+	    $(this).removeClass("fa-heart");
+    }
+    $.getJSON(SITE_URL + url + videoId).done(function (data) {
+    	console.log("Updating #likesVideo" + videoId + ": " + data.data.total);
+        $("#likesVideo" + videoId).html(data.data.total);
+    });
+});

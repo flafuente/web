@@ -65,6 +65,7 @@
     <!-- Custom scrollbar -->
     <?php Minify::js("js/jquery.mCustomScrollbar.concat.min.js"); ?>
     <!-- Framework JS -->
+    <script>var SITE_URL = "<?=Url::site();?>";</script>
     <?php Minify::js("js/init.js"); ?>
 
     <?php Minify::renderJs(); ?>

@@ -45,7 +45,7 @@ class VideoLike extends Model
      */
     public function preInsert()
     {
-        $this->ip = $_SERVER["HTTP_CF_IPCOUNTRY"];
+        $this->ip = $_SERVER["REMOTE_ADDR"];
         $this->dateInsert = date("Y-m-d H:i:s");
     }
 
@@ -57,7 +57,7 @@ class VideoLike extends Model
     public static function isLiked($videoId = null)
     {
         if ($videoId) {
-            $ip = $_SERVER["HTTP_CF_IPCOUNTRY"];
+            $ip = $_SERVER["REMOTE_ADDR"];
             $db = Registry::getDb();
             $query = "SELECT * FROM `videos_likes` WHERE `videoId` = :videoId AND `ip` = :ip";
             $params = array(
@@ -76,7 +76,7 @@ class VideoLike extends Model
     public static function unlike($videoId = null)
     {
         if ($videoId) {
-            $ip = $_SERVER["HTTP_CF_IPCOUNTRY"];
+            $ip = $_SERVER["REMOTE_ADDR"];
             $db = Registry::getDb();
             $query = "DELETE FROM `videos_likes` WHERE `videoId` = :videoId AND `ip` = :ip";
             $params = array(

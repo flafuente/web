@@ -27,8 +27,15 @@
 
             <!-- Likes -->
             <div class="sq_num">
-                <?php echo $capitulo->likes; ?>
-                <i class="fa fa-heart-o"></i>
+                <span id="likesCapitulo<?=$capitulo->id;?>">
+                    <?=$capitulo->likes;?>
+                </span>
+                <?php if ($capitulo->isLiked()) { ?>
+                    <?php $class = "fa-heart"; ?>
+                <?php } else { ?>
+                    <?php $class = "fa-heart-o"; ?>
+                <?php } ?>
+                <i id="likeCapitulo<?=$capitulo->id;?>" class="fa <?=$class;?> like like-capitulo" data-capituloId="<?=$capitulo->id;?>"></i>
             </div>
 
         </div>

@@ -45,7 +45,7 @@ class VideoVisita extends Model
      */
     public function preInsert()
     {
-        $this->ip = $_SERVER["HTTP_CF_IPCOUNTRY"];
+        $this->ip = $_SERVER["REMOTE_ADDR"];
         $this->dateInsert = date("Y-m-d H:i:s");
     }
 

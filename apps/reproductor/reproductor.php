@@ -43,7 +43,7 @@ class reproductorController extends Controller
         if ($capitulo->id) {
             $capitulo->like();
         }
-        $this->ajax();
+        $this->ajax(array("total" => $capitulo->likes));
     }
 
     public function unlike()
@@ -54,6 +54,6 @@ class reproductorController extends Controller
         if ($capitulo->id) {
             $capitulo->unlike();
         }
-        $this->ajax();
+        $this->ajax(array("total" => $capitulo->likes));
     }
 }

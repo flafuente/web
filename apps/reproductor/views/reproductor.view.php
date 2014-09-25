@@ -32,14 +32,15 @@
         <!-- Likes -->
         <div class="col-md-4">
             <div class="sq_num">
-                <span>
+                <span id="likesCapitulo<?=$capitulo->id;?>">
                     <?=$capitulo->likes;?>
                 </span>
                 <?php if ($capitulo->isLiked()) { ?>
-                    <i class="fa fa-heart like"></i>
+                    <?php $class = "fa-heart"; ?>
                 <?php } else { ?>
-                    <i class="fa fa-heart-o like"></i>
+                    <?php $class = "fa-heart-o"; ?>
                 <?php } ?>
+                <i id="likeCapitulo<?=$capitulo->id;?>" class="fa <?=$class;?> like like-capitulo" data-capituloId="<?=$capitulo->id;?>"></i>
             </div>
             <div class="clear: both;"></div>
             <?php /*<br />
@@ -108,43 +109,3 @@
     <?php } ?>
 
 </div>
-
-<!-- Like/Unlike -->
-<script>
-
-    var likes = parseInt($(".sq_num span").html());
-
-    $(document).on('click', '.like', function (e) {
-        if ($(this).hasClass("fa-heart-o")) {
-            like(<?=$capitulo->id;?>);
-        } else {
-            unlike(<?=$capitulo->id;?>);
-        }
-    });
-
-    function like(capituloId)
-    {
-        $.ajax("<?=Url::site("reproductor/like");?>/" + capituloId).done(function () {
-            $(".like").removeClass("fa-heart-o");
-            $(".like").addClass("fa-heart");
-            likes++;
-            updateLikesCounter();
-        });
-    }
-
-    function unlike(capituloId)
-    {
-        $.ajax("<?=Url::site("reproductor/unlike");?>/" + capituloId).done(function () {
-            $(".like").addClass("fa-heart-o");
-            $(".like").removeClass("fa-heart");
-            likes--;
-            updateLikesCounter();
-        });
-    }
-
-    function updateLikesCounter()
-    {
-        $(".sq_num span").html(likes)
-    }
-
-</script>

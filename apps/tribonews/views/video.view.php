@@ -44,18 +44,22 @@
         <!-- Likes -->
         <div class="col-md-4">
             <div class="sq_num">
-                <span>
-                    <?=(int) $video->likes;?>
+                <span id="likesVideo<?=$video->id;?>">
+                    <?=$video->likes;?>
                 </span>
                 <?php if ($video->isLiked()) { ?>
-                    <i class="fa fa-heart like"></i>
+                    <?php $class = "fa-heart"; ?>
                 <?php } else { ?>
-                    <i class="fa fa-heart-o like"></i>
+                    <?php $class = "fa-heart-o"; ?>
                 <?php } ?>
-                <div style="clear: both;"></div>
+                <i id="likeVideo<?=$video->id;?>" class="fa <?=$class;?> like like-video" data-videoId="<?=$video->id;?>"></i>
+
+                <!-- Plays -->
                 <span>
                     <?=(int) $video->visitas;?> reproducciones
                 </span>
+
+                <!-- Social -->
                 <?php /*<br /><div class="sharesocial">
                     <?php
                     $url = $_SERVER["uri"];
@@ -67,6 +71,7 @@
                 </div>*/ ?>
             </div>
         </div>
+
         <!-- Descripción -->
         <div class="col-md-12 video-desc">
             <?=Helper::sanitize($video->descripcion);?>
@@ -89,43 +94,3 @@
     <!-- /Notícias relacionadas -->
 
 </div>
-
-<!-- Like/Unlike -->
-<script>
-
-    var likes = parseInt($(".sq_num span:first-child").html());
-
-    $(document).on('click', '.like', function (e) {
-        if ($(this).hasClass("fa-heart-o")) {
-            like(<?=$video->id;?>);
-        } else {
-            unlike(<?=$video->id;?>);
-        }
-    });
-
-    function like(videoId)
-    {
-        $.ajax("<?=Url::site("tribonews/like");?>/" + videoId).done(function () {
-            $(".like").removeClass("fa-heart-o");
-            $(".like").addClass("fa-heart");
-            likes++;
-            updateLikesCounter();
-        });
-    }
-
-    function unlike(videoId)
-    {
-        $.ajax("<?=Url::site("tribonews/unlike");?>/" + videoId).done(function () {
-            $(".like").addClass("fa-heart-o");
-            $(".like").removeClass("fa-heart");
-            likes--;
-            updateLikesCounter();
-        });
-    }
-
-    function updateLikesCounter()
-    {
-        $(".sq_num span:first-child").html(likes)
-    }
-
-</script>
