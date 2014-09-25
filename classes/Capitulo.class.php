@@ -391,10 +391,10 @@ class Capitulo extends Model
             Registry::addMessage("Ya existe un capítulo con esta temporada y nº de episodio: ".$capitulo->getFullTitulo(), "error", "temporada");
         }
         //Thumbnail Upload
-        if (isset($_FILES["thumbnail"])) {
+        if (isset($_FILES["thumbnail"]) && $_FILES["thumbnail"]["size"] > 0) {
             try {
                 //Eliminamos la antigua
-                @unlink($this->getThumbnailPath());
+                $this->deleteThumbnail();
                 //Subimos la nueva
                 $bulletProof = new BulletProof();
                 $this->thumbnail = $bulletProof
@@ -564,9 +564,14 @@ class Capitulo extends Model
      */
     public function postDelete()
     {
-        $config = Registry::getConfig();
+        $this->deleteThumbnail();
+    }
+
+    private function deleteThumbnail()
+    {
         if ($this->thumbnail) {
-            @unlink($config->get("path").$this->path.$this->thumbnail);
+            return @unlink($this->getThumbnailPath());
         }
+        $this->thumbnail = "";
     }
 }

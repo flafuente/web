@@ -113,10 +113,10 @@ class Slide extends Model
             Registry::addMessage("Debes introducir una url", "error", "url");
         }
         //Image Upload
-        if (isset($_FILES["imagenFile"]) && $_FILES["imagenFile"]["size"]) {
+        if (isset($_FILES["imagenFile"]) && $_FILES["imagenFile"]["size"] > 0) {
             try {
                 //Eliminamos la anterior
-                //$this->deleteImagen();
+                $this->deleteImagen();
                 //Subimos la nueva
                 $bulletProof = new BulletProof;
                 $this->imagen = $bulletProof
@@ -257,6 +257,11 @@ class Slide extends Model
                 return $results;
             }
         }
+    }
+
+    public function postDelete()
+    {
+        $this->deleteImagen();
     }
 
     private function deleteImagen()

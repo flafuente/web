@@ -399,7 +399,7 @@ class User extends Model
     public function uploadFoto($resource = null)
     {
         //Banner Upload
-        if (isset($resource)) {
+        if (isset($resource) && $resource["size"] > 0) {
             $config = Registry::getConfig();
             try {
                 //Eliminamos la antigua
@@ -420,7 +420,9 @@ class User extends Model
 
     public function deleteFoto()
     {
-        @unlink($this->getFotoPath());
+        if ($this->foto) {
+            @unlink($this->getFotoPath());
+        }
         $this->foto = "";
     }
 
@@ -646,5 +648,10 @@ class User extends Model
         $data->lastVisitDate = $this->lastvisitDate;
 
         return $data;
+    }
+
+    public function postDelete()
+    {
+        $this->deleteFoto();
     }
 }

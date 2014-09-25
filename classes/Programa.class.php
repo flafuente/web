@@ -221,10 +221,10 @@ class Programa extends Model
             Registry::addMessage("Ya existe otro programa con este nombre", "error", "titulo");
         }
         //Banner Upload
-        if (isset($_FILES["banner"])) {
+        if (isset($_FILES["banner"]) && $_FILES["banner"]["size"] > 0) {
             try {
                 //Eliminamos la antigua
-                //@unlink($this->getBannerPath());
+                $this->deleteBanner();
                 //Subimos la nueva
                 $bulletProof = new BulletProof();
                 $this->banner = $bulletProof
@@ -238,10 +238,10 @@ class Programa extends Model
             $this->banner = null;
         }
         //Thumbnail Upload
-        if (isset($_FILES["thumbnail"])) {
+        if (isset($_FILES["thumbnail"]) && $_FILES["thumbnail"]["size"] > 0) {
             try {
                 //Eliminamos la antigua
-                //@unlink($this->getThumbnailPath());
+                $this->deleteThumbnail();
                 //Subimos la nueva
                 $bulletProof = new BulletProof();
                 $this->thumbnail = $bulletProof
@@ -416,13 +416,24 @@ class Programa extends Model
      */
     public function postDelete()
     {
-        $config = Registry::getConfig();
         //Borramos los archivos
-        if ($this->banner) {
-            //@unlink($config->get("path").$this->path.$this->banner);
-        }
+        $this->deleteThumbnail();
+        $this->deleteBanner();
+    }
+
+    private function deleteThumbnail()
+    {
         if ($this->thumbnail) {
-            //@unlink($config->get("path").$this->path.$this->thumbnail);
+            return @unlink($this->getThumbnailPath());
         }
+        $this->thumbnail = "";
+    }
+
+    private function deleteBanner()
+    {
+        if ($this->banner) {
+            return @unlink($this->getBannerPath());
+        }
+        $this->banner = "";
     }
 }

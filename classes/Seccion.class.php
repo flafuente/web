@@ -103,6 +103,17 @@ class Seccion extends Model
         return Url::site($this->path.$this->thumbnail);
     }
 
+    /**
+     * Devuelve la ruta del Thumbnail.
+     * @return string
+     */
+    public function getThumbnailPath()
+    {
+        $config = Registry::getConfig();
+
+        return $config->get("path").$this->path.$this->thumbnail;
+    }
+
     public function getMenuImage()
     {
         return Url::template("img/home/".$this->menuImage, "tribo");
@@ -118,8 +129,11 @@ class Seccion extends Model
             Registry::addMessage("Ya existe una categoría con este nombre", "error", "nombre");
         }
         //Thumbnail Upload
-        if (isset($_FILES["thumbnail"])) {
+        if (isset($_FILES["thumbnail"]) && $_FILES["thumbnail"]["size"] > 0) {
             try {
+                //Eliminamos la antigua
+                $this->deleteThumbnail();
+                //Subimos la nueva
                 $bulletProof = new BulletProof;
                 $this->thumbnail = $bulletProof
                     ->uploadDir($config->get("path").$this->path)
@@ -346,5 +360,22 @@ class Seccion extends Model
                 return $results;
             }
         }
+    }
+
+    /**
+     * Acciones posteriores a la eliminación.
+     * @return void
+     */
+    public function postDelete()
+    {
+        $this->deleteThumbnail();
+    }
+
+    private function deleteThumbnail()
+    {
+        if ($this->thumbnail) {
+            return @unlink($this->getThumbnailPath());
+        }
+        $this->thumbnail = "";
     }
 }
