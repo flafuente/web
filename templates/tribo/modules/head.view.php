@@ -2,6 +2,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="title" content="Tribo televisión">
     <meta name="description" content="Emprendedores, jóvenes, hablamos el mismo idioma que tú, que internet, porque somos gente de la calle, y hemos decidido hacerte la vida más fácil.">
     <meta name="author" content="">
     <title>Tribo.tv</title>
