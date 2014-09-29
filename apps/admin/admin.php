@@ -12,8 +12,10 @@ class adminControllerRouter extends Controller
         //Nos aseguramos de que es admin
         $user = Registry::getUser();
         if ($user->id) {
-            if ($user->roleId<USER_ROLE_VALIDADOR) {
+            if ($user->roleId < USER_ROLE_VALIDADOR) {
                 Url::redirect(Url::site());
+            } elseif ($user->tfaStatus && !$user->isTfaAuth()) {
+                Url::redirect(Url::site("login/tfa"));
             }
         } else {
             Url::redirect(Url::site("login"));

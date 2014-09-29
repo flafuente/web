@@ -80,13 +80,16 @@ class loginController extends Controller
         if ($_REQUEST["remember"]) {
             $expiration = 60*60*24*7*4*3;
         }
-        $res = $user->login($_REQUEST['login'], $_REQUEST['password'], $expiration);
-        if ($res == true) {
+        if ($user->login($_REQUEST['login'], $_REQUEST['password'], $expiration)) {
             $user = Registry::getUser();
-            if ($user->roleId < USER_ROLE_ADMIN) {
+            if ($user->roleId < USER_ROLE_VALIDADOR) {
                 Registry::addMessage("", "", "", Url::site("?a=true"));
             } else {
-                Registry::addMessage("", "", "", Url::site("admin"));
+                if ($user->tfaStatus) {
+                    Registry::addMessage("", "", "", Url::site("login/tfa"));
+                } else {
+                    Registry::addMessage("", "", "", Url::site("admin"));
+                }
             }
         } else {
             Registry::addMessage("Acceso incorrecto", "error", "login");
@@ -101,6 +104,35 @@ class loginController extends Controller
             $user->logout();
         }
         Url::redirect(Url::site());
+    }
+
+    public function tfa()
+    {
+        //Usamos el template Admin
+        $config = Registry::getConfig();
+        $config->set("template", "admin");
+
+        $user = Registry::getUser();
+        $this->setData("user", $user);
+        $html = $this->view("views.tfa");
+        $this->render($html);
+    }
+
+    public function doTfa()
+    {
+        $user = Registry::getUser();
+        //2FA?
+        if ($user->tfaStatus) {
+            if (!$user->check2fa($_REQUEST["2faCode"])) {
+                Registry::addMessage("Wrong code", "error", "2faCode");
+            } else {
+                $user->auth2fa();
+                Registry::addMessage("", "", "", Url::site("admin"));
+            }
+        } else {
+            Registry::addMessage("", "", "", Url::site("admin"));
+        }
+        $this->ajax();
     }
 
     /**

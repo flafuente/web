@@ -44,6 +44,18 @@ class User extends Model
     public $password;
 
     /**
+     * Google Auth sattus
+     * @var string
+     */
+    public $tfaStatus;
+
+    /**
+     * Google Auth secret
+     * @var string
+     */
+    public $tfaSecret;
+
+    /**
      * Recovery Hash
      * @var string
      */
@@ -273,7 +285,15 @@ class User extends Model
         }
     }
 
-    public function validate()
+    public function check2fa($code)
+    {
+        $ga = new PHPGangsta_GoogleAuthenticator();
+        if ($ga->verifyCode($this->tfaSecret, $code, 2)) {
+            return true;
+        }
+    }
+
+    public function validate($data = array())
     {
         //Check nombre
         if (!$this->nombre) {
@@ -297,6 +317,15 @@ class User extends Model
         } elseif (User::getBy("email", $this->email, $this->id)) {
             Registry::addMessage("Este email ya esta registrado", "error", "email");
         }
+
+        //2FA
+        if ($data["2faCode"]) {
+            if ($this->check2fa($data["2faCode"])) {
+                $this->tfaStatus = 1;
+            } else {
+                Registry::addMessage("Codigo incorrecto", "error", "2faCode");
+            }
+        }
         //Foto
         $this->uploadFoto($_FILES["foto"]);
     }
@@ -308,7 +337,7 @@ class User extends Model
      */
     public function validateInsert($data = array())
     {
-        $this->validate();
+        $this->validate($data);
         //Password?
         if (!empty($data) && !$this->dateInsert) {
             if (!$this->password) {
@@ -344,6 +373,9 @@ class User extends Model
         }
         //WS Token
         $this->wsToken = md5(uniqid('', true));
+        //2FA
+        $ga = new PHPGangsta_GoogleAuthenticator();
+        $this->tfaSecret = $ga->createSecret();
     }
 
     public function postInsert($data = array())
@@ -360,9 +392,9 @@ class User extends Model
      *
      * @return array Object Messages
      */
-    public function validateUpdate()
+    public function validateUpdate($data = array())
     {
-        $this->validate();
+        $this->validate($data);
 
         return Registry::getMessages(true);
     }
@@ -433,6 +465,22 @@ class User extends Model
         setcookie($config->get("cookie"), $this->token, time() + $expiration, $config->get("dir"), $config->get("host"), false, true);
     }
 
+    public function isTfaAuth()
+    {
+        $config = Registry::getConfig();
+        if ($_COOKIE[$config->get("cookie")."TFA"]) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function auth2fa($expiration = 7200)
+    {
+        $config = Registry::getConfig();
+        setcookie($config->get("cookie")."TFA", true, time() + $expiration, $config->get("dir"), $config->get("host"), false, true);
+    }
+
     /**
      * Login
      *
@@ -490,7 +538,9 @@ class User extends Model
         $config = Registry::getConfig();
         //Destroy Cookies
         unset($_COOKIE[$config->get("cookie")]);
+        unset($_COOKIE[$config->get("cookie")."TFA"]);
         setcookie($config->get("cookie"), null, -1, $config->get("dir"), $config->get("host"), false, true);
+        setcookie($config->get("cookie")."TFA", null, -1, $config->get("dir"), $config->get("host"), false, true);
         $this->token = "";
         $this->update();
 
