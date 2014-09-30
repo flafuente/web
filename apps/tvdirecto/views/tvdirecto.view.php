@@ -8,13 +8,26 @@
             <div id='video_player'></div>
             <script>
                 $(document).ready(function () {
+                    showPlayer();
+                });
+                $( window ).resize(function() {
+                    showPlayer();
+                });
+                function showPlayer(){
+                    if($(window).width() < 600){
+                        wdt = $(window).width();
+                        hgt = ($(window).width()/1.4)
+                    }else{
+                        wdt = 570;
+                        hgt = 410;
+                    }
                     OVERON_Player.init({
-                        width: 570,
-                        height: 410,
+                        width: wdt,
+                        height: hgt,
                         container: 'video_player',
                         stream: 'http://overon-apple-live.adaptive.level3.net/apple/overon/channel06/index.m3u8'
                     });
-                });
+                }
             </script>
         <?php } else { ?>
             <?php HTML::wistiaPlayer("026x634bnv", "558", "314"); ?>
