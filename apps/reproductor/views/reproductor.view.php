@@ -58,7 +58,11 @@
         <!-- Info -->
         <div class="col-md-12">
             <div class="vd-attr">
-                <?=Helper::sanitize($capitulo->duracion);?> |
+                <!-- Duración -->
+                <?php if ($capitulo->duracion && $capitulo->duracion != "00:00:00") { ?>
+                    <?=Helper::sanitize($capitulo->duracion);?> |
+                <?php  } ?>
+                <!-- Fecha emisión -->
                 <?php if ($capitulo->fechaEmision && $capitulo->fechaEmision != "0000-00-00") { ?>
                     <?=Helper::sanitize($capitulo->fechaEmision);?> |
                 <?php  } ?>

@@ -57,7 +57,11 @@
 
         <!-- Info -->
         <span class="sqd_info">
-            <?php echo $capitulo->duracion; ?> |
+            <!-- Duración -->
+            <?php if ($capitulo->duracion && $capitulo->duracion != "00:00:00") { ?>
+                <?=Helper::sanitize($capitulo->duracion);?> |
+            <?php  } ?>
+            <!-- Título -->
             <?=Helper::sanitize($capitulo->titulo); ?>
         </span>
 
