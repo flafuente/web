@@ -9,6 +9,14 @@ class HTML
     public static function wistiaPlayer($hash, $width = 570, $height = null)
     {
         $style = "width:".$width."px;";
+        /*
+        if(is_numeric($width)){
+        }else{
+            $style = "width: ".$width.";";
+            $width = 570;
+        }
+        */
+        //$style = "width:".$width."px;";
         if ($height) {
             $style .= "height:".$height."px;";
         } else {
