@@ -1,5 +1,7 @@
 <?php defined('_EXE') or die('Restricted access'); ?>
 
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+
 <?php $user = Registry::getUser();?>
 <div class='col-md-12 serie_info'>
     <div class="square-info">
@@ -161,6 +163,9 @@
 </div>
 
 <script>
+    /* Gooogle Maps Autocomplete */
+    $("#ubicacion").placepicker();
+
     $("#sitios").select2({
         tags:[],
         tokenSeparators: [",", " "]

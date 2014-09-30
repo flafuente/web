@@ -65,7 +65,28 @@ class User extends Model
     public $nombre;
     public $apellidos;
     public $foto;
+
+    /**
+     * ComunidadId
+     * @var string
+     */
+    public $comunidadId;
+    /**
+     * Ubicación
+     * @var string
+     */
     public $ubicacion;
+    /**
+     * long
+     * @var string
+     */
+    public $long;
+    /**
+     * lat
+     * @var string
+     */
+    public $lat;
+
     public $biografia;
     public $intereses;
     public $permisos;
@@ -285,6 +306,39 @@ class User extends Model
         }
     }
 
+    /**
+     * Setea las coordenadas y la comunidad mediante una dirección
+     */
+    private function setUbicacion()
+    {
+        if ($this->ubicacion) {
+
+            // replace all the white space with "+" sign to match with google search pattern
+            $address = str_replace(" ", "+", $this->ubicacion);
+            $url = "http://maps.google.es/maps/api/geocode/json?sensor=false&address=$address";
+            $response = file_get_contents($url);
+            //generate array object from the response from the web
+            $json = json_decode($response, true);
+
+            //Coordenadas
+            $this->lat = $json['results'][0]['geometry']['location']['lat'];
+            $this->long = $json['results'][0]['geometry']['location']['lng'];
+
+            //Comunidad
+            $components = $json['results'][0]['address_components'];
+            if (count($components)) {
+                foreach ($components as $component) {
+                    if ($component["types"][0] == "administrative_area_level_1") {
+                        $comunidad = @current(Comunidad::getBy("nombre", $component["long_name"]));
+                        if ($comunidad->id) {
+                            $this->comunidadId = $comunidad->id;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     public function check2fa($code)
     {
         $ga = new PHPGangsta_GoogleAuthenticator();
@@ -376,6 +430,8 @@ class User extends Model
         //2FA
         $ga = new PHPGangsta_GoogleAuthenticator();
         $this->tfaSecret = $ga->createSecret();
+        //Ubicación
+        $this->setUbicacion();
     }
 
     public function postInsert($data = array())
@@ -426,6 +482,8 @@ class User extends Model
         if ($data["deleteFoto"] == 1) {
             $this->deleteFoto();
         }
+        //Ubicación
+        $this->setUbicacion();
     }
 
     public function uploadFoto($resource = null)
