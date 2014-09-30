@@ -16,6 +16,11 @@ class Comunidad extends Model
      * @var string
      */
     public $nombre;
+    /**
+     * Código
+     * @var string
+     */
+    public $codigo;
 
     /**
      * Init.

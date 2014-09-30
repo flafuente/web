@@ -319,7 +319,7 @@ class Video extends Model
             if (count($components)) {
                 foreach ($components as $component) {
                     if ($component["types"][0] == "administrative_area_level_1") {
-                        $comunidad = @current(Comunidad::getBy("nombre", $component["long_name"]));
+                        $comunidad = @current(Comunidad::getBy("codigo", $component["long_name"]));
                         if ($comunidad->id) {
                             $this->comunidadId = $comunidad->id;
                         }
