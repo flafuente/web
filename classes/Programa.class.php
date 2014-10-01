@@ -47,6 +47,11 @@ class Programa extends Model
      */
     public $thumbnail;
     /**
+     * Wistia Project Hash
+     * @var string
+     */
+    public $wistiaHash;
+    /**
      * Color
      * @var string
      */

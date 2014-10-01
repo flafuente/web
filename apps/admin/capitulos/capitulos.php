@@ -32,9 +32,14 @@ class capitulosController extends Controller
 
     public function edit()
     {
+        $config = Registry::getConfig();
+        Wistia::init();
+
         $url = Registry::getUrl();
         $this->setData("capitulo", new Capitulo($url->vars[0]));
+        $this->setData("project", Wistia::getProject($config->get("wistia_360project")));
         $this->setData("programas", Programa::select());
+
         $html = $this->view("views.edit");
         $this->render($html);
     }

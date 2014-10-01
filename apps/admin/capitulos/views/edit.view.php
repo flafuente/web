@@ -63,7 +63,7 @@ Toolbar::render();
                     <?php if ($capitulo->userId) { ?>
                         <?php $user = new User($capitulo->userId); ?>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">
+                            <label class="col-sm-3 control-label">
                                 Usuario
                             </label>
                             <div class="col-sm-8">
@@ -77,7 +77,7 @@ Toolbar::render();
                     <?php } ?>
                     <!-- Estado -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">
+                        <label class="col-sm-3 control-label">
                             Estado
                         </label>
                         <div class="col-sm-8">
@@ -88,7 +88,7 @@ Toolbar::render();
                     <?php if (count($programas)) { ?>
                         <!-- Programa -->
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">
+                            <label class="col-sm-3 control-label">
                                 Programa
                             </label>
                             <div class="col-sm-8">
@@ -98,16 +98,24 @@ Toolbar::render();
                     <?php } ?>
                     <!-- CDN Id -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">
+                        <label class="col-sm-3 control-label">
                             CDN Id
                         </label>
-                        <div class="col-sm-8">
+                        <div class="col-sm-6">
                             <input type="text" id="cdnId" name="cdnId" class="form-control" value="<?=Helper::sanitize($capitulo->cdnId);?>">
                         </div>
+                        <?php if ($project->medias) { ?>
+                            <input type="hidden" name="wistiaList" id="wistiaListUsed" value="0">
+                            <div class="col-sm-3">
+                                <button type="button" class="btn btn-primary" id="wistiaList">
+                                    Listar
+                                </button>
+                            </div>
+                        <?php } ?>
                     </div>
                     <!-- Título -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">
+                        <label class="col-sm-3 control-label">
                             Título
                         </label>
                         <div class="col-sm-8">
@@ -116,7 +124,7 @@ Toolbar::render();
                     </div>
                     <!-- Temporada -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">
+                        <label class="col-sm-3 control-label">
                             Temporada
                         </label>
                         <div class="col-sm-8">
@@ -125,7 +133,7 @@ Toolbar::render();
                     </div>
                     <!-- Episodio -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">
+                        <label class="col-sm-3 control-label">
                             Episodio
                         </label>
                         <div class="col-sm-8">
@@ -134,7 +142,7 @@ Toolbar::render();
                     </div>
                     <!-- Descripción -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">
+                        <label class="col-sm-3 control-label">
                             Descripción
                         </label>
                         <div class="col-sm-8">
@@ -143,7 +151,7 @@ Toolbar::render();
                     </div>
                     <!-- Duración -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">
+                        <label class="col-sm-3 control-label">
                             Duración
                         </label>
                         <div class="col-sm-8">
@@ -152,7 +160,7 @@ Toolbar::render();
                     </div>
                     <!-- Fecha de emisión -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">
+                        <label class="col-sm-3 control-label">
                             Fecha de emisión
                         </label>
                         <div class="col-sm-8">
@@ -208,6 +216,37 @@ Toolbar::render();
     </div>
 </form>
 
+<!-- Wistia List Modal -->
+<?php if ($project->medias) { ?>
+    <div class="modal fade" id="wistiaModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Cargar desde Wistia</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form">
+                        <div class="form-group">
+                            <select class="form-control" id="wistiaSelect">
+                                <?php foreach ($project->medias as $media) { ?>
+                                    <option value="<?=$media->hashed_id;?>">
+                                        <?=$media->name;?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" id="wistiaLoad" class="btn btn-primary">Cargar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } ?>
+
 <script>
     $(document).on('change', '#range', function (e) {
         second = $(this).val();
@@ -222,5 +261,15 @@ Toolbar::render();
             $("#thumbnailUrl").attr("src", url);
             $("#cdnThumbnail").val(url);
         }
+    });
+
+    //Wistia modal
+    $(document).on('click', '#wistiaList', function (e) {
+        $('#wistiaModal').modal('show');
+    });
+    $(document).on('click', '#wistiaLoad', function (e) {
+        $('#wistiaModal').modal('hide');
+        $('#cdnId').val($('#wistiaSelect').val());
+        $("#wistiaListUsed").val(1);
     });
 </script>

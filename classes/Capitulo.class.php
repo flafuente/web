@@ -424,7 +424,7 @@ class Capitulo extends Model
      * Acciones previas a la creación.
      * @return void
      */
-    public function preInsert()
+    public function preInsert($data = array())
     {
         $user = Registry::getUser();
         $this->userId = $user->id;
@@ -438,6 +438,11 @@ class Capitulo extends Model
         //Leemos la duración del CDN
         if ($this->cdnId && (!$this->duracion || $this->duracion == "00:00:00")) {
             $this->duracion = $this->getWistiaDuration();
+        }
+
+        //Wistia List
+        if ($data["wistiaList"]) {
+            $this->moveWistia360();
         }
     }
 
@@ -454,7 +459,7 @@ class Capitulo extends Model
      * Acciones previas a la modificación.
      * @return void
      */
-    public function preUpdate()
+    public function preUpdate($data = array())
     {
         $this->dateUpdate = date("Y-m-d H:i:s");
 
@@ -466,6 +471,11 @@ class Capitulo extends Model
         //Leemos la duración del CDN
         if ($this->cdnId && (!$this->duracion || $this->duracion == "00:00:00")) {
             $this->duracion = $this->getWistiaDuration();
+        }
+
+        //Wistia List
+        if ($data["wistiaList"]) {
+            $this->moveWistia360();
         }
     }
 
@@ -503,6 +513,22 @@ class Capitulo extends Model
 
                     return $json->thumbnail->url;
                 }
+            }
+        }
+    }
+
+    private function moveWistia360()
+    {
+        $config = Registry::getConfig();
+
+        //Programa con proyecto en wistia?
+        $programa = new Programa($this->programaId);
+        if ($programa->wistiaHash) {
+            Wistia::init();
+            $media = Wistia::moveMedia($this->cdnId, $programa->wistiaHash);
+            if ($media) {
+                //Update new CDN id
+                $this->cndId = $media->hashed_id;
             }
         }
     }

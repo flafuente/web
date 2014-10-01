@@ -162,6 +162,15 @@ Toolbar::render();
                             <textarea id="descripcion" name="descripcion" class="form-control"><?=Helper::sanitize($programa->descripcion);?></textarea>
                         </div>
                     </div>
+                    <!-- Wistia Project Id -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            Wistia project hash
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" id="wistiaHash" name="wistiaHash" class="form-control" value="<?=Helper::sanitize($programa->wistiaHash);?>">
+                        </div>
+                    </div>
                     <!-- Banner -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
