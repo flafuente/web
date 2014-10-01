@@ -3,35 +3,32 @@
 ?>
 <div class='col-md-12 serie_info'>
     <div class="col-md-12 video">
-        <?php if ($_REQUEST["testpage"] == 1) { ?>
-            <script id="overon_main_script" type="text/javascript" src="http://overonocc.cdn.customers.overon.es/player/environment.js"></script>
-            <div id='video_player'></div>
-            <script>
-                $(document).ready(function () {
-                    showPlayer();
-                });
-                $( window ).resize(function() {
-                    showPlayer();
-                });
-                function showPlayer(){
-                    if($(window).width() < 600){
-                        wdt = $(window).width();
-                        hgt = ($(window).width()/1.4)
-                    }else{
-                        wdt = 570;
-                        hgt = 410;
-                    }
-                    OVERON_Player.init({
-                        width: wdt,
-                        height: hgt,
-                        container: 'video_player',
-                        stream: 'http://overon-apple-live.adaptive.level3.net/apple/overon/channel06/index.m3u8'
-                    });
+        <script id="overon_main_script" type="text/javascript" src="http://overonocc.cdn.customers.overon.es/player/environment.js"></script>
+        <div id='video_player'></div>
+        <script>
+            $(document).ready(function () {
+                showPlayer();
+            });
+            $( window ).resize(function () {
+                showPlayer();
+            });
+            function showPlayer()
+            {
+                if ($(window).width() < 600) {
+                    wdt = $(window).width();
+                    hgt = ($(window).width()/1.4)
+                } else {
+                    wdt = 570;
+                    hgt = 410;
                 }
-            </script>
-        <?php } else { ?>
-            <?php HTML::wistiaPlayer("026x634bnv", "558", "314"); ?>
-        <?php } ?>
+                OVERON_Player.init({
+                    width: wdt,
+                    height: hgt,
+                    container: 'video_player',
+                    stream: 'http://overon-apple-live.adaptive.level3.net/apple/overon/channel06/index.m3u8'
+                });
+            }
+        </script>
     </div>
     <div class="video-info">
         <div class="col-md-12 vd-ruta">Pruebas de emisión</div>
