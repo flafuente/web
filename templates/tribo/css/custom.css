@@ -825,9 +825,12 @@ div.sq_content{
 	font-size: 17px;
 }
 .sqd_description {
-	height: 120px;
+	height: 110px;
 	overflow: auto;
 	font-size: 12px;
+}
+.sqd_description.sm {
+	height: 85px;
 }
 .sqd_info{
 	color: #CCC !important;
@@ -1180,7 +1183,7 @@ a.file-input-wrapper.btn.btn-default.btnazul {
 /*HAZTE TRIBER*/
 .serie_info img{
 	width: 100%;
-	margin-bottom: 20px;
+	/*margin-bottom: 20px;*/
 }
 .haztetriber_title{
 	font-size: 19px;

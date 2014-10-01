@@ -34,7 +34,7 @@
             </span> |
         <?php } ?>
 
-        <span class="mv-reproducciones">
+        <span class="mv-reproducciones" style="float: none;">
             <?=$video->visitas?> reproducciones
         </span>
         <br />

@@ -51,7 +51,7 @@
         <br /><br />
 
         <!-- Descripción -->
-        <div class="sqd_description">
+        <div class="sqd_description sm">
             <?=Helper::sanitize($capitulo->descripcion); ?>
         </div>
 
