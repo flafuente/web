@@ -31,30 +31,29 @@
         </script>
     </div>
     <div class="video-info">
-        <div class="col-md-12 vd-ruta">Pruebas de emisión</div>
+        <div class="col-md-12 vd-ruta">Tribo en directo</div>
         <div class="col-md-8">
-            <div class="vd-codigo" style="font-size: 14px; letter-spacing: -1px;">CAPITULO 0 | </div><div class="vd-capitulo" style="font-size: 15px;">Prueba</div>
+            <div class="vd-codigo" style="font-size: 14px; letter-spacing: -1px;">Tribo en </div><div class="vd-capitulo" style="font-size: 15px;">directo</div>
         </div>
         <div class="col-md-4">
             <div class="sq_num">0 <i class="fa fa-heart-o"></i>
             </div>
         </div>
         <div class="col-md-12">
-            <div class="vd-temporada">TEMPORADA 0</div>
+            <div class="vd-temporada"></div>
         </div>
         <div class="col-md-12 video-desc">
-            Emisión en pruebas.
-            <br /><br />
-            Pruebas.
+            Emisión en directo.
+
             <br />
             <div class='col-md-6 epi_button'>
                 <a href="<?=Url::site("/");?>">site programa
                 <strong>|</strong>
                 todos los capitulos</a>
             </div>
-            <div class="col-md-6 ver-todas-web" style="margin-top: 30px;">
+            <!--<div class="col-md-6 ver-todas-web" style="margin-top: 30px;">
                 Pruebas&nbsp;&nbsp;<a href="<?=Url::site("/");?>"><div class="circulo-azul">+</div></a>
-            </div>
+            </div>-->
         </div>
         <div style="clear: both;"></div>
     </div>
