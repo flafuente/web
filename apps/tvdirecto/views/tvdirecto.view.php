@@ -33,7 +33,7 @@
     <div class="video-info">
         <div class="col-md-12 vd-ruta">Tribo en directo</div>
         <div class="col-md-8">
-            <div class="vd-codigo" style="font-size: 14px; letter-spacing: -1px;">Tribo en </div><div class="vd-capitulo" style="font-size: 15px;">directo</div>
+            <!--<div class="vd-codigo" style="font-size: 14px; letter-spacing: -1px;">Tribo en </div><div class="vd-capitulo" style="font-size: 15px;">directo</div>-->
         </div>
         <div class="col-md-4">
             <div class="sq_num">0 <i class="fa fa-heart-o"></i>
