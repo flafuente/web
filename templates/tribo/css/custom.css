@@ -1546,6 +1546,9 @@ font-size:15px;
  	width: 100%;
  	left: 0px;
  }
+ .video-info {
+	min-height: initial;
+ }
 }
 @media (min-width: 768px) and (max-width: 991px) {
  .tribo4{

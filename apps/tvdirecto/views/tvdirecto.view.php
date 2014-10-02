@@ -1,8 +1,8 @@
 <?php defined('_EXE') or die('Restricted access');
 
 ?>
-<div class='col-md-12 serie_info'>
-    <div class="col-md-12 video">
+<div class='col-md-12 serie_info nopadding'>
+    <div class="col-md-12 video nopadding">
         <script id="overon_main_script" type="text/javascript" src="http://overonocc.cdn.customers.overon.es/player/environment.js"></script>
         <div id='video_player'></div>
         <script>
@@ -15,8 +15,8 @@
             function showPlayer()
             {
                 if ($(window).width() < 600) {
-                    wdt = $(window).width();
-                    hgt = ($(window).width()/1.4)
+                    wdt = ($(window).width()-3);
+                    hgt = (($(window).width()-4)/1.4);
                 } else {
                     wdt = 570;
                     hgt = 410;
