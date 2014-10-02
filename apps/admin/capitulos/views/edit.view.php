@@ -96,6 +96,15 @@ Toolbar::render();
                             </div>
                         </div>
                     <?php } ?>
+                    <!-- Entrada -->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            Entrada
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" name="entradaId" id="entradaId" value="<?=$capitulo->entradaId;?>" data-option="<?=$capitulo->getHouseNumber();?>">
+                        </div>
+                    </div>
                     <!-- CDN Id -->
                     <div class="form-group">
                         <label class="col-sm-3 control-label">
@@ -271,5 +280,42 @@ Toolbar::render();
         $('#wistiaModal').modal('hide');
         $('#cdnId').val($('#wistiaSelect').val());
         $("#wistiaListUsed").val(1);
+    });
+
+    <?php $config = Registry::getConfig(); ?>
+    $(document).ready(function () {
+        //Select2 Entradas
+        $("#entradaId").select2({
+            placeholder: "Buscar entrada",
+            minimumInputLength: 1,
+            width: '100%',
+            ajax: {
+                url: "<?=$config->get('parrillasUrl').'/external/entradas';?>",
+                dataType: 'json',
+                data: function (term) {
+                    return {
+                        q: term,
+                    };
+                },
+                results: function (data) {
+                    return {
+                        results: $.map(data.data.entradas, function (item) {
+                            return {
+                                id: item.id,
+                                text: item.nombre + " (" + item.houseNumber + ")"
+                            }
+                        })
+                    };
+                }
+            },
+            <?php if ($capitulo->entradaId) { ?>
+                initSelection: function (item, callback) {
+                    var id = item.val();
+                    var text = item.data('option');
+                    var data = { id: id, text: text };
+                    callback(data);
+                }
+            <?php } ?>
+        });
     });
 </script>

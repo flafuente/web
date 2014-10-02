@@ -27,6 +27,11 @@ class Capitulo extends Model
      */
     public $estadoId;
     /**
+     * Entrada Id (Entrada de parrillas)
+     * @var int
+     */
+    public $entradaId;
+    /**
      * Id del CDN
      * @var string
      */
@@ -519,8 +524,6 @@ class Capitulo extends Model
 
     private function moveWistia360()
     {
-        $config = Registry::getConfig();
-
         //Programa con proyecto en wistia?
         $programa = new Programa($this->programaId);
         if ($programa->wistiaHash) {
@@ -529,6 +532,19 @@ class Capitulo extends Model
             if ($media) {
                 //Update new CDN id
                 $this->cndId = $media->hashed_id;
+            }
+        }
+    }
+
+    public function getHouseNumber()
+    {
+        if ($this->entradaId) {
+            $config = Registry::getConfig();
+
+            $result = curl($config->get("parrillasUrl")."/external/entrada/", array("id" => $this->entradaId));
+            $json = json_decode($result);
+            if (is_object($json)) {
+                return $json->data->entrada->houseNumber;
             }
         }
     }
