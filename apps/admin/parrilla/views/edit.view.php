@@ -243,35 +243,45 @@
     });
 </script>
 
-    <div id='wrap'>
+<div id='wrap'>
 
-        <div id='external-events'>
-            <h4>Programas</h4>
+    <div id='external-events'>
+        <h4>Programas</h4>
 
-            <?php if ($programas) { ?>
+        <?php if ($programas) { ?>
 
-                <?=HTML::select("programaId", $programas, null, array("id" => "programaId", "class" => "select2"), array("id" => "0", "display" => "- Selecciona un programa -"), array("display" => "titulo")); ?>
+            <?=HTML::select("programaId", $programas, null, array("id" => "programaId", "class" => "select2"), array("id" => "0", "display" => "- Selecciona un programa -"), array("display" => "titulo")); ?>
 
-                <?php foreach ($programas as $programa) { ?>
-                    <div class="capitulos" id="programa_<?=$programa->id;?>" style="display:none">
-                        <?php $capitulos = Capitulo::select(array("programaId" => $programa->id)); ?>
-                        <?php if (count($capitulos)) { ?>
-                            <?php foreach ($capitulos as $capitulo) { ?>
-                                <div class='external-event' event-color='<?=str_replace("#","",$programa->color);?>' size-overlay='1' event-cap='<?=$capitulo->id;?>'>
-                                    <?=$capitulo->getFullTitulo();?>
-                                </div>
-                            <?php } ?>
+            <?php foreach ($programas as $programa) { ?>
+                <div class="capitulos" id="programa_<?=$programa->id;?>" style="display:none">
+                    <?php $capitulos = Capitulo::select(array("programaId" => $programa->id)); ?>
+                    <?php if (count($capitulos)) { ?>
+                        <?php foreach ($capitulos as $capitulo) { ?>
+                            <div class='external-event' event-color='<?=str_replace("#","",$programa->color);?>' size-overlay='1' event-cap='<?=$capitulo->id;?>'>
+                                <?=$capitulo->getFullTitulo();?>
+                            </div>
                         <?php } ?>
-                    </div>
-                <?php } ?>
+                    <?php } ?>
+                </div>
             <?php } ?>
-			<br /><br />
-        </div>
-
-        <div id='calendar'></div>
-
-        <div style='clear:both'></div>
-        <input type='hidden' id='size-overlay' value='1'>
-        <input type='hidden' id='event-color' value='6BA5C1'>
-        <input type='hidden' id='event-cap' value=''>
+        <?php } ?>
+        <br />
+        <center>
+            <input type="button" class="btn btn-primary" id="importar" value="Importar">
+        </center>
+        <br />
     </div>
+
+    <div id='calendar'></div>
+
+    <div style='clear:both'></div>
+    <input type='hidden' id='size-overlay' value='1'>
+    <input type='hidden' id='event-color' value='6BA5C1'>
+    <input type='hidden' id='event-cap' value=''>
+</div>
+
+<script>
+    $(document).on('click', '#importar', function (e) {
+        window.location.href = "<?=Url::site('admin/parrilla/importar');?>?date=" + "<?=$date?>";
+    });
+</script>

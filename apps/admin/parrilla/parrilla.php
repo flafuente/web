@@ -54,4 +54,16 @@ class parrillaController extends Controller
         }
         $this->ajax($data);
     }
+
+    public function importar()
+    {
+        $config = Registry::getConfig();
+
+        $result = curl($config->get("parrillasUrl")."/external/parrilla/", array("fecha" => $_REQUEST["date"]));
+        $json = json_decode($result);
+        if (is_object($json)) {
+            Evento::importar($json->data->eventos, $_REQUEST["date"]);
+            Url::redirect(Url::site("admin/parrilla/?date=".$_REQUEST["date"]));
+        }
+    }
 }

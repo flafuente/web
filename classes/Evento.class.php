@@ -104,6 +104,38 @@ class Evento extends Model
         $this->dateUpdate = date("Y-m-d H:i:s");
     }
 
+    public static function importar($eventosParrilla, $fecha)
+    {
+        //Eliminamos el contenido del día indicado
+        $eventosOld = self::select(array("fechaInicio" => $fecha." 00:00:00", "fechaFin" => $fecha." 23:59:59"));
+        if (count($eventosOld)) {
+            foreach ($eventosOld as $evento) {
+                $evento->delete();
+            }
+        }
+
+        //Añadimos los nuevos
+        if (count($eventosParrilla)) {
+            $last = null;
+            foreach ($eventosParrilla as $eventoParrilla) {
+                $capitulo = @current(Capitulo::getBy("entradaId", $eventoParrilla->entradaId));
+                if ($capitulo->id) {
+                    $evento = new Evento();
+                    $evento->capituloId = $capitulo->id;
+                    $evento->fechaInicio = substr($eventoParrilla->fechaInicio, 0, 19);
+                    $evento->fechaFin = substr($eventoParrilla->fechaFin, 0, 19);
+                    $evento->insert();
+                    //Update fechaFin last
+                    if ($last) {
+                        $last->fechaFin = $evento->fechaInicio;
+                        $last->update();
+                    }
+                    $last = $evento;
+                }
+            }
+        }
+    }
+
     /**
      * Obtiene registros de la base de datos.
      * @param  array   $data       Condicionales / ordenación
@@ -112,7 +144,7 @@ class Evento extends Model
      * @param  int     $total      Total de filas encontradas (Paginación)
      * @return array   Modelos de la clase actual
      */
-    public function select($data=array(), $limit=0, $limitStart=0, &$total=null)
+    public static function select($data = array(), $limit = 0, $limitStart = 0, &$total = null)
     {
         $db = Registry::getDb();
         //Query
