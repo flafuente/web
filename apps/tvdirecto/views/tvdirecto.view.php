@@ -1,8 +1,8 @@
 <?php defined('_EXE') or die('Restricted access');
 
 ?>
-<div class='col-md-12 serie_info nopadding'>
-    <div class="col-md-12 video nopadding">
+<div class='col-md-12 serie_info'>
+    <div class="col-md-12 video">
         <script id="overon_main_script" type="text/javascript" src="http://overonocc.cdn.customers.overon.es/player/environment.js"></script>
         <div id='video_player'></div>
         <script>
