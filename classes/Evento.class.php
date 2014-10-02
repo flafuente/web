@@ -125,12 +125,16 @@ class Evento extends Model
                     $evento->fechaInicio = substr($eventoParrilla->fechaInicio, 0, 19);
                     $evento->fechaFin = substr($eventoParrilla->fechaFin, 0, 19);
                     $evento->insert();
-                    //Update fechaFin last
-                    if ($last) {
-                        $last->fechaFin = $evento->fechaInicio;
-                        $last->update();
-                    }
+                }
+                //Update fechaFin last
+                if ($last) {
+                    $last->fechaFin = substr($eventoParrilla->fechaInicio, 0, 19);
+                    $last->update();
+                }
+                if ($capitulo->id) {
                     $last = $evento;
+                } else {
+                    $last = null;
                 }
             }
         }
