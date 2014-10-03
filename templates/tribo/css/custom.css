@@ -1546,6 +1546,13 @@ font-size:15px;
  	width: 100%;
  	left: 0px;
  }
+ .video-info {
+	min-height: initial;
+ }
+ .col-md-12.serie_info, .col-md-12.video{
+ 	padding-left: 0px;
+	padding-right: 0px;
+ }
 }
 @media (min-width: 768px) and (max-width: 991px) {
  .tribo4{

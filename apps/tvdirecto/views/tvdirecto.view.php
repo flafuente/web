@@ -15,8 +15,8 @@
             function showPlayer()
             {
                 if ($(window).width() < 600) {
-                    wdt = $(window).width();
-                    hgt = ($(window).width()/1.4)
+                    wdt = ($(window).width()-3);
+                    hgt = (($(window).width()-4)/1.4);
                 } else {
                     wdt = 570;
                     hgt = 410;
