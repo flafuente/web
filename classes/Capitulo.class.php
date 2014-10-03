@@ -574,6 +574,11 @@ class Capitulo extends Model
             $query .= " AND `programaId`=:programaId";
             $params[":programaId"] = $data["programaId"];
         }
+        //Programa
+        if ($data["estadoId"]) {
+            $query .= " AND `estadoId`=:estadoId";
+            $params[":estadoId"] = $data["estadoId"];
+        }
         //Total
         $total = count($db->Query($query, $params));
         if ($total) {
