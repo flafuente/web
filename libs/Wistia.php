@@ -29,6 +29,18 @@ class Wistia
         return $json;
     }
 
+    public static function createProject($name)
+    {
+        $url = "https://api.wistia.com/v1/projects.json?api_password=".self::$password;
+        $data = array(
+            "name" => $name
+        );
+        $result = self::curl($url, $data);
+        $json = json_decode($result);
+
+        return $json;
+    }
+
     public static function getProject($hash)
     {
         $url = "https://api.wistia.com/v1/projects/".$hash.".json?api_password=".self::$password;

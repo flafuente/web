@@ -264,6 +264,21 @@ class Programa extends Model
     }
 
     /**
+     * Crea un proyecto en Wistia
+     */
+    public function addWistia()
+    {
+        if (!$this->wistiaHash) {
+            Wistia::init();
+            $project = Wistia::createProject($this->titulo);
+            if (is_object($project)) {
+                $this->wistiaHash = $project->hashedId;
+                $this->update();
+            }
+        }
+    }
+
+    /**
      * Combierte el nombre a slug
      * @return string
      */

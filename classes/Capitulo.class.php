@@ -524,8 +524,9 @@ class Capitulo extends Model
 
     private function moveWistia360()
     {
-        //Programa con proyecto en wistia?
+        //Creamos el proyecto en wistia (de no tener sync)
         $programa = new Programa($this->programaId);
+        $programa->addWistia();
         if ($programa->wistiaHash) {
             Wistia::init();
             $media = Wistia::moveMedia($this->cdnId, $programa->wistiaHash);
