@@ -28,7 +28,7 @@
 	for($x=0; $x<7; $x++){
 		$diaSuma = $x*(60*60*24);
 		?>
-		<div class="seldateparr <?php if($x==2) echo "datesel"; ?> " fecha-parrilla="<?=date("Y-m-d", $hoy+$diaSuma);?>">
+		<div class="seldateparr <?php if($x==3) echo "datesel"; ?> " fecha-parrilla="<?=date("Y-m-d", $hoy+$diaSuma);?>">
 			<span class="p_dia"><?=$dias[date("N", $hoy+$diaSuma)]; ?></span>
 			<br />
 			<span class="p_mes"><?=date("d", $hoy+$diaSuma); ?> de <?=$meses[date("n", $hoy+$diaSuma)]; ?></span>
