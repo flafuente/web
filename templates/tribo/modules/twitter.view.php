@@ -31,6 +31,7 @@ $tweets = json_decode( json_encode($tweets), true);
                 <?php TwitterHelper::showTweet($tweet); ?>
             <?php } ?>
         <?php } ?>
+        <!-- CALL showTweetDATABASE and send tweet via object -->
     </div>
 </div>
 

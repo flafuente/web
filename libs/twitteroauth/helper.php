@@ -46,6 +46,50 @@ class TwitterHelper
         </div>
         <?php
     }
+    public static function showTweetDATABASE($data)
+    {
+        $fecha = $data->fecha;
+        $nombre = $data->nombre;
+        $usuario = "@".$data->usuario;
+        $foto = $data->foto;
+        $tweet = $data->tweet;
+        $nret = $data->nret;
+
+        /*Vemos si es retweet o no*/
+        if (isset($data->rt_name) && strlen($data->rt_name)>2) {
+            $nombre = $data->rt_name;
+            $foto = $data->rt_image;
+
+            return false;
+        }
+
+        if (isset($data->rt_usuario) && strlen($data->rt_usuario)>2) {
+            $usuario = "@".$data->rt_usuario;
+        }
+
+        /*Impresion del tweet*/
+        ?>
+        <div class="tweet">
+            <img class="imagen" src="<?php echo $foto; ?>" />
+            <div class="tiempo">
+                <?php echo $fecha; ?>
+            </div>
+            <div class="nombreuser">
+                <?php echo $nombre; ?>
+                <br />
+                <?php echo self::link_it($usuario); ?>
+            </div>
+            <div style="clear: both;"></div>
+            <div class="texto">
+                <?php echo self::link_it($tweet); ?>
+            </div>
+            <div style="clear: both;"></div>
+            <div class="nret">
+                <?php echo $nret; ?> RETWEETS
+            </div>
+        </div>
+        <?php
+    }
 
     public static function link_it($text)
     {
