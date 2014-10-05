@@ -6,11 +6,16 @@
         <script id="overon_main_script" type="text/javascript" src="http://overonocc.cdn.customers.overon.es/player/environment.js"></script>
         <div id='video_player'></div>
         <script>
+
+
+            var isMac = navigator.platform.toUpperCase().indexOf('MAC')>=0;
             $(document).ready(function () {
                 showPlayer();
             });
             $( window ).resize(function () {
-                showPlayer();
+                if(!isMac){
+                    showPlayer();
+                }
             });
             function showPlayer()
             {
