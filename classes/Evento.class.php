@@ -52,6 +52,11 @@ class Evento extends Model
         parent::$dbTable = "eventos";
     }
 
+    public function getHoraInicio()
+    {
+        return date("H:i:s", strtotime($this->fechaInicio));
+    }
+
     /**
      * Validación para creación/edición del capítulo.
      * @return array Array de errores
