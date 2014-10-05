@@ -35,6 +35,7 @@ $_config['twitter_secret'] = "oV9StQWszT1HhyOSrBk2cZhe5RuUb6MDKXbvzhHVc";
 $_config['twitter_token'] = "552317085-teYYibh7nL1veabhF3BsMzbhLqxZn9BnvnXjbn1M";
 $_config['twitter_token_secret'] = "Ch0OmXMy3Jk2RAVsqnSYHyjpYBmTEOw4BWAZGHk";
 
+
 //Wistia
 $_config['wistia_token'] = "e921f9a1f568bbf86b656d7d802cb0225e5e3568";
 

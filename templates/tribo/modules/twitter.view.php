@@ -3,21 +3,9 @@
 <?php $config = Registry::getConfig(); ?>
 <?php $hashtag = $config->get("twitterHashtag") ? $config->get("twitterHashtag") : "#TriboTv"; ?>
 
+
 <?php
-$notweets = 50;
-$connection = new TwitterOAuth(
-    $config->get("twitter_key"),
-    $config->get("twitter_secret"),
-    $config->get("twitter_token"),
-    $config->get("twitter_token_secret")
-);
-$params = array(
-    "q" => $hashtag,
-    "result_type" => "recent",
-    "count" => $notweets,
-);
-$tweets = $connection->get("https://api.twitter.com/1.1/search/tweets.json", $params);
-$tweets = json_decode( json_encode($tweets), true);
+$tweets = Tweet::select(array("hashtag" => $hashtag, "order" => "fecha", "orderDir" => "DESC"), 50);
 ?>
 
 <div class="twitter">
@@ -26,12 +14,11 @@ $tweets = json_decode( json_encode($tweets), true);
         &nbsp;&nbsp;&nbsp;<?=$hashtag;?>
     </div>
     <div class="tweets">
-        <?php if (count($tweets["statuses"])) { ?>
-            <?php foreach ($tweets["statuses"] as $tweet) { ?>
+        <?php if (count($tweets)) { ?>
+            <?php foreach ($tweets as $tweet) { ?>
                 <?php TwitterHelper::showTweet($tweet); ?>
             <?php } ?>
         <?php } ?>
-        <!-- CALL showTweetDATABASE and send tweet via object -->
     </div>
 </div>
 
