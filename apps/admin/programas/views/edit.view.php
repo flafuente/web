@@ -177,7 +177,7 @@ Toolbar::render();
                             Banner
                         </label>
                         <div class="col-sm-8">
-                            <input type="file" class="btn-primary btn" name="banner" accept="image/*">
+                            <input type="file" class="btn-primary btn" name="banner_programa" accept="image/*">
                             <?php if ($programa->banner) { ?>
                                 <a href="<?=$programa->getBannerUrl();?>" class="btn btn-default" target="_blank">
                                     <span class="glyphicon glyphicon-eye-open"></span>
@@ -191,7 +191,7 @@ Toolbar::render();
                             Thumbnail
                         </label>
                         <div class="col-sm-8">
-                            <input type="file" class="btn-primary btn" name="thumbnail" accept="image/*">
+                            <input type="file" class="btn-primary btn" name="thumbnail_programa" accept="image/*">
                             <?php if ($programa->thumbnail) { ?>
                                 <a href="<?=$programa->getThumbnailUrl();?>" class="btn btn-default" target="_blank">
                                     <span class="glyphicon glyphicon-eye-open"></span>

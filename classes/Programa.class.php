@@ -226,7 +226,7 @@ class Programa extends Model
             Registry::addMessage("Ya existe otro programa con este nombre", "error", "titulo");
         }
         //Banner Upload
-        if (isset($_FILES["banner"]) && $_FILES["banner"]["size"] > 0) {
+        if (isset($_FILES["banner_programa"]) && $_FILES["banner_programa"]["size"] > 0) {
             try {
                 //Eliminamos la antigua
                 $this->deleteBanner();
@@ -235,7 +235,7 @@ class Programa extends Model
                 $this->banner = $bulletProof
                     ->uploadDir($config->get("path").$this->path)
                     ->shrink(array("height"=>150, "width"=>510))
-                    ->upload($_FILES['banner']);
+                    ->upload($_FILES['banner_programa']);
             } catch (ImageUploaderException $e) {
                 Registry::addMessage("Error al subir la imagen: ".$e->getMessage(), "error");
             }
@@ -243,7 +243,7 @@ class Programa extends Model
             $this->banner = null;
         }
         //Thumbnail Upload
-        if (isset($_FILES["thumbnail"]) && $_FILES["thumbnail"]["size"] > 0) {
+        if (isset($_FILES["thumbnail_programa"]) && $_FILES["thumbnail_programa"]["size"] > 0) {
             try {
                 //Eliminamos la antigua
                 $this->deleteThumbnail();
@@ -252,7 +252,7 @@ class Programa extends Model
                 $this->thumbnail = $bulletProof
                     ->uploadDir($config->get("path").$this->path)
                     ->shrink(array("height"=>162, "width"=>269))
-                    ->upload($_FILES['thumbnail']);
+                    ->upload($_FILES['thumbnail_programa']);
             } catch (ImageUploaderException $e) {
                 Registry::addMessage("Error al subir la imagen: ".$e->getMessage(), "error");
             }

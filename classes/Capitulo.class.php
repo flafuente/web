@@ -411,7 +411,7 @@ class Capitulo extends Model
             Registry::addMessage("Ya existe un capítulo con esta temporada y nº de episodio: ".$capitulo->getFullTitulo(), "error", "temporada");
         }
         //Thumbnail Upload
-        if (isset($_FILES["thumbnail"]) && $_FILES["thumbnail"]["size"] > 0) {
+        if (isset($_FILES["thumbnail_programa"]) && $_FILES["thumbnail_programa"]["size"] > 0) {
             try {
                 //Eliminamos la antigua
                 $this->deleteThumbnail();
@@ -420,7 +420,7 @@ class Capitulo extends Model
                 $this->thumbnail = $bulletProof
                     ->uploadDir($config->get("path").$this->path)
                     ->shrink(array("height"=>163, "width"=>269))
-                    ->upload($_FILES['thumbnail']);
+                    ->upload($_FILES['thumbnail_programa']);
             } catch (ImageUploaderException $e) {
                 Registry::addMessage("Error al subir la imagen: ".$e->getMessage(), "error");
             }

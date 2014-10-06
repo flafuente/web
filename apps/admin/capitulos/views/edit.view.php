@@ -211,7 +211,7 @@ Toolbar::render();
                     <?php } ?>
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <input type="file" class="btn-primary btn" name="thumbnail" accept="image/*">
+                            <input type="file" class="btn-primary btn" name="thumbnail_capitulo" accept="image/*">
                             <?php if ($capitulo->thumbnail) { ?>
                                 <a href="<?=$capitulo->getThumbnailUrl();?>" class="btn btn-default" target="_blank">
                                     <span class="glyphicon glyphicon-eye-open"></span>
