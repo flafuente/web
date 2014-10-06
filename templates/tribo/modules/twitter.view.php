@@ -23,7 +23,7 @@ $tweets = Tweet::select(array("hashtag" => $hashtag, "order" => "fecha", "orderD
 </div>
 
 <script>
-    $(window).load(function () {
+    $( document ).ready(function () {
         $(".tweets").mCustomScrollbar({
             scrollButtons:{
                 enable:true
