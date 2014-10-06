@@ -7,13 +7,12 @@
         <div id='video_player'></div>
         <script>
 
-
             var isMac = navigator.platform.toUpperCase().indexOf('MAC')>=0;
             $(document).ready(function () {
                 showPlayer();
             });
             $( window ).resize(function () {
-                if(!isMac){
+                if (!isMac) {
                     showPlayer();
                 }
             });
@@ -41,8 +40,8 @@
             <!--<div class="vd-codigo" style="font-size: 14px; letter-spacing: -1px;">Tribo en </div><div class="vd-capitulo" style="font-size: 15px;">directo</div>-->
         </div>
         <div class="col-md-4">
-            <div class="sq_num">0 <i class="fa fa-heart-o"></i>
-            </div>
+            <!--<div class="sq_num">0 <i class="fa fa-heart-o"></i>
+            </div>-->
         </div>
         <div class="col-md-12">
             <div class="vd-temporada"></div>

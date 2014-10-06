@@ -77,11 +77,10 @@
         });
 
         $("#loading").css("display", "initial");
-        fecha=$(this).attr("fecha-parrilla");
         $.ajax({
             type: "POST",
             url: "<?=Url::site('parrilla/today/');?>",
-            data: {fecha: fecha},
+            data: {fecha: "<?=date('Y-m-d');?>"},
             dataType: "json"
         }).done(function (data) {
             $("#parr_content").html(data["data"]["html"]);

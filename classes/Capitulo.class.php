@@ -325,6 +325,21 @@ class Capitulo extends Model
     }
 
     /**
+     * Devuelve el nombre del programa y el número del capítulo
+     * @example Título - 2x04
+     * @param  object $programa Programa
+     * @return string
+     */
+    public function getProgramaTitulo($programa = null)
+    {
+        if (!$programa) {
+            $programa = new Programa($this->programaId);
+        }
+
+        return $programa->titulo." - ".$this->getNumero();
+    }
+
+    /**
      * Devuelve la ruta del Thumbnail.
      * @return string
      */

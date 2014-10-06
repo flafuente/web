@@ -13,13 +13,17 @@ if ($capitulo->id) {
     </div>
     <div class="col-md-5 parr_image">
         <?php if ($capitulo->id) { ?>
-            <img src="<?=$programa->getThumbnailUrl();?>" />
+            <a href="<?=Url::site("programas/ver/".$programa->slug);?>">
+                <img src="<?=$programa->getThumbnailUrl();?>" />
+            </a>
         <?php } ?>
     </div>
     <div class="col-md-5 parr_info">
         <span class="parr_titulo">
             <?php if ($capitulo->id) { ?>
-                <?=Helper::sanitize($capitulo->getFullTitulo()); ?>
+                <a href="<?=Url::site("programas/ver/".$programa->slug);?>">
+                    <?=Helper::sanitize($capitulo->getProgramaTitulo($programa)); ?>
+                </a>
             <?php } else { ?>
                 Espacio vacío
             <?php } ?>
