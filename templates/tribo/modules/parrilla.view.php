@@ -18,7 +18,7 @@ $eventos = Evento::select(array(
 
             <div class="parrilla-cabecera">
                 <h1>AHORA<br />EN TRIBO</h1>
-                <a href="<?=Url::site('parrilla');?>?>">
+                <a href="<?=Url::site('parrilla');?>">
                     <h2>Ver la Parrilla&nbsp;&nbsp;<div class="circulo">+</div></h2>
                 </a>
             </div>
