@@ -41,6 +41,14 @@
     </div>
     <div style="clear: both;"></div>
     <div class="parrilla_big" id="parr_content">
+      <?php
+        if (count($eventos)) {
+            foreach ($eventos as $evento) {
+                $controller->setData("evento", $evento);
+                echo $controller->view("modules.evento");
+            }
+        }
+      ?>
     </div>
     <div id="loading"></div>
 </div>
@@ -74,17 +82,6 @@
               }
             }
           ]
-        });
-
-        $("#loading").css("display", "initial");
-        $.ajax({
-            type: "POST",
-            data: {fecha: "<?=date('Y-m-d');?>"},
-            url: "<?=Url::site('parrilla/today/');?>",
-            dataType: "json"
-        }).done(function (data) {
-            $("#parr_content").html(data["data"]["html"]);
-            $("#loading").css("display", "none");
         });
 
         return false;

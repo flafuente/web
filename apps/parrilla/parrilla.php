@@ -8,6 +8,9 @@ class parrillaController extends Controller
 
     public function index()
     {
+        $fechaInicio = date("Y-m-d 00:00:00");
+        $fechaFin = date("Y-m-d 24:00:00");
+        $this->setData("eventos", Evento::select(array("fechaInicio" => $fechaInicio, "fechaFin" => $fechaFin, "order" => "fechaInicio")));
         $html = $this->view("views.parrilla");
         $this->render($html);
     }
