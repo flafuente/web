@@ -25,7 +25,9 @@
                 <p><span class='blue'>ALCALA DE HENARES</span> - Canal 46 - 674 MHz</p>
                 <p><span class='blue'>POZUELO</span> - Canal 23 - 490 MHz</p>
                 <p><span class='blue'>SAN MARTIN DE VALDEIGLESIAS</span> - Canal 51 - 714 MHz</p>
-                <p><span class='blue'>País Vasco</span> - Euskaltel</p>
+            </div>
+            <div class='region col-md-12'>
+                <p style="text-align:center;"><span class='blue'>País Vasco</span> - Euskaltel</p>
             </div>
             <div style='clear:both;'></div>
             <div class='title-linewh'></div>
