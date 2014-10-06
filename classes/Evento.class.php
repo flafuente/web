@@ -112,7 +112,9 @@ class Evento extends Model
     public static function importar($eventosParrilla, $fecha)
     {
         //Eliminamos el contenido del día indicado
-        $eventosOld = self::select(array("fechaInicio" => $fecha." 00:00:00", "fechaFin" => $fecha." 23:59:59"));
+        $fechaInicio = $fecha." 03:00:00";
+        $fechaFin = date("Y-m-d 02:59:59", strtotime($fecha." +1 day"));
+        $eventosOld = self::select(array("fechaInicio" => $fechaInicio, "fechaFin" => $fechaFin));
         if (count($eventosOld)) {
             foreach ($eventosOld as $evento) {
                 $evento->delete();

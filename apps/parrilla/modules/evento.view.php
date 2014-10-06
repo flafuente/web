@@ -25,7 +25,7 @@ if ($capitulo->id) {
                     <?=Helper::sanitize($capitulo->getProgramaTitulo($programa)); ?>
                 </a>
             <?php } else { ?>
-                Espacio vacío
+                No Disponible
             <?php } ?>
         </span>
         <br />
