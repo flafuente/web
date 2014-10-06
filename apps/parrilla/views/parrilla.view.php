@@ -48,6 +48,8 @@
 <link rel="stylesheet" type="text/css" href="<?=Url::template("css/slick.css");?>"/>
 <script type="text/javascript" src="<?=Url::template("js/slick.min.js");?>"></script>
 <script>
+    fecha=$(this).attr("fecha-parrilla");
+
     $( document ).ready(function () {
         $('.center').slick({
           arrows: false,
@@ -81,6 +83,7 @@
         $.ajax({
             type: "POST",
             url: "<?=Url::site('parrilla/today/');?>",
+            data: {fecha: fecha},
             dataType: "json"
         }).done(function (data) {
             $("#parr_content").html(data["data"]["html"]);
@@ -92,8 +95,6 @@
     $(document).on("click",".seldateparr",function () {
         $(".seldateparr").removeClass("datesel");
         $(this).addClass("datesel");
-
-        fecha=$(this).attr("fecha-parrilla");
         $("#loading").css("display", "initial");
         $.ajax({
             type: "POST",
