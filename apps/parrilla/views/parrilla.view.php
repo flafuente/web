@@ -79,8 +79,8 @@
         $("#loading").css("display", "initial");
         $.ajax({
             type: "POST",
-            url: "<?=Url::site('parrilla/today/');?>",
             data: {fecha: "<?=date('Y-m-d');?>"},
+            url: "<?=Url::site('parrilla/today/');?>",
             dataType: "json"
         }).done(function (data) {
             $("#parr_content").html(data["data"]["html"]);
@@ -89,12 +89,14 @@
 
         return false;
     });
+
     $(document).on("click",".seldateparr",function () {
         $(".seldateparr").removeClass("datesel");
         $(this).addClass("datesel");
 
-        fecha=$(this).attr("fecha-parrilla");
+        fecha = $(this).attr("fecha-parrilla");
         $("#loading").css("display", "initial");
+
         $.ajax({
             type: "POST",
             data: {fecha: fecha},
@@ -103,6 +105,14 @@
         }).done(function (data) {
             $("#parr_content").html(data["data"]["html"]);
             $("#loading").css("display", "none");
+            $( document ).ready(function () {
+                $(".parrilla_big").mCustomScrollbar({
+                    scrollButtons:{
+                        enable:true
+                    },
+                    theme:"dark"
+                });
+            });
         });
 
         return false;

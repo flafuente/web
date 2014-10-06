@@ -8,14 +8,3 @@
         }
     }
 ?>
-
-<script>
-$( document ).ready(function () {
-    $(".parrilla_big").mCustomScrollbar({
-        scrollButtons:{
-            enable:true
-        },
-        theme:"dark"
-    });
-});
-</script>

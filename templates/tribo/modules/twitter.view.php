@@ -3,7 +3,6 @@
 <?php $config = Registry::getConfig(); ?>
 <?php $hashtag = $config->get("twitterHashtag") ? $config->get("twitterHashtag") : "#TriboTv"; ?>
 
-
 <?php
 $tweets = Tweet::select(array("hashtag" => $hashtag, "order" => "fecha", "orderDir" => "DESC"), 50);
 ?>
