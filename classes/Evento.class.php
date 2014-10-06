@@ -54,7 +54,7 @@ class Evento extends Model
 
     public function getHoraInicio()
     {
-        return date("H:i:s", strtotime($this->fechaInicio));
+        return date("H:i", strtotime($this->fechaInicio));
     }
 
     /**
