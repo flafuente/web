@@ -10,6 +10,7 @@ class TwitterHelper
         $foto = $data->foto;
         $tweet = $data->tweet;
         $nret = $data->nret;
+        $idtweet = $data->id;
 
         /*Vemos si es retweet o no*/
         if (isset($data->rt_name) && strlen($data->rt_name)>2) {
@@ -25,7 +26,7 @@ class TwitterHelper
 
         /*Impresion del tweet*/
         ?>
-        <div class="tweet">
+        <div class="tweet" id="t_<?=strtotime($data->fecha);?>">
             <img class="imagen" src="<?php echo $foto; ?>" />
             <div class="tiempo">
                 <?php echo $fecha; ?>
@@ -45,6 +46,11 @@ class TwitterHelper
             </div>
         </div>
         <?php
+        if(isset($_SESSION["lastTW"])){
+            if(strtotime($data->fecha)>$_SESSION["lastTW"]) $_SESSION["lastTW"] = strtotime($data->fecha);
+        }else{
+            $_SESSION["lastTW"] = strtotime($data->fecha);
+        }
     }
 
     public static function link_it($text)

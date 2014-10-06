@@ -3,9 +3,9 @@
 <?php $config = Registry::getConfig(); ?>
 <?php $hashtag = $config->get("twitterHashtag") ? $config->get("twitterHashtag") : "#TriboTv"; ?>
 
-<?php
-$tweets = Tweet::select(array("hashtag" => $hashtag, "order" => "fecha", "orderDir" => "DESC"), 50);
-?>
+<?php $tweets = Tweet::select(array("hashtag" => $hashtag, "order" => "fecha", "orderDir" => "DESC"), 50); ?>
+
+<?php unset($_SESSION["lastTW"]); ?>
 
 <div class="twitter">
     <div class="titulo">
@@ -13,6 +13,7 @@ $tweets = Tweet::select(array("hashtag" => $hashtag, "order" => "fecha", "orderD
         &nbsp;&nbsp;&nbsp;<?=$hashtag;?>
     </div>
     <div class="tweets">
+        <div id="newTW"></div>
         <?php if (count($tweets)) { ?>
             <?php foreach ($tweets as $tweet) { ?>
                 <?php TwitterHelper::showTweet($tweet); ?>
@@ -29,5 +30,20 @@ $tweets = Tweet::select(array("hashtag" => $hashtag, "order" => "fecha", "orderD
             },
             theme:"dark"
         });
+        var intervalo = setInterval(function(){
+            $.ajax({
+                //METER AQUI LA RUTA a twitterNT
+                url: 'RUTA A twitterNT',
+                method: 'get',
+                success: function(data){
+                    $('#newTW').html(data + $('#newTW').html());
+                },
+                error: function(){
+                    console.log('imposible conseguir nuevos tweets');
+                }
+            })
+        }, 10000);
+
+
     });
 </script>
