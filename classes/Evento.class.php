@@ -65,7 +65,7 @@ class Evento extends Model
     {
         //Capitulo
         if (!$this->capituloId) {
-            Registry::addMessage("Debes seleccionar un capítulo", "error", "capituloId");
+            //Registry::addMessage("Debes seleccionar un capítulo", "error", "capituloId");
         }
 
         return Registry::getMessages(true);
@@ -123,23 +123,35 @@ class Evento extends Model
         if (count($eventosParrilla)) {
             $last = null;
             foreach ($eventosParrilla as $eventoParrilla) {
+                $evento = null;
                 $capitulo = @current(Capitulo::getBy("entradaId", $eventoParrilla->entradaId));
+                //Creamos el evento
                 if ($capitulo->id) {
                     $evento = new Evento();
                     $evento->capituloId = $capitulo->id;
                     $evento->fechaInicio = substr($eventoParrilla->fechaInicio, 0, 19);
                     $evento->fechaFin = substr($eventoParrilla->fechaFin, 0, 19);
                     $evento->insert();
+                } else {
+                    //Leemos si el anterior evento era un evento vacío
+                    if (!$last->capituloId && $last->id) {
+                        //Actualizamos la fecha fin
+                        $last->fechaFin = substr($eventoParrilla->fechaFin, 0, 19);
+                        $last->update();
+                    } else {
+                        $evento = new Evento();
+                        $evento->fechaInicio = substr($eventoParrilla->fechaInicio, 0, 19);
+                        $evento->fechaFin = substr($eventoParrilla->fechaFin, 0, 19);
+                        $evento->insert();
+                    }
                 }
                 //Update fechaFin last
                 if ($last) {
                     $last->fechaFin = substr($eventoParrilla->fechaInicio, 0, 19);
                     $last->update();
                 }
-                if ($capitulo->id) {
+                if ($evento) {
                     $last = $evento;
-                } else {
-                    $last = null;
                 }
             }
         }
