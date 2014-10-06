@@ -23,30 +23,50 @@ $eventos = Evento::select(array(
                 </a>
             </div>
 
-            <?php foreach ($eventos as $evento) { ?>
-                <?php
-                $capitulo = new Capitulo($evento->capituloId);
-                if ($capitulo->id) {
-                    $programa = new Programa($capitulo->programaId);
-                }
-                ?>
-                <!-- Evento -->
-                <div class="parrilla-contenido <?php echo $cls; ?>">
-                    <span class="hora">
-                        <?=date("H:i", strtotime($evento->fechaInicio));?>
-                    </span>
-                    <span class="titulo">
-                        <?php if ($capitulo->id) { ?>
-                            <a href="<?=Url::site("programas/ver/".$programa->slug);?>">
-                                <?=Helper::sanitize($capitulo->getProgramaTitulo($programa)); ?>
-                            </a>
-                        <?php } else { ?>
-                            Espacio vacío
-                        <?php } ?>
-                    </span>
-                </div>
-            <?php } ?>
-
+            <div id="parrillaAhora">
+                <?php foreach ($eventos as $evento) { ?>
+                    <?php
+                    $capitulo = new Capitulo($evento->capituloId);
+                    if ($capitulo->id) {
+                        $programa = new Programa($capitulo->programaId);
+                    }
+                    ?>
+                    <!-- Evento -->
+                    <div class="parrilla-contenido <?php echo $cls; ?>">
+                        <span class="hora">
+                            <?=date("H:i", strtotime($evento->fechaInicio));?>
+                        </span>
+                        <span class="titulo">
+                            <?php if ($capitulo->id) { ?>
+                                <a href="<?=Url::site("programas/ver/".$programa->slug);?>">
+                                    <?=Helper::sanitize($capitulo->getProgramaTitulo($programa)); ?>
+                                </a>
+                            <?php } else { ?>
+                                Espacio vacío
+                            <?php } ?>
+                        </span>
+                    </div>
+                <?php } ?>
+            </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function () {
+            setInterval(function () {
+                updateAhora();
+            }, 60 * 1000);
+        });
+
+        function updateAhora()
+        {
+            $.ajax({
+                type: "POST",
+                url: "<?=Url::site('parrilla/ahora/');?>",
+                dataType: "json"
+            }).done(function (data) {
+                $("#parrillaAhora").html(data["data"]["html"]);
+            });
+        }
+    </script>
 <?php } ?>

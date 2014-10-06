@@ -21,4 +21,17 @@ class parrillaController extends Controller
         $data["html"] = $this->view("views.today");
         $this->ajax($data);
     }
+
+    public function ahora()
+    {
+        //Seleccionamos los 3 siguientes eventos
+        $this->setData("eventos", Evento::select(array(
+            'fechaInicio' => date('Y-m-d H:i:s', strtotime("now -30minutes")),
+            'order' => 'fechaInicio',
+            'orderDir' => 'ASC',
+        ), 3));
+        $data = array();
+        $data["html"] = $this->view("views.ahora");
+        $this->ajax($data);
+    }
 }
