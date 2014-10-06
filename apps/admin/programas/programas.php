@@ -40,6 +40,7 @@ class programasController extends Controller
 
     public function save()
     {
+        $_REQUEST["form"] = true;
         $programa = new Programa($_REQUEST['id']);
         if ($programa->id) {
             $res = $programa->update($_REQUEST);

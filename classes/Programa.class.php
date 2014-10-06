@@ -216,7 +216,7 @@ class Programa extends Model
      * Validación para creación/edición del capítulo.
      * @return array Array de errores
      */
-    private function validate()
+    private function validate($data = array())
     {
         $config = Registry::getConfig();
         //Titulo
@@ -243,7 +243,7 @@ class Programa extends Model
             $this->banner = null;
         }
         //Thumbnail Upload
-        if (isset($_FILES["thumbnail_programa"]) && $_FILES["thumbnail_programa"]["size"] > 0) {
+        if ($data["form"] && isset($_FILES["thumbnail_programa"]) && $_FILES["thumbnail_programa"]["size"] > 0) {
             try {
                 //Eliminamos la antigua
                 $this->deleteThumbnail();
@@ -292,9 +292,9 @@ class Programa extends Model
      * Validación de creación.
      * @return array Errores
      */
-    public function validateInsert()
+    public function validateInsert($data = array())
     {
-        return $this->validate();
+        return $this->validate($data);
     }
 
     /**
@@ -316,9 +316,9 @@ class Programa extends Model
      * Validación de modificación.
      * @return array Errores
      */
-    public function validateUpdate()
+    public function validateUpdate($data = array())
     {
-        return $this->validate();
+        return $this->validate($data);
     }
 
     /**
