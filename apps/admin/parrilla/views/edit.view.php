@@ -160,14 +160,14 @@
         //Prev
         $( ".fc-button-prev").unbind( "click" );
         $(document).on('click', '.fc-button-prev', function (e) {
-            window.location.href = "<?=Url::site('admin/parrilla');?>/?date=<?=date('Y-m-d', strtotime($date . ' -7 day'));?>";
+            window.location.href = "<?=Url::site('admin/parrilla');?>/?date=<?=date('Y-m-d', strtotime($date . ' -1 day'));?>";
 
             return false;
         });
         //Next
         $( ".fc-button-next").unbind( "click" );
         $(document).on('click', '.fc-button-next', function (e) {
-            window.location.href = "<?=Url::site('admin/parrilla');?>/?date=<?=date('Y-m-d', strtotime($date . ' +7 day'));?>";
+            window.location.href = "<?=Url::site('admin/parrilla');?>/?date=<?=date('Y-m-d', strtotime($date . ' +1 day'));?>";
 
             return false;
         });

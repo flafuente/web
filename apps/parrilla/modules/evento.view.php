@@ -12,11 +12,15 @@
     </div>
     <div class="col-md-5 parr_info">
         <span class="parr_titulo">
-            <?=Helper::sanitize($programa->titulo);?>
+            <?=Helper::sanitize($capitulo->getFullTitulo()); ?>
         </span>
         <br />
         <span class="parr_descripcion">
-            <?=Helper::sanitize($capitulo->descripcion);?>
+            <?php /*if ($capitulo->descripcion) { ?>
+                <?=Helper::sanitize($capitulo->descripcion);?>
+            <?php } else { ?>
+                <?=Helper::sanitize($programa->descripcion);?>
+            <?php }*/ ?>
         </span>
     </div>
 </div>

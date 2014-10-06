@@ -14,8 +14,8 @@ class parrillaController extends Controller
 
     public function today()
     {
-        $fechaInicio = $_REQUEST["fecha"];
-        $fechaFin = $_REQUEST["fecha"];
+        $fechaInicio = $_REQUEST["fecha"]." 00:00:00";
+        $fechaFin = $_REQUEST["fecha"]." 24:00:00";
         $this->setData("eventos", Evento::select(array("fechaInicio" => $fechaInicio, "fechaFin" => $fechaFin, "order" => "fechaInicio")));
         $data = array();
         $data["html"] = $this->view("views.today");
