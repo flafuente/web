@@ -96,7 +96,7 @@ class Tweet extends Model
         }
         //Fecha mín
         if ($data["fechaMin"]) {
-            $query .= " AND `fecha` >= :fechaMin";
+            $query .= " AND `fecha` > :fechaMin";
             $params[":fechaMin"] = $data["fechaMin"];
         }
         //Total
