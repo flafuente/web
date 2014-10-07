@@ -85,6 +85,16 @@ Toolbar::render();
                             <input type="checkbox" class="switch" name="estadoId" id="estadoId" value="1" <?php if($programa->estadoId) echo "checked";?>>
                         </div>
                     </div>
+                    <!-- Bloquear directo -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            Bloquear directo
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="hidden" name="blockDirecto" value="0">
+                            <input type="checkbox" class="switch" name="blockDirecto" id="blockDirecto" value="1" <?php if($programa->blockDirecto) echo "checked";?>>
+                        </div>
+                    </div>
                     <!-- Orden -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label">

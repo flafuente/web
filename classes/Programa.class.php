@@ -32,6 +32,11 @@ class Programa extends Model
      */
     public $estadoId;
     /**
+     * No permite ver el programa en directo
+     * @var int
+     */
+    public $blockDirecto;
+    /**
      * Destacado
      * @var bool
      */
