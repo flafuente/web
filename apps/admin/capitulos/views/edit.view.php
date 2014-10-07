@@ -237,7 +237,7 @@ Toolbar::render();
                 <div class="modal-body">
                     <form role="form">
                         <div class="form-group">
-                            <select class="form-control" id="wistiaSelect">
+                            <select class="form-control select2" id="wistiaSelect">
                                 <?php foreach ($project->medias as $media) { ?>
                                     <option value="<?=$media->hashed_id;?>">
                                         <?=$media->name;?>

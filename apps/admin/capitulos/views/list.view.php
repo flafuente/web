@@ -32,6 +32,19 @@ Toolbar::render();
             <div class="col-sm-3">
                 <?=HTML::select("programaId", $programas, $_REQUEST["programaId"], array("class" => "select2 change-submit", "style" => "width: 100%;"), array("id" => 0, "display" => "- Programa -"), array("display" => "titulo")); ?>
             </div>
+            <!-- Estado -->
+            <div class="col-sm-3 col-xs-6 col-md-2 filter">
+                <?php $capituloNull = new Capitulo(); ?>
+                <?=HTML::select("estadoId", $capituloNull->estados, $_REQUEST["estadoId"], array("class" => "change-submit"), array("id" => "-1", "display" => "- Estado -")); ?>
+            </div>
+            <!-- HouseNumber -->
+            <div class="col-sm-3 col-xs-6 col-md-2 filter">
+                <?=HTML::select("hasEntradaId", array(0 => "No", 1 => "Sí"), $_REQUEST["hasEntradaId"], array("class" => "change-submit"), array("id" => "-1", "display" => "- House Number -")); ?>
+            </div>
+            <!-- CDN Id -->
+            <div class="col-sm-3 col-xs-6 col-md-2 filter">
+                <?=HTML::select("hasCdnId", array(0 => "No", 1 => "Sí"), $_REQUEST["hasCdnId"], array("class" => "change-submit"), array("id" => "-1", "display" => "- CDN -")); ?>
+            </div>
         </div>
         <?php if (count($results)) { ?>
             <div class="table-responsive">
@@ -46,7 +59,6 @@ Toolbar::render();
                             <th><?=Html::sortableLink("episodio", "Episodio");?></th>
                             <th><?=Html::sortableLink("fechaEmision", "Fecha emisión");?></th>
                             <th><?=Html::sortableLink("dateInsert", "Fecha creación");?></th>
-                            <th><?=Html::sortableLink("dateUpdate", "Fecha actualización");?></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -76,7 +88,6 @@ Toolbar::render();
                                 <td><?=$capitulo->episodio;?></td>
                                 <td><?=Helper::humanDate($capitulo->fechaEmision);?></td>
                                 <td><?=Helper::humanDate($capitulo->dateInsert);?></td>
-                                <td><?=Helper::humanDate($capitulo->dateUpdate);?></td>
                                 <td>
                                     <?=HTML::formLink("btn-xs btn-primary", "pencil", Url::site("admin/capitulos/edit/".$capitulo->id)); ?>
                                     <?=HTML::formLink("btn-xs btn-danger", "remove", Url::site("admin/capitulos/delete/".$capitulo->id), null, null, "¿Deseas eliminar este capítulo?"); ?>

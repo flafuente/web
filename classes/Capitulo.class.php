@@ -590,10 +590,26 @@ class Capitulo extends Model
             $query .= " AND `programaId`=:programaId";
             $params[":programaId"] = $data["programaId"];
         }
-        //Programa
-        if ($data["estadoId"]) {
+        //Estado
+        if (isset($data["estadoId"]) && $data["estadoId"] != "-1") {
             $query .= " AND `estadoId`=:estadoId";
             $params[":estadoId"] = $data["estadoId"];
+        }
+        //Has Entrada Id
+        if (isset($data["hasEntradaId"]) && $data["hasEntradaId"] != "-1") {
+            if ($data["hasEntradaId"]) {
+                $query .= " AND `entradaId` != 0 ";
+            } else {
+                $query .= " AND `entradaId` = 0 ";
+            }
+        }
+        //Has CDN Id
+        if (isset($data["hasCdnId"]) && $data["hasCdnId"] != "-1") {
+            if ($data["hasCdnId"]) {
+                $query .= " AND `cdnId` IS NOT NULL AND `cdnId` != '' ";
+            } else {
+                $query .= " AND (`cdnId` IS NULL OR `cdnId` = '') ";
+            }
         }
         //Total
         $total = count($db->Query($query, $params));
