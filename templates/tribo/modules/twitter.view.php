@@ -30,20 +30,19 @@
             },
             theme:"dark"
         });
-        var intervalo = setInterval(function(){
+        var intervalo = setInterval(function () {
             $.ajax({
-                //METER AQUI LA RUTA a twitterNT
-                url: 'RUTA A twitterNT',
+                url: '<?=Url::site("twitter/refresh");?>',
                 method: 'get',
-                success: function(data){
-                    $('#newTW').html(data + $('#newTW').html());
+                dataType: 'json',
+                success: function (data) {
+                    $('#newTW').html(data.data.html + $('#newTW').html());
                 },
-                error: function(){
+                error: function () {
                     console.log('imposible conseguir nuevos tweets');
                 }
             })
         }, 10000);
-
 
     });
 </script>

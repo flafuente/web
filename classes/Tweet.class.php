@@ -94,6 +94,11 @@ class Tweet extends Model
             $query .= " AND `tweet` LIKE :hashtag";
             $params[":hashtag"] = "%".$data["hashtag"]."%";
         }
+        //Fecha mín
+        if ($data["fechaMin"]) {
+            $query .= " AND `fecha` >= :fechaMin";
+            $params[":fechaMin"] = $data["fechaMin"];
+        }
         //Total
         $total = count($db->Query($query, $params));
         if ($total) {
@@ -120,7 +125,8 @@ class Tweet extends Model
         }
     }
 
-    public function getTweetAPI($search, $notweets = 50){
+    public function getTweetAPI($search, $notweets = 50)
+    {
         $config = Registry::getConfig();
         $connection = new TwitterOAuth(
             $config->get("twitter_key"),
@@ -136,12 +142,13 @@ class Tweet extends Model
         $tweets = $connection->get("https://api.twitter.com/1.1/search/tweets.json", $params);
         $tweets = json_decode(json_encode($tweets), true);
         //print_pre($tweets);
-        if(!isset($tweets["errors"])){
+        if (!isset($tweets["errors"])) {
             return $tweets["statuses"];
         }
     }
 
-    public function parseAPI($data){
+    public function parseAPI($data)
+    {
         $this->tweet_id = $data["id_str"];
         $this->fecha = date("Y-m-d H:i:s", strtotime($data["created_at"]));
         $this->nombre = $data["user"]["name"];
