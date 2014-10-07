@@ -182,6 +182,12 @@ class Evento extends Model
             $query .= " AND `fechaFin` <= :fechaFin ";
             $params[":fechaFin"] = $data["fechaFin"];
         }
+        //Ahora
+        if (isset($data["ahora"])) {
+            $query .= " AND `fechaInicio` <= :fechaInicio AND `fechaFin` >= :fechaFin ";
+            $params[":fechaInicio"] = date("Y-m-d H:i:s");
+            $params[":fechaFin"] = date("Y-m-d H:i:s");
+        }
         //Total
         $total = count($db->Query($query, $params));
         if ($total) {

@@ -31,7 +31,13 @@ class twitterController extends Controller
         $data = array("html" => "");
         if (count($tweets)) {
             foreach ($tweets as $tweet) {
-                $data["html"] .= TwitterHelper::showTweet($tweet);
+
+                ob_start();
+                TwitterHelper::showTweet($tweet);
+                $content = ob_get_contents();
+                ob_end_clean();
+
+                $data["html"] .= $content;
             }
         }
         $this->ajax($data);
