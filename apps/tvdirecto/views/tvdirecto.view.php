@@ -1,7 +1,7 @@
 <?php defined('_EXE') or die('Restricted access'); ?>
 
 <div class='col-md-12 serie_info'>
-    <?php /*<div class="col-md-12 video">
+    <div class="col-md-12 video">
         <script id="overon_main_script" type="text/javascript" src="http://overonocc.cdn.customers.overon.es/player/environment.js"></script>
         <div id='video_player'></div>
         <script>
@@ -32,7 +32,7 @@
                 });
             }
         </script>
-    </div>*/?>
+    </div>
 
     <!-- Ahora -->
     <div id="directoAhora">

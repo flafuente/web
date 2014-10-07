@@ -2,10 +2,17 @@
 
 <?php if ($capitulo->id) { ?>
 
+    <?php
+        $url = "#";
+        if ($capitulo->cdnId) {
+            $url = Url::site("reproductor/capitulo/".$capitulo->id);
+        }
+    ?>
+
     <div class='col-md-6 square'>
 
         <!-- Título -->
-        <a href="<?=Url::site("reproductor/capitulo/".$capitulo->id);?>">
+        <a href="<?=$url;?>">
             <img src="<?=$capitulo->getThumbnailUrl();?>" title="<?=Helper::sanitize($capitulo->titulo); ?>" />
         </a>
 
@@ -20,7 +27,7 @@
 
             <!-- Título completo -->
             <div class="sq_title">
-                <a href="<?=Url::site("reproductor/capitulo/".$capitulo->id);?>">
+                <a href="<?=$url;?>">
                     <?=Helper::sanitize($capitulo->getFullTitulo()); ?>
                 </a>
             </div>

@@ -33,14 +33,14 @@ class tvdirectoController extends Controller
     public function refresh()
     {
         //Próximos eventos
-        $this->setData("proximos", Evento::select(array(
+        $this->setData("eventos", Evento::select(array(
             'fechaInicio' => date('Y-m-d H:i:s', strtotime("now")),
             'order' => 'fechaInicio',
             'orderDir' => 'ASC',),
         3));
 
         //Ahora
-        $this->setData("ahora", current(Evento::select(array('ahora' => true), 1)));
+        $this->setData("evento", current(Evento::select(array('ahora' => true), 1)));
 
         $data = array();
         $data["html"]["ahora"] = $this->view("modules.ahora");
