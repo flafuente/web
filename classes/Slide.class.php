@@ -101,7 +101,7 @@ class Slide extends Model
         }
     }
 
-    public function validate()
+    public function validate($data = array())
     {
         $config = Registry::getConfig();
         //nombre
@@ -113,7 +113,7 @@ class Slide extends Model
             Registry::addMessage("Debes introducir una url", "error", "url");
         }
         //Image Upload
-        if (isset($_FILES["imagenFile"]) && $_FILES["imagenFile"]["size"] > 0) {
+        if ($data["form"] && isset($_FILES["imagenFile"]) && $_FILES["imagenFile"]["size"] > 0) {
             try {
                 //Eliminamos la anterior
                 $this->deleteImagen();
@@ -135,9 +135,9 @@ class Slide extends Model
      * Validación de creación.
      * @return array Errores
      */
-    public function validateInsert()
+    public function validateInsert($data = array())
     {
-        $this->validate();
+        $this->validate($data);
 
         return Registry::getMessages(true);
     }
@@ -188,9 +188,9 @@ class Slide extends Model
      * Validación de modificación.
      * @return array Errores
      */
-    public function validateUpdate()
+    public function validateUpdate($data = array())
     {
-        $this->validate();
+        $this->validate($data);
 
         return Registry::getMessages(true);
     }

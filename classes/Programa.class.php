@@ -231,7 +231,7 @@ class Programa extends Model
             Registry::addMessage("Ya existe otro programa con este nombre", "error", "titulo");
         }
         //Banner Upload
-        if (isset($_FILES["banner_programa"]) && $_FILES["banner_programa"]["size"] > 0) {
+        if ($data["form"] && isset($_FILES["banner_programa"]) && $_FILES["banner_programa"]["size"] > 0) {
             try {
                 //Eliminamos la antigua
                 $this->deleteBanner();

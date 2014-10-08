@@ -37,6 +37,7 @@ class slideshowController extends Controller
 
     public function save()
     {
+        $_REQUEST["form"] = true;
         $slide = new Slide($_REQUEST['id']);
         if ($slide->id) {
             $res = $slide->update($_REQUEST);
