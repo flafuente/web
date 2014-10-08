@@ -3,8 +3,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="title" content="Tribo televisión">
-    <meta name="description" content="Emprendedores, jóvenes, hablamos el mismo idioma que tú, que internet, porque somos gente de la calle, y hemos decidido hacerte la vida más fácil.">
+    <meta name="description" content="ESTO ES TRIBO TV,  ¿Te imaginas un sueño? ¿te imaginas la televisión que siempre quisiste y nadie pudo hacer realidad? La  que eligen y hacen las personas, la que eliges y haces tú, la que refleja tus sueños y los comparte, la que te divierte, la que aprende contigo, la que todos creamos en cada instante... Bienvenido al sueño, te invitamos a ser TRIBO TV, a ser TRIBER,  a ser el futuro con nosotros y hacer de ese futuro lo que TÚ QUIERAS">
     <meta name="author" content="">
+    
+    <meta property="og:site_name" content="TriboTv"/>
+    <meta property="og:title" content="TriboTv"/>
+    <meta property="og:description" content="ESTO ES TRIBO TV,  ¿Te imaginas un sueño? ¿te imaginas la televisión que siempre quisiste y nadie pudo hacer realidad? La  que eligen y hacen las personas, la que eliges y haces tú, la que refleja tus sueños y los comparte, la que te divierte, la que aprende contigo, la que todos creamos en cada instante... Bienvenido al sueño, te invitamos a ser TRIBO TV, a ser TRIBER,  a ser el futuro con nosotros y hacer de ese futuro lo que TÚ QUIERAS"/>
+
+
     <title>Tribo.tv</title>
     <link rel="shortcut icon" href="<?=Url::template("img/favicon.png");?>" type="image/png" />
 
