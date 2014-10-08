@@ -21,7 +21,7 @@ class tvdirectoController extends Controller
         3));
 
         //Ahora
-        $this->setData("ahora", current(Evento::select(array('ahora' => true), 1)));
+        $this->setData("ahora", @current(Evento::select(array('ahora' => true), 1)));
 
         //View
         $html = $this->view("views.tvdirecto");
@@ -40,7 +40,7 @@ class tvdirectoController extends Controller
         3));
 
         //Ahora
-        $this->setData("evento", current(Evento::select(array('ahora' => true), 1)));
+        $this->setData("evento", @current(Evento::select(array('ahora' => true), 1)));
 
         $data = array();
         $data["html"]["ahora"] = $this->view("modules.ahora");
