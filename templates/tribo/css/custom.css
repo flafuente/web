@@ -607,6 +607,73 @@ div.sq_content{
 	margin-bottom: 30px;
 }
 
+/*PRENSA*/
+.prensa {
+	min-height: 100px;
+	border: 2px solid #b7b7b7;
+	margin: 3px 0px 3px 0px;
+}
+.prensa h1 {
+	color: #13b6ea;
+	font-size: 16px;
+	font-weight: bold;
+	margin: 12px 0px 0px 0px;
+}
+.prensa_fecha{
+	margin: 27px 0px 0px 0px;
+	font-size: 17px;
+	text-align: center;
+}
+.prensa h2 {
+	font-size: 12px;
+	margin-top: 0px;
+	text-transform: initial;
+}
+.prensa_descripcion img {
+	margin-top: 23px;
+}
+.right {
+	float: right;
+	margin: 0px !important;
+	padding: 0px !important;
+	font-size: 15px;
+}
+
+/*NOTA PRENSA*/
+.nota_prensa {
+	background-color: #FFF;
+	padding: 15px;
+}
+.nota_header h2, .nota_header h1 {
+	color: #13b6ea;
+	margin: 0px 0px 10px 0px;
+}
+.nota_header h1 {
+	font-size: 15px;
+}
+.nota_header h2{
+	font-weight: bold;
+	font-size: 13px;
+}
+.nota_header h3 {
+	text-transform: initial;
+	font-size: 12px;
+	margin: 0px 0px 10px 0px;
+}
+.nota_header img {
+	width: 100%;
+}
+.nota_content {
+	margin-top: 30px;
+}
+.nota_content a {
+	cursor: pointer;
+}
+.nota_content img {
+	margin-right: 20px;
+}
+
+
 /*FORO*/
 .square-info-foro{
 	min-height: initial !important;
