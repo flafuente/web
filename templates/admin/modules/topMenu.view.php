@@ -96,6 +96,22 @@
                     </a>
                 </li>
             <?php } ?>
+            <?php if ($user->checkPermisos("notas")) { ?>
+                <li class="<?=$active['admin']['notas']?>">
+                    <a href="<?=Url::site("admin/notas")?>">
+                        <span class="glyphicon glyphicon-bullhorn"></span>
+                        Notas
+                    </a>
+                </li>
+            <?php } ?>
+            <?php if ($user->checkPermisos("menciones")) { ?>
+                <li class="<?=$active['admin']['menciones']?>">
+                    <a href="<?=Url::site("admin/menciones")?>">
+                        <span class="glyphicon glyphicon-comment"></span>
+                        Menciones
+                    </a>
+                </li>
+            <?php } ?>
         </ul>
         <ul class="nav navbar-nav navbar-right" style="margin-right: 20px">
             <li>

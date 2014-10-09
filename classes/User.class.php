@@ -151,6 +151,8 @@ class User extends Model
         "contactos"     => "Contactos",
         "slideshow"     => "Slideshow",
         "articulos"     => "Artículos",
+        "notas"         => "Notas",
+        "menciones"     => "Menciones",
     );
 
     /**
