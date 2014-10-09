@@ -13,7 +13,7 @@ $notaEjemplo->fecha = date("d / m / Y");
             SALA DE PRENSA
             <div class="right">
                 Ordenar por fecha
-                <select>
+                <select style="color: black;">
                     <option>Ascendente</option>
                     <option>Descendente</option>
                 </select>
