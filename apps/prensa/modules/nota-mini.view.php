@@ -1,14 +1,14 @@
 <?php defined('_EXE') or die('Restricted access'); ?>
 
 <div class="prensa col-md-12 nopaddingI">
-    <div class="col-md-3 nopaddingI">
+    <div class="col-md-2 nopaddingI">
         <div class="col-md-12 prensa_fecha nopaddingI">
             <h1><?=Helper::humanDate($nota->fecha); ?></h1>
         </div>
         <div>
         </div>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-10">
         <div class="col-md-12 nopaddingI">
             <?php
             if ($nota->imagen) {
