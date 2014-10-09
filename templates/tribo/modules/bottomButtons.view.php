@@ -4,7 +4,7 @@
 ?>
 <div class="col-md-1"></div>
 <?php
-showCircle("webseries", "programas/seccion/webseries", "WEBSERIES", "Sección dedicada a las mejores series en internet");
+showCircle("webseries", "programas/seccion/webseries", "SERIES", "Sección dedicada a las mejores series en internet");
 showCircle("periodismo", "tribonews", "PERIODISMO CIUDADANO", "La información captada según ocurre, captada por los ciudadanos");
 showCircle("moda", "programas/seccion/fashion", "MODA", "Te contamos cuáles son las últimas tendencias");
 showCircle("gamers", "programas/seccion/gamers", "GAMERS", "Previews de los últimos videojuegos, partidas en directo...");
