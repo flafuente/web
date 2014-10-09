@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Clase de Nota de prensa
+ * Clase de Mención
  */
-class Nota extends Model
+class Mencion extends Model
 {
 
     /**
@@ -19,6 +19,12 @@ class Nota extends Model
     public $userId;
 
     /**
+     * Orden
+     * @var int
+     */
+    public $order;
+
+    /**
      * Id del estado del capítulo
      * @var int
      */
@@ -31,34 +37,22 @@ class Nota extends Model
     public $titulo;
 
     /**
+     * Descripcion
+     * @var string
+     */
+    public $descripcion;
+
+    /**
      * Imagen
      * @var string
      */
     public $imagen;
 
     /**
-     * Archivo
+     * Link
      * @var string
      */
-    public $archivo;
-
-    /**
-     * Descripcion
-     * @var text
-     */
-    public $descripcion;
-
-    /**
-     * Nota
-     * @var text
-     */
-    public $nota;
-
-    /**
-     * Fecha
-     * @var date
-     */
-    public $fecha;
+    public $link;
 
     /**
      * DateInsert
@@ -94,19 +88,13 @@ class Nota extends Model
      * Ruta de las imágenes
      * @var string
      */
-    public $pathImagenes = "/files/images/notas/";
-
-    /**
-     * Ruta de los archivos
-     * @var string
-     */
-    public $pathArchivos = "/files/files/notas/";
+    public $pathImagenes = "/files/images/menciones/";
 
     /**
      * Variables reservadas (no están en la base de datos)
      * @var array
      */
-    public static $reservedVarsChild = array("estados", "estadosCss", "pathImagenes", "pathArchivos");
+    public static $reservedVarsChild = array("estados", "estadosCss", "pathImagenes");
 
     /**
      * Class initialization
@@ -115,8 +103,17 @@ class Nota extends Model
      */
     public function init()
     {
-        parent::$dbTable = "notas";
+        parent::$dbTable = "menciones";
         parent::$reservedVarsChild = self::$reservedVarsChild;
+    }
+
+    public function getLink()
+    {
+        if (substr($this->link, 0, 4) != "http") {
+            return "http://".$this->link;
+        } else {
+            return $this->link;
+        }
     }
 
     public function getEstadoString()
@@ -153,29 +150,6 @@ class Nota extends Model
     }
 
     /**
-     * Devuelve la ruta del archivo.
-     * @return string
-     */
-    public function getArchivoPath()
-    {
-        $config = Registry::getConfig();
-
-        return $config->get("path").$this->pathArchivos.$this->archivo;
-    }
-
-    /**
-     * Devuelve la URL del Thumbnail.
-     * @return string
-     */
-    public function getArchivoUrl()
-    {
-        //Archivo
-        if ($this->archivo) {
-            return Url::site($this->pathArchivos.$this->archivo);
-        }
-    }
-
-    /**
      * Validation
      *
      * @return array Object Messages
@@ -192,21 +166,6 @@ class Nota extends Model
             Registry::addMessage("Este titulo ya existe", "error", "titulo");
         }
 
-        //descripcion requiered
-        if (!$this->descripcion) {
-            Registry::addMessage("Debes introducir un texto", "error", "descripcion");
-        }
-
-        //nota requiered
-        if (!$this->nota) {
-            Registry::addMessage("Debes introducir una nota", "error", "nota");
-        }
-
-        //fecha requiered
-        if (!$this->fecha) {
-            Registry::addMessage("Debes introducir una fecha", "error", "fecha");
-        }
-
         //Image Upload
         if ($data["form"] && isset($_FILES["fileImagen"]) && $_FILES["fileImagen"]["size"] > 0) {
             try {
@@ -221,19 +180,6 @@ class Nota extends Model
                     ->upload($_FILES['fileImagen']);
             } catch (ImageUploaderException $e) {
                 Registry::addMessage("Error al subir la imagen: ".$e->getMessage(), "error");
-            }
-        }
-
-        //Archivo Upload
-        if ($data["form"] && isset($_FILES["fileArchivo"]) && $_FILES["fileArchivo"]["size"] > 0) {
-            try {
-                //Eliminamos el anterior
-                $this->deleteArchivo();
-                //Subimos la nueva
-                $this->archivo = substr(md5(uniqid()),0,6)."_".$_FILES["fileArchivo"]["name"];
-                move_uploaded_file($_FILES["fileArchivo"]["tmp_name"], $this->getArchivoPath());
-            } catch (ImageUploaderException $e) {
-                Registry::addMessage("Error al subir el archivo: ".$e->getMessage(), "error");
             }
         }
 
@@ -270,7 +216,7 @@ class Nota extends Model
      *
      * @return void
      */
-    public function preInsert()
+    public function preInsert($data = array())
     {
         $user = Registry::getUser();
 
@@ -278,6 +224,10 @@ class Nota extends Model
         $this->dateInsert = date("Y-m-d H:i:s");
         //User
         $this->userId = $user->id;
+        //Order
+        if ($data["order"]) {
+            $this->order();
+        }
     }
 
     /**
@@ -285,7 +235,7 @@ class Nota extends Model
      *
      * @return void
      */
-    public function preUpdate()
+    public function preUpdate($data = array())
     {
         $user = Registry::getUser();
 
@@ -293,20 +243,39 @@ class Nota extends Model
         $this->dateUpdate = date("Y-m-d H:i:s");
         //User
         $this->userId = $user->id;
+        //Order
+        if ($data["order"]) {
+            $this->order();
+        }
     }
 
-    public static function totalMeses()
+    public function order()
     {
-        $db = Registry::getDb();
-        $query = "SELECT YEAR(`fecha`) as ano, MONTH(`fecha`) AS mes, SUM(id) AS total FROM `notas` WHERE `estadoId` = 1 GROUP BY YEAR(`fecha`), MONTH(`fecha`)";
-        $rows = $db->Query($query);
-        if (count($rows)) {
-            $results = array();
-            foreach ($rows as $row) {
-                $results[$row["ano"]."-".$row["mes"]] = $row["total"];
+        //leemos las menciones
+        $menciones = Mencion::select();
+        $pos = 0;
+        if (count($menciones)) {
+            //Primero
+            if ($this->order==-1) {
+                $this->order = 1;
+                $pos++;
             }
-
-            return $results;
+            //Recorremos las menciones
+            foreach ($menciones as $mencion) {
+                $pos++;
+                //Si hemos indicado ir aquí...
+                if ($this->order==$pos) {
+                    $pos++;
+                }
+                //Movemos la mencion de posición
+                $mencion->order = $pos;
+                $mencion->update();
+            }
+            //Último
+            if ($this->order==-2) {
+                $pos++;
+                $this->order = $pos;
+            }
         }
     }
 
@@ -324,7 +293,7 @@ class Nota extends Model
     {
         $db = Registry::getDb();
         //Query
-        $query = "SELECT * FROM `notas` ";
+        $query = "SELECT * FROM `menciones` ";
         $params = array();
         //Where
         $where = " WHERE 1=1 ";
@@ -335,20 +304,12 @@ class Nota extends Model
         }
         //Búsqueda
         if ($data["search"]) {
-            $where .= " AND (`titulo` LIKE :titulo OR `descripcion` LIKE :descripcion OR `nota` LIKE :nota) ";
+            $where .= " AND `titulo` LIKE :titulo ";
             $params[":titulo"] = "%".$data["search"]."%";
-            $params[":descripcion"] = "%".$data["search"]."%";
-            $params[":nota"] = "%".$data["search"]."%";
-        }
-        //Fecha
-        if ($data["mes"]) {
-            $where .= " `fecha` BETWEEN :mesMin AND :mesMax ";
-            $params[":mesMin"] = $data["mes"]."-01";
-            $params[":mesMax"] = $data["mes"]."-31";
         }
         $query .= $where;
         //Total
-        $totalQuery = "SELECT * FROM `notas` ".$where;
+        $totalQuery = "SELECT * FROM `menciones` ".$where;
         $total = count($db->Query($totalQuery, $params));
         if ($total) {
             //Order
@@ -358,6 +319,8 @@ class Nota extends Model
                 if (@in_array($data['order'], array_keys(get_class_vars(__CLASS__))) && in_array($data['orderDir'], $orders)) {
                     $query .= " ORDER BY `".$data['order']."` ".$data['orderDir'];
                 }
+            } else {
+                $query .= " ORDER BY `order` ASC ";
             }
             //Limit
             if ($limit) {
@@ -367,7 +330,7 @@ class Nota extends Model
             if (count($rows)) {
                 $results = array();
                 foreach ($rows as $row) {
-                    $results[] = new Nota($row);
+                    $results[] = new Mencion($row);
                 }
 
                 return $results;
@@ -382,7 +345,6 @@ class Nota extends Model
     public function postDelete()
     {
         $this->deleteImagen();
-        $this->deleteArchivo();
     }
 
     private function deleteImagen()
@@ -391,13 +353,5 @@ class Nota extends Model
             return @unlink($this->getImagenPath());
         }
         $this->imagen = "";
-    }
-
-    private function deleteArchivo()
-    {
-        if ($this->archivo) {
-            return @unlink($this->getArchivoPath());
-        }
-        $this->archivo = "";
     }
 }

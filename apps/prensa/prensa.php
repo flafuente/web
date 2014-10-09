@@ -10,7 +10,12 @@ class prensaController extends Controller
 
     public function index()
     {
-        $this->setData("notas", Nota::select(array("estadoId" => 1, "order" => "fecha", "orderDir" => "DESC")));
+        $_REQUEST["estadoId"] = 1;
+        $_REQUEST["order"] = "fecha";
+        $_REQUEST["orderDir"] = "DESC";
+
+        $this->setData("notas", Nota::select($_REQUEST));
+        $this->setData("notasFecha", Nota::totalMeses());
         $html = $this->view("views.prensa");
         $this->render($html);
     }

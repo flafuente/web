@@ -92,5 +92,5 @@
     <a style="padding-top: 15px;" href="<?=Url::site("prensa");?>" class="btn sintonizanos">SALA DE PRENSA</a>
 </div>
 <div class='col-md-12' style='padding-left: 0px; padding-right: 0px;'>
-    <a style="padding-top: 15px;" href="<?=Url::site("#");?>" class="btn sintonizanos">HABLAN DE NOSOTROS</a>
+    <a style="padding-top: 15px;" href="<?=Url::site("menciones");?>" class="btn sintonizanos">HABLAN DE NOSOTROS</a>
 </div>

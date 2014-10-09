@@ -3,7 +3,7 @@ defined('_EXE') or die('Restricted access'); ?>
 
 <?php
 //Edit / New
-if ($nota->id) {
+if ($mencion->id) {
     $subtitle = "Editar";
     $title = "Guardar";
 } else {
@@ -11,16 +11,16 @@ if ($nota->id) {
     $title = "Crear";
 }
 //Toolbar
-Toolbar::addTitle("Notas de prensa", "glyphicon-bullhorn", $subtitle);
-if ($nota->id) {
+Toolbar::addTitle("Menciones", "glyphicon-coment", $subtitle);
+if ($mencion->id) {
     //Delete button
     Toolbar::addButton(
         array(
             "title" => "Eliminar",
-            "link" => Url::site("admin/notas/delete/".$nota->id),
+            "link" => Url::site("admin/menciones/delete/".$nota->id),
             "class" => "danger",
             "spanClass" => "remove",
-            "confirmation" => "¿Deseas realmente eliminar esta nota?",
+            "confirmation" => "¿Deseas realmente eliminar esta mención?",
         )
     );
 }
@@ -28,7 +28,7 @@ if ($nota->id) {
 Toolbar::addButton(
     array(
         "title" => "Cancelar",
-        "link" => Url::site("admin/notas"),
+        "link" => Url::site("admin/menciones"),
         "class" => "primary",
         "spanClass" => "chevron-left",
     )
@@ -37,7 +37,7 @@ Toolbar::addButton(
 Toolbar::addButton(
     array(
         "title" => $title,
-        "app" => "notas",
+        "app" => "menciones",
         "action" => "save",
         "class" => "success",
         "spanClass" => "ok",
@@ -50,9 +50,9 @@ Toolbar::render();
 <div class="main">
     <form method="post" id="mainForm" action="<?=Url::site();?>" class="form-horizontal ajax" role="form" autocomplete="off" enctype="multipart/form-data">
         <input type="hidden" name="router" id="router" value="admin">
-        <input type="hidden" name="app" id="app" value="notas">
+        <input type="hidden" name="app" id="app" value="menciones">
         <input type="hidden" name="action" id="action" value="save">
-        <input type="hidden" name="id" value="<?=$nota->id;?>">
+        <input type="hidden" name="id" value="<?=$mencion->id;?>">
         <div class="row">
             <div class="col-md-9">
                 <div class="panel panel-default">
@@ -68,7 +68,28 @@ Toolbar::render();
                             </label>
                             <div class="col-sm-8">
                                 <input type="hidden" name="estadoId" value="0">
-                                <input type="checkbox" class="switch" name="estadoId" id="estadoId" value="1" <?php if($nota->estadoId) echo "checked";?>>
+                                <input type="checkbox" class="switch" name="estadoId" id="estadoId" value="1" <?php if($mencion->estadoId) echo "checked";?>>
+                            </div>
+                        </div>
+
+                        <!-- Orden -->
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">
+                                Orden
+                            </label>
+                            <div class="col-sm-8">
+                                <?php
+                                    //Last
+                                    $last = new stdClass();
+                                    $last->order = -2;
+                                    $last->titulo = "- Último -";
+                                    @array_push($menciones, $last);
+                                    //Select
+                                    echo HTML::select("order", $menciones, $mencion->order, null,
+                                        array("id" => "-1", "display" => "- Primero -"),
+                                        array("id" => "order", "display" => "titulo")
+                                    );
+                                ?>
                             </div>
                         </div>
 
@@ -78,7 +99,7 @@ Toolbar::render();
                                 Titulo
                             </label>
                             <div class="col-sm-8">
-                                <input type="text" id="titulo" name="titulo" class="form-control" value="<?=Helper::sanitize($nota->titulo);?>">
+                                <input type="text" id="titulo" name="titulo" class="form-control" value="<?=Helper::sanitize($mencion->titulo);?>">
                             </div>
                         </div>
 
@@ -88,27 +109,17 @@ Toolbar::render();
                                 Descripcion
                             </label>
                             <div class="col-sm-8">
-                                <textarea id="descripcion" name="descripcion" class="form-control"><?=Helper::sanitize($nota->descripcion);?></textarea>
+                                <textarea id="descripcion" name="descripcion" class="form-control"><?=Helper::sanitize($mencion->descripcion);?></textarea>
                             </div>
                         </div>
 
-                        <!-- Nota -->
+                        <!-- Link -->
                         <div class="form-group">
                             <label for="string" class="col-sm-3 control-label">
-                                Nota
+                                Link
                             </label>
                             <div class="col-sm-8">
-                                <textarea id="nota" name="nota" class="form-control"><?=Helper::sanitize($nota->nota);?></textarea>
-                            </div>
-                        </div>
-
-                        <!-- Fecha -->
-                        <div class="form-group">
-                            <label for="string" class="col-sm-3 control-label">
-                                Fecha
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="text" id="fecha" name="fecha" placeholder="YYYY-mm-dd" class="form-control" value="<?=Helper::sanitize($nota->fecha);?>">
+                                <input type="text" id="link" name="link" class="form-control" value="<?=Helper::sanitize($mencion->link);?>">
                             </div>
                         </div>
 
@@ -129,22 +140,8 @@ Toolbar::render();
                             </label>
                             <div class="col-sm-8">
                                 <input type="file" id="fileImagen" name="fileImagen" class="btn-primary btn"  accept="image/*">
-                                <?php if ($nota->imagen) { ?>
-                                    <a href="<?=$nota->getImagenUrl();?>" class="btn btn-default" target="_blank">
-                                        <span class="glyphicon glyphicon-eye-open"></span>
-                                    </a>
-                                <?php } ?>
-                            </div>
-                        </div>
-                        <!-- Archivo -->
-                        <div class="form-group">
-                            <label for="string" class="col-sm-3 control-label">
-                                Archivo
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="file" id="fileArchivo" name="fileArchivo" class="btn-primary btn" >
-                                <?php if ($nota->archivo) { ?>
-                                    <a href="<?=$nota->getArchivoUrl();?>" class="btn btn-default" target="_blank">
+                                <?php if ($mencion->imagen) { ?>
+                                    <a href="<?=$mencion->getImagenUrl();?>" class="btn btn-default" target="_blank">
                                         <span class="glyphicon glyphicon-eye-open"></span>
                                     </a>
                                 <?php } ?>
@@ -156,9 +153,3 @@ Toolbar::render();
         </div>
     </form>
 </div>
-
-<script>
-    $(document).ready(function () {
-        $('textarea').summernote();
-    });
-</script>
