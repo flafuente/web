@@ -345,12 +345,14 @@ class Video extends Model
             $this->estadoCdnId = 3;
             //Leemos la duración
             $this->duracion = $this->getWistiaDuration();
+            //Leemos el thumbnail de wistia
+            $this->thumbnail = $this->getWistiaThumbnail();
         }
     }
 
     /**
      * Lee la duración de wistia.
-     * @return bool
+     * @return string
      */
     private function getWistiaDuration()
     {
@@ -360,6 +362,27 @@ class Video extends Model
             if (is_object($json)) {
                 if ($json->duration) {
                     return gmdate("H:i:s", (int) $json->duration);
+                }
+            }
+        }
+    }
+
+    /**
+     * Lee el thumbnail de wistia.
+     * @return bool
+     */
+    private function getWistiaThumbnail()
+    {
+        Wistia::init();
+        if ($this->cdnId) {
+            $json = Wistia::status($this->cdnId);
+            if (is_object($json)) {
+                if ($json->thumbnail->url) {
+
+                    // Better thumbnail
+                    $json->thumbnail->url = str_replace("image_crop_resized=100x60", "image_crop_resized=640x360", $json->thumbnail->url);
+
+                    return $json->thumbnail->url;
                 }
             }
         }
@@ -436,6 +459,17 @@ class Video extends Model
     {
         $this->dateUpdate = date("Y-m-d H:i:s");
         $this->setLocalizacion();
+        //Video creado desde /admin
+        if ($this->cdnId) {
+            if (!$this->duracion) {
+                //Leemos la duración
+                $this->duracion = $this->getWistiaDuration();
+            }
+            if (!$this->thumbnail) {
+                //Leemos el thumbnail de wistia
+                $this->thumbnail = $this->getWistiaThumbnail();
+            }
+        }
     }
 
     /**

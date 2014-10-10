@@ -210,13 +210,13 @@ Toolbar::render();
                         </div>
                     </div>
                 <?php } ?>
-                <div class="col-md-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Archivos
-                        </div>
-                        <div class="panel-body">
-                            <?php if (is_array($videosArchivos)) { ?>
+                <?php if (is_array($videosArchivos)) { ?>
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Archivos
+                            </div>
+                            <div class="panel-body">
                                 <table class="table table-condensed">
                                     <thead>
                                         <tr>
@@ -261,10 +261,44 @@ Toolbar::render();
                                         <?php } ?>
                                     </tbody>
                                 </table>
-                            <?php } ?>
+                            </div>
                         </div>
                     </div>
-                </div>
+                <?php } ?>
+                <?php if ($video->thumbnail && $video->duracion) { ?>
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Wistia Thumbnail
+                            </div>
+                            <div class="panel-body">
+                                <!-- Thumbnail -->
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <img src="<?=$video->getThumbnailUrl();?>" id="thumbnailUrl" width="100%">
+                                    </div>
+                                </div>
+                                <?php if ($video->thumbnail && $video->duracion) { ?>
+                                    <?php $a = explode(":", $video->duracion); ?>
+                                    <?php $segundos = (+$a[0]) * 60 * 60 + (+$a[1]) * 60 + (+$a[2]); ?>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <input type="range" id="range" min="0" max="<?=$segundos;?>" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">
+                                            Thumbnail CDN
+                                        </label>
+                                        <div class="col-sm-9">
+                                            <input type="text" id="cdnThumbnail" name="cdnThumbnail" class="form-control" value="<?=Helper::sanitize($video->thumbnail);?>">
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
             </div>
         <?php } ?>
     </div>
@@ -347,6 +381,22 @@ Toolbar::render();
         }).done(function (msg) {
             document.location.href = "<?=Url::site('admin/videos/edit/'.$video->id);?>";
         });
+    });
+
+    //Wistia thumbnail
+    $(document).on('change', '#range', function (e) {
+        second = $(this).val();
+        url = $("#cdnThumbnail").val();
+        if (url) {
+            param = "video_still_time=" + second;
+            if (url.indexOf("video_still_time") > -1) {
+                url = url.replace(/(video_still_time=).*?(&)/,'$1' + param + '$2');
+            } else {
+                url += "&" + param;
+            }
+            $("#thumbnailUrl").attr("src", url);
+            $("#cdnThumbnail").val(url);
+        }
     });
 </script>
 
