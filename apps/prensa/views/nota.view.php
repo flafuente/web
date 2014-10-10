@@ -27,7 +27,7 @@
             <?php if ($nota->archivo) { ?>
                 <br /><br />
                 <img src="<?=Url::template("img/pdficon.png");?>" /><a href="<?=$nota->getArchivoUrl();?>">
-                    Descargar esta nota en PDF
+                    Descargar Adjunto
                 </a>
             <?php } ?>
         </div>
