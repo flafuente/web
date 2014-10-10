@@ -30,6 +30,8 @@
                 $controller->setData("nota", $nota);
                 echo $controller->view("modules.nota-mini");
             }
+            $controller->setData("pag", $pag);
+            echo $controller->view("modules.pagination");
         } else { ?>
             <blockquote>
                 <p> No se han encontrado notas </p>
