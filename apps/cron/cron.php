@@ -24,19 +24,31 @@ class cronController extends Controller
         }
     }
 
-    public function updateTweets(){
+    public function updateTweets()
+    {
         $hashtags = array("#TriboTv", "#TriboDirecto", "#TriboLike");
-        foreach($hashtags as $hashtag){
+        foreach ($hashtags as $hashtag) {
             $arrayTweets = Tweet::getTweetAPI($hashtag);
-            if(count($arrayTweets)){
-                foreach($arrayTweets as $arrayTweet){
+            if (count($arrayTweets)) {
+                foreach ($arrayTweets as $arrayTweet) {
                     $tweet = new Tweet();
                     $tweet->parseAPI($arrayTweet);
-                    if(!Tweet::getBy("tweet_id", $tweet->tweet_id)){
+                    if (!Tweet::getBy("tweet_id", $tweet->tweet_id)) {
                         $tweet->insert();
                     }
                 }
             }
+        }
+    }
+
+    public function importParrilla()
+    {
+        $config = Registry::getConfig();
+        $fecha = date("Y-m-d", strtotime("yesterday"));
+        $result = curl($config->get("parrillasUrl")."/external/parrilla/", array("fecha" => $fecha));
+        $json = json_decode($result);
+        if (is_object($json)) {
+            Evento::importar($json->data->eventos, $fecha);
         }
     }
 }
