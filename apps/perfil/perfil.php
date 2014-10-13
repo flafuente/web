@@ -31,21 +31,21 @@ class perfilController extends Controller
         //Change password
         if ($_REQUEST["password"]) {
             if ($user->password != $user->encrypt($_REQUEST["passwordCurrent"])) {
-                Registry::addMessage("Contraseña incorrecta", "error", "passwordCurrent");
+                Registry::addMessage(Language::translate("CTRL_PERFIL_SAVE_PASSWORD_ERROR"), "error", "passwordCurrent");
                 unset($_REQUEST["password"]);
                 unset($_REQUEST["password2"]);
             } else {
                 if (strlen($_REQUEST["password"])<6) {
-                    Registry::addMessage("La contraseña debe tenter al menos 6 caracteres", "error", "password");
+                    Registry::addMessage(Language::translate("CTRL_PERFIL_SAVE_PASSWORD_SHORT_ERROR"), "error", "password");
                 } elseif ($_REQUEST["password"]!=$_REQUEST["password2"]) {
-                    Registry::addMessage("Las contraseñas no coinciden", "error", "password");
+                    Registry::addMessage(Language::translate("CTRL_PERFIL_SAVE_PASSWORD2_ERROR"), "error", "password");
                 }
             }
         }
         //Prevent status change
         $_REQUEST['statusId'] = $user->statusId;
         if ($user->update($_REQUEST)) {
-            Registry::addMessage("Cambios guardados satisfactoriamente", "success", "", Url::site("perfil"));
+            Registry::addMessage(Language::translate("CTRL_PERFIL_SAVE_OK"), "success", "", Url::site("perfil"));
         }
         $this->ajax();
     }

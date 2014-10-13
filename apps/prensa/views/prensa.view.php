@@ -1,16 +1,27 @@
 <?php defined('_EXE') or die('Restricted access'); ?>
 
-<?php $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"); ?>
+<?php $meses = Array("1" => Langauge::translate("MESES_ENERO"),
+                  "2" => Langauge::translate("MESES_FEBRERO"),
+                  "3" => Langauge::translate("MESES_MARZO"),
+                  "4" => Langauge::translate("MESES_ABRIL"),
+                  "5" => Langauge::translate("MESES_MAYO"),
+                  "6" => Langauge::translate("MESES_JUNIO"),
+                  "7" => Langauge::translate("MESES_JULIO"),
+                  "8" => Langauge::translate("MESES_AGOSTO"),
+                  "9" => Langauge::translate("MESES_SEPTIEMBRE"),
+                  "10" => Langauge::translate("MESES_OCTUBRE"),
+                  "11" => Langauge::translate("MESES_NOVIEMBRE"),
+                  "12" => Langauge::translate("MESES_DICIEMBRE")); ?>
 
 <form class="form-horizontal" role="form" method="post" action="<?=Url::site("prensa");?>">
 
     <div class='col-md-12'>
         <div class="square-info-foro">
             <div class="grey" style="margin-bottom: 0px;">
-                SALA DE PRENSA
+                <?=Language::translate("VIEW_PRENSA_LISTAR_TITLE");?>
                 <?php if (count($notasFecha)) { ?>
                     <div class="right">
-                        Filtrar por fecha
+                        <?=Language::transalte("VIEW_PRENSA_FILTRO_FECHA");?>
                         <select name="mes" class="change-submit" style="color: black;">
                             <?php foreach ($notasFecha as $mes => $totalNotas) { ?>
                                 <option value="<?=$mes?>">
@@ -34,7 +45,7 @@
             echo $controller->view("modules.pagination");
         } else { ?>
             <blockquote>
-                <p> No se han encontrado notas </p>
+                <p><?=Language::translate("VIEW_PRENSA_LISTAR_TITLE");?></p>
             </blockquote>
         <?php } ?>
     </div>

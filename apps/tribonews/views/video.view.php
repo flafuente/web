@@ -84,7 +84,9 @@
     <!-- Notícias relacionadas -->
     <?php if (count($relacionados)) { ?>
         <div class='title-line'>
-            <span>NOTICIAS RELACIONADAS</span>
+            <span>
+                <?=Language::translate("VIEW_TRIBONEWS_RELATED_NEWS")?>
+            </span>
         </div>
         <?php foreach ($relacionados as $relacionado) { ?>
             <?php $controller->setData("video", $relacionado); ?>

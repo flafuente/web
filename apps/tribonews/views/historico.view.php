@@ -1,29 +1,31 @@
 <?php defined('_EXE') or die('Restricted access'); ?>
 
 <div class='title-line'>
-    <span>HISTÓRICO DE NOTICIAS</span>
+    <span>
+        <?=Language::translate("VIEW_TRIBONEWS_TITLE");?>
+    </span>
 </div>
 <div class="filtro_news">
     <form action="<?=Url::site("tribonews/historico");?>" method="POST">
         <div class="col-md-2 titfil">
-            Filtrar por:
+            <?=Language::translate("VIEW_TRIBONEWS_FILTERS_TITLE");?>
         </div>
         <div style="clear: both;"></div>
         <div class="col-md-4 btn btnfiltro">
             <div class="filter">
-                Categoría<br />
-                <?=HTML::select("categoriaId", $categorias, $_REQUEST["categoriaId"], array("class" => "change-submit"), array("display" => "Selecciona una categoría"), array("display" => "nombre")); ?>
+                <?=Language::translate("VIEW_TRIBONEWS_FILTER_CATEGORIAS");?><br />
+                <?=HTML::select("categoriaId", $categorias, $_REQUEST["categoriaId"], array("class" => "change-submit"), array("display" => Language::translate("VIEW_TRIBONEWS_FILTER_CATEGORIAS_SELECT")), array("display" => "nombre")); ?>
             </div>
         </div>
         <div class="col-md-4 btn btnfiltro">
             <div class="filter">
-                Zona<br />
-                <?=HTML::select("comunidadId", $comunidades, $_REQUEST["comunidadId"], array("class" => "change-submit"), array("display" => "Selecciona una comunidad"), array("display" => "nombre")); ?>
+                <?=Language::translate("VIEW_TRIBONEWS_FILTERS_COMUNIDAD");?><br />
+                <?=HTML::select("comunidadId", $comunidades, $_REQUEST["comunidadId"], array("class" => "change-submit"), array("display" => Language::translate("VIEW_TRIBONEWS_FILTER_COMUNIDADES_SELECT")), array("display" => "nombre")); ?>
             </div>
         </div>
         <div class="col-md-4 btn btnfiltro">
             <div class="filter">
-                Fecha<br />
+                <?=Language::translate("VIEW_TRIBONEWS_FILTER_FECHA");?><br />
                 <input type="text" name="fecha" id="datepicker" class="change-submit" value="<?=Helper::sanitize($_REQUEST["fecha"])?>"/>
             </div>
         </div>
@@ -36,7 +38,7 @@
             <?php } ?>
         <?php } else { ?>
             <blockquote>
-                No se han encontrado notícias
+                <?=Language::translate("VIEW_TRIBONEWS_LISTADO_EMPTY");?>
             </blockquote>
         <?php } ?>
 

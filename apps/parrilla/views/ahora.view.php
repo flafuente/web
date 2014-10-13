@@ -19,7 +19,7 @@
                         <?=Helper::sanitize($capitulo->getProgramaTitulo($programa)); ?>
                     </a>
                 <?php } else { ?>
-                    Espacio vacío
+                    <?=Translate::languate("VIEW_PARRILLA_AHORA_EMPTY_SPACE"); ?>
                 <?php } ?>
             </span>
         </div>

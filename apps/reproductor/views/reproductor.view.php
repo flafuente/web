@@ -16,7 +16,7 @@
                 <?=Helper::sanitize($programa->titulo);?>
             </a>
              /
-            Capítulos
+            <?=Language::transalte("VIEW_REPRODUCTOR_CAPITULOS")?>
         </div>
 
         <!-- Capítulo -->
@@ -96,9 +96,9 @@
     <!-- Links-->
     <div class='col-md-6 epi_button'>
         <a href="<?=Url::site("programas/ver/".$programa->slug);?>">
-            site programa
+            <?=Language::transalte("VIEW_REPRODUCTOR_SITE")?>
             <strong>|</strong>
-            todos los capitulos
+            <?=Language::transalte("VIEW_REPRODUCTOR_ALLEPISODES")?>
         </a>
     </div>
 
@@ -107,7 +107,7 @@
     <?php if ($seccion->id) { ?>
         <div class="col-md-6 ver-todas-web" style="margin-top: 30px;">
             <a href="<?=Url::site("programas/seccion/".$seccion->slug);?>">
-                Ver <?=$seccion->nombre;?>&nbsp;&nbsp;<div class="circulo-azul">+</div>
+                <?=Language::transalte("VIEW_REPRODUCTOR_VER")?> <?=$seccion->nombre;?>&nbsp;&nbsp;<div class="circulo-azul">+</div>
             </a>
         </div>
     <?php } ?>

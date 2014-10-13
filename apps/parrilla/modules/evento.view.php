@@ -25,7 +25,7 @@ if ($capitulo->id) {
                     <?=Helper::sanitize($capitulo->getProgramaTitulo($programa)); ?>
                 </a>
             <?php } else { ?>
-                No Disponible
+                <?=Language::translate("VIEW_PARRILLA_EVENTO_NO_DISPONIBLE");?>
             <?php } ?>
         </span>
         <br />

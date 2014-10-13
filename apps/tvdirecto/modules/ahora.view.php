@@ -12,7 +12,7 @@ if ($capitulo->programaId) {
 <div class="video-info">
 
     <div class="col-md-12 vd-ruta">
-        <?php echo $programa->id ? Helper::sanitize($programa->titulo) : "Tribo en directo"; ?>
+        <?php echo $programa->id ? Helper::sanitize($programa->titulo) : Language::translate("VIEW_TVDIRECTO_TRIBODIRECTO"); ?>
     </div>
 
     <div class="col-md-8">
@@ -50,15 +50,15 @@ if ($capitulo->programaId) {
                     <?=Helper::sanitize($programa->descripcion);?>
                 <?php } ?>
         <?php } else { ?>
-            Emisión en directo.
+            <?=Language::translate("VIEW_TVDIRECTO_EMISION_DIRECTO")?>
         <?php } ?>
 
         <br />
 
         <div class='col-md-6 epi_button'>
-            <a href="<?=Url::site($url);?>">site programa
+            <a href="<?=Url::site($url);?>"><?=Language::translate("VIEW_TVDIRECTO_SITE");?>
             <strong>|</strong>
-            todos los capitulos</a>
+            <?=Language::translate("VIEW_TVDIRECTO_ALLEPISODES");?></a>
         </div>
     </div>
 

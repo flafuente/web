@@ -3,7 +3,7 @@
 <div class='col-md-12'>
     <div class="square-info-foro">
         <div class="grey" style="margin-bottom: 0px;">
-            SALA DE PRENSA > NOTA DE PRENSA
+           <?=Language::translate("VIEW_PRENSA_VER_TITLE");?>
         </div>
     </div>
     <div class="nota_prensa">
@@ -27,7 +27,7 @@
             <?php if ($nota->archivo) { ?>
                 <br /><br />
                 <img src="<?=Url::template("img/pdficon.png");?>" /><a href="<?=$nota->getArchivoUrl();?>">
-                    Descargar Adjunto
+                    <?=Language::translate("VIEW_PRENSA_VER_DOWNLOAD");?>
                 </a>
             <?php } ?>
         </div>

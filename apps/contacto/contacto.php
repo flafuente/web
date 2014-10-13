@@ -13,15 +13,15 @@ class contactoController extends Controller
 
     public function enviar()
     {
-        //Categoría?
+        //Sección?
         if ($_REQUEST["seccionId"]) {
             $seccion = new Seccion($_REQUEST["seccionId"]);
             if ($seccion->id) {
                 if ($seccion->sendEmail($_REQUEST)) {
-                    Registry::addMessage("Email enviado", "success", "", Url::site());
+                    Registry::addMessage(Language::translate("CTRL_CONTACTO_SECCION_ERROR"), "success", "", Url::site());
                 }
             } else {
-                Registry::addMessage("Sección incorrecta", "error", "seccionId");
+                Registry::addMessage(Language::translate("CTRL_CONTACTO_EMAIL_SENT"), "error", "seccionId");
             }
         } else {
             if ($_REQUEST["contactoId"]) {
@@ -33,7 +33,7 @@ class contactoController extends Controller
                         }
                     }
                 } else {
-                    Registry::addMessage("Contacto incorrecto", "error", "contactoId");
+                    Registry::addMessage(Language::translate("CTRL_CONTACTO_CONTACTO_ERROR"), "error", "contactoId");
                 }
             }
         }

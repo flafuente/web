@@ -22,7 +22,7 @@ class loginController extends Controller
         $user = current(User::getBy("email", $_REQUEST['email']));
         if ($user->id) {
             $user->sendRecovery();
-            Registry::addMessage("Te hemos mandado un email con los detalles para la recuperación de tu cuenta.", "success");
+            Registry::addMessage(Language::translate("CTRL_LOGIN_RECOVERY_OK"), "success");
         }
         Url::redirect(Url::site());
     }
@@ -65,9 +65,9 @@ class loginController extends Controller
                 $user->recoveryHash = "";
                 $user->update($_REQUEST);
                 $user->login($user->email, $_REQUEST['password']);
-                Registry::addMessage("Contraseña guardada satisfactoriamente", "success", "", Url::site());
+                Registry::addMessage(Language::translate("CTRL_LOGIN_CHANGEPASSWORD_OK"), "success", "", Url::site());
             } else {
-                Registry::addMessage("Las contraseñas no coinciden", "error", "password");
+                Registry::addMessage(Language::translate("CTRL_LOGIN_CHANGEPASSWORD_ERROR"), "error", "password");
             }
         }
         $this->ajax();
@@ -92,7 +92,7 @@ class loginController extends Controller
                 }
             }
         } else {
-            Registry::addMessage("Acceso incorrecto", "error", "login");
+            Registry::addMessage(Language::translate("CTRL_LOGIN_LOGIN_ERROR"), "error", "login");
         }
         $this->ajax();
     }

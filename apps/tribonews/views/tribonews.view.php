@@ -5,7 +5,9 @@
 <?php } ?>
 
 <div class='title-line'>
-    <span>ÚLTIMAS NOTICIAS</span>
+    <span>
+        <?=Language::translate("VIEW_TRIBONEWS_LISTADO_TITLE")?>
+    </span>
 </div>
 
 <?php if (count($videos)) { ?>
@@ -17,7 +19,7 @@
 
     <div class="col-md-offset-6 col-md-6 ver-todas-web">
         <a href="<?=Url::site("tribonews/historico");?>">
-            Ver histórico de noticias&nbsp;&nbsp;
+            <?=Language::translate("VIEW_TRIBONEWS_LISTADO_HISTORICO")?>&nbsp;&nbsp;
             <div class="circulo-azul">+</div>
         </a>
     </div>

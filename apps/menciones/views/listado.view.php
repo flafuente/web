@@ -3,7 +3,7 @@
 <div class='col-md-12'>
     <div class="square-info-foro">
         <div class="grey" style="margin-bottom: 0px;">
-            HABLAN DE NOSOTROS
+            <?=Language::translate("VIEW_MENCIONES_LISTADO_TITLE");?>
         </div>
     </div>
 
@@ -17,7 +17,7 @@
         echo $controller->view("modules.pagination");
     } else { ?>
         <blockquote>
-            <p> No se han encontrado menciones </p>
+            <p> <?=Language::translate("VIEW_MENCIONES_LISTADO_EMPTY");?> </p>
         </blockquote>
     <?php } ?>
 </div>
