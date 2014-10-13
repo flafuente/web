@@ -362,9 +362,14 @@ class Capitulo extends Model
         //CND Thumbnail
         } elseif ($this->cdnThumbnail) {
             return $this->cdnThumbnail;
-        //No-image
         } else {
-            return Url::template("img/nophotovideo.png", "tribo");
+            $programa = new Programa($this->programaId);
+            if ($programa->thumbnail) {
+                return $programa->getThumbnailUrl();
+            //No-image
+            } else {
+                return Url::template("img/nophotovideo.png", "tribo");
+            }
         }
     }
 

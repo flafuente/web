@@ -4,7 +4,7 @@
 
     <?php
         $url = "#";
-        if ($capitulo->cdnId) {
+        if ($capitulo->cdnId && $capitulo->estadoId == 1) {
             $url = Url::site("reproductor/capitulo/".$capitulo->id);
         }
     ?>
