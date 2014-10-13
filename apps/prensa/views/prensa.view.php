@@ -21,7 +21,7 @@
                 <?=Language::translate("VIEW_PRENSA_LISTAR_TITLE");?>
                 <?php if (count($notasFecha)) { ?>
                     <div class="right">
-                        <?=Language::transalte("VIEW_PRENSA_FILTRO_FECHA");?>
+                        <?=Language::translate("VIEW_PRENSA_FILTRO_FECHA");?>
                         <select name="mes" class="change-submit" style="color: black;">
                             <?php foreach ($notasFecha as $mes => $totalNotas) { ?>
                                 <option value="<?=$mes?>">

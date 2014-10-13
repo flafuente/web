@@ -8,7 +8,7 @@ class reproductorController extends Controller
 
     public function index()
     {
-        Url::redirect(Url::site(), Language::transalte("CTRL_REPRODUCTOR_CAPITULO_NOTFOUND"), "warning");
+        Url::redirect(Url::site(), Language::translate("CTRL_REPRODUCTOR_CAPITULO_NOTFOUND"), "warning");
     }
 
     public function capitulo()
@@ -31,7 +31,7 @@ class reproductorController extends Controller
             $this->render($html);
 
         } else {
-            Url::redirect(Url::site(), Language::transalte("CTRL_REPRODUCTOR_CAPITULO_NOTFOUND"), "warning");
+            Url::redirect(Url::site(), Language::translate("CTRL_REPRODUCTOR_CAPITULO_NOTFOUND"), "warning");
         }
     }
 

@@ -32,10 +32,10 @@ class programasController extends Controller
                 //Sección Id
                 $data["seccionId"] = $seccion->id;
             } else {
-                Url::redirect(Url::site("programas"), Language::transalte("CTRL_PROGRAMAS_SECCION_NOTFOUND"), "danger");
+                Url::redirect(Url::site("programas"), Language::translate("CTRL_PROGRAMAS_SECCION_NOTFOUND"), "danger");
             }
         } else {
-            Url::redirect(Url::site("programas"), Language::transalte("CTRL_PROGRAMAS_SECCION_NOTFOUND"), "danger");
+            Url::redirect(Url::site("programas"), Language::translate("CTRL_PROGRAMAS_SECCION_NOTFOUND"), "danger");
         }
         $this->setData("seccion",$seccion);
         $this->setData("programas", Programa::select($data));
@@ -59,7 +59,7 @@ class programasController extends Controller
             $html = $this->view("views.programa");
             $this->render($html);
         } else {
-            Url::redirect(Url::site("programas"), Language::transalte("CTRL_PROGRAMAS_PROGRAMA_NOTFOUND"), "danger");
+            Url::redirect(Url::site("programas"), Language::translate("CTRL_PROGRAMAS_PROGRAMA_NOTFOUND"), "danger");
         }
     }
 }

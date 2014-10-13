@@ -3,7 +3,7 @@
 <div class='col-md-12'>
     <div class="square-info">
         <div class="grey" style="margin-bottom: 0px;">
-            <?=Language::transalte("VIEW_TRIBERS_TITLE");?>
+            <?=Language::translate("VIEW_TRIBERS_TITLE");?>
         </div>
         <div class="triber_info col-md-12">
 
@@ -26,7 +26,7 @@
 
                 <?php if ($especialidad) { ?>
                     <!-- Especialidad -->
-                    <?=Language::transalte("VIEW_TRIBERS_MAIN_SKILL");?>
+                    <?=Language::translate("VIEW_TRIBERS_MAIN_SKILL");?>
                     <span class="triber_blue">
                         <?=Helper::sanitize($especialidad->nombre);?>
                     </span>
@@ -35,12 +35,12 @@
 
                 <!-- Fecha -->
                 <span class="triber_small">
-                    <?=Language::transalte("VIEW_TRIBERS_TRIBER_SINCE");?> <?=date("d/m/Y", strtotime(Helper::sanitize($triber->dateInsert)));?>
+                    <?=Language::translate("VIEW_TRIBERS_TRIBER_SINCE");?> <?=date("d/m/Y", strtotime(Helper::sanitize($triber->dateInsert)));?>
                 </span>
                 <br /><br />
 
                 <span class="btn btn-tribo-grey" id="triber_masinfo">
-                    <?=Language::transalte("VIEW_TRIBERS_CONTACT_DETAILS");?>
+                    <?=Language::translate("VIEW_TRIBERS_CONTACT_DETAILS");?>
                 </span>
 
             </div>
@@ -53,7 +53,7 @@
             <!-- Email -->
             <div class="col-md-6">
                 <img src="<?=Url::template("img/perfilpublico/email.png");?>" />
-                <?=Language::transalte("VIEW_TRIBERS_EMAIL");?>
+                <?=Language::translate("VIEW_TRIBERS_EMAIL");?>
                 <span class="triber_blue">
                     <?=Helper::sanitize($triber->email);?>
                 </span>
@@ -63,7 +63,7 @@
             <?php if ($triber->telefono) { ?>
                 <div class="col-md-6">
                     <img src="<?=Url::template("img/perfilpublico/telefono.png");?>" />
-                    <?=Language::transalte("VIEW_TRIBERS_EMAIL");?>
+                    <?=Language::translate("VIEW_TRIBERS_EMAIL");?>
                     <?=Helper::sanitize($triber->telefono);?>
                 </div>
             <?php } ?>
@@ -76,7 +76,7 @@
             <?php if ($triber->biografia) { ?>
                 <h1>
                     <img src="<?=Url::template("img/perfilpublico/biografia.png");?>" />
-                    <?=Language::transalte("VIEW_TRIBERS_BIO");?>
+                    <?=Language::translate("VIEW_TRIBERS_BIO");?>
                 </h1>
                 <span>
                    <?=Helper::sanitize($triber->biografia);?>
@@ -88,7 +88,7 @@
             <?php if (!empty($sitios)) { ?>
                 <h1>
                     <img src="<?=Url::template("img/perfilpublico/sitiosweb.png");?>" />
-                    <?=Language::transalte("VIEW_TRIBERS_SITES");?>
+                    <?=Language::translate("VIEW_TRIBERS_SITES");?>
                     <?php foreach ($sitios as $sitio) { ?>
                         <?php if ($sitio) { ?>
                             <?php if(!strstr($sitio, "http")) $sitio = "http://".$sitio; ?>
@@ -113,7 +113,7 @@
     <div class='col-md-12 serie_info' style="margin-top: 20px;">
         <div class='video-info' style="padding: 5px;">
             <div class='title-line'>
-                <span><?=Language::transalte("VIEW_TRIBERS_NOTICIAS_DEL_TRIBER");?> <?=Helper::sanitize($triber->nombre);?></span>
+                <span><?=Language::translate("VIEW_TRIBERS_NOTICIAS_DEL_TRIBER");?> <?=Helper::sanitize($triber->nombre);?></span>
             </div>
             <?php foreach ($videos as $video) { ?>
                 <?php $controller->setData("video", $video); ?>
@@ -128,7 +128,7 @@
         <div class='col-md-12' style="margin-top: 20px;">
             <div class='video-info' style="padding: 5px; float: left; width: 100%;">
                 <div class='title-line'>
-                    <span><?=Language::transalte("VIEW_TRIBERS_TRIBERS_SIMILARES_A");?> <?=Helper::sanitize($triber->nombre);?></span>
+                    <span><?=Language::translate("VIEW_TRIBERS_TRIBERS_SIMILARES_A");?> <?=Helper::sanitize($triber->nombre);?></span>
                 </div>
                 <?php foreach ($tribers as $triber) { ?>
                     <?php $controller->setData("user", $triber); ?>
