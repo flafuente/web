@@ -133,6 +133,15 @@ Toolbar::render();
                             <textarea id="texto" name="texto" class="form-control"><?=Helper::sanitize($video->texto);?></textarea>
                         </div>
                     </div>
+                    <!-- Fecha -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            Fecha
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" id="fecha" name="fecha" class="form-control datepicker" value="<?=Helper::sanitize($video->fecha);?>">
+                        </div>
+                    </div>
                     <?php if (count($tags)) { ?>
                         <!-- Tags -->
                         <div class="form-group">
@@ -398,6 +407,8 @@ Toolbar::render();
             $("#cdnThumbnail").val(url);
         }
     });
+
+    $(".datepicker").datepicker({dateFormat: 'yy-mm-dd'});
 </script>
 
 <!-- Google Autocomplete -->

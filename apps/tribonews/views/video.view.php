@@ -36,7 +36,7 @@
                     por <strong><?=Helper::sanitize($autor->getFullName());?></strong> |
                 <?php } ?>
 
-                <span><?=date("d/m/Y", strtotime($video->dateInsert));?></span> a las <strong><?=date("H:i", strtotime($video->dateInsert));?></strong>
+                <span><?=date("d/m/Y", strtotime($video->getFecha()));?></span> a las <strong><?=date("H:i", strtotime($video->dateInsert));?></strong>
 
             </div>
         </div>

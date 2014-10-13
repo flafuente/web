@@ -57,6 +57,11 @@ class Video extends Model
      */
     public $texto;
     /**
+     * Fecha
+     * @var string
+     */
+    public $fecha;
+    /**
      * Duración
      * @var string
      */
@@ -170,6 +175,15 @@ class Video extends Model
         } else {
             return Url::template("img/nophotovideo.png", "tribo");
         }
+    }
+
+    public function getFecha()
+    {
+        if ($this->fecha) {
+            return $this->fecha;
+        }
+
+        return $this->dateInsert;
     }
 
     public function getVideosRelacionados($limit)
@@ -561,7 +575,7 @@ class Video extends Model
         }
         //Fecha
         if ($data["fecha"]) {
-            $query .= " AND `dateInsert`>=:fecha ";
+            $query .= " AND (`dateInsert`>=:fecha OR (`fecha`>=:fecha && `fecha` NOT NULL && `fecha` != '0000-00-00') )";
             $params[":fecha"] = date("Y-m-d H:i:s", strtotime($data["fecha"]));
         }
         //Total

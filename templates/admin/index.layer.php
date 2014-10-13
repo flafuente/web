@@ -24,6 +24,8 @@
         <link href="<?=Url::template("css/font-awesome.min.css");?>" media="screen" rel="stylesheet" type="text/css" />
         <!-- Summer Note -->
         <link href="<?=Url::template("css/summernote.css");?>" media="screen" rel="stylesheet" type="text/css" />
+        <!-- jQuery UI -->
+        <link href="<?=Url::template("css/jquery-ui.css");?>" media="screen" rel="stylesheet" type="text/css" />
         <!-- Custom CSS -->
         <link href="<?=Url::template("css/custom.css");?>" media="screen" rel="stylesheet" type="text/css" />
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -38,6 +40,8 @@
         <script src="<?=Url::template("js/jquery-1.11.0.min.js");?>" type="text/javascript"></script>
         <!-- Bootstrap -->
         <script src="<?=Url::template("js/bootstrap.min.js");?>" type="text/javascript"></script>
+        <!-- jQuery UI -->
+        <script src="<?=Url::template("js/jquery-ui.js");?>" type="text/javascript"></script>
         <!-- JQuery Forms Plugin -->
         <script src="<?=Url::template("js/jquery.forms.js");?>" type="text/javascript"></script>
         <!-- Bootstrap Switch Plugin -->
