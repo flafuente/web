@@ -32,6 +32,8 @@ class tvdirectoController extends Controller
 
     public function refresh()
     {
+        $data = array();
+
         //Próximos eventos
         $this->setData("eventos", Evento::select(array(
             'fechaInicio' => date('Y-m-d H:i:s', strtotime("now")),
@@ -40,9 +42,16 @@ class tvdirectoController extends Controller
         3));
 
         //Ahora
-        $this->setData("evento", @current(Evento::select(array('ahora' => true), 1)));
+        $data["html"]["hidePlayer"] = false;
+        $current = @current(Evento::select(array('ahora' => true), 1));
+        $this->setData("evento", $current);
+        if ($current->id) {
+            $programa = new Programa($current->programaId);
+            if ($programa->blockDirecto) {
+                $data["html"]["hidePlayer"] = true;
+            }
+        }
 
-        $data = array();
         $data["html"]["ahora"] = $this->view("modules.ahora");
         $data["html"]["proximos"] = $this->view("modules.proximos");
 
