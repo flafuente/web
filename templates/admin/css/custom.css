@@ -64,3 +64,8 @@ div.filters div.filter{
 div.filters div.filter select{
 	width: 100%;
 }
+@media (max-width: 1280px) {
+	.navbar-fixed-top {
+	    position: absolute;
+	}
+}
