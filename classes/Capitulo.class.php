@@ -214,7 +214,7 @@ class Capitulo extends Model
         }
     }
 
-    private static function getCapituloByTemporadaEpisodio($programaId, $temporada, $episodio, $ignoreId = null)
+    public static function getCapituloByTemporadaEpisodio($programaId, $temporada, $episodio, $ignoreId = null)
     {
         $db = Registry::getDb();
         //Query
