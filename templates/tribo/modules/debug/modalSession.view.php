@@ -9,9 +9,9 @@
                 <h4 class="modal-title">Session</h4>
             </div>
             <div class="modal-body">
-                <?php if($_SESSION){ ?>
+                <?php if ($_SESSION) { ?>
                     <?php echo "<pre>".Helper::sanitize(print_r($_SESSION, true))."</pre>"; ?>
-                <?php }else{ ?>
+                <?php } else { ?>
                     <blockquote>
                         <p>No session data</p>
                     </blockquote>
