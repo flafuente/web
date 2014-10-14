@@ -5,13 +5,13 @@
     <img src="<?=Url::template("img/sintonizanos/sintonizanos.png");?>" alt="Sintonízanos" />
     <div class="square-info">
         <div class="grey">
-            <?=Translate::language("VIEW_SINTONIZANOS_TITLE")?>
+            <?=Language::translate("VIEW_SINTONIZANOS_TITLE")?>
         </div>
         <div class="canalesd">
             <div class='title-linewh'>
                 <span><img src='<?=Url::template("img/sintonizanos/TDT2.png")?>' title='tdt'></span>
             </div>
-            <p class='center'><?=Translate::language("VIEW_SINTONIZANOS_CHANNELS_TITLE")?></p>
+            <p class='center'><?=Language::translate("VIEW_SINTONIZANOS_CHANNELS_TITLE")?></p>
             <div class='region col-md-6'>
                 <p><span class='blue'>MADRID</span> - Canal 39 - 618 MHz</p>
                 <p><span class='blue'>ARANJUEZ</span> - Canal 21 - 474 MHz</p>
@@ -31,7 +31,7 @@
             </div>
             <div style='clear:both;'></div>
             <div class='title-linewh'></div>
-            <p class='center blue'><?=Translate::language("VIEW_SINTONIZANOS_CHANNELS_SUBTITLE")?></p>
+            <p class='center blue'><?=Language::translate("VIEW_SINTONIZANOS_CHANNELS_SUBTITLE")?></p>
 
         </div>
        <div style="clear: both;"></div>
