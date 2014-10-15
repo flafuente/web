@@ -58,11 +58,15 @@ class cronController extends Controller
         Wistia::init();
 
         //Capitulos
-        $capitulos = Capitulo::select(array('hasCdnId' => 1));
+        $capitulos = Capitulo::select();
         foreach ($capitulos as $capitulo) {
             echo " * ".$capitulo->titulo."<br>";
             //Check media status by cdnid
-            $res = Wistia::status($capitulo->cdnId);
+            if ($capitulo->cdnId) {
+                $res = Wistia::status($capitulo->cdnId);
+            } else {
+                $res = null;
+            }
             if (!$res->hashed_id || $res->project->name == 'Uploads360') {
                 echo " * * Error CDN<br>";
                 $capitulo->cndId = '';
