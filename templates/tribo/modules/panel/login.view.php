@@ -18,9 +18,9 @@ if (!$user->id) {
     <?php if (!$user->id) { ?>
         <div class="forgot col-md-8"><img class="imgmdl" src='<?=Url::template("/img/user.png");?>' title='Login' /><h1>&nbsp;&nbsp;&nbsp;ZONA TRIBER</h1></div>
         <div class="forgot col-md-4">
-            <a href="<?=Url::site("registro");?>" class="btn btn-tribo-grey ladda-button">
+            <!--<a href="<?=Url::site("registro");?>" class="btn btn-tribo-grey ladda-button">
                 Registrate
-            </a>
+            </a>-->
         </div>
         <div style="clear: both;"></div>
         <br />
@@ -31,9 +31,9 @@ if (!$user->id) {
                 <input type="checkbox" value="1" name="remember"> Recordar
             </div>
             <div class="forgot col-md-8">
-                <a href="<?=Url::site("login/recovery");?>">
+                <!--<a href="<?=Url::site("login/recovery");?>">
                     ¿has olvidado tu contraseña?
-                </a>
+                </a>-->
             </div>
             <div class="col-md-4 l-right">
                 <?=HTML::formButton("btn-tribo-blue", null, "Entra", array(
