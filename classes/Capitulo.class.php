@@ -611,9 +611,9 @@ class Capitulo extends Model
         //Has CDN Id
         if (isset($data["hasCdnId"]) && $data["hasCdnId"] != "-1") {
             if ($data["hasCdnId"]) {
-                $query .= " AND `cdnId` IS NOT NULL AND `cdnId` != '' ";
+                $query .= " AND (`cdnId` IS NOT NULL AND `cdnId` != '' AND `cdnId` != 0) ";
             } else {
-                $query .= " AND (`cdnId` IS NULL OR `cdnId` = '') ";
+                $query .= " AND (`cdnId` IS NULL OR `cdnId` = '' OR `cdnId` = 0) ";
             }
         }
         //Total

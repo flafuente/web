@@ -20,6 +20,15 @@ class Wistia
         return $json;
     }
 
+    public static function searchMedia($filename)
+    {
+        $url = "https://api.wistia.com/v1/medias.json?api_password=".self::$password."&name=".urlencode($filename)."&type=Video";
+        $result = self::curl($url);
+        $json = json_decode($result);
+
+        return $json;
+    }
+
     public static function delete($hash)
     {
         $url = "https://api.wistia.com/v1/medias/".$hash.".json?api_password=".self::$password;
