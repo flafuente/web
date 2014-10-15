@@ -12,7 +12,7 @@ class Location extends Model
      */
     public $id;
     /**
-     * Langauge Id
+     * Language Id
      * @var int
      */
     public $langId;

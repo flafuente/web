@@ -1,17 +1,17 @@
 <?php defined('_EXE') or die('Restricted access'); ?>
 
-<?php $meses = Array("1" => Langauge::translate("MESES_ENERO"),
-                  "2" => Langauge::translate("MESES_FEBRERO"),
-                  "3" => Langauge::translate("MESES_MARZO"),
-                  "4" => Langauge::translate("MESES_ABRIL"),
-                  "5" => Langauge::translate("MESES_MAYO"),
-                  "6" => Langauge::translate("MESES_JUNIO"),
-                  "7" => Langauge::translate("MESES_JULIO"),
-                  "8" => Langauge::translate("MESES_AGOSTO"),
-                  "9" => Langauge::translate("MESES_SEPTIEMBRE"),
-                  "10" => Langauge::translate("MESES_OCTUBRE"),
-                  "11" => Langauge::translate("MESES_NOVIEMBRE"),
-                  "12" => Langauge::translate("MESES_DICIEMBRE")); ?>
+<?php $meses = Array("1" => Language::translate("MESES_ENERO"),
+                  "2" => Language::translate("MESES_FEBRERO"),
+                  "3" => Language::translate("MESES_MARZO"),
+                  "4" => Language::translate("MESES_ABRIL"),
+                  "5" => Language::translate("MESES_MAYO"),
+                  "6" => Language::translate("MESES_JUNIO"),
+                  "7" => Language::translate("MESES_JULIO"),
+                  "8" => Language::translate("MESES_AGOSTO"),
+                  "9" => Language::translate("MESES_SEPTIEMBRE"),
+                  "10" => Language::translate("MESES_OCTUBRE"),
+                  "11" => Language::translate("MESES_NOVIEMBRE"),
+                  "12" => Language::translate("MESES_DICIEMBRE")); ?>
 
 <form class="form-horizontal" role="form" method="post" action="<?=Url::site("prensa");?>">
 
