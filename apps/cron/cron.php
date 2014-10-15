@@ -63,7 +63,7 @@ class cronController extends Controller
             echo " * ".$capitulo->titulo."<br>";
             //Check media status by cdnid
             $res = Wistia::status($capitulo->cdnId);
-            if (!$res->hashed_id) {
+            if (!$res->hashed_id || $res->project->name == 'Uploads360') {
                 echo " * * Error CDN<br>";
                 $capitulo->cndId = '';
                 //Try to search by houseNumber
