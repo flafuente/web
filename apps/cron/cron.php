@@ -60,33 +60,38 @@ class cronController extends Controller
         //Capitulos
         $capitulos = Capitulo::select(array('hasCdnId' => 1));
         foreach ($capitulos as $capitulo) {
-            echo " * ".$capitulo->titulo."\n";
+            echo " * ".$capitulo->titulo."<br>";
             //Check media status by cdnid
             $res = Wistia::status($capitulo->cdnId);
             if (!$res->hashed_id) {
-                echo " * * Error CDN\n";
+                echo " * * Error CDN<br>";
                 $capitulo->cndId = '';
                 //Try to search by houseNumber
                 $houseNumber = $capitulo->getHouseNumber();
                 if ($houseNumber) {
                     $res = Wistia::searchMedia($houseNumber.".mxf");
                     if (is_array($res)) {
-                        echo " * * CND vinculado!\n";
-                        $capitulo->cdnId = $res[0]->hashed_id;
-                        $capitulo->estadoId = 1;
-                        $capitulo->update();
+                        foreach ($res as $r) {
+                            if ($r->project->name != 'Uploads360') {
+                                $capitulo->cdnId = $r->hashed_id;
+                                $capitulo->estadoId = 1;
+                                $capitulo->update();
+                                echo " * * CND vinculado (".$capitulo->cdnId.")!<br>";
+                                break;
+                            }
+                        }
                         continue;
                     } else {
-                        echo " * * CDN no localizado\n";
+                        echo " * * CDN no localizado<br>";
                     }
                 } else {
-                    echo " * * Sin HouseNumber\n";
+                    echo " * * Sin HouseNumber<br>";
                 }
                 $capitulo->estadoId = 0;
                 $capitulo->update();
                 continue;
             } else {
-                echo " * * CDN Ok!\n";
+                echo " * * CDN Ok!<br>";
             }
         }
     }
