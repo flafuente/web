@@ -620,11 +620,16 @@ class Capitulo extends Model
         $total = count($db->Query($query, $params));
         if ($total) {
             //Order
-            if ($data['order'] && $data['orderDir']) {
-                //Secure Field
-                $orders = array("ASC", "DESC");
-                if (@in_array($data['order'], array_keys(get_class_vars(__CLASS__))) && in_array($data['orderDir'], $orders)) {
-                    $query .= " ORDER BY `".$data['order']."` ".$data['orderDir'];
+            if ($data['order']) {
+                //Temporadas
+                if ($data['order'] == 'temporadas') {
+                    $query .= " ORDER BY `temporada`, `episodio` ASC ";
+                } elseif ($data['orderDir']) {
+                    //Secure Field
+                    $orders = array("ASC", "DESC");
+                    if (@in_array($data['order'], array_keys(get_class_vars(__CLASS__))) && in_array($data['orderDir'], $orders)) {
+                        $query .= " ORDER BY `".$data['order']."` ".$data['orderDir'];
+                    }
                 }
             }
             //Limit

@@ -17,10 +17,9 @@
 <!-- Temporadas TAB -->
 <?php if (count($temporadas)) { ?>
 
-    <ul class="nav tabs nav-tabs" role="tablist">
+    <ul class="nav tabs nav-tabs" id="episodios" role="tablist">
         <?php foreach ($temporadas as $temporada=>$capitulos) { ?>
-            <?php $active = $active ? "" : "active"; ?>
-            <li class="<?=$active?>">
+            <li>
                 <a href="#temporada<?=$temporada?>" role="tab" data-toggle="tab">
                     Temporada <?=$temporada?>
                 </a>
@@ -32,8 +31,7 @@
 
     <div class="tab-content">
         <?php foreach ($temporadas as $temporada=>$capitulos) { ?>
-            <?php $active = $active ? "" : "active"; ?>
-            <div class="tab-pane <?=$active?>" id="temporada<?=$temporada?>">
+            <div class="tab-pane" id="temporada<?=$temporada?>">
                 <!-- Cápítulos -->
                 <?php if (count($capitulos)) { ?>
                     <?php foreach ($capitulos as $capitulo) { ?>
@@ -45,3 +43,9 @@
         <?php } ?>
     </div>
 <?php } ?>
+
+<script>
+    $(function () {
+        $('#episodios a:first').tab('show');
+    });
+</script>
