@@ -44,59 +44,11 @@ class cronController extends Controller
     public function importParrilla()
     {
         $config = Registry::getConfig();
-        $fecha = date("Y-m-d", strtotime("yesterday"));
+        $fecha = date("Y-m-d");
         $result = curl($config->get("parrillasUrl")."/external/parrilla/", array("fecha" => $fecha));
         $json = json_decode($result);
         if (is_object($json)) {
             Evento::importar($json->data->eventos, $fecha);
-        }
-    }
-
-    public function fixMedias()
-    {
-        //Wistia init
-        Wistia::init();
-
-        //Capitulos
-        $capitulos = Capitulo::select();
-        foreach ($capitulos as $capitulo) {
-            echo " * ".$capitulo->titulo."<br>";
-            //Check media status by cdnid
-            if ($capitulo->cdnId) {
-                $res = Wistia::status($capitulo->cdnId);
-            } else {
-                $res = null;
-            }
-            if (!$res->hashed_id || $res->project->name == 'Uploads360') {
-                echo " * * Error CDN<br>";
-                $capitulo->cndId = '';
-                //Try to search by houseNumber
-                $houseNumber = $capitulo->getHouseNumber();
-                if ($houseNumber) {
-                    $res = Wistia::searchMedia($houseNumber.".mxf");
-                    if (is_array($res)) {
-                        foreach ($res as $r) {
-                            if ($r->project->name != 'Uploads360') {
-                                $capitulo->cdnId = $r->hashed_id;
-                                $capitulo->estadoId = 1;
-                                $capitulo->update();
-                                echo " * * CND vinculado (".$capitulo->cdnId.")!<br>";
-                                break;
-                            }
-                        }
-                        continue;
-                    } else {
-                        echo " * * CDN no localizado<br>";
-                    }
-                } else {
-                    echo " * * Sin HouseNumber<br>";
-                }
-                $capitulo->estadoId = 0;
-                $capitulo->update();
-                continue;
-            } else {
-                echo " * * CDN Ok!<br>";
-            }
         }
     }
 }
