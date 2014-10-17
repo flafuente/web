@@ -3,7 +3,6 @@
 <div class='col-md-12 serie_info'>
     <div class="col-md-12 video">
         <div id="player">
-            <script id="overon_main_script" type="text/javascript" src="http://overonocc.cdn.customers.overon.es/player/environment.js"></script>
             <div id='video_player'></div>
         </div>
         <div id="non-playable" style="display: none;">
@@ -74,7 +73,9 @@
             width: wdt,
             height: hgt,
             container: 'video_player',
-            stream: 'http://overon-apple-live.adaptive.level3.net/apple/overon/channel06/index.m3u8'
+            stream: 'http://tribotv-ch01-live-cdn1-hls.streaming.overon.es/tribotv/channel01/tribotv/tribotv.m3u8'
         });
     }
 </script>
+
+<script id="overon_main_script" type="text/javascript" src="<?=Url::template('/js/player.js');?>"></script>
