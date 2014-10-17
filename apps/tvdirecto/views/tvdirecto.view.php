@@ -1,5 +1,7 @@
 <?php defined('_EXE') or die('Restricted access'); ?>
 
+<script type="text/javascript" src="<?=Url::template('/js/player.js');?>"></script>
+
 <div class='col-md-12 serie_info'>
     <div class="col-md-12 video">
         <div id="player">
@@ -77,5 +79,3 @@
         });
     }
 </script>
-
-<script id="overon_main_script" type="text/javascript" src="<?=Url::template('/js/player.js');?>"></script>
