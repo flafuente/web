@@ -39,7 +39,7 @@
         <ul class="submenu" style="display: none;">
             <div class="triangle"></div>
                 <li class="col-md-6" style="padding: 0px; margin: 0px;">
-                    <a href="<?=Url::site("pressroom/menciones");?>">
+                    <a href="<?=Url::site("menciones");?>">
                         <div id="press_0" class="imgmenu"></div>
                     </a>
                 </li>
@@ -50,7 +50,7 @@
                 </style>
 
                 <li class="col-md-6" style="padding: 0px; margin: 0px;">
-                    <a href="<?=Url::site("pressroom/comunicados");?>">
+                    <a href="<?=Url::site("prensa");?>">
                         <div id="press_1" class="imgmenu"></div>
                     </a>
                 </li>
