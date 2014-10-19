@@ -34,6 +34,35 @@
       <li>
         <a href="<?=Url::site("tvdirecto");?>">TV EN DIRECTO</a>
       </li>
+      <li class="withsub" style="display: none;">
+        <a href="#">PRESS ROOM</a>
+        <ul class="submenu" style="display: none;">
+            <div class="triangle"></div>
+                <li class="col-md-6" style="padding: 0px; margin: 0px;">
+                    <a href="<?=Url::site("pressroom/menciones");?>">
+                        <div id="press_0" class="imgmenu"></div>
+                    </a>
+                </li>
+                <style>
+                    #press_0{
+                      background-image: url("<?=Url::template("img/home/menciones.jpg", "tribo")?>");
+                    }
+                </style>
+
+                <li class="col-md-6" style="padding: 0px; margin: 0px;">
+                    <a href="<?=Url::site("pressroom/comunicados");?>">
+                        <div id="press_1" class="imgmenu"></div>
+                    </a>
+                </li>
+                <style>
+                    #press_1{
+                      background-image: url("<?=Url::template("img/home/comunicados.jpg", "tribo")?>");
+                    }
+                </style>
+
+
+        </ul>
+      </li>
       <li><a href="<?=Url::site("creadores");?>">CREADORES</a></li>
       <li><a href="<?=Url::site("quienessomos");?>">QUIÉNES SOMOS</a></li>
     </ul>
