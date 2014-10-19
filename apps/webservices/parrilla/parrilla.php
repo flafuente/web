@@ -8,15 +8,7 @@ class parrillaController extends Controller
     /**
      * Init
      */
-    public function init()
-    {
-        //User logged?
-        $user = WS::getUser();
-        if (!$user->id) {
-            WS::setCode(1003);
-            WS::output();
-        }
-    }
+    public function init() {}
 
     /**
      * Default
