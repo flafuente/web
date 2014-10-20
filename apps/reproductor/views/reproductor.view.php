@@ -5,6 +5,26 @@
     <!-- Player -->
     <div class="col-md-12 video">
         <?php HTML::wistiaPlayer($capitulo->cdnId); ?>
+
+        <?php if ($_REQUEST['vast']) { ?>
+            <script src="<?=Url::template('js/vast/VASTPlugin.js')?>"></script>
+            <script>
+            //Ad implementation
+            var vastTag;
+            if (!isMobile.any()) {
+                vastTag = "http://shadowcdn-01.yumenetworks.com/ym/1B3uA91O2152/1349/HifvrHol/vpaid_as3.xml";
+            } else {
+                vastTag = "http://ad3.liverail.com/?LR_PUBLISHER_ID=1331&LR_CAMPAIGN_ID=229&LR_SCHEMA=vast2";
+            }
+            var myAdPlugin = new VASTPlugin(
+                wistiaEmbed, //wistiaEmbed Api
+                "<?=$capitulo->cdnId;?>", // wistia ID
+                "myAdPlugin", // Ad plugin Api
+                escape(vastTag), // ad vast/vpaid tag
+                "./"
+            ); // library path
+            </script>
+        <?php } ?>
     </div>
 
     <!-- Info -->
