@@ -1,6 +1,6 @@
 <?php defined('_EXE') or die('Restricted access'); ?>
 
-<?php $limit = 4; ?>
+<?php $limit = 8; ?>
 
 <div class='title-line'>
     <span><?=$seccion->nombre; ?></span>
