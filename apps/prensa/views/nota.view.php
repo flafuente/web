@@ -15,8 +15,8 @@
             </div>
             <div class="col-md-8">
                 <h2><?= $nota->fecha; ?></h2>
-                <h1><?= $nota->titulo; ?></h1>
-                <h3><?= $nota->descripcion; ?></h3>
+                <h1><?= Location::translate($nota, 'titulo'); ?></h1>
+                <h3><?= Location::translate($nota, 'descripcion'); ?></h3>
             </div>
         </div>
         <div style="clear: both;"></div>

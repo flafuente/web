@@ -13,7 +13,7 @@
                     </span>
                     -->
                     <h3>
-                        <?=Helper::sanitize($programa->titulo); ?>
+                        <?=Helper::sanitize(Location::translate($programa, 'titulo')); ?>
                     </h3>
                 </div>
             </a>
@@ -42,12 +42,14 @@
     <!-- /Capítulos -->
 
 <?php } else { ?>
-    <span class="notfound">No se han encontrado resultados.</span>
+    <span class="notfound">
+        <?=Language::translate('GENERAL_NORESULTS');?>
+    </span>
 <?php } ?>
 
 <script>
-    //$(window).load(function(){
-    $( document ).ready(function() {
+    //$(window).load(function () {
+    $( document ).ready(function () {
         $("#searchResults").mCustomScrollbar({
             scrollButtons:{
                 enable:true

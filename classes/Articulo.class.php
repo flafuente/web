@@ -33,6 +33,18 @@ class Articulo extends Model
     public $dateUpdate;
 
     /**
+     * Textos traducibles
+     * @var array
+     */
+    public $locations = array("texto|textarea");
+
+    /**
+     * Variables reservadas (no están en la base de datos)
+     * @var array
+     */
+    public static $reservedVarsChild = array("locations");
+
+    /**
      * Init.
      * @return void
      */

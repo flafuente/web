@@ -69,10 +69,16 @@ class Seccion extends Model
     public $path = "/files/images/secciones/";
 
     /**
+     * Textos traducibles
+     * @var array
+     */
+    public $locations = array("nombre");
+
+    /**
      * Variables reservadas (no están en la base de datos)
      * @var array
      */
-    public static $reservedVarsChild = array("path");
+    public static $reservedVarsChild = array("path", "locations");
 
     /**
      * Init.

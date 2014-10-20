@@ -51,11 +51,24 @@ class Location extends Model
         1 => "en_GB",
     );
 
+    public static $items = array(
+        'articulo'  => "Artículo",
+        'capitulo'  => "Capítulo",
+        'categoria' => "Categoría",
+        'mencion'   => "Mención",
+        'nota'      => "Nota",
+        'programa'  => "Programa",
+        'seccion'   => "Sección",
+        'slide'     => "Slide",
+        'tag'       => "Tag",
+        'video'     => "Video",
+    );
+
     /**
      * Variables reservadas (no están en la base de datos)
      * @var array
      */
-    public static $reservedVarsChild = array("languages");
+    public static $reservedVarsChild = array("languages", "items");
 
     /**
      * Init.
@@ -67,6 +80,62 @@ class Location extends Model
         parent::$dbTable = "locations";
         //Variables reservadas
         parent::$reservedVarsChild = self::$reservedVarsChild;
+    }
+
+    public function save($langId, $item, $itemId, $field, $value)
+    {
+        $location = self::getLocation($item, $itemId, $field, $langId);
+        if ($location->id) {
+            $location->location = $value;
+
+            return $location->update();
+        } else {
+            $location = new Location();
+            $location->langId = $langId;
+            $location->item = $item;
+            $location->itemId = $itemId;
+            $location->field = $field;
+            $location->location = $value;
+
+            return $location->insert();
+        }
+    }
+
+    public function getItemString()
+    {
+        return Location::$items[$this->item];
+    }
+
+    public function getLangString()
+    {
+        return Location::$languages[$this->langId];
+    }
+
+    public function getItemFields($item)
+    {
+        $fields = $item->locations;
+        if (count($fields)) {
+            $return = array();
+            foreach ($fields as $field) {
+                $tmp = explode("|", $field);
+                $value = $item->$tmp[0];
+                if ($value == null) {
+                    $value = '';
+                }
+                $return[$tmp[0]] = array("value" => $value, "input" => $tmp[1]);
+            }
+
+            return $return;
+        }
+    }
+
+    public function itemToString($item)
+    {
+        if (isset($item->nombre)) {
+            return $item->nombre;
+        } elseif (isset($item->titulo)) {
+            return $item->titulo;
+        }
     }
 
     public static function translate($object, $field, $lang = null)
@@ -161,6 +230,8 @@ class Location extends Model
                     $query .= " ORDER BY `".$data['order']."` ".$data['orderDir'];
                 }
             }
+            //Group
+            $query .= " GROUP BY `langId`,`item`,`itemId` ";
             //Limit
             if ($limit) {
                 $query .= " LIMIT ".(int) $limitStart.", ".(int) $limit;
@@ -174,5 +245,20 @@ class Location extends Model
                 return $results;
             }
         }
+    }
+
+    public function delete($langId, $item, $itemId)
+    {
+        $db = Registry::getDb();
+        //Query
+        $query = "DELETE FROM `locations` WHERE `item` = :item AND `itemId` = :itemid AND `langId` = :langId";
+        $params = array(
+            ":item" => strtolower($item),
+            ":itemid" => $itemId,
+            ":langId" => $langId,
+        );
+        $db->query($query, $params);
+
+        return true;
     }
 }

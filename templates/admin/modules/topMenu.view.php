@@ -112,6 +112,14 @@
                     </a>
                 </li>
             <?php } ?>
+            <?php if ($user->checkPermisos("traducciones")) { ?>
+                <li class="<?=$active['admin']['traducciones']?>">
+                    <a href="<?=Url::site("admin/traducciones")?>">
+                        <span class="glyphicon glyphicon-globe"></span>
+                        Traducciones
+                    </a>
+                </li>
+            <?php } ?>
         </ul>
         <ul class="nav navbar-nav navbar-right" style="margin-right: 20px">
             <li>

@@ -121,10 +121,16 @@ class Capitulo extends Model
     public $path = "/files/images/capitulos/";
 
     /**
+     * Textos traducibles
+     * @var array
+     */
+    public $locations = array("titulo", "descripcion");
+
+    /**
      * Variables reservadas (no están en la base de datos)
      * @var array
      */
-    public static $reservedVarsChild = array("estados", "estadosCss", "path");
+    public static $reservedVarsChild = array("estados", "estadosCss", "path", "locations");
 
     /**
      * Init.
@@ -321,7 +327,7 @@ class Capitulo extends Model
      */
     public function getFullTitulo()
     {
-        return $this->getNumero()." - ".$this->titulo;
+        return $this->getNumero()." - ".Location::translate($this, 'titulo');
     }
 
     /**
@@ -336,7 +342,7 @@ class Capitulo extends Model
             $programa = new Programa($this->programaId);
         }
 
-        return $programa->titulo." - ".$this->getNumero();
+        return Location::translate($programa, 'titulo')." - ".$this->getNumero();
     }
 
     /**

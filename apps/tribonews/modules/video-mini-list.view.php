@@ -6,7 +6,7 @@
 
         <!-- Título -->
         <a href="<?=Url::site("tribonews/video/".$video->id);?>">
-            <img src="<?=$video->getThumbnailUrl();?>" title="<?php echo Helper::sanitize($video->titulo); ?>" />
+            <img src="<?=$video->getThumbnailUrl();?>" title="<?php echo Helper::sanitize(Location::translate($video, 'titulo')); ?>" />
         </a>
 
         <img class="arrow" src="<?=Url::template("img/arrow.png")?>" />
@@ -21,7 +21,7 @@
             <!-- Título completo -->
             <div class="sq_title">
                 <a href="<?=Url::site("tribonews/video/".$video->id);?>">
-                    <?=Helper::sanitize($video->titulo); ?>
+                    <?=Helper::sanitize(Location::translate($video, 'titulo')); ?>
                 </a>
             </div>
 
@@ -46,18 +46,18 @@
 
         <!-- Título completo -->
         <a href="<?=Url::site("tribonews/video/".$video->id);?>">
-            <?=Helper::sanitize($video->titulo); ?>
+            <?=Helper::sanitize(Location::translate($video, 'titulo')); ?>
         </a>
         <br /><br />
 
         <!-- Descripción -->
         <div class="sqd_description">
-            <?=Helper::sanitize($video->descripcion); ?>
+            <?=Helper::sanitize(Location::translate($video, 'descripcion')); ?>
         </div>
 
         <!-- Info -->
         <span class="sqd_info">
-            <?=Helper::sanitize($video->titulo); ?>
+            <?=Helper::sanitize(Location::translate($video, 'titulo')); ?>
         </span>
 
     </div>

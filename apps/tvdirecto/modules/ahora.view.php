@@ -12,7 +12,7 @@ if ($capitulo->programaId) {
 <div class="video-info">
 
     <div class="col-md-12 vd-ruta">
-        <?php echo $programa->id ? Helper::sanitize($programa->titulo) : Language::translate("VIEW_TVDIRECTO_TRIBODIRECTO"); ?>
+        <?php echo $programa->id ? Helper::sanitize(Location::translate($programa, 'titulo')) : Language::translate("VIEW_TVDIRECTO_TRIBODIRECTO"); ?>
     </div>
 
     <div class="col-md-8">
@@ -45,9 +45,9 @@ if ($capitulo->programaId) {
     <div class="col-md-12 video-desc">
         <?php if ($capitulo->id) { ?>
             <?php if ($capitulo->descripcion) { ?>
-                    <?=Helper::sanitize($capitulo->descripcion);?>
+                    <?=Helper::sanitize(Location::translate($capitulo, 'descripcion'));?>
                 <?php } else { ?>
-                    <?=Helper::sanitize($programa->descripcion);?>
+                    <?=Helper::sanitize(Location::translate($programa, 'descripcion'));?>
                 <?php } ?>
         <?php } else { ?>
             <?=Language::translate("VIEW_TVDIRECTO_EMISION_DIRECTO")?>

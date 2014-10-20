@@ -54,10 +54,16 @@ class Slide extends Model
     public $path = "/files/images/slideshow/";
 
     /**
+     * Textos traducibles
+     * @var array
+     */
+    public $locations = array("nombre", "imagen|file");
+
+    /**
      * Variables reservadas (no están en la base de datos)
      * @var array
      */
-    public static $reservedVarsChild = array("path");
+    public static $reservedVarsChild = array("path", "locations");
 
     /**
      * Init.

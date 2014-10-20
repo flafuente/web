@@ -126,10 +126,16 @@ class Programa extends Model
     public $path = "/files/images/programas/";
 
     /**
+     * Textos traducibles
+     * @var array
+     */
+    public $locations = array("titulo", "subtitulo", "descripcion|textarea");
+
+    /**
      * Variables reservadas (no están en la base de datos)
      * @var array
      */
-    public static $reservedVarsChild = array("estados", "estadosCss", "path");
+    public static $reservedVarsChild = array("estados", "estadosCss", "path", "locations");
 
     /**
      * Init.

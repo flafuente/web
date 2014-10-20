@@ -6,7 +6,7 @@
         <img class="arrow" src="<?=Url::template("img/arrow.png")?>" />
         <div class="sq_content">
             <div class="sq_title">
-                <?php echo Helper::sanitize($video->titulo); ?>
+                <?php echo Helper::sanitize(Location::translate($video, 'titulo')); ?>
             </div>
         </div>
     </a>

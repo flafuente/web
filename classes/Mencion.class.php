@@ -91,10 +91,16 @@ class Mencion extends Model
     public $pathImagenes = "/files/images/menciones/";
 
     /**
+     * Textos traducibles
+     * @var array
+     */
+    public $locations = array("titulo", "descripcion|textarea");
+
+    /**
      * Variables reservadas (no están en la base de datos)
      * @var array
      */
-    public static $reservedVarsChild = array("estados", "estadosCss", "pathImagenes");
+    public static $reservedVarsChild = array("estados", "estadosCss", "pathImagenes", "locations");
 
     /**
      * Class initialization
