@@ -27,7 +27,7 @@
                             <?php foreach ($notasFecha as $mes => $totalNotas) { ?>
                                 <option value="<?=$mes?>" <?=$s[$mes]?>>
                                     <?php $tmp = explode("-", $mes); ?>
-                                    <?=$meses[$tmp[1]-1];?> <?=$tmp[0];?> (<?=count($totalNotas)?>)
+                                    <?=$meses[$tmp[1]-1];?> <?=$tmp[0];?> (<?=(int) $totalNotas?>)
                                 </option>
                             <?php } ?>
                         </select>
