@@ -9,7 +9,7 @@
     <div class="video-info">
 
         <?php $articulo = new Articulo(3); ?>
-        <?php echo $articulo->texto; ?>
+        <?php echo Location::translate($articulo, 'texto'); ?>
 
         <div style="clear: both;"></div>
 

@@ -3,7 +3,9 @@
 <?php $limit = 8; ?>
 
 <div class='title-line'>
-    <span><?=$seccion->nombre; ?></span>
+    <span>
+        <?=Location::translate($seccion, 'nombre');?>
+    </span>
 </div>
 
 <div class="programas">
@@ -18,13 +20,13 @@
             <a href="<?=Url::site("programas/ver/".$programa->slug);?>" class="<?=$class;?>">
                 <div class='col-md-6 square'>
                     <!-- Imágen -->
-                    <img src="<?=$programa->getThumbnailUrl()?>" title="<?=$programa->titulo; ?>" />
+                    <img src="<?=$programa->getThumbnailUrl()?>" title="<?=Location::translate($programa, 'titulo'); ?>" />
                     <!-- Subtítulo -->
                     <?php if ($programa->subtitulo) { ?>
                         <img class="arrow" src="<?=Url::template("img/arrow.png")?>" />
                         <div class="sq_content">
                             <div class="sq_title">
-                                <?=$programa->subtitulo; ?>
+                                <?=Location::translate($programa, 'subtitulo')?>
                             </div>
                         </div>
                     <?php } ?>
@@ -36,7 +38,7 @@
         <!-- Paginación -->
         <?php if ($i>=$limit) { ?>
             <div class="col-md-offset-6 col-md-6 ver-todas-web">
-                Ver más&nbsp;&nbsp;<div class="circulo-azul more">+</div>
+                <?=Language::translate('VIEW_PROGRAMAS_VER_MAS');?>&nbsp;&nbsp;<div class="circulo-azul more">+</div>
             </div>
         <?php } ?>
 

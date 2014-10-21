@@ -4,14 +4,16 @@
     <?php foreach ($programas as $programa) { ?>
         <div class='col-md-6 square'>
             <a href="<?=Url::site("/programas/ver/".$programa->slug);?>">
-                <img src="<?=$programa->getThumbnailUrl()?>" title="<?=$programa->titulo;?>" />
+                <img src="<?=$programa->getThumbnailUrl()?>" title="<?=Location::translate($programa, 'titulo');?>" />
             </a>
-             <img class="arrow" src="<?=Url::template("img/arrow.png")?>" />
-            <div class="rating"><?=HTML::showRate($programa->likes, $programa->visitas);?></div>
+            <img class="arrow" src="<?=Url::template("img/arrow.png")?>" />
+            <div class="rating">
+                <?=HTML::showRate($programa->likes, $programa->visitas);?>
+            </div>
             <div class="sq_content">
                 <div class="sq_title">
                     <a href="<?=Url::site("/programas/ver/".$programa->slug);?>">
-                        <?=$programa->titulo;?>
+                        <?=Location::translate($programa, 'titulo');?>
                     </a>
                 </div>
                 <div class="sq_num">

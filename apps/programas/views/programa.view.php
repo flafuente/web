@@ -2,14 +2,14 @@
 
 <div class='col-md-12 serie_info'>
     <div class="serie_title">
-        <?=Helper::sanitize($programa->titulo);?>
+        <?=Helper::sanitize(Location::translate($programa, 'titulo'));?>
     </div>
     <div class="serie_when">
-        <?=Helper::sanitize($programa->subtitulo);?>
+        <?=Helper::sanitize(Location::translate($programa, 'subtitulo'));?>
     </div>
     <br />
     <div class="serie_description">
-        <?=Helper::sanitize($programa->descripcion);?>
+        <?=Helper::sanitize(Location::translate($programa, 'descripcion'));?>
     </div>
     <div style="clear: both;"></div>
 </div>
@@ -21,7 +21,7 @@
         <?php foreach ($temporadas as $temporada=>$capitulos) { ?>
             <li>
                 <a href="#temporada<?=$temporada?>" role="tab" data-toggle="tab">
-                    Temporada <?=$temporada?>
+                    <?=Language::translate('VIEW_PROGRAMAS_TEMPORADA');?> <?=$temporada?>
                 </a>
             </li>
         <?php } ?>

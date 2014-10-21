@@ -153,6 +153,7 @@ class User extends Model
         "articulos"     => "Artículos",
         "notas"         => "Notas",
         "menciones"     => "Menciones",
+        "traducciones"  => "Traducciones",
     );
 
     /**

@@ -3,7 +3,7 @@
 <?php $config = Registry::getConfig(); ?>
 <?php $user = Registry::getUser(); ?>
 
-<div class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+<div class="navbar navbar-default navbar-inverse" role="navigation">
     <div class="navbar-inner">
         <ul class="nav navbar-nav">
             <?php $url = Registry::getUrl(); ?>
@@ -109,6 +109,14 @@
                     <a href="<?=Url::site("admin/menciones")?>">
                         <span class="glyphicon glyphicon-comment"></span>
                         Menciones
+                    </a>
+                </li>
+            <?php } ?>
+            <?php if ($user->checkPermisos("traducciones")) { ?>
+                <li class="<?=$active['admin']['traducciones']?>">
+                    <a href="<?=Url::site("admin/traducciones")?>">
+                        <span class="glyphicon glyphicon-globe"></span>
+                        Traducciones
                     </a>
                 </li>
             <?php } ?>

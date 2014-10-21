@@ -59,7 +59,7 @@
 
         <!-- Descripción -->
         <div class="sqd_description sm">
-            <?=Helper::sanitize($capitulo->descripcion); ?>
+            <?=Helper::sanitize(Location::translate($capitulo, 'descripcion')); ?>
         </div>
 
         <!-- Info -->
@@ -69,7 +69,7 @@
                 <?=Helper::sanitize($capitulo->duracion);?> |
             <?php  } ?>
             <!-- Título -->
-            <?=Helper::sanitize($capitulo->titulo); ?>
+            <?=Helper::sanitize(Location::translate($capitulo, 'titulo')); ?>
         </span>
 
     </div>

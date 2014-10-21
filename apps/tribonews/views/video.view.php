@@ -15,14 +15,14 @@
             Tribo News -
             <?php $categoria = new Categoria($video->categoriaId); ?>
             <a href="<?=Url::site("tribonews/categoria/".$categoria->slug);?>">
-                <?=Helper::sanitize($categoria->nombre);?>
+                <?=Helper::sanitize(Location::translate($categoria, 'nombre'));?>
             </a>
         </div>
 
         <!-- Capítulo -->
         <div class="col-md-8">
             <div class="vd-capitulo">
-                <?=Helper::sanitize($video->titulo);?>
+                <?=Helper::sanitize(Location::translate($video, 'titulo'));?>
             </div>
             <div style="clear: both;"></div>
             <div class="vd-capituloInfo">
@@ -36,7 +36,9 @@
                     por <strong><?=Helper::sanitize($autor->getFullName());?></strong> |
                 <?php } ?>
 
-                <span><?=date("d/m/Y", strtotime($video->getFecha()));?></span> a las <strong><?=date("H:i", strtotime($video->dateInsert));?></strong>
+                <span><?=date("d/m/Y", strtotime($video->getFecha()));?></span>
+                <?=Language::translate('VIEW_TRIBONEWS_VIDEO_A_LAS');?>
+                <strong><?=date("H:i", strtotime($video->dateInsert));?></strong>
 
             </div>
         </div>
@@ -56,7 +58,7 @@
 
                 <!-- Plays -->
                 <span>
-                    <?=(int) $video->visitas;?> reproducciones
+                    <?=(int) $video->visitas;?> <?=Language::translate('VIEW_TRIBONEWS_VIDEO_REPRODUCCIONES');?>
                 </span>
 
                 <!-- Social -->
@@ -74,7 +76,7 @@
 
         <!-- Descripción -->
         <div class="col-md-12 video-desc">
-            <?=Helper::sanitize($video->descripcion);?>
+            <?=Helper::sanitize(Location::translate($video, 'descripcion'));?>
         </div>
         <div style="clear: both;"></div>
     </div>

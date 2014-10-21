@@ -33,7 +33,7 @@
         <!-- Breadcrumb -->
         <div class="col-md-12 vd-ruta">
             <a href="<?=Url::site('programas/ver/'.$programa->slug);?>">
-                <?=Helper::sanitize($programa->titulo);?>
+                <?=Helper::sanitize(Location::translate($programa, 'titulo'));?>
             </a>
              /
             <?=Language::translate("VIEW_REPRODUCTOR_CAPITULOS")?>
@@ -45,7 +45,7 @@
                 <?=$capitulo->getNumero();?> |
             </div>
             <div class="vd-capitulo">
-                <?=Helper::sanitize($capitulo->titulo);?>
+                <?=Helper::sanitize(Location::translate($capitulo, 'titulo'));?>
             </div>
         </div>
 
@@ -88,13 +88,13 @@
                 <?php  } ?>
             </div>
             <div class="vd-temporada">
-                TEMPORADA <?=$capitulo->temporada;?>
+                <?=Language::translate('VIEW_PROGRAMAS_TEMPORADA');?> <?=$capitulo->temporada;?>
             </div>
         </div>
 
         <!-- Descripción -->
         <div class="col-md-12 video-desc">
-            <?=Helper::sanitize($capitulo->descripcion);?>
+            <?=Helper::sanitize(Location::translate($capitulo, 'descripcion'));?>
         </div>
 
         <div style="clear: both;"></div>

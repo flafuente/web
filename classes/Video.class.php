@@ -140,11 +140,18 @@ class Video extends Model
         3 => "Finalizada",
         4 => "Error",
     );
+
+    /**
+     * Textos traducibles
+     * @var array
+     */
+    public $locations = array("titulo", "descripcion|textarea");
+
     /**
      * Variables reservadas (no están en la base de datos)
      * @var array
      */
-    public static $reservedVarsChild = array("estados", "estadosCss", "estadosCdn");
+    public static $reservedVarsChild = array("estados", "estadosCss", "estadosCdn", "locations");
 
     /**
      * Init.

@@ -25,11 +25,11 @@
             <div class="col-md-<?=$span;?> prensa_descripcion">
                 <h1>
                     <a href="<?=Url::site("prensa/nota/".$nota->id);?>">
-                        <?= $nota->titulo; ?>
+                        <?= Location::translate($nota, 'titulo'); ?>
                     </a>
                 </h1>
                 <h2>
-                    <?= $nota->descripcion; ?>
+                    <?= Location::translate($nota, 'descripcion'); ?>
                 </h2>
             </div>
         </div>

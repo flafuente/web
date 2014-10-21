@@ -16,11 +16,11 @@
     <div class="col-md-<?=$span;?> prensa_descripcion">
         <h1>
             <a href="<?=$mencion->getLink();?>" target="_blank">
-                <?= $mencion->titulo; ?>
+                <?= Location::translate($mencion, 'titulo'); ?>
             </a>
         </h1>
         <h2>
-            <?= $mencion->descripcion; ?>
+            <?= Location::translate($mencion, 'descripcion'); ?>
         </h2>
     </div>
 </div>

@@ -91,6 +91,12 @@ class Nota extends Model
     );
 
     /**
+     * Textos traducibles
+     * @var array
+     */
+    public $locations = array("titulo", "descripcion|textarea");
+
+    /**
      * Ruta de las imágenes
      * @var string
      */
@@ -106,7 +112,7 @@ class Nota extends Model
      * Variables reservadas (no están en la base de datos)
      * @var array
      */
-    public static $reservedVarsChild = array("estados", "estadosCss", "pathImagenes", "pathArchivos");
+    public static $reservedVarsChild = array("estados", "estadosCss", "pathImagenes", "pathArchivos", "locations");
 
     /**
      * Class initialization

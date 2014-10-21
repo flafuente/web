@@ -28,6 +28,18 @@ class Tag extends Model
     public $dateUpdate;
 
     /**
+     * Textos traducibles
+     * @var array
+     */
+    public $locations = array("nombre");
+
+    /**
+     * Variables reservadas (no están en la base de datos)
+     * @var array
+     */
+    public static $reservedVarsChild = array("locations");
+
+    /**
      * Init.
      * @return void
      */

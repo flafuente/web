@@ -8,7 +8,7 @@
         <?php $active[$url->app][$url->action] = "active"; ?>
 
       <li class="withsub">
-        <a href="#">PROGRAMAS</a>
+        <a href="#"><?=Language::translate('MENU_PROGRAMAS');?></a>
         <?php $secciones = Seccion::select(array("visible" => true, "order" => "orden")); ?>
         <?php if (count($secciones)) { ?>
             <ul class="submenu" style="display: none;">
@@ -29,10 +29,10 @@
         <?php } ?>
       </li>
       <li class="withsub">
-        <a href="<?=Url::site("tribonews");?>">TRIBO NEWS</a>
+        <a href="<?=Url::site("tribonews");?>"><?=Language::translate('MENU_TRIBONEWS');?></a>
       </li>
       <li>
-        <a href="<?=Url::site("tvdirecto");?>">TV EN DIRECTO</a>
+        <a href="<?=Url::site("tvdirecto");?>"><?=Language::translate('MENU_TVDIRECTO');?></a>
       </li>
       <li class="withsub" style="display: none;">
         <a href="#">PRESS ROOM</a>
@@ -60,11 +60,10 @@
                     }
                 </style>
 
-
         </ul>
       </li>
-      <li><a href="<?=Url::site("creadores");?>">CREADORES</a></li>
-      <li><a href="<?=Url::site("quienessomos");?>">QUIÉNES SOMOS</a></li>
+      <li><a href="<?=Url::site("creadores");?>"><?=Language::translate('MENU_CREADORES');?></a></li>
+      <li><a href="<?=Url::site("quienessomos");?>"><?=Language::translate('MENU_QUIENESSOMOS');?></a></li>
     </ul>
 </div>
 <!-- END NORMAL MENU -->
@@ -73,7 +72,7 @@
   <div class="list-group panel">
     <a href="#demo3" class="list-group-item list-group-item-success trblue" data-toggle="collapse" data-parent="#MainMenu">Menu</a>
     <div class="collapse" id="demo3">
-      <a href="#SubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubMenu1">PROGRAMAS<?php if(count($secciones)) echo '<i class="fa fa-caret-down"></i>'; ?></a>
+      <a href="#SubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubMenu1"><?=Language::translate('MENU_PROGRAMAS');?><?php if(count($secciones)) echo '<i class="fa fa-caret-down"></i>'; ?></a>
       <?php if (count($secciones)) { ?>
             <div class="collapse list-group-submenu" id="SubMenu1">
                 <?php $x=0; foreach ($secciones as $seccion) { $x = $x+1; ?>
@@ -86,10 +85,10 @@
                 <?php } ?>
             </div>
         <?php } ?>
-      <a href="<?=Url::site("tribonews");?>" class="list-group-item">TRIBO NEWS</a>
-      <a href="<?=Url::site("tvdirecto");?>" class="list-group-item">TV EN DIRECTO</a>
-      <a href="<?=Url::site("creadores");?>" class="list-group-item">CREADORES</a>
-      <a href="<?=Url::site("quienessomos");?>" class="list-group-item">QUIÉNES SOMOS</a>
+      <a href="<?=Url::site("tribonews");?>" class="list-group-item"><?=Language::translate('MENU_TRIBONEWS');?></a>
+      <a href="<?=Url::site("tvdirecto");?>" class="list-group-item"><?=Language::translate('MENU_TVDIRECTO');?></a>
+      <a href="<?=Url::site("creadores");?>" class="list-group-item"><?=Language::translate('MENU_CREADORES');?></a>
+      <a href="<?=Url::site("quienessomos");?>" class="list-group-item"><?=Language::translate('MENU_QUIENESSOMOS');?></a>
     </div>
   </div>
 </div>
@@ -112,7 +111,7 @@
 
 <!-- Sintonizanos -->
 <div class='col-md-12' style='padding-left: 0px; padding-right: 0px;'>
-    <a href="<?=Url::site("sintonizanos");?>" class="btn sintonizanos"><img src="<?=Url::template("img/weirdicon.png")?>" />&nbsp;&nbsp;SINTONÍZANOS</a>
+    <a href="<?=Url::site("sintonizanos");?>" class="btn sintonizanos"><img src="<?=Url::template("img/weirdicon.png")?>" />&nbsp;&nbsp;<?=Language::translate('MENU_SINTONIZANOS');?></a>
 </div>
 <div class='col-md-12' style='padding-left: 0px; padding-right: 0px;'>
     <a href="<?=Url::site("tribonews#haztetriber");?>" class="btn sintonizanos betriber">be triber</a>
