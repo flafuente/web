@@ -3,7 +3,7 @@
 <?php $config = Registry::getConfig(); ?>
 <?php $user = Registry::getUser(); ?>
 
-<div class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+<div class="navbar navbar-default navbar-inverse" role="navigation">
     <div class="navbar-inner">
         <ul class="nav navbar-nav">
             <?php $url = Registry::getUrl(); ?>
