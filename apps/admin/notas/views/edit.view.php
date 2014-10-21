@@ -160,5 +160,6 @@ Toolbar::render();
 <script>
     $(document).ready(function () {
         $('textarea').summernote();
+        $('#fecha').datepicker({ dateFormat: 'yy-mm-dd' });
     });
 </script>
