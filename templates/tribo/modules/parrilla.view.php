@@ -17,9 +17,9 @@ $eventos = Evento::select(array(
             <?php } ?>
 
             <div class="parrilla-cabecera">
-                <h1><?=Languate::translate('VIEW_TEMPLATE_PARRILLA_NOW');?><br /><?=Languate::translate('VIEW_TEMPLATE_PARRILLA_NOW_TRIBO');?></h1>
+                <h1><?=Language::translate('VIEW_TEMPLATE_PARRILLA_NOW');?><br /><?=Language::translate('VIEW_TEMPLATE_PARRILLA_NOW_TRIBO');?></h1>
                 <a href="<?=Url::site('parrilla');?>">
-                    <h2><?=Languate::translate('VIEW_TEMPLATE_PARRILLA_VER');?>&nbsp;&nbsp;<div class="circulo">+</div></h2>
+                    <h2><?=Language::translate('VIEW_TEMPLATE_PARRILLA_VER');?>&nbsp;&nbsp;<div class="circulo">+</div></h2>
                 </a>
             </div>
 
@@ -42,7 +42,7 @@ $eventos = Evento::select(array(
                                     <?=Helper::sanitize($capitulo->getProgramaTitulo($programa)); ?>
                                 </a>
                             <?php } else { ?>
-                                <?=Languate::translate('VIEW_TEMPLATE_PARRILLA_NO_DISPONIBLE');?>
+                                <?=Language::translate('VIEW_TEMPLATE_PARRILLA_NO_DISPONIBLE');?>
                             <?php } ?>
                         </span>
                     </div>

@@ -348,7 +348,7 @@ class Nota extends Model
         }
         //Fecha
         if ($data["mes"]) {
-            $where .= " `fecha` BETWEEN :mesMin AND :mesMax ";
+            $where .= " AND `fecha` BETWEEN :mesMin AND :mesMax ";
             $params[":mesMin"] = $data["mes"]."-01";
             $params[":mesMax"] = $data["mes"]."-31";
         }

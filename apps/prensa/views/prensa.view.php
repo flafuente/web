@@ -22,9 +22,10 @@
                 <?php if (count($notasFecha)) { ?>
                     <div class="right">
                         <?=Language::translate("VIEW_PRENSA_FILTRO_FECHA");?>
+                        <?php $s[$_REQUEST['mes']] = 'selected'; ?>
                         <select name="mes" class="change-submit" style="color: black;">
                             <?php foreach ($notasFecha as $mes => $totalNotas) { ?>
-                                <option value="<?=$mes?>">
+                                <option value="<?=$mes?>" <?=$s[$mes]?>>
                                     <?php $tmp = explode("-", $mes); ?>
                                     <?=$meses[$tmp[1]-1];?> <?=$tmp[0];?> (<?=count($totalNotas)?>)
                                 </option>

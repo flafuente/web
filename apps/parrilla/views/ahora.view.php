@@ -19,7 +19,7 @@
                         <?=Helper::sanitize($capitulo->getProgramaTitulo($programa)); ?>
                     </a>
                 <?php } else { ?>
-                    <?=Translate::languate("VIEW_PARRILLA_AHORA_EMPTY_SPACE"); ?>
+                    <?=Translate::Language("VIEW_PARRILLA_AHORA_EMPTY_SPACE"); ?>
                 <?php } ?>
             </span>
         </div>
