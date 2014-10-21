@@ -304,7 +304,7 @@ class Nota extends Model
     public static function totalMeses()
     {
         $db = Registry::getDb();
-        $query = "SELECT YEAR(`fecha`) as ano, MONTH(`fecha`) AS mes, SUM(id) AS total FROM `notas` WHERE `estadoId` = 1 GROUP BY YEAR(`fecha`), MONTH(`fecha`)";
+        $query = "SELECT YEAR(`fecha`) as ano, MONTH(`fecha`) AS mes, COUNT(id) AS total FROM `notas` WHERE `estadoId` = 1 GROUP BY YEAR(`fecha`), MONTH(`fecha`)";
         $rows = $db->Query($query);
         if (count($rows)) {
             $results = array();
