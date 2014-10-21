@@ -20,7 +20,14 @@ class parrillaController extends Controller
         }
         $fechaInicio = $_REQUEST["fecha"]." 00:00:00";
         $fechaFin = $_REQUEST["fecha"]." 24:00:00";
-        WS::addData("eventos", Evento::select(array("fechaInicio" => $fechaInicio, "fechaFin" => $fechaFin, "order" => "fechaInicio")));
+        $eventos = Evento::select(array("fechaInicio" => $fechaInicio, "fechaFin" => $fechaFin, "order" => "fechaInicio"));
+        $eventosJson = array();
+        if (count($eventos)) {
+            foreach ($eventos as $evento) {
+                $eventosJson[] = $evento->getWs();
+            }
+        }
+        WS::addData("eventos", $eventosJson);
         WS::output();
     }
 }

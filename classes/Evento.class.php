@@ -213,4 +213,13 @@ class Evento extends Model
             }
         }
     }
+
+    public function getWs()
+    {
+        $data = (array) $this;
+
+        $data['capitulo'] = (new Capitulo($this->capituloId))->getProgramaTitulo();
+
+        return $data;
+    }
 }
