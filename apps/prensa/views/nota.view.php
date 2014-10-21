@@ -14,7 +14,7 @@
                 <?php } ?>
             </div>
             <div class="col-md-8">
-                <h2><?= $nota->fecha; ?></h2>
+                <h2><?= Helper::humanDate($nota->fecha); ?></h2>
                 <h1><?= Location::translate($nota, 'titulo'); ?></h1>
                 <h3><?= Location::translate($nota, 'descripcion'); ?></h3>
             </div>
