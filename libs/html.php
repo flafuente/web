@@ -10,8 +10,8 @@ class HTML
     {
         $style = "width:".$width."px;";
         /*
-        if(is_numeric($width)){
-        }else{
+        if (is_numeric($width)) {
+        } else {
             $style = "width: ".$width.";";
             $width = 570;
         }
@@ -36,12 +36,20 @@ class HTML
                 $style .= "min-height:300px;";
             }
         }
-        ?>
+        $detect = new Mobile_Detect;
+        if ($detect->is('ipad')) { ?>
+
+            <div id="wistia_<?=$hash;?>" style="width:85%; min-height:300px; margin:0 auto;"></div>
+
+        <?php } else { ?>
+
             <div id="wistia_<?=$hash;?>" class="wistia_embed" style="<?=$style?>"></div>
             <script>
                 wistiaEmbed = Wistia.embed("<?=$hash;?>");
             </script>
+
         <?php
+        }
     }
 
     public function relativeDate($date)
