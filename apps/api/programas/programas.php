@@ -22,6 +22,29 @@ class programasController extends Controller
         $this->ajax(array("programas" => $programas));
     }
 
+    public function searchCapitulo()
+    {
+        $tmp = explode("x", strtolower($_REQUEST["capitulo"]));
+        $temporada = $tmp[0];
+        $episodio = (int) $tmp[1];
+        $capitulo = Capitulo::getCapituloByTemporadaEpisodio($_REQUEST["programaId"], $temporada, $episodio);
+        $this->ajax(array("capitulo" => $capitulo));
+    }
+
+    public function syncCapitulo()
+    {
+        $capitulo = new Capitulo($_REQUEST['id']);
+        if ($capitulo->id) {
+            $capitulo->estdoId = 0;
+            $capitulo->cdnId = $_REQUEST['cdnId'];
+            $capitulo->update();
+            $status = "ok";
+        } else {
+            $status = "error";
+        }
+        $this->ajax(array("status" => $status));
+    }
+
     public function syncParrillas()
     {
         $tmp = explode("x", strtolower($_REQUEST["capitulo"]));
