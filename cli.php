@@ -7,12 +7,14 @@ include 'vendor/autoload.php';
 // Config
 include 'config.php';
 
+$config = Registry::getConfig();
+
 // Args
 $parameters = Cli::getArgs($argv);
-if (!in_array($parameters["a"], array("fixMedias")) || isset($parameters["h"]) || isset($parameters["help"])) {
+if (!in_array($parameters["a"], array("fixMedias", "fixEntradas")) || isset($parameters["h"]) || isset($parameters["help"])) {
     // Help
     Cli::output("Usage: ".$argv[0]." [options]\n", "help");
-    Cli::output("   -a: <fixMedias>", "help");
+    Cli::output("   -a: <fixMedias | fixEntradas>", "help");
     Cli::finish("   -v: Verbosity level", "help");
 } else {
     // Debug
@@ -83,4 +85,32 @@ switch ($parameters["a"]) {
             }
         }
     break;
+
+    /**
+     * Fix Entradas
+     */
+    case 'fixEntradas':
+        Cli::output("Fix Entradas", "title");
+
+        // Capitulos
+        $capitulos = Capitulo::select(array('hasEntradaId' => true));
+        foreach ($capitulos as $capitulo) {
+            Cli::output($capitulo->titulo, "notice");
+            $programa = new Programa($capitulo->programaId);
+            $result = curl($config->get("parrillasUrl")."/external/updateEntrada/", array(
+                "id" => $capitulo->id,
+                "programaId" => $capitulo->programaId,
+                "programa" => $programa->titulo,
+                "capitulo" => $capitulo->getNumero(),
+                "titulo" => $capitulo->getFullTitulo($programa),
+            ));
+            $json = json_decode($result);
+            if (isset($json->data->status) && $json->data->status == ok) {
+                Cli::output("Entrada actualizada!", "success");
+            } else {
+                Cli::output("Error: ".$json->data->error, "error");
+            }
+        }
+    break;
+
 }
