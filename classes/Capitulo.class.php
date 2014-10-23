@@ -548,7 +548,7 @@ class Capitulo extends Model
         }
     }
 
-    private function moveWistia360()
+    public function moveWistia360()
     {
         //Creamos el proyecto en wistia (de no tener sync)
         $programa = new Programa($this->programaId);
