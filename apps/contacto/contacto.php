@@ -18,10 +18,10 @@ class contactoController extends Controller
             $seccion = new Seccion($_REQUEST["seccionId"]);
             if ($seccion->id) {
                 if ($seccion->sendEmail($_REQUEST)) {
-                    Registry::addMessage(Language::translate("CTRL_CONTACTO_SECCION_ERROR"), "success", "", Url::site());
+                    Registry::addMessage(Language::translate("CTRL_CONTACTO_EMAIL_SENT"), "success", Url::site());
                 }
             } else {
-                Registry::addMessage(Language::translate("CTRL_CONTACTO_EMAIL_SENT"), "error", "seccionId");
+                Registry::addMessage(Language::translate("CTRL_CONTACTO_SECCION_ERROR"), "error", "seccionId");
             }
         } else {
             if ($_REQUEST["contactoId"]) {
