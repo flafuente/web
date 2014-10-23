@@ -95,17 +95,18 @@ switch ($parameters["a"]) {
         Cli::output("Fix Entradas", "title");
 
         // Capitulos
-        $capitulos = Capitulo::select(array('hasEntradaId' => true));
+        $capitulos = Capitulo::select(array('hasEntradaId' => 1));
         foreach ($capitulos as $capitulo) {
             Cli::output($capitulo->titulo, "notice");
             $programa = new Programa($capitulo->programaId);
-            $result = curl($config->get("parrillasUrl")."/external/updateEntrada/", array(
-                "id" => $capitulo->id,
+            $data = array(
+                "id" => $capitulo->entradaId,
                 "programaId" => $capitulo->programaId,
                 "programa" => $programa->titulo,
                 "capitulo" => $capitulo->getNumero(),
                 "titulo" => $capitulo->getFullTitulo($programa),
-            ));
+            );
+            $result = curl($config->get("parrillasUrl")."/external/updateEntrada/", $data);
             $json = json_decode($result);
             if (isset($json->data->status) && $json->data->status == ok) {
                 Cli::output("Entrada actualizada!", "success");

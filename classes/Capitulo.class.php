@@ -609,7 +609,7 @@ class Capitulo extends Model
         //Has Entrada Id
         if (isset($data["hasEntradaId"]) && $data["hasEntradaId"] != "-1") {
             if ($data["hasEntradaId"]) {
-                $query .= " AND `entradaId` != 0 ";
+                $query .= " AND `entradaId` > 0 ";
             } else {
                 $query .= " AND `entradaId` = 0 ";
             }
