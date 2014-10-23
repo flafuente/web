@@ -88,6 +88,8 @@ switch ($parameters["a"]) {
 
     /**
      * Fix Entradas
+     *
+     * Recorrer los capitulos con EntradaID y comprobar que esta vinculada (Volcar el 2x01).
      */
     case 'fixEntradas':
         Cli::output("Fix Entradas", "title");
@@ -109,6 +111,59 @@ switch ($parameters["a"]) {
                 Cli::output("Entrada actualizada!", "success");
             } else {
                 Cli::output("Error: ".$json->data->error, "error");
+            }
+        }
+    break;
+
+    /**
+     * Fix Search Wistia
+     *
+     * Primero que saque todos los capitulos en la web que tengan HOUSENUMBER y sin CDN de Wistia.
+     * Busque en wistia si esta su HOUSENUMBER y los empareje.
+     */
+    case 'searchWistia':
+        Cli::output("Fix Medias2", "title");
+
+        //Wistia init
+        Wistia::init();
+
+        //Capitulos con Entrada y sin wistia
+        $capitulos = Capitulo::select(array('hasEntradaId' => true, 'hasCdnId' => false));
+        foreach ($capitulos as $capitulo) {
+            Cli::output($capitulo->titulo, "notice");
+            // Leemos su HouseNumber
+            $houseNumber = $capitulo->getHouseNumber();
+            if ($houseNumber) {
+                //Buscamos el HouseNumber en Wistia
+                $res = Wistia::searchMedia($houseNumber.".mxf");
+                if (is_array($res)) {
+                    $fixed = false;
+                    foreach ($res as $r) {
+                        if ($r->status == 'ready') {
+                            $capitulo->cdnId = $r->hashed_id;
+                            $capitulo->estadoId = 1;
+                            if ($r->project->name == 'Uploads360') {
+                                // Movemos
+                                $capitulo->moveWistia360();
+                                Cli::output('Video movido fuera de 360!', 'success');
+                            }
+                            $capitulo->update();
+                            $fixed = true;
+                            Cli::output('CND vinculado ('.$capitulo->cdnId.')!', 'success');
+                            break;
+                        }
+                    }
+                    if (!$fixed) {
+                        Cli::output('Los archivos encontrados no cumplen los requisitos (Status != ready)', 'error');
+                        $capitulo->estadoId = 0;
+                        $capitulo->update();
+                    }
+                    continue;
+                } else {
+                    Cli::output('CDN no localizado', 'error');
+                }
+            } else {
+                Cli::output('Sin HouseNumber', 'error');
             }
         }
     break;
