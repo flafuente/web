@@ -611,15 +611,15 @@ class Capitulo extends Model
             if ($data["hasEntradaId"]) {
                 $query .= " AND `entradaId` > 0 ";
             } else {
-                $query .= " AND `entradaId` = 0 ";
+                $query .= " AND (`entradaId` = 0 OR `entradaId` IS NULL)";
             }
         }
         //Has CDN Id
         if (isset($data["hasCdnId"]) && $data["hasCdnId"] != "-1") {
             if ($data["hasCdnId"]) {
-                $query .= " AND (`cdnId` IS NOT NULL AND `cdnId` != '' AND `cdnId` != 0) ";
+                $query .= " AND (`cdnId` IS NOT NULL AND `cdnId` != '' AND `cdnId` != '0') ";
             } else {
-                $query .= " AND (`cdnId` IS NULL OR `cdnId` = '' OR `cdnId` = 0) ";
+                $query .= " AND (`cdnId` = '0' OR `cdnId` = '' OR `cdnId` IS NULL)";
             }
         }
         //Total
