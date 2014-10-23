@@ -59,6 +59,24 @@ class Wistia
         return $json;
     }
 
+    public static function listProjects()
+    {
+        $url = "https://api.wistia.com/v1/projects.json?api_password=".self::$password;
+        $result = self::curl($url);
+        $json = json_decode($result);
+
+        return $json;
+    }
+
+    public static function listMedias($project)
+    {
+        $url = "https://api.wistia.com/v1/medias.json?api_password=".self::$password;
+        $result = self::curl($url);
+        $json = json_decode($result);
+
+        return $json;
+    }
+
     public static function moveMedia($mediaHash, $destinationProjectHash)
     {
         //Copy

@@ -11,10 +11,10 @@ $config = Registry::getConfig();
 
 // Args
 $parameters = Cli::getArgs($argv);
-if (!in_array($parameters["a"], array("fixMedias", "fixEntradas")) || isset($parameters["h"]) || isset($parameters["help"])) {
+if (!in_array($parameters["a"], array("fixMedias", "searchWistia", "fixEntradas", "deleteWistias")) || isset($parameters["h"]) || isset($parameters["help"])) {
     // Help
     Cli::output("Usage: ".$argv[0]." [options]\n", "help");
-    Cli::output("   -a: <fixMedias | fixEntradas>", "help");
+    Cli::output("   -a: <fixMedias | fixEntradas | searchWistia | deleteWistias>", "help");
     Cli::finish("   -v: Verbosity level", "help");
 } else {
     // Debug
@@ -122,7 +122,7 @@ switch ($parameters["a"]) {
      * Busque en wistia si esta su HOUSENUMBER y los empareje.
      */
     case 'searchWistia':
-        Cli::output("Fix Medias2", "title");
+        Cli::output("Fix Search Wistia", "title");
 
         //Wistia init
         Wistia::init();
@@ -164,6 +164,51 @@ switch ($parameters["a"]) {
                 }
             } else {
                 Cli::output('Sin HouseNumber', 'error');
+            }
+        }
+    break;
+
+    /**
+     * Fix Delete wistias
+     *
+     * Luego que se folle todos los archivos que tenemos en Wistia y no estan como CDN ID en la web
+     * (Con excepcion de los videos que estan en los proyectos:
+     *     https://tribo.wistia.com/projects/ereel7jcqh
+     *     https://tribo.wistia.com/projects/cy8k4iha9x)
+     * Cuando digo CDN en la web revisar "Tanto en Videos como en Capitulos"
+     */
+    case 'deleteWistias':
+        $db = Registry::getDb();
+
+        Cli::output("Fix Delete Wistias", "title");
+
+        //Wistia init
+        Wistia::init();
+
+        $projects = Wistia::listProjects();
+        foreach ($projects as $project) {
+            Cli::output($project->name, 'title');
+            $medias = Wistia::listMedias($project->hashedId);
+            if (count($medias)) {
+                foreach ($medias as $media) {
+                    Cli::output("Media: ".$media->hashed_id, 'notice');
+                    //Capitulo asociado?
+                    if ($db->query("SELECT * FROM `capitulos` WHERE cdnId = :cdnId LIMIT 1", array(':cdnId' => $media->hashed_id))) {
+                        continue;
+                    }
+                    //Video asociado?
+                    if ($db->query("SELECT * FROM `videos` WHERE cdnId = :cdnId LIMIT 1", array(':cdnId' => $media->hashed_id))) {
+                        continue;
+                    }
+                    //Borramos
+                    Cli::output('Eliminando vídeo...', 'warning');
+                    if ($parameters['d']) {
+                        Wistia::delete($media->hashed_id);
+                        Cli::output('Video eliminado!', 'success');
+                    }
+                }
+            } else {
+                Cli::output('Proyecto sin medias', 'notice');
             }
         }
     break;
