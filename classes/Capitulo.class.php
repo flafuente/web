@@ -558,7 +558,7 @@ class Capitulo extends Model
             $media = Wistia::moveMedia($this->cdnId, $programa->wistiaHash);
             if ($media) {
                 //Update new CDN id
-                $this->cndId = $media->hashed_id;
+                $this->cdnId = $media->hashed_id;
             }
         }
     }

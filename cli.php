@@ -53,7 +53,7 @@ switch ($parameters["a"]) {
                 $houseNumber = $capitulo->getHouseNumber();
                 if ($houseNumber) {
                     $res = Wistia::searchMedia($houseNumber.".mxf");
-                    if (is_array($res)) {
+                    if (!empty($res)) {
                         $fixed = false;
                         foreach ($res as $r) {
                             if ($r->project->name != 'Uploads360' && $r->status == 'ready') {
@@ -129,7 +129,7 @@ switch ($parameters["a"]) {
         Wistia::init();
 
         //Capitulos con Entrada y sin wistia
-        $capitulos = Capitulo::select(array('hasEntradaId' => true, 'hasCdnId' => false));
+        $capitulos = Capitulo::select(array('hasEntradaId' => 1, 'hasCdnId' => 0));
         foreach ($capitulos as $capitulo) {
             Cli::output($capitulo->titulo, "notice");
             // Leemos su HouseNumber
@@ -137,7 +137,7 @@ switch ($parameters["a"]) {
             if ($houseNumber) {
                 //Buscamos el HouseNumber en Wistia
                 $res = Wistia::searchMedia($houseNumber.".mxf");
-                if (is_array($res)) {
+                if (!empty($res)) {
                     $fixed = false;
                     foreach ($res as $r) {
                         if ($r->status == 'ready') {
@@ -152,16 +152,18 @@ switch ($parameters["a"]) {
                             $fixed = true;
                             Cli::output('CND vinculado ('.$capitulo->cdnId.')!', 'success');
                             break;
+                        } else {
+                            Cli::output('Status: '.$r->status, 'warning');
                         }
                     }
                     if (!$fixed) {
-                        Cli::output('Los archivos encontrados no cumplen los requisitos (Status != ready)', 'error');
+                        Cli::output('Capitulo no fixeado', 'error');
                         $capitulo->estadoId = 0;
                         $capitulo->update();
                     }
                     continue;
                 } else {
-                    Cli::output('CDN no localizado', 'error');
+                    Cli::output('CDN no localizado ('.$houseNumber.')', 'error');
                 }
             } else {
                 Cli::output('Sin HouseNumber', 'error');
