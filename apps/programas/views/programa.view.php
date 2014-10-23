@@ -1,7 +1,8 @@
 <?php defined('_EXE') or die('Restricted access'); ?>
 
 <div class='col-md-12 serie_info'>
-    <div class="serie_title">
+    <a href="<?=Url::site("programas/seccion/".$seccion->slug);?>"><span class="breadcrumbs"><?=Location::translate($seccion, 'nombre');?></span><div class="triangulo_azul"></div></a>
+    <div class="serie_title" style="margin-top: 2px;">
         <?=Helper::sanitize(Location::translate($programa, 'titulo'));?>
     </div>
     <div class="serie_when">

@@ -986,6 +986,27 @@ div#s2id_autogen1 {
 	font-size: 19px;
 	font-weight: 800;
 }
+.breadcrumbs, .triangulo_azul{
+	background-color: #17B5E9;
+	color: #FFF;
+	float: left;
+}
+.breadcrumbs{
+	padding: 4px;
+	text-transform: uppercase;
+}
+.triangulo_azul{
+	-moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: transparent;
+    border-color: transparent transparent transparent #17b5e9;
+    border-image: none;
+    border-style: solid;
+    border-width: 14px 16px 14px 16px;
+    z-index: 99;
+}
 
 /*Periodismo Ciudadano*/
 .lomasvisto .slick-prev:before, .lomasvisto .slick-next:before {
