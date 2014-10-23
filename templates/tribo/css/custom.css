@@ -1,3 +1,4 @@
+/*Azul tribo: #12B5E9 */
 html{
 	height: 100%;
 }
@@ -85,11 +86,11 @@ nav div, h1, h2, h3, h4, h5, h6 {
   margin-bottom: 10px;
 }
 li.active > a {
-	color: #17B5E9 !important;
+	color: #12B5E9 !important;
 }
 .nav>li>a:hover, .nav>li>a:focus {
 	text-decoration: none;
-	color: #17B5E9;
+	color: #12B5E9;
 	background: none !important;
 }
 .nav-pills>li.active>a:hover {
@@ -240,7 +241,7 @@ a.file-input-wrapper.btn.btn-default.btnazul {
 	margin: 1px;
 }
 .profile-picture-sq a.btnazul{
-	background-color: #19b6ea;
+	background-color: #12B5E9;
 	margin: 15px 0px 0px 15px;
 	font-size: 11px;
 	color: #FFF;
@@ -343,7 +344,7 @@ div.parrilla {
 	
 }
 div.parrilla-cabecera {
-	background-color: #17B5E9;
+	background-color: #12B5E9;
 	padding: 0px 5px 1px 10px;
 }
 div.right_arrow{
@@ -351,7 +352,7 @@ div.right_arrow{
 	width: 0px;
 	height: 85px;
 	border: 43px solid transparent;
-	border-left: 19px solid #17B5E9;
+	border-left: 19px solid #12B5E9;
 	position: absolute;
 	top: 20px;
 	right: -62px;
@@ -359,7 +360,7 @@ div.right_arrow{
 }
 div.parrilla-cabecera h1 {
 	color: #FFF;
-	font-size: 17px;
+	font-size: 15px;
 	font-weight: bold;
 	padding-top: 5px;
 	/*font-family: HelveticaNH;*/
@@ -373,7 +374,7 @@ div.parrilla-cabecera h2 {
 }
 div.parrilla-cabecera h2 .circulo {
 	background-color: #FFF;
-	color: #17B5E9;
+	color: #12B5E9;
 	-webkit-border-radius: 20px;
 	-moz-border-radius: 20px;
 	border-radius: 20px;
@@ -387,8 +388,8 @@ div.parrilla-cabecera h2 .circulo {
 }
 div.parrilla-contenido {
 	min-height: 40px;
-	margin: 25px 10px 0px 10px;
-	color: #17B5E9;
+	margin: 10px;
+	color: #12B5E9;
 	padding-bottom: 20px;
 	font-weight: bold;
 }
@@ -396,13 +397,13 @@ div.parrilla-contenido {
 	border-bottom: 2px solid #CCC;
 }
 div.parrilla-contenido span.titulo {
-	font-size: 17px;
+	font-size: 15px;
 }
 div.parrilla-contenido span.hora {
 	color: #464343;
 	width: 100%;
 	float: left;
-	font-size: 17px;
+	font-size: 15px;
 }
 .datesel{
 	color: #FFF !important;
@@ -556,7 +557,7 @@ div.cadena{
 	margin-top: 20px;
 }
 .sq_num i.fa.fa-heart-o {
-	color: #17B5E9;
+	color: #12B5E9;
 }
 div.sq_num {
 	float: right;
@@ -921,7 +922,7 @@ div.sq_content{
 	margin: 1px;
 }
 .bullet-blue{
-	background-color: #17B5E9 !important;
+	background-color: #12B5E9 !important;
 }
 /*Historico de noticias*/
 .filtro_news .titfil{
@@ -968,12 +969,12 @@ div#s2id_autogen1 {
 	padding: 0px 12px 0px 12px;
 }
 .ver-todas-web{
-	color: #17B5E9;
+	color: #12B5E9;
 	text-align: right;
 	margin-top: 10px;
 }
 .ver-todas-web .circulo-azul{
-	background-color: #17B5E9;
+	background-color: #12B5E9;
 	color: #FFF;
 	-webkit-border-radius: 20px;
 	-moz-border-radius: 20px;
@@ -985,6 +986,27 @@ div#s2id_autogen1 {
 	margin-top: -2px;
 	font-size: 19px;
 	font-weight: 800;
+}
+.breadcrumbs, .triangulo_azul{
+	background-color: #12B5E9;
+	color: #FFF;
+	float: left;
+}
+.breadcrumbs{
+	padding: 4px;
+	text-transform: uppercase;
+}
+.triangulo_azul{
+	-moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: transparent;
+    border-color: transparent transparent transparent #12B5E9;
+    border-image: none;
+    border-style: solid;
+    border-width: 14px 16px 14px 16px;
+    z-index: 99;
 }
 
 /*Periodismo Ciudadano*/
@@ -1073,7 +1095,7 @@ div#s2id_autogen1 {
 	font-size: 10px;
 }
 .mv-donde{
-	color: #17B5E9;
+	color: #12B5E9;
 }
 .mv-autor span, .mv-fecha span{
 	color: #9b9b9b;
@@ -1119,7 +1141,7 @@ div#s2id_autogen1 {
 	padding-top: 20px;
 }
 .parr_titulo{
-	color: #17B5E9;
+	color: #12B5E9;
 	font-weight: bold;
 }
 .fechas {
@@ -1173,7 +1195,7 @@ a.file-input-wrapper.btn.btn-default.btnazul {
 	border: none;
 }
 .file-input-wrapper.btnazul span,  .file-input-wrapper.btnazul {
-	background-color: #19b6ea;
+	background-color: #12B5E9;
 	color: #FFFFFF;
 	padding: 5px;
 }
@@ -1233,7 +1255,7 @@ a.file-input-wrapper.btn.btn-default.btnazul {
 	text-transform: uppercase;
 }
 .mivid-subtitulo{
-	color: #17B5E9;
+	color: #12B5E9;
 }
 .simple-pagination{
 	text-align: center;
@@ -1243,7 +1265,7 @@ a.file-input-wrapper.btn.btn-default.btnazul {
 	cursor: pointer;
 }
 .simple-pagination .sp-sel{
-	color: #17B5E9;
+	color: #12B5E9;
 }
 
 
@@ -1296,7 +1318,7 @@ label {
 }
 .btn-tribo-blue {
 	color: #fff;
-	background-color: #17B5E9;
+	background-color: #12B5E9;
 	border-color: #94d6eb;
 }
 .btn-tribo-grey {
@@ -1332,7 +1354,7 @@ label {
 	float: right;
 	z-index: 999999;
 	border: 1px solid #CCC;
-	border-top: 4px solid #17B5E9;
+	border-top: 4px solid #12B5E9;
 	padding: 10px;
 }
 .contact_form {
@@ -1393,7 +1415,7 @@ label {
 	font-size: 12px;
 }
 .vd-temporada{
-	color: #17B5E9;
+	color: #12B5E9;
 	font-size: 12px;
 	font-weight: bold;
 }
@@ -1498,7 +1520,7 @@ label {
 	background-position: center center;
 }
 .l_circle:hover{
-	background-color: #17B5E9;
+	background-color: #12B5E9;
 }
 .circle_items{
 	text-align: center;
@@ -1595,7 +1617,7 @@ font-size:15px;
 /* Like buttons */
 .like{
 	cursor: pointer;
-	color: #17B5E9;
+	color: #12B5E9;
 }
 
 
