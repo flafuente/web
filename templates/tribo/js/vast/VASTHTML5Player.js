@@ -1,3 +1,12 @@
+var supportsOrientationChange = "onorientationchange" in window,
+    orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
+
+window.addEventListener(orientationEvent, function() {
+	var btnClick = document.getElementById("VASTadClickTag" + window[window.VAST_API].config_ContainerId);
+	btnClick.style.visibility="hidden";
+	setTimeout(function(){window[window.VAST_API].adPlayer.resize();}, 500);
+}, false);
+
 var VASTHTML5Player = function(main){
 	
 	this.main = main;
@@ -80,12 +89,22 @@ var VASTHTML5Player = function(main){
 		
 			this.main.playerContent.src = obj.url;
 			this.main.playerContent.addEventListener("loadedmetadata", function(obj){this.main.setDuration(this);}, false);
+			this.main.playerContent.addEventListener("error", function(obj){this.main.adError();}, false);
+			this.main.playerContent.addEventListener("stalled", function(obj){this.controls=true;}, false);
+			this.main.playerContent.addEventListener("paused", function(obj){this.controls=true;}, false);
 			this.main.playerContent.addEventListener("canplay", function(obj){this.play();}, false);
 			this.main.playerContent.load();
 			this.main.playerContent.play();
 			this.main.playerContent.main = this;
 			
 		}
+		
+	}
+	
+	
+	this.adError = function(){
+		this.main.playerContent.pause();
+		this.main.adPlayerEvent({type:"complete_ad"});
 		
 	}
 	
@@ -165,6 +184,14 @@ var VASTHTML5Player = function(main){
 		} else {
 			this.updateTime = setInterval(function(){window[window.VAST_API].adPlayer.updatingVideo();}, 500);	
 		}
+	}
+	
+	
+	this.resize=function(){
+		var btnClick = document.getElementById("VASTadClickTag" + this.main.config_ContainerId);
+		btnClick.style.top =  (this.main.getPos(this.main.playerContentContainer).y + 5)  + "px";
+		btnClick.style.left =(this.main.getPos(this.main.playerContentContainer).x + this.main.playerContentContainer.offsetWidth) - 105 + "px";
+		btnClick.style.visibility="visible";
 	}
 	
 	return this;
