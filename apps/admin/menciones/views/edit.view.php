@@ -147,6 +147,20 @@ Toolbar::render();
                                 <?php } ?>
                             </div>
                         </div>
+                        <!-- Archivo -->
+                        <div class="form-group">
+                            <label for="string" class="col-sm-3 control-label">
+                                Archivo
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="file" id="fileArchivo" name="fileArchivo" class="btn-primary btn" >
+                                <?php if ($mencion->archivo) { ?>
+                                    <a href="<?=$mencion->getArchivoUrl();?>" class="btn btn-default" target="_blank">
+                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                    </a>
+                                <?php } ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

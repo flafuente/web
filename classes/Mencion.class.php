@@ -55,6 +55,12 @@ class Mencion extends Model
     public $link;
 
     /**
+     * Archivo
+     * @var string
+     */
+    public $archivo;
+
+    /**
      * DateInsert
      * @var datetime
      */
@@ -91,6 +97,12 @@ class Mencion extends Model
     public $pathImagenes = "/files/images/menciones/";
 
     /**
+     * Ruta de los archivos
+     * @var string
+     */
+    public $pathArchivos = "/files/files/menciones/";
+
+    /**
      * Textos traducibles
      * @var array
      */
@@ -100,7 +112,7 @@ class Mencion extends Model
      * Variables reservadas (no están en la base de datos)
      * @var array
      */
-    public static $reservedVarsChild = array("estados", "estadosCss", "pathImagenes", "locations");
+    public static $reservedVarsChild = array("estados", "estadosCss", "pathImagenes", "locations", "pathArchivos");
 
     /**
      * Class initialization
@@ -156,6 +168,29 @@ class Mencion extends Model
     }
 
     /**
+     * Devuelve la ruta del archivo.
+     * @return string
+     */
+    public function getArchivoPath()
+    {
+        $config = Registry::getConfig();
+
+        return $config->get("path").$this->pathArchivos.$this->archivo;
+    }
+
+    /**
+     * Devuelve la URL del Thumbnail.
+     * @return string
+     */
+    public function getArchivoUrl()
+    {
+        //Archivo
+        if ($this->archivo) {
+            return Url::site($this->pathArchivos.$this->archivo);
+        }
+    }
+
+    /**
      * Validation
      *
      * @return array Object Messages
@@ -186,6 +221,19 @@ class Mencion extends Model
                     ->upload($_FILES['fileImagen']);
             } catch (ImageUploaderException $e) {
                 Registry::addMessage("Error al subir la imagen: ".$e->getMessage(), "error");
+            }
+        }
+
+        //Archivo Upload
+        if ($data["form"] && isset($_FILES["fileArchivo"]) && $_FILES["fileArchivo"]["size"] > 0) {
+            try {
+                //Eliminamos el anterior
+                $this->deleteArchivo();
+                //Subimos la nueva
+                $this->archivo = substr(md5(uniqid()),0,6)."_".$_FILES["fileArchivo"]["name"];
+                move_uploaded_file($_FILES["fileArchivo"]["tmp_name"], $this->getArchivoPath());
+            } catch (ImageUploaderException $e) {
+                Registry::addMessage("Error al subir el archivo: ".$e->getMessage(), "error");
             }
         }
 
@@ -351,6 +399,7 @@ class Mencion extends Model
     public function postDelete()
     {
         $this->deleteImagen();
+        $this->deleteArchivo();
     }
 
     private function deleteImagen()
@@ -359,5 +408,13 @@ class Mencion extends Model
             return @unlink($this->getImagenPath());
         }
         $this->imagen = "";
+    }
+
+    private function deleteArchivo()
+    {
+        if ($this->archivo) {
+            return @unlink($this->getArchivoPath());
+        }
+        $this->archivo = "";
     }
 }

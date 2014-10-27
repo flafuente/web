@@ -15,7 +15,11 @@
     ?>
     <div class="col-md-<?=$span;?> prensa_descripcion">
         <h1>
-            <a href="<?=$mencion->getLink();?>" target="_blank">
+            <?php if (!$mencion->archivo) { ?>
+                <a href="<?=$mencion->getLink();?>" target="_blank">
+            <?php } else { ?>
+                <a href="<?=$mencion->getArchivoUrl();?>">
+            <?php } ?>
                 <?= Location::translate($mencion, 'titulo'); ?>
             </a>
         </h1>
