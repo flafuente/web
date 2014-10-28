@@ -6,10 +6,8 @@
     <div class="col-md-12 video">
         <?php HTML::wistiaPlayer($capitulo->cdnId); ?>
 
-        <?php if ($_REQUEST['vast']) { ?>
-            <script src="<?=Url::template('js/vast/VASTPlugin.js')?>"></script>
-            <script>
-            //Ad implementation
+        <script src="<?=Url::template('js/vast/VASTPlugin.js')?>"></script>
+        <script>
             var vastTag;
 
             <?php $detect = new Mobile_Detect; ?>
@@ -22,14 +20,13 @@
             <?php } ?>
 
             var myAdPlugin = new VASTPlugin(
-                wistiaEmbed, //wistiaEmbed Api
-                "<?=$capitulo->cdnId;?>", // wistia ID
-                "myAdPlugin", // Ad plugin Api
-                escape(vastTag), // ad vast/vpaid tag
+                wistiaEmbed,
+                "<?=$capitulo->cdnId;?>",
+                "myAdPlugin",
+                escape(vastTag),
                 "./"
-            ); // library path
-            </script>
-        <?php } ?>
+            );
+        </script>
     </div>
 
     <!-- Info -->
