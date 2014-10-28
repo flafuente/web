@@ -11,11 +11,16 @@
             <script>
             //Ad implementation
             var vastTag;
-            if (!isMobile.any()) {
-                vastTag = "http://shadowcdn-01.yumenetworks.com/ym/1B3uA91O2152/1349/HifvrHol/vpaid_as3.xml";
-            } else {
-                vastTag = "http://ad3.liverail.com/?LR_PUBLISHER_ID=1331&LR_CAMPAIGN_ID=229&LR_SCHEMA=vast2";
-            }
+
+            <?php $detect = new Mobile_Detect; ?>
+            <?php if ($detect->isMobile()) { ?>
+                vastTag = "http://plg1.yumenetworks.com/dynamic_preroll_playlist.vast2xml?domain=1881NsMdtfSa";
+            <?php } elseif ($detect->isTablet()) { ?>
+                vastTag = "http://plg1.yumenetworks.com/dynamic_preroll_playlist.vast2xml?domain=1881jhDGwAAL";
+            <?php } else { ?>
+                vastTag = "http://cdn-01.yumenetworks.com/ym/72K6cH27X672/3560/mOjIXIJN/vpaid_tribo_sdk.xml";
+            <?php } ?>
+
             var myAdPlugin = new VASTPlugin(
                 wistiaEmbed, //wistiaEmbed Api
                 "<?=$capitulo->cdnId;?>", // wistia ID
