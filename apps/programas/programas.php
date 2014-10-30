@@ -56,7 +56,7 @@ class programasController extends Controller
             //seccion
             $this->setData("seccion",$seccion);
             //Capítulos
-            $this->setData("temporadas", Capitulo::groupByTemporadas(Capitulo::select(array("programaId" => $programa->id, "estadoId" => 1, 'order' => 'temporadas'))));
+            $this->setData("temporadas", Capitulo::groupByTemporadas(Capitulo::select(array("programaId" => $programa->id, "hasCdnId" => 1, "estadoId" => 1, 'order' => 'temporadas'))));
             //View
             $html = $this->view("views.programa");
             $this->render($html);

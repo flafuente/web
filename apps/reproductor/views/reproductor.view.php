@@ -105,14 +105,20 @@
     <!-- Capítulos -->
     <?php
     //Anterior
-    $controller->setData("capitulo", $capitulo->getPrevious());
-    echo $controller->view("modules.capitulo-mini", "programas");
+    $previous = $capitulo->getPrevious();
+    if ($previous->cdnId && $previous->estadoId) {
+        $controller->setData("capitulo", $previous);
+        echo $controller->view("modules.capitulo-mini", "programas");
+    }
     ?>
 
     <?php
     //Siguiente
-    $controller->setData("capitulo", $capitulo->getNext());
-    echo $controller->view("modules.capitulo-mini", "programas");
+    $next = $capitulo->getNext();
+    if ($next->cdnId && $next->estadoId) {
+        $controller->setData("capitulo", $next);
+        echo $controller->view("modules.capitulo-mini", "programas");
+    }
     ?>
 
     <!-- Links-->

@@ -19,7 +19,7 @@
 <?php if (count($temporadas)) { ?>
 
     <ul class="nav tabs nav-tabs" id="episodios" role="tablist">
-        <?php foreach ($temporadas as $temporada=>$capitulos) { ?>
+        <?php foreach ($temporadas as $temporada => $capitulos) { ?>
             <li>
                 <a href="#temporada<?=$temporada?>" role="tab" data-toggle="tab">
                     <?=Language::translate('VIEW_PROGRAMAS_TEMPORADA');?> <?=$temporada?>
@@ -31,7 +31,7 @@
     <?php $active = null; ?>
 
     <div class="tab-content">
-        <?php foreach ($temporadas as $temporada=>$capitulos) { ?>
+        <?php foreach ($temporadas as $temporada => $capitulos) { ?>
             <div class="tab-pane" id="temporada<?=$temporada?>">
                 <!-- Cápítulos -->
                 <?php if (count($capitulos)) { ?>
