@@ -2,9 +2,11 @@ var supportsOrientationChange = "onorientationchange" in window,
     orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
 
 window.addEventListener(orientationEvent, function() {
-	var btnClick = document.getElementById("VASTadClickTag" + window[window.VAST_API].config_ContainerId);
+	try{
+		var btnClick = document.getElementById("VASTadClickTag" + window[window.VAST_API].config_ContainerId);
 	btnClick.style.visibility="hidden";
 	setTimeout(function(){window[window.VAST_API].adPlayer.resize();}, 500);
+	} catch(e){}
 }, false);
 
 var VASTHTML5Player = function(main){

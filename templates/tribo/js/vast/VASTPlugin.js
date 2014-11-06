@@ -1,5 +1,5 @@
 // JavaScript Document
-window.window.VAST_API;
+window.VAST_API;
 window.PLUGINS_API;
 var jsF = new Array("VASTHTML5Player.js", "VASTSWFPlayer.js", "swfobject.js", "VASTModule.js", "VASTModuleWrapper.js");
 var VASTPlugin = function(wistiaEmbed, id, api, vast, path){
@@ -49,9 +49,11 @@ var VASTPlugin = function(wistiaEmbed, id, api, vast, path){
 	this.wistiaEmbed.adPlugin = this;
 	this.wistiaEmbed.bind('play', function() {
   		// use the .time() method to jump ahead 10 seconds
-		this.adPlugin.start();
-		wistiaEmbed.time(1);
-  		return this.unbind;
+		if(!window[window.VAST_API].adComplete){
+			this.adPlugin.start();
+			wistiaEmbed.time(1);
+		}
+		return this.unbind;
 	});
 
 	
@@ -65,14 +67,13 @@ var VASTPlugin = function(wistiaEmbed, id, api, vast, path){
 		var scp;
 		for(var a=0; a<jsF.length; a++){
 			scp = document.createElement("script");
-			scp.setAttribute("src", "/templates/tribo/js/vast/" + this.config_Path + jsF[a]);
+			scp.setAttribute("src", this.config_Path + jsF[a]);
 			scp.setAttribute("type","text/javascript")
   			document.getElementsByTagName("head")[0].appendChild(scp);
 		}
 		this.checkBitRate();
 		this.checkPlugins();
 	}
-	
 	
 	
 	this.checkPlugins = function(){
@@ -198,7 +199,7 @@ var VASTPlugin = function(wistiaEmbed, id, api, vast, path){
 		if(nads[0].type == "wrapper"){
 			ready=false;
 		}
-		
+		console.log(nads[0].type);
 		if(nads[0].type == "empty"){
 			this.adUnLoad();
 			return;
@@ -220,7 +221,13 @@ var VASTPlugin = function(wistiaEmbed, id, api, vast, path){
 		}
 	}
 	
-	this.adUnLoad = function(vastElement){
+	this.adError = function(vastElement, wrapper){
+		this.fireErrors();
+		this.adUnLoad();
+	}
+	
+	
+	this.adUnLoad = function(){
 		//console.log("adUnLoad");
 		this.adPlayer.unLoad();
 	}
@@ -348,6 +355,7 @@ var VASTPlugin = function(wistiaEmbed, id, api, vast, path){
 			break;
 				
 			case "complete_ad":
+			
 				this.fireTrackers("complete");
 				this.adCompleted = true;
 			break;
@@ -379,10 +387,15 @@ var VASTPlugin = function(wistiaEmbed, id, api, vast, path){
 			break;
 			
 			case "error_ad":
+			console.log(obj);
 				this.fireErrors();
 			break;
 			
 			case "skipped_ad":
+			break;
+			
+			case "stop_ad":
+				this.adUnLoad();
 			break;
 		}
 	}
@@ -445,7 +458,7 @@ var VASTPlugin = function(wistiaEmbed, id, api, vast, path){
 	}
 	
 	this.checkBitRate = function(){
-			var imageAddr = "/templates/tribo/js/vast/bitrate.gif" + "?n=" + Math.random();
+			var imageAddr = this.config_Path + "bitrate.gif" + "?n=" + Math.random();
 			this.startTime, this.endTime;
 			this.downloadSize = 135;
 			var download = new Image();
