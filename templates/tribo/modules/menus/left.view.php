@@ -34,7 +34,7 @@
       <li>
         <a href="<?=Url::site("tvdirecto");?>"><?=Language::translate('MENU_TVDIRECTO');?></a>
       </li>
-      <li class="withsub" style="display: none;">
+      <li class="withsub">
         <a href="#">PRESS ROOM</a>
         <ul class="submenu" style="display: none;">
             <div class="triangle"></div>
