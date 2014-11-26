@@ -5,7 +5,7 @@
 
 <div class="container">
     <div class="row-fluid">
-<a href="<?=Url::site("ennic");?>"><img src='<?=Url::template("/img/WEB_TRIBO_ENNIC.jpg");?>'></a>    
+<a href="<?=Url::site("ennic");?>"><img src='<?=Url::template("/img/WEB_TRIBO_ENNIC.jpg");?>'></a>  <br />  <br />  
         <div class='col-md-4 topleft noresp tribo4'>
             <div class='col-md-12 pull-left mid'>
                 <!-- Login Module -->
@@ -26,15 +26,15 @@
         </div>
         <div class='col-md-4 topright noresp tribo4'>
             <div class='col-md-12 mid pull-right tribo12'>
-            <a class='pull-right lsep' target='_BLANK' href='http://instagram.com/tribo_tv'>
-                <img src='<?=Url::template("/img/instagram.png");?>' title='Instagram' />
-            </a>
-            <a class='pull-right lsep' target='_BLANK' href='https://twitter.com/Tribo_tv'>
-                <img src='<?=Url::template("/img/twitter.png");?>' title='Twitter' />
-            </a>
-            <a class='pull-right lsep' target='_BLANK' href='https://www.facebook.com/pages/Tribo-TV/688832484534082'>
-                <img src='<?=Url::template("/img/facebook.png");?>' title='Facebook' />
-            </a>
+                <a class='pull-right lsep' target='_BLANK' href='http://instagram.com/tribo_tv'>
+                    <img src='<?=Url::template("/img/instagram.png");?>' title='Instagram' />
+                </a>
+                <a class='pull-right lsep' target='_BLANK' href='https://twitter.com/Tribo_tv'>
+                    <img src='<?=Url::template("/img/twitter.png");?>' title='Twitter' />
+                </a>
+                <a class='pull-right lsep' target='_BLANK' href='https://www.facebook.com/pages/Tribo-TV/688832484534082'>
+                    <img src='<?=Url::template("/img/facebook.png");?>' title='Facebook' />
+                </a>
             </div>
         </div>
     </div>
