@@ -7,7 +7,7 @@ ini_set("session.gc_maxlifetime","140000");
 
 //Config
 $_config['title'] = "Tribo.tv";
-$_config['defaultLang'] = "en_GB";
+$_config['defaultLang'] = "es_ES";
 $_config['template'] = "tribo";
 $_config['defaultApp'] = "home";
 $_config['defaultLimit'] = 10;
