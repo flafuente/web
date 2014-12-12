@@ -4,8 +4,7 @@
 <?php $config = Registry::getConfig(); ?>
 
 <div class="container">
-    <div class="row-fluid">
-<a href="<?=Url::site("ennic");?>"><img src='<?=Url::template("/img/WEB_TRIBO_ENNIC.jpg");?>'></a>  <br />  <br />  
+    <div class="row-fluid"> 
         <div class='col-md-4 topleft noresp tribo4'>
             <div class='col-md-12 pull-left mid'>
                 <!-- Login Module -->
